@@ -47,5 +47,6 @@ module alu(alu_interface.alu_dut alu_if);
 
         default: result = '0;
         endcase
+        alu_if.out_data = result;
     end
 endmodule
