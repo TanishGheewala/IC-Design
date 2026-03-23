@@ -1,4 +1,4 @@
-package ALU_pkg;
+package alu_pkg;
 
 import uvm_pkg::*;
 `include "alu_driver.sv"
