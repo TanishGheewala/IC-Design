@@ -32,11 +32,11 @@ class alu_monitor extends uvm_monitor;
         forever begin
             @(posedge clk_vif.clk)
                 //creates item and stores data there
-                alu_sequence_item alu_item = alu_sequence_item::type_id::create("alu_item");
-                alu_item.alu_op <=  alu_vif.alu_opcode;
-                alu_item.in_data_0 <= alu_vif.in_data_0;
-                alu_item.in_data_1 <= alu_vif.in_data_1;
-                alu_item.out_data <= alu_vif.out_data;
+                alu_item m_alu_item = alu_sequence_item::type_id::create("m_alu_item");
+                m_alu_item.alu_op <=  alu_vif.alu_opcode;
+                m_alu_item.in_data_0 <= alu_vif.in_data_0;
+                m_alu_item.in_data_1 <= alu_vif.in_data_1;
+                m_alu_item.out_data <= alu_vif.out_data;
 
                 //writes data to port for other classes to use
                 mon_analysis_port.write(alu_item);

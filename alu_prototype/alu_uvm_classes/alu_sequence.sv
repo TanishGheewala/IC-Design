@@ -18,14 +18,14 @@ class alu_sequence extends ucm_sequence;
         for(int i=0; i < num_of_packets; i++) begin
 
             //standerd way of initializing class in UVM
-            alu_sequence_item alu_item = alu_sequence_item::type_id::create("alu_item");
+            alu_item m_alu_item = alu_sequence_item::type_id::create("m_alu_item");
 
             //blocking statement for sending data to driver
             //wait till driver ready
-            start_item(alu_item);
-            alu_item.randomize();
+            start_item(m_alu_item);
+            m_alu_item.randomize();
             `uvm_info("SEQ", $sformatf("Generate sequence item:"), UVM_HIGH)
-            finish_item(alu_item);
+            finish_item(m_alu_item);
         end
 
         //uvm_info is used for console logging of UVM

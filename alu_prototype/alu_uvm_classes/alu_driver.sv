@@ -27,7 +27,7 @@ class alu_driver extends uvm_drver #(alu_sequence_item);
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
-            alu_sequence_item alu_item;
+            alu_item alu_item;
             seq_item_port.get_next_item(alu_item);
             drive_item(alu_item);
             seq_item_port.item_done();
@@ -35,11 +35,11 @@ class alu_driver extends uvm_drver #(alu_sequence_item);
     endtask
 
     //drives item on positve clk pulse
-    virtual task drive_item(alu_sequence_item alu_item);
+    virtual task drive_item(alu_item m_alu_item);
         @(posedge clk_vif.clk);
-            alu_vif.alu_opcode <= alu_item.alu_op;
-            alu_vif.in_data_0 <= alu_item.in_data_0;
-            alu_vif.in_data_1 <= alu_item.in_data_1;
-            alu_vif.out_data <= alu_item.out_data;
+            alu_vif.alu_opcode <= m_alu_item.alu_op;
+            alu_vif.in_data_0 <= m_alu_item.in_data_0;
+            alu_vif.in_data_1 <= m_alu_item.in_data_1;
+            alu_vif.out_data <= m_alu_item.out_data;
     endtask
 endclass
