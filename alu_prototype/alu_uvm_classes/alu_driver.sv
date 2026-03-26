@@ -2,7 +2,7 @@
 * alu_driver sends generated alu_items to alu. Using clk to
 * space inputs apart. Will go through all sequence items.
 */
-class alu_driver extends uvm_drver #(alu_sequence_item);
+class alu_driver extends uvm_driver #(alu_sequence_item);
 
     //required UVM setup
     `uvm_component_utils(alu_driver)
