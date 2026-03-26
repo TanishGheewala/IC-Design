@@ -12,7 +12,7 @@ class alu_driver extends uvm_driver #(alu_sequence_item);
 
     //virtual interfaces
     //clk interface for testing only
-    virtual alu_interfacce alu_vif;
+    virtual alu_interface alu_vif;
     virtual clk_interface clk_vif;
 
     //checks if there is an interface to refrence for driver
