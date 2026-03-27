@@ -1,7 +1,7 @@
 # IC-Design
 Project #9: Tapeout-Ready Integrated Circuit Design Using Open-Source PDK
 
-Team: [Tanish Gheewala](https://github.com/TanishGheewala), [Diego Chavez](https://github.com/chavez-diego), [Housain Alsafar](https://github.com/HousainA), [Evan Gilbert](https://github.com/e-tachyon), Ryan Lu
+Team: [Tanish Gheewala](https://github.com/TanishGheewala), [Diego Chavez](https://github.com/chavez-diego), [Housain Alsafar](https://github.com/HousainA), [Evan Gilbert](https://github.com/e-tachyon), [Cheng-Huan Lu](https://github.com/chenghuanlu110)
 
 EE 491W – Senior Design A - Spring 2026
 
