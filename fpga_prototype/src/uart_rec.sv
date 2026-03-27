@@ -3,22 +3,22 @@
 * during fpga testing.
 */
 module uart_rec
-    #(parameter CLK_RATE = 10000000, 
+    #(  parameter CLK_RATE = 10000000, 
                 BAUDRATE = 9600, 
                 CLK_BIT = (CLK_RATE/BAUDRATE) - 1,
                 HALF_BIT = CLK_BIT/2
     )
     (
-    uart_interaface.uart_r uart_if
+        uart_interface.uart_r uart_if
     );
 
     //enums for states
-    typedef enum [2:0] {IDLE, START, DATA, STOP, FINAL} state;
+    typedef enum logic [2:0] {IDLE, START, DATA, STOP, FINAL} state;
 
     state uart_state = IDLE;
     state uart_next_state = IDLE;
 
-    logic [7:0] clk_counter;
+    logic [31:0] clk_counter;
 
     logic serial_in = 1'b1;
     logic serial_in_extra = 1'b1;
@@ -44,7 +44,6 @@ module uart_rec
 
                 clk_counter <= 0;
                 bit_counter <= 0;
-                uart_next_state <= IDLE;
                 transmission_done <= 1'b0;
 
             end
@@ -52,7 +51,7 @@ module uart_rec
             START: begin
                 //ensure start bit is true bty checking low bit halfway
                 if(clk_counter == HALF_BIT) begin
-                    if(serial_in == 1'b1) begin
+                    if(serial_in == 1'b0) begin
                         uart_next_state <= DATA;
                     end else begin
                         uart_next_state <= IDLE;
@@ -61,6 +60,7 @@ module uart_rec
                 //go to DATA state on true check, IDLE otherwise
                 if(clk_counter == CLK_BIT) begin
                     uart_state <= uart_next_state;
+                    clk_counter <= 0;
                 end else begin
                     uart_state <= START;
                     clk_counter <= clk_counter + 1;
@@ -85,6 +85,7 @@ module uart_rec
                 if(clk_counter == CLK_BIT) begin
                     uart_state <= uart_next_state;
                     clk_counter <= 0;
+                    bit_counter <= bit_counter + 1;
                 end else begin
                     clk_counter <= clk_counter + 1;
                 end        
@@ -92,7 +93,7 @@ module uart_rec
 
             STOP: begin
                 //mark transmission done for output
-                transmission_done <= 1'b1;
+                bit_counter <= 0;
 
                 //count clks per bit, then increment
                 if(clk_counter == CLK_BIT) begin
@@ -107,7 +108,7 @@ module uart_rec
             FINAL: begin
                 //wait one cycle to go back to listening on IDLE
                 uart_state <= IDLE;
-                transmission_done <= 1'b0;
+                transmission_done <= 1'b1;
             end
 
             default: begin

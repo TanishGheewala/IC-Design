@@ -1,4 +1,7 @@
-interface uart_interaface();
+/* 
+* uart_interface for inputs and outputs to uart receiver.
+*/
+interface uart_interface();
 
     logic clk;
     logic serial_data;
@@ -10,5 +13,12 @@ interface uart_interaface();
         input serial_data,
         output byte_data,
         output uart_tran_done
+    );
+
+    modport uart_t(
+        input clk,
+        input byte_data,
+        input uart_tran_done,
+        output serial_data
     );
 endinterface
