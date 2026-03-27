@@ -2,7 +2,7 @@
 * alu_driver sends generated alu_items to alu. Using clk to
 * space inputs apart. Will go through all sequence items.
 */
-class alu_driver extends uvm_drver #(alu_sequence_item);
+class alu_driver extends uvm_driver #(alu_sequence_item);
 
     //required UVM setup
     `uvm_component_utils(alu_driver)
@@ -12,7 +12,7 @@ class alu_driver extends uvm_drver #(alu_sequence_item);
 
     //virtual interfaces
     //clk interface for testing only
-    virtual alu_interfacce alu_vif;
+    virtual alu_interface alu_vif;
     virtual clk_interface clk_vif;
 
     //checks if there is an interface to refrence for driver
@@ -27,7 +27,7 @@ class alu_driver extends uvm_drver #(alu_sequence_item);
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
-            alu_sequence_item alu_item;
+            alu_item alu_item;
             seq_item_port.get_next_item(alu_item);
             drive_item(alu_item);
             seq_item_port.item_done();
@@ -35,11 +35,11 @@ class alu_driver extends uvm_drver #(alu_sequence_item);
     endtask
 
     //drives item on positve clk pulse
-    virtual task drive_item(alu_sequence_item alu_item);
+    virtual task drive_item(alu_item m_alu_item);
         @(posedge clk_vif.clk);
-            alu_vif.alu_opcode <= alu_item.alu_op;
-            alu_vif.in_data_0 <= alu_item.in_data_0;
-            alu_vif.in_data_1 <= alu_item.in_data_1;
-            alu_vif.out_data <= alu_item.out_data;
+            alu_vif.alu_opcode <= m_alu_item.alu_op;
+            alu_vif.in_data_0 <= m_alu_item.in_data_0;
+            alu_vif.in_data_1 <= m_alu_item.in_data_1;
+            alu_vif.out_data <= m_alu_item.out_data;
     endtask
 endclass
