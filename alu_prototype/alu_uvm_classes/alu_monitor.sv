@@ -11,15 +11,15 @@ class alu_monitor extends uvm_monitor;
     endfunction
 
     //sets up port format
-    uvm_analysis_port #(alu_sequence_item) mon_analysis_port;
+    uvm_analysis_port #(alu_item) mon_analysis_port;
 
     //test interfaces
-    virtual alu_vif;
-    virtual clk_if;
+    virtual alu_interface alu_vif;
+    virtual clk_interface clk_if;
 
     //checks interfaces are thre
     //need to add clk_vif check
-    virtual function void build_phase(uvm_phase phase):
+    virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         if(!uvm_config_db#(virtual alu_interface)::get(this, "", "alu_interface", alu_vif))
             `uvm_fatal("MON", "No alu_vif found")
@@ -28,18 +28,20 @@ class alu_monitor extends uvm_monitor;
 
     //gets data from interface every posedge clk
     virtual task run_phase(uvm_phase phase);
-        super.build_phase(phase);
+        super.run_phase(phase);
+        
         forever begin
-            @(posedge clk_vif.clk)
+            alu_item m_alu_item = alu_item::type_id::create("m_alu_item");
+            #1;
+                @(alu_vif.in_data_0, alu_vif.in_data_1, alu_vif.alu_opcode);
                 //creates item and stores data there
-                alu_item m_alu_item = alu_sequence_item::type_id::create("m_alu_item");
-                m_alu_item.alu_op <=  alu_vif.alu_opcode;
-                m_alu_item.in_data_0 <= alu_vif.in_data_0;
-                m_alu_item.in_data_1 <= alu_vif.in_data_1;
-                m_alu_item.out_data <= alu_vif.out_data;
+                m_alu_item.alu_op =  alu_vif.alu_opcode;
+                m_alu_item.in_data_0 = alu_vif.in_data_0;
+                m_alu_item.in_data_1 = alu_vif.in_data_1;
+                m_alu_item.out_data = alu_vif.out_data;
 
-                //writes data to port for other classes to use
-                mon_analysis_port.write(alu_item);
+            //writes data to port for other classes to use
+            mon_analysis_port.write(m_alu_item);
         end
     endtask
 endclass

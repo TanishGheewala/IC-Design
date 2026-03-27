@@ -2,7 +2,7 @@
 * alu_driver sends generated alu_items to alu. Using clk to
 * space inputs apart. Will go through all sequence items.
 */
-class alu_driver extends uvm_driver #(alu_sequence_item);
+class alu_driver extends uvm_driver #(alu_item);
 
     //required UVM setup
     `uvm_component_utils(alu_driver)
@@ -16,27 +16,28 @@ class alu_driver extends uvm_driver #(alu_sequence_item);
     virtual clk_interface clk_vif;
 
     //checks if there is an interface to refrence for driver
-    //need to add check for clk_vif
-    virtual function void build_phase(uvm_phase phase):
+    virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         if(!uvm_config_db#(virtual alu_interface)::get(this, "", "alu_interface", alu_vif))
             `uvm_fatal("DRV", "No alu_vif found")
+        if(!uvm_config_db#(virtual clk_interface)::get(this, "", "clk_interface", clk_vif))
+            `uvm_fatal("DRV", "No clk_vif found")
     endfunction
 
     //driver gets items from input sequence
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         forever begin
-            alu_item alu_item;
-            seq_item_port.get_next_item(alu_item);
-            drive_item(alu_item);
+            alu_item m_alu_item;
+            seq_item_port.get_next_item(m_alu_item);
+            drive_item(m_alu_item);
             seq_item_port.item_done();
         end
     endtask
 
     //drives item on positve clk pulse
     virtual task drive_item(alu_item m_alu_item);
-        @(posedge clk_vif.clk);
+        @(posedge clk_vif.tb_clk);
             alu_vif.alu_opcode <= m_alu_item.alu_op;
             alu_vif.in_data_0 <= m_alu_item.in_data_0;
             alu_vif.in_data_1 <= m_alu_item.in_data_1;

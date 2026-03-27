@@ -1,7 +1,17 @@
-import uvm_pkg::*;
+/*
+* tb_top is the top level testbench for our prototype
+*/
+
+`timescale 1ns/1ps
+
 `include "uvm_macros.svh"
+import uvm_pkg::*; 
+
 
 module tb_top;
+
+  //imports custom classes
+  import alu_pkg::*;
 
   // 1. Interface Instantiation
   clk_interface clk_if(); 

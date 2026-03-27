@@ -2,7 +2,7 @@
 * alu_sequence generates a sequence of edgecase and randomized bits to
 * send to alu.
 */
-class alu_sequence extends ucm_sequence;
+class alu_sequence extends uvm_sequence;
 
     //required section for registering with UVM factory
     `uvm_object_utils(alu_sequence)
@@ -18,7 +18,7 @@ class alu_sequence extends ucm_sequence;
         for(int i=0; i < num_of_packets; i++) begin
 
             //standerd way of initializing class in UVM
-            alu_item m_alu_item = alu_sequence_item::type_id::create("m_alu_item");
+            alu_item m_alu_item = alu_item::type_id::create("m_alu_item");
 
             //blocking statement for sending data to driver
             //wait till driver ready

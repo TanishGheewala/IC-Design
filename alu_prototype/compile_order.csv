@@ -1,0 +1,5 @@
+work, ./tb/alu_pkg.sv
+work, ./alu_interfaces/alu_interface.sv
+work, ./alu_interfaces/clk_interface.sv
+work, ./src/alu.sv
+work, ./tb/tb_top.sv

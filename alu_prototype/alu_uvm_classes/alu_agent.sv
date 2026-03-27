@@ -6,9 +6,10 @@ class alu_agent extends uvm_agent;
 
     `uvm_component_utils(alu_agent)
 
+
     alu_driver    drv;
-    alu_sequencer seqr;
     alu_monitor   mon;
+    uvm_sequencer #(alu_item) seqr;
 
     // expose the monitor's analysis port so the env can connect
     // it to the scoreboard without reaching inside the agent
@@ -22,7 +23,7 @@ class alu_agent extends uvm_agent;
     virtual function void build_phase(uvm_phase phase);
         super.build_phase(phase);
         drv  = alu_driver   ::type_id::create("drv",  this);
-        seqr = alu_sequencer::type_id::create("seqr", this);
+        seqr = uvm_sequencer#(alu_item)::type_id::create("seqr", this);
         mon  = alu_monitor  ::type_id::create("mon",  this);
         agent_analysis_port = new("agent_analysis_port", this);
     endfunction
