@@ -16,9 +16,16 @@ class alu_item extends uvm_sequence_item;
     rand bit[31:0] in_data_1;
     bit[31:0] out_data;
 
+    constraint c_alu_op { alu_op inside {6'b011001, 6'b011010, 6'b011011, 6'b011100, 6'b011101, 
+                            6'b011110, 6'b011111, 6'b100000, 6'b100001, 6'b100010, 
+                            6'b100011, 6'b100100};}
+
     //NEED A PRINT FUNCTION
     //currently looking into uvm_printer
     //if not uvm_printer then will create custom
+    virtual function string item_string();
+      return $sformatf("in0=%0d, in1=%0d, op=%b, out=%0d", in_data_0, in_data_1, alu_op, out_data);
+    endfunction
 
     //must have for uvm integration
     //also for regisrering class

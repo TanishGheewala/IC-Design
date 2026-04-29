@@ -22,9 +22,9 @@ class alu_sequence extends uvm_sequence;
 
             //blocking statement for sending data to driver
             //wait till driver ready
-            start_item(m_alu_item);
+            start_item(m_alu_item); 
             m_alu_item.randomize();
-            `uvm_info("SEQ", $sformatf("Generate sequence item:"), UVM_HIGH)
+            `uvm_info("SEQ", $sformatf("Generate sequence item: %s", m_alu_item.item_string), UVM_HIGH)
             finish_item(m_alu_item);
         end
 

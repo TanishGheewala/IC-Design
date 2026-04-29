@@ -39,9 +39,11 @@ class alu_scoreboard extends uvm_scoreboard;
         endcase
 
         if (expected == data.out_data)
-            `uvm_info("ALU_SB", "PASS", UVM_LOW)
+            `uvm_info("ALU_SB", $sformatf("PASS! op=%b, out=%0d exp=%0d",
+                                  data.alu_op, data.out_data, expected), UVM_LOW)
         else
-            `uvm_error("ALU_SB", "FAIL")
+            `uvm_error("ALU_SB", $sformatf("FAIL! op=%b, out=%0d exp=%0d",
+                                  data.alu_op, data.out_data, expected))
 
     endfunction
 

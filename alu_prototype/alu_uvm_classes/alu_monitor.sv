@@ -15,7 +15,7 @@ class alu_monitor extends uvm_monitor;
 
     //test interfaces
     virtual alu_interface alu_vif;
-    virtual clk_interface clk_if;
+    virtual clk_interface clk_vif;
 
     //checks interfaces are thre
     //need to add clk_vif check
@@ -23,6 +23,8 @@ class alu_monitor extends uvm_monitor;
         super.build_phase(phase);
         if(!uvm_config_db#(virtual alu_interface)::get(this, "", "alu_interface", alu_vif))
             `uvm_fatal("MON", "No alu_vif found")
+        if(!uvm_config_db#(virtual clk_interface)::get(this, "", "clk_interface", clk_vif))
+            `uvm_fatal("DRV", "No clk_vif found")
         mon_analysis_port = new("mon_analysis_port", this);
     endfunction
 
@@ -30,10 +32,11 @@ class alu_monitor extends uvm_monitor;
     virtual task run_phase(uvm_phase phase);
         super.run_phase(phase);
         
+        //updates when clk updates -- changed from on any input
         forever begin
             alu_item m_alu_item = alu_item::type_id::create("m_alu_item");
             #1;
-                @(alu_vif.in_data_0, alu_vif.in_data_1, alu_vif.alu_opcode);
+                @(clk_vif.tb_clk);
                 //creates item and stores data there
                 m_alu_item.alu_op =  alu_vif.alu_opcode;
                 m_alu_item.in_data_0 = alu_vif.in_data_0;
