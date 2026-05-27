@@ -1,0 +1,2 @@
+- Instruction Memory (ROM)
+- Data Memory (RAM)

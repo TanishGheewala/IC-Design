@@ -1,0 +1,8 @@
+- ALU
+- Register File
+- Decoder
+- Program Counter
+- Sign Extender
+- Branch Unit
+- MUX? 
+- Anything else?
