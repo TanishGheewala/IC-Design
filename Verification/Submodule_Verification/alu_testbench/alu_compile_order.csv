@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/alu_interface.sv
+work, ../../../RTL/core/alu.sv
+work, alu_test.sv
