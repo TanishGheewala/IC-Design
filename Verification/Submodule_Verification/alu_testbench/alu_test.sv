@@ -14,8 +14,10 @@ module alu_tb;
         .alu_if(alu_if.alu_dut)
     );
 
+    //error counting variable
     int error_counter = 0;
 
+    //acts as scoreboard, checks results agianst expected output
     function bit expected_result(alu_packet data);
         bit error;
         bit [31:0] expected;
@@ -43,6 +45,9 @@ module alu_tb;
 
         endcase
 
+        //prints error 
+        //returns 0 for no error, 1 for errror
+        //used in error count
         assert(data.out_data === expected) begin
             error = 0;
         end else begin 
@@ -54,12 +59,13 @@ module alu_tb;
         return error;
     endfunction
     
-
+    //test begins
     initial begin
         alu_packet alu_item = new();
         
         $display("[ALU TEST START]");
 
+        //test 1000 random values
         repeat(1000) begin
             if (!alu_item.randomize()) $fatal(1 ,"Randomization failed");
 
@@ -71,10 +77,12 @@ module alu_tb;
 
             alu_item.out_data = alu_if.out_data;
 
+            //error counter
             error_counter = error_counter + expected_result(alu_item);
 
         end
-
+        
+        //display results
         $display("[ALU TEST COMPLETE]");
         $display("Total Errors: %d", error_counter);
         $finish;
