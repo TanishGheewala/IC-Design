@@ -1,0 +1,20 @@
+Submodule Verification Instructions:
+
+1. Create folder for submodue
+
+2. in folder add 3 file:
+    - submodule test
+    - submodule packet
+    - csv file
+
+3. csv file should include in this order:
+    - interface
+    - submodue DUT
+    - test
+4. ensure `include "../submodule_packet.sv" is included at the top of your custom packet
+    - makes sure it sees its parent class
+
+5. ensure `include "[you_submodule]_packet.sv" is included at the top of your test 
+    - makes sure test sees packet class
+
+Use ALU as example format for packet, test, and csv.
