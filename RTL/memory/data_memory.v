@@ -24,5 +24,4 @@ always @(posedge clk) begin
     data_out <= ram[word_addr];
 end
 
-
 endmodule
