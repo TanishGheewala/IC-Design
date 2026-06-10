@@ -14,7 +14,7 @@ class alu_item extends uvm_sequence_item;
     rand bit[5:0] alu_op;
     rand bit[31:0] in_data_0;
     rand bit[31:0] in_data_1;
-    bit[31:0] out_data;
+    bit[31:0] out_data;z
 
     constraint c_alu_op { alu_op inside {6'b011001, 6'b011010, 6'b011011, 6'b011100, 6'b011101, 
                             6'b011110, 6'b011111, 6'b100000, 6'b100001, 6'b100010, 

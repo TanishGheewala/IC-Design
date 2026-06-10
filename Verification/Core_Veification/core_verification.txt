@@ -1,0 +1,7 @@
+Core Verification:
+Use UVM to connect to Whisper golden refrence model. Sample code will be ran through DUT and Whisper. 
+States will be compared after each cycle where to ensure DUT matches Whisper model.
+
+This will be later implemented inside of final test that includes JTAG and external memory.
+
+NOTE: main memory will be split between onchip SRAM and off chip FLASH. Stack and heap will be inside SRAM while program will be stored in FLASH
