@@ -1,5 +1,5 @@
 /*
-* Inteface for alu module. Defines all I/O ports.
+* Interface for alu module. Defines all I/O ports.
 */
 interface alu_interface();
 
