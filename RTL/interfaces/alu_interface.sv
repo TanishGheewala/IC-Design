@@ -16,7 +16,7 @@ interface alu_interface();
     modport alu_dut(
         input alu_opcode,
         input in_data_0,
-        input in_data_1,
+        input in_data_1, 
         output out_data
     );
 endinterface
