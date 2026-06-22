@@ -1,0 +1,4 @@
+work, ../../../RTL/interfaces/clk_interface.sv
+work, ../../../RTL/interfaces/ram_interface.sv
+work, ../../../RTL/memory/data_memory.v
+work, ram_test.sv

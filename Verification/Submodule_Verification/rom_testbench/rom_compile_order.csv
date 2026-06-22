@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/rom_interface.sv
+work, ../../../RTL/memory/instruction_memory.v
+work, rom_test.sv
