@@ -24,5 +24,4 @@ interface branch_unit_interface();
         output output_flag
     };
 
-
 endinterface
