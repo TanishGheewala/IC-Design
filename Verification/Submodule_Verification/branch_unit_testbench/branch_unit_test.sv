@@ -20,11 +20,11 @@ module alu_tb;
     //acts as scoreboard, checks results agianst expected output
     function bit expected_result(branch_unit_packet data);
         bit error;
-        bit [31:0] expected;
+        bit expected;
 
         case (data.alu_opcode)
 
-            6'b011001: expected = data.in_data_0 + data.in_data_1;
+            expected_map[BEQ]
             6'b011010: expected = data.in_data_0 - data.in_data_1;
 
             6'b011011: expected = data.in_data_0 & data.in_data_1;
