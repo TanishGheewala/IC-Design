@@ -3,7 +3,7 @@
 `include "macros.vh"
 
 module data_memory
-#(
+(
     input clk,
     input we,
     input [`ADDR_WIDTH-1:0] addr,

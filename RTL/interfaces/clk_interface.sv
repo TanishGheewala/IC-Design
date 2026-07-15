@@ -8,4 +8,3 @@ interface clk_interface();
 
     always #10 tb_clk = ~tb_clk;
 endinterface
-

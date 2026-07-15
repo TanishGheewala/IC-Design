@@ -1,25 +1,36 @@
 `timescale 1ns/1ps
- 
-module rom_test;
- 
+
+module ram_test;
+
+    logic clk;
+    logic we;
     logic [9:0] addr;
-    logic [31:0] inst;
- 
-    instruction_memory dut (
+    logic [31:0] data_in;
+    logic [31:0] data_out;
+
+    data_memory dut (
+        .clk(clk),
+        .we(we),
         .addr(addr),
-        .inst(inst)
+        .data_in(data_in),
+        .data_out(data_out)
     );
- 
+
+    initial clk = 0;
+    always #5 clk = ~clk;
+
     initial begin
-        $readmemh("test_program.hex", dut.rom);
-        addr = 0; #10;
-        $display("addr=0x%03X inst=0x%08X", addr, inst);
-        addr = 4; #10;
-        $display("addr=0x%03X inst=0x%08X", addr, inst);
-        addr = 8; #10;
-        $display("addr=0x%03X inst=0x%08X", addr, inst);
-        $display("ROM test done");
+        we = 0; addr = 0; data_in = 0;
+        @(posedge clk);
+        @(posedge clk);
+        we = 1; addr = 0; data_in = 32'hABCD1234;
+        @(posedge clk);
+        we = 0;
+        @(posedge clk);
+        $display("Read from addr 0: 0x%08X", data_out);
+        @(posedge clk);
+        $display("RAM test done");
         $finish;
     end
- 
+
 endmodule
