@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/decoder_interface.sv
+work, ../../../RTL/core/decoder.sv
+work, decoder_test.sv
