@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/sign_extender_interface.sv
+work, ../../../RTL/core/sign_extender.sv
+work, sign_extender_test.sv
