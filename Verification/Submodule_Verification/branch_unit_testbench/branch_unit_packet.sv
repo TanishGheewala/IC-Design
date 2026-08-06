@@ -8,7 +8,7 @@ class branch_unit_packet extends submodule_packet;
 
     //inputs and outputs
     rand bit branch_flag;
-    rand bit[3:0] branch_opcode;
+    rand bit[2:0] branch_opcode;
     rand bit[31:0] input_0;
     rand bit[31:0] input_1;
     bit output_flag;

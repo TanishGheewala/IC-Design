@@ -3,15 +3,15 @@
 */
 `include "branch_unit_packet.sv"
 `timescale 1ns/1ps
-module alu_tb;
+module branch_unit_tb;
 
 
     //interface
-    alu_interface alu_if();
+    branch_unit_interface bu_if();
 
     //DUT
-    alu DUT (
-        .alu_if(alu_if.alu_dut)
+    branch_unit DUT (
+        .bu_if(bu_if.bu_dut)
     );
 
     //error counting variable
@@ -22,33 +22,26 @@ module alu_tb;
         bit error;
         bit expected;
 
-        case (data.alu_opcode)
+        case (data.branch_opcode)
 
-            expected_map[BEQ]
-            6'b011010: expected = data.in_data_0 - data.in_data_1;
+            3'b000: expected = (data.input_0 == data.input_1) & data.branch_flag;
 
-            6'b011011: expected = data.in_data_0 & data.in_data_1;
-            6'b011100: expected = data.in_data_0 | data.in_data_1;
-            6'b011101: expected = data.in_data_0 ^ data.in_data_1;
+            3'b001: expected = (data.input_0 != data.input_1) & data.branch_flag;
+            3'b100: expected = ($signed(data.input_0) < $signed(data.input_1)) & data.branch_flag;
+            3'b101: expected = ($signed(data.input_0) >= $signed(data.input_1)) & data.branch_flag;
 
-            6'b011110: expected = data.in_data_0 << data.in_data_1[4:0];
-            6'b011111: expected = data.in_data_0 >> data.in_data_1[4:0];
-            6'b100000: expected = $signed(data.in_data_0) >>> data.in_data_1[4:0];
+            3'b110: expected = ($unsigned(data.input_0) < $unsigned(data.input_1)) & data.branch_flag;
+            3'b111: expected = ($unsigned(data.input_0) >= $unsigned(data.input_1)) & data.branch_flag;
+            3'b010: expected = 1'b1 & data.branch_flag;
 
-            6'b100001: expected = ($signed(data.in_data_0) < $signed(data.in_data_1)) ? 32'd1 : 32'd0;
-            6'b100010: expected = (data.in_data_0 < data.in_data_1) ? 32'd1 : 32'd0;
-
-            6'b100011: expected = data.in_data_0;
-            6'b100100: expected = data.in_data_1;
-
-            default: expected = 32'd0;
+            default: expected = 1'd0;
 
         endcase
 
         //prints error 
         //returns 0 for no error, 1 for errror
         //used in error count
-        assert(data.out_data === expected) begin
+        assert(data.output_flag === expected) begin
             error = 0;
         end else begin 
             $error("Expected Does not match Actual Value");
@@ -61,29 +54,30 @@ module alu_tb;
     
     //test begins
     initial begin
-        alu_packet alu_item = new();
+        branch_unit_packet branch_unit_item = new();
         
-        $display("[ALU TEST START]");
+        $display("[BRANCH UNIT TEST START]");
 
         //test 1000 random values
         repeat(1000) begin
-            if (!alu_item.randomize()) $fatal(1 ,"Randomization failed");
+            if (!branch_unit_item.randomize()) $fatal(1 ,"Randomization failed");
 
-            alu_if.in_data_0  = alu_item.in_data_0;
-            alu_if.in_data_1  = alu_item.in_data_1;
-            alu_if.alu_opcode = alu_item.alu_opcode;
+            bu_if.input_0  = branch_unit_item.input_0;
+            bu_if.input_1  = branch_unit_item.input_1;
+            bu_if.branch_opcode = branch_unit_item.branch_opcode;
+            bu_if.branch_flag = branch_unit_item.branch_flag;
 
             #10;
 
-            alu_item.out_data = alu_if.out_data;
+            branch_unit_item.output_flag = bu_if.output_flag;
 
             //error counter
-            error_counter = error_counter + expected_result(alu_item);
+            error_counter = error_counter + expected_result(branch_unit_item);
 
         end
         
         //display results
-        $display("[ALU TEST COMPLETE]");
+        $display("[BRANCH UNIT TEST COMPLETE]");
         $display("Total Errors: %d", error_counter);
         $finish;
     end

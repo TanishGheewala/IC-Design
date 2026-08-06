@@ -16,12 +16,12 @@ interface branch_unit_interface();
 
     //dut setup
     modport bu_dut
-    {
+    (
         input branch_flag,
         input branch_opcode,
         input input_0,
         input input_1,
         output output_flag
-    };
+    );
 
 endinterface

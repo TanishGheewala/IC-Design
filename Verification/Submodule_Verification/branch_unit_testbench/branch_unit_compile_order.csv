@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/branch_unit_interface.sv
+work, ../../../RTL/core/branch_unit.sv
+work, branch_unit_test.sv

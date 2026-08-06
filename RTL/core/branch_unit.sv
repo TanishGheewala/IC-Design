@@ -17,18 +17,17 @@ module branch_unit(branch_unit_interface.bu_dut bu_if);
     always_comb begin
         //branch logic
         unique case(bu_if.branch_opcode)
-            BEQ: branch_logic_out = (bu_if.input_0 == bu_if.input_1);
-            BNE: branch_logic_out = (bu_if.input_0 != bu_if.input_1);
-            BLT: branch_logic_out = ($signed(bu_if.input_0) < $signed(bu_if.input_1));
-            BGE: branch_logic_out = ($signed(bu_if.input_0) >= $signed(bu_if.input_1));
-            BLTU: branch_logic_out = (bu_if.input_0 > bu_if.input_1);
-            BGEU: branch_logic_out = (bu_if.input_0 >= bu_if.input_1);
-            JIC: branch_logic_out = 1'b1;
+            `BEQ: branch_logic_out = (bu_if.input_0 == bu_if.input_1);
+            `BNE: branch_logic_out = (bu_if.input_0 != bu_if.input_1);
+            `BLT: branch_logic_out = ($signed(bu_if.input_0) < $signed(bu_if.input_1));
+            `BGE: branch_logic_out = ($signed(bu_if.input_0) >= $signed(bu_if.input_1));
+            `BLTU: branch_logic_out = ($unsigned(bu_if.input_0) < $unsigned(bu_if.input_1));
+            `BGEU: branch_logic_out = ($unsigned(bu_if.input_0) >= $unsigned(bu_if.input_1));
+            `JIC: branch_logic_out = 1'b1;
         endcase
 
         //check if branch instruction
-        unique case(branch_flag)
-
+        unique case(bu_if.branch_flag)
             1'b1: bu_if.output_flag = branch_logic_out;
             1'b0: bu_if.output_flag = 0;
         endcase
