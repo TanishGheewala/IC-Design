@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/register_file_interface.sv
+work, ../../../RTL/core/register_file.sv
+work, register_file_test.sv
