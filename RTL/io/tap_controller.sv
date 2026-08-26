@@ -1,5 +1,5 @@
 /*
-*   Branch Unit: Sets flag to tell cpu to branch to new instruction memory location.
+*   TAP controler: JTAG TAP controller
 */
 
 `timescale 1ns/1ps
