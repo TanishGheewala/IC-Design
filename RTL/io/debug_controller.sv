@@ -3,7 +3,7 @@
 */
 
 //debug instructions
-`define NOP                 4`00000
+`define NOP                 4'b0000
 `define CORE_HALT           4'b0001
 `define CORE_RESUME         4'b0010
 `define CORE_STEP           4'b0011
