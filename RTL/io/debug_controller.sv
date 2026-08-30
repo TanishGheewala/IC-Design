@@ -101,8 +101,6 @@ module debug_controller(debug_interface.debug_dut debug_if);
                         debug_state <= `CLEAN_UP;
                     end
 
-                    //state for exting DEBUG ON
-
                     default: begin
                         debug_state <= `DEBUG_ON;
                     end

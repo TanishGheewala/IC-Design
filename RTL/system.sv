@@ -1,7 +1,7 @@
 // system.v - Top Level Module for the Single-Cycle RV32I Datapath
 
 `timescale 1ns/1ps
-`include "macros.vh"
+`include "memory/macros.vh"
 
 module system (
     input logic clk,
