@@ -1,6 +1,5 @@
 /*
-* uart_rec is a uart reciever for communicating with the PC
-* during fpga testing.
+* uart_rec is a uart reciever for communicating with external pc
 */
 module uart_rec
     #(  parameter CLK_RATE = 10000000, 
