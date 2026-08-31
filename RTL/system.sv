@@ -10,7 +10,7 @@ module system (
 
   // Program Counter
   logic [`ADDR_WIDTH-1:0] pc = 0;
-  logic [`ADDR_WIDTH-1:0] pc_next = 0;
+  logic [`ADDR_WIDTH-1:0] pc_next = 4;
   logic [`ADDR_WIDTH-1:0] pc_plus4;
   logic [`ADDR_WIDTH-1:0] pc_plus_imm;
 
@@ -20,6 +20,9 @@ module system (
       pc <= '0;
     else
       pc <= pc_next;
+
+    $strobe("[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h", $time, pc, pc_next);
+    $strobe("[STROBE DEBUG] Time: %0t | rom_if.inst: %h", $time, rom_if.inst);
   end
 
   // Interfaces
