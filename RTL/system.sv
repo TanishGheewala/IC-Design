@@ -9,8 +9,8 @@ module system (
   );
 
   // Program Counter
-  logic [`ADDR_WIDTH-1:0] pc;
-  logic [`ADDR_WIDTH-1:0] pc_next;
+  logic [`ADDR_WIDTH-1:0] pc = 0;
+  logic [`ADDR_WIDTH-1:0] pc_next = 0;
   logic [`ADDR_WIDTH-1:0] pc_plus4;
   logic [`ADDR_WIDTH-1:0] pc_plus_imm;
 
@@ -34,10 +34,11 @@ module system (
   // Fetch
   assign rom_if.addr = pc;
 
-  instruction_memory rom (
-                       .addr(rom_if.addr),
+  instruction_memory #(
+                       .MEM_INITIAL_FILE("test_program.hex"))
+                      rom (.addr(rom_if.addr),
                        .inst(rom_if.inst)
-                     );
+                      );
 
   // Decode
   assign dec_if.instruction = rom_if.inst;

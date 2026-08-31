@@ -16,8 +16,6 @@ module system_test;
 
   initial
   begin
-    // load test_program.hex
-    $readmemh("test_program.hex", dut.rom.rom);
     // vcd dump
     $dumpfile("system_test.vcd");
     $dumpvars(0, system_test);
