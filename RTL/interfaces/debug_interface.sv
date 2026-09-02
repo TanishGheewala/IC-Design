@@ -7,7 +7,6 @@ interface debug_interface();
     logic clk;
     logic tx;
     logic rx;
-    logic [7:0] debug_instruction;
     logic core_halt;
     logic [31:0] core_signals;
     logic [31:0] data_return_in;
