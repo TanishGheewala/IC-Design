@@ -21,8 +21,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
 
     logic [31:0] core_signals;
     logic [31:0] data_return;
-    logic [7:0] debug_instruction;
-    logic data_return_ready;
+    logic [7:0] debug_instruction = `NOP;
+    logic data_return_ready;    
     logic [1:0] debug_state = `DEBUG_OFF;
     //craete staging register so only fully transmitted command is shown to to debug controller
 
@@ -30,8 +30,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
     uart_interface uart_rec_if();
     uart_interface uart_trans_if();
 
-    uart_rec REC(.uart_if(uart_rec_if.uart_r));
-    uart_trans TRN(.uart_if(uart_trans_if.uart_t));
+    uart_rec #(.CLK_RATE(100000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
+    uart_trans #(.CLK_RATE(100000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
 
     //uart_connections debug_controller outputs
     always_comb begin
@@ -55,11 +55,11 @@ module debug_controller(debug_interface.debug_dut debug_if);
     //uart transmission to controller connection
     always_ff@(posedge debug_if.clk) begin
         if(data_return_ready == 1'b1) begin
-            uart_trans_if.byte_data = data_return;
-            uart_trans_if.uart_tran_done = 1'b1;
+            uart_trans_if.byte_data <= data_return;
+            uart_trans_if.uart_tran_done <= 1'b1;
         end else begin
-            uart_trans_if.byte_data = 0;
-            uart_trans_if.uart_tran_done = 1'b0;
+            uart_trans_if.byte_data <= 0;
+            uart_trans_if.uart_tran_done <= 1'b0;
         end
     end
 
@@ -96,8 +96,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
                         debug_state <= `DATA_RETURN;
                     end 
 
-                    `EXIT_DEBUG: begin
-                        debug_if.core_signal <= `NOP;
+                    `CORE_RESUME: begin
+                        debug_if.core_signals <= `NOP;
                         debug_state <= `CLEAN_UP;
                     end
 
@@ -120,6 +120,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             `CLEAN_UP: begin
                 debug_if.core_signals <= 0;
                 debug_if.core_halt <= 1'b0;
+                debug_state <= `DEBUG_OFF;
             end
 
         endcase
