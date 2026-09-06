@@ -1,0 +1,6 @@
+work, ../../../RTL/interfaces/uart_interface.sv
+work, ../../../RTL/interfaces/debug_interface.sv
+work, ../../../RTL/io/uart_rec.sv
+work, ../../../RTL/io/uart_trans.sv
+work, ../../../RTL/io/debug_controller.sv
+work, debug_controller_test.sv
