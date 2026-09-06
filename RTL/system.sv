@@ -38,7 +38,7 @@ module system (
   assign rom_if.addr = pc;
 
   instruction_memory #(
-                       .MEM_INITIAL_FILE("test_program.hex"))
+                       .MEM_INITIAL_FILE("test_program.hex")) // Replace the stuff in parentheses with the file path for test_program.hex
                       rom (.addr(rom_if.addr),
                        .inst(rom_if.inst)
                       );
