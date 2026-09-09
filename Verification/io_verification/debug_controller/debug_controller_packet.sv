@@ -12,6 +12,7 @@ class debug_controller_packet extends submodule_packet;
     bit [31:0] data_return_in;
     bit [7:0] debug_state;
     bit [31:0] data_output;
+    bit [7:0] debug_command;
 
     typedef enum bit [7:0] 
     {

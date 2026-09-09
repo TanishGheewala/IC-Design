@@ -19,11 +19,9 @@ module debug_controller_tb;
 
     logic [7:0] test_instruction_sequence [];
 
-    //acts as scoreboard, checks results agianst expected output
-    function void expected_outcome(debug_controller_packet data, bit [7:0] debug_command_sent);
-        data.core_halt = debug_if.core_halt;
-        data.debug_state = DUT.debug_state;
-        case(debug_command_sent)
+    //ensures state machine proceeds properly for debugging
+    function void expected_outcome_state(debug_controller_packet data);
+        case(data.debug_command)
             debug_controller_packet::CORE_HALT: begin
                 assert (data.debug_state == debug_controller_packet::DEBUG_ON) 
                 else   $error("STATES DO NOT MATCH, actual: %0h, expected: %0h", data.debug_state, debug_controller_packet::DEBUG_ON);
@@ -41,8 +39,36 @@ module debug_controller_tb;
         endcase
     endfunction
 
+    //checks to make sure data returning from core is correct
+    //first asserts core is off/on
+    //second checks that returned data matches sent command
+    function void expected_outcome_tx_line(debug_controller_packet data);;
+        case(data.debug_command)
+            debug_controller_packet::CORE_HALT: begin
+                assert (data.core_halt == 1'b1) 
+                else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
+            end
+            debug_controller_packet::RETURN_REG: begin
+                assert (data.core_halt == 1'b1) 
+                else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
+                assert (data.data_output == debug_controller_packet::RETURN_REG) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_output, debug_controller_packet::DATA_RETURN);
+            end
+            debug_controller_packet::RETURN_MEM: begin
+                assert (data.core_halt == 1'b1) 
+                else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
+                assert (data.data_output == debug_controller_packet::RETURN_MEM) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_output, debug_controller_packet::DATA_RETURN);
+            end
+            debug_controller_packet::CORE_RESUME: begin
+                assert (data.core_halt == 1'b0) 
+                else   $error("CORE IS NOT RUNNIG, actual: %0h, expected: %0h", data.core_halt, 1);
+            end
+        endcase
+    endfunction
+
     //task to send uart byte as serial data to rx line
-    task automatic send_uart_serial(input logic [7:0] uart_byte, int baud_rate, int clk_speed);
+    task automatic send_rx_line(input logic [7:0] uart_byte, int baud_rate, int clk_speed);
 
         int baud_wait;
         baud_wait = (clk_speed/baud_rate) - 1;
@@ -63,6 +89,25 @@ module debug_controller_tb;
 
     endtask
 
+    //task recieve serial byte from debug controller
+    task automatic recieve_tx_line(input logic [7:0] uart_byte, int baud_rate, int clk_speed);
+
+        int baud_wait;
+        baud_wait = (clk_speed/baud_rate) - 1;
+        baud_wait = baud_wait*10;
+
+        debug_if.rx = 1'b0;
+        #baud_wait;
+
+        for(int i=0; i<8; i++) begin
+            uart_byte[i] = debug_if.tx;
+            #baud_wait;
+        end
+
+        debug_if.rx = 1'b1;
+        #baud_wait;
+    endtask
+
     //task to send sequence of commands to debug controller
     task automatic debug_instruction_sequence(input logic [7:0] seq [], debug_controller_packet debug_data, input int baud_rate, int clk_speed);
 
@@ -70,13 +115,19 @@ module debug_controller_tb;
 
         foreach (seq[i]) begin
             @(posedge clk);
-            send_uart_serial(seq[i], baud_rate, clk_speed);
+            send_rx_line(seq[i], baud_rate, clk_speed);
             wait(DUT.uart_rec_if.uart_tran_done);
 
             //3 to account for internal pipeline
             repeat(3) @(posedge clk);
-            expected_outcome(debug_data, seq[i]);
+            debug_data.core_halt = debug_if.core_halt;
+            debug_data.debug_state = DUT.debug_state;
+            debug_data.debug_command = seq[i];
+            expected_outcome_state(debug_data);
+            DUT.data_return_in = DUT.core_signals;
             repeat(100) @(posedge clk);
+            debug_data.core_signals = DUT.core_signals;
+            DUT.data_return_in = DUT.core_signals;
         end
         
         
