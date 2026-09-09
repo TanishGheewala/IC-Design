@@ -1,0 +1,20 @@
+
+****** xsim v2026.1 (64-bit)
+  **** SW Build 6511674 on Tue Jun 16 11:02:23 MDT 2026
+  **** IP Build 6504888 on Tue Jun 09 09:05:25 MDT 2026
+  **** SharedData Build 6501428 on Mon Jun 08 17:34:18 MDT 2026
+  **** Start of session at: Tue Sep  8 21:48:12 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2026 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/riscv_arch_verification/xsim_script.tcl
+# xsim {riscv_arch_verification} -autoloadwcfg -runall
+Time resolution is 1 ps
+run -all
+WARNING: 0ns : none of the conditions were true for unique case from File:c:/Users/zahra/Downloads/IC-Design-git-20260909T035308Z-1-001/IC-Design-git/RTL/core/decoder.sv:87
+WARNING: 0ns : none of the conditions were true for unique case from File:c:/Users/zahra/Downloads/IC-Design-git-20260909T035308Z-1-001/IC-Design-git/RTL/core/branch_unit.sv:19
+WARNING: 0ns : none of the conditions were true for unique case from File:c:/Users/zahra/Downloads/IC-Design-git-20260909T035308Z-1-001/IC-Design-git/RTL/core/branch_unit.sv:30
+RVCP-SUMMARY: TEST FAILED
+$finish called at time : 9595 ns : File "c:/Users/zahra/Downloads/IC-Design-git-20260909T035308Z-1-001/IC-Design-git/Verification/Core_Verification/riscv_arch_testbench/riscv_arch_test.sv" Line 59
+exit
+INFO: [Common 17-206] Exiting xsim at Tue Sep  8 21:48:14 2026...

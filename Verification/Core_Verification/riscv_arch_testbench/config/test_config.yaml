@@ -1,0 +1,8 @@
+name: ic-design-rv32i
+compiler_exe: clang
+objdump_exe: llvm-objdump
+ref_model_exe: sail_riscv_sim
+udb_config: ic_design_rv32i.yaml
+linker_script: link.ld
+dut_include_dir: .
+include_priv_tests: False

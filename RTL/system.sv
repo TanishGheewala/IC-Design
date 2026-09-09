@@ -1,18 +1,25 @@
-// system.v - Top Level Module for the Single-Cycle RV32I Datapath
+// system.sv - Top Level Module for the Single-Cycle RV32I Datapath
 
 `timescale 1ns/1ps
 `include "memory/macros.vh"
 
-module system (
+module system
+#(
+    parameter ADDR_WIDTH = `ADDR_WIDTH,
+    parameter MEM_DEPTH = `MEM_DEPTH,
+    parameter ROM_INITIAL_FILE = "test_program.hex",
+    parameter RAM_INITIAL_FILE = "",
+    parameter DEBUG_PRINT = 1'b1
+) (
     input logic clk,
     input logic rst_n
-  );
+);
 
   // Program Counter
-  logic [`ADDR_WIDTH-1:0] pc = 0;
-  logic [`ADDR_WIDTH-1:0] pc_next = 4;
-  logic [`ADDR_WIDTH-1:0] pc_plus4;
-  logic [`ADDR_WIDTH-1:0] pc_plus_imm;
+  logic [ADDR_WIDTH-1:0] pc = 0;
+  logic [ADDR_WIDTH-1:0] pc_next = 4;
+  logic [ADDR_WIDTH-1:0] pc_plus4;
+  logic [ADDR_WIDTH-1:0] pc_plus_imm;
 
   always_ff @(posedge clk)
   begin
@@ -21,27 +28,39 @@ module system (
     else
       pc <= pc_next;
 
-    $strobe("[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h", $time, pc, pc_next);
-    $strobe("[STROBE DEBUG] Time: %0t | rom_if.inst: %h", $time, rom_if.inst);
+    if (DEBUG_PRINT)
+    begin
+      $strobe("[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h", $time, pc, pc_next);
+      $strobe("[STROBE DEBUG] Time: %0t | rom_if.inst: %h", $time, rom_if.inst);
+    end
   end
 
   // Interfaces
-  instruction_memory_interface  rom_if();
-  data_memory_interface         ram_if();
-  decoder_interface             dec_if();
-  register_file_interface       rf_if();
-  sign_extender_interface       se_if();
-  alu_interface                 alu_if();
-  branch_unit_interface         bu_if();
+  instruction_memory_interface #(
+                                 .ADDR_WIDTH(ADDR_WIDTH)
+                               ) rom_if();
+
+  data_memory_interface #(
+                          .ADDR_WIDTH(ADDR_WIDTH)
+                        ) ram_if();
+
+  decoder_interface       dec_if();
+  register_file_interface rf_if();
+  sign_extender_interface se_if();
+  alu_interface           alu_if();
+  branch_unit_interface   bu_if();
 
   // Fetch
   assign rom_if.addr = pc;
 
   instruction_memory #(
-                       .MEM_INITIAL_FILE("test_program.hex")) // Replace the stuff in parentheses with the file path for test_program.hex
-                      rom (.addr(rom_if.addr),
+                       .ADDR_WIDTH(ADDR_WIDTH),
+                       .MEM_DEPTH(MEM_DEPTH),
+                       .MEM_INITIAL_FILE(ROM_INITIAL_FILE)
+                     ) rom (
+                       .addr(rom_if.addr),
                        .inst(rom_if.inst)
-                      );
+                     );
 
   // Decode
   assign dec_if.instruction = rom_if.inst;
@@ -64,7 +83,7 @@ module system (
   // Execute
   assign alu_if.alu_opcode = dec_if.alu_opcode;
   assign alu_if.in_data_0  = dec_if.alu_a_src
-         ? {{(32-`ADDR_WIDTH){1'b0}}, pc}
+         ? {{(32-ADDR_WIDTH){1'b0}}, pc}
          : rf_if.rs1_data;
   assign alu_if.in_data_1  = dec_if.alu_src
          ? se_if.immediate_output
@@ -81,21 +100,24 @@ module system (
 
   // Memory
   assign ram_if.we      = dec_if.mem_write;
-  assign ram_if.addr    = alu_if.out_data[`ADDR_WIDTH-1:0];
+  assign ram_if.addr    = alu_if.out_data[ADDR_WIDTH-1:0];
   assign ram_if.data_in = rf_if.rs2_data;
 
-  data_memory ram (
-                .clk     (clk),
-                .we      (ram_if.we),
-                .addr    (ram_if.addr),
-                .data_in (ram_if.data_in),
+  data_memory #(
+                .ADDR_WIDTH(ADDR_WIDTH),
+                .MEM_DEPTH(MEM_DEPTH),
+                .MEM_INITIAL_FILE(RAM_INITIAL_FILE)
+              ) ram (
+                .clk(clk),
+                .we(ram_if.we),
+                .addr(ram_if.addr),
+                .data_in(ram_if.data_in),
                 .data_out(ram_if.data_out)
               );
 
-
   // Writeback
-  assign pc_plus4    = pc + `ADDR_WIDTH'd4;
-  assign pc_plus_imm = pc + se_if.immediate_output[`ADDR_WIDTH-1:0];
+  assign pc_plus4    = pc + 4;
+  assign pc_plus_imm = pc + se_if.immediate_output[ADDR_WIDTH-1:0];
 
   logic take_branch;
   assign take_branch = dec_if.branch_flag && bu_if.output_flag;
@@ -105,7 +127,7 @@ module system (
     if (take_branch)
     begin
       if (dec_if.jump_flag && dec_if.alu_src)
-        pc_next = alu_if.out_data[`ADDR_WIDTH-1:0]; // JALR
+        pc_next = alu_if.out_data[ADDR_WIDTH-1:0]; // JALR
       else
         pc_next = pc_plus_imm;
     end
@@ -121,7 +143,7 @@ module system (
       2'b01:
         rf_if.write_data = ram_if.data_out;
       2'b10:
-        rf_if.write_data = {{(32-`ADDR_WIDTH){1'b0}}, pc_plus4};
+        rf_if.write_data = {{(32-ADDR_WIDTH){1'b0}}, pc_plus4};
       default:
         rf_if.write_data = alu_if.out_data;
     endcase
