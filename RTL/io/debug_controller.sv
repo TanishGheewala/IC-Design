@@ -20,11 +20,12 @@
 
 //data_return_states
 `define IDLE                3'b000
-`define RECIEVE_DATA        3'b000
-`define BYTE_0              3'b001
-`define BYTE_1              3'b010
-`define BYTE_2              3'b011
-`define BYTE_3              3'b100
+`define RECIEVE_DATA        3'b001
+`define BYTE_0              3'b010
+`define BYTE_1              3'b011
+`define BYTE_2              3'b100
+`define BYTE_3              3'b101
+`define END_TRANSMISION     3'b110
 
 module debug_controller(debug_interface.debug_dut debug_if);
 
@@ -67,7 +68,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
     //uart transmission to controller connection
     always_ff@(posedge debug_if.clk) begin
         if(byte_return_ready == 1'b1) begin
-            uart_trans_if.byte_data <= data_return;
+            uart_trans_if.byte_data <= data_return_byte;
             uart_trans_if.uart_tran_done <= 1'b1;
         end else begin
             uart_trans_if.byte_data <= 0;
@@ -77,6 +78,9 @@ module debug_controller(debug_interface.debug_dut debug_if);
 
     //data return state machine
     //make check for byte return done before moving through state
+    //logic for each byte state is to wait for line to clear
+    //then send value and move to next byte
+    //ex: byte 0 is sent and state moves to byte 1 and waits for clear
     always_ff @(posedge debug_if.clk) begin
         unique case(data_return_state)
             `IDLE: begin
@@ -86,12 +90,66 @@ module debug_controller(debug_interface.debug_dut debug_if);
                     data_return_state <= `IDLE;
             end
             `RECIEVE_DATA: begin
-                data_return <= debug_if.data_return_in;
+                    data_return <= debug_if.data_return_in;
+                    byte_return_ready <= 1'b0;
+                    data_return_state <= `BYTE_0;
             end
 
             `BYTE_0: begin
-                data_return_byte <= data_return[7:0];
-                byte_return_ready <= 1'b1;
+                if(uart_trans_if.line_busy) begin
+                    data_return_state <= `BYTE_0;
+                    byte_return_ready <= 1'b0;
+                end else begin
+                    data_return_byte <= data_return[7:0];
+                    byte_return_ready <= 1'b1;
+                    data_return_state <= `BYTE_1;
+                end
+            end
+
+            `BYTE_1: begin
+                if(uart_trans_if.line_busy) begin
+                    data_return_state <= `BYTE_1;
+                    byte_return_ready <= 1'b0;
+                end else begin
+                    data_return_byte <= data_return[15:8];
+                    byte_return_ready <= 1'b1;
+                    data_return_state <= `BYTE_2;
+                end
+            end
+
+            `BYTE_2: begin
+                if(uart_trans_if.line_busy) begin
+                    data_return_state <= `BYTE_2;
+                    byte_return_ready <= 1'b0;
+                end else begin
+                    data_return_byte <= data_return[23:16];
+                    byte_return_ready <= 1'b1;
+                    data_return_state <= `BYTE_3;
+                end
+            end
+
+            `BYTE_3: begin
+                if(uart_trans_if.line_busy) begin
+                    data_return_state <= `BYTE_3;
+                    byte_return_ready <= 1'b0;
+                end else begin
+                    data_return_byte <= data_return[31:24];
+                    byte_return_ready <= 1'b1;
+                    data_return_state <= `END_TRANSMISION;
+                end
+            end
+            
+            //allwos byte 3 to send then clears all values
+            //then proceeds to idle
+            `END_TRANSMISION: begin
+                if(uart_trans_if.line_busy) begin
+                    data_return_state <= `END_TRANSMISION;
+                    byte_return_ready <= 1'b0;
+                end else begin
+                    data_return_byte <= 0;
+                    byte_return_ready <= 1'b0;
+                    data_return_state <= `IDLE;
+                end
             end
         endcase
     end
@@ -124,7 +182,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
                     end 
 
                     `RETURN_MEM: begin
-                        debug_if.core_signals <= `RETURN_REG;
+                        debug_if.core_signals <= `RETURN_MEM;
                         debug_state <= `DATA_RETURN;
                     end 
 
@@ -143,6 +201,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
             //loop backk to DEBUG ON
             `DATA_RETURN: begin
                 data_return_ready <= 1'b1;
+                debug_state <= `DATA_RETURN_CLEAN_UP;
+                $strobe("Data Return Hit");
             end
             
             //debug_controller gives control back to core
@@ -150,7 +210,6 @@ module debug_controller(debug_interface.debug_dut debug_if);
             `DATA_RETURN_CLEAN_UP: begin
                 debug_if.core_signals <= 0;
                 debug_state <= `DEBUG_ON;
-                byte_return_ready <= 1'b0;
                 data_return_ready <= 1'b0;
             end
 

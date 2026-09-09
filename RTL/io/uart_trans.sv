@@ -94,6 +94,12 @@ module uart_trans
     end
 
     //output
-    assign uart_if.serial_data = serial_out;
-
+    //includes bit to tell debug controller if the line is busy
+    always_comb begin
+        uart_if.serial_data = serial_out;
+        if(uart_state != IDLE)
+            uart_if.line_busy = 1'b1;
+        else 
+            uart_if.line_busy = 1'b0;
+    end
 endmodule
