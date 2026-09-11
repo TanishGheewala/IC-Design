@@ -7,6 +7,8 @@
 module debug_controller_tb;
 
     logic clk;
+    int clk_speed;
+    int baud_rate;
 
     //interface
     debug_interface debug_if();
@@ -31,14 +33,14 @@ module debug_controller_tb;
             debug_controller_packet::RETURN_REG: begin
                 assert (data.core_halt == 1'b1) 
                 else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
-                assert (data.data_return_out == debug_controller_packet::RETURN_REG) 
-                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, debug_controller_packet::RETURN_REG);
+                assert (data.data_return_out == data.data_address) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, data.data_address);
             end
             debug_controller_packet::RETURN_MEM: begin
                 assert (data.core_halt == 1'b1) 
                 else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
-                assert (data.data_return_out == debug_controller_packet::RETURN_MEM) 
-                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, debug_controller_packet::RETURN_MEM);
+                assert (data.data_return_out == data.data_address) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, data.data_address);
             end
             debug_controller_packet::CORE_RESUME: begin
                 assert (data.core_halt == 1'b0) 
@@ -70,7 +72,7 @@ module debug_controller_tb;
     endtask
 
     //task recieve serial byte from debug controller
-    task automatic recieve_tx_line(ref debug_controller_packet data, int baud_rate, int clk_speed);
+    task automatic recieve_tx_line(debug_controller_packet data, int baud_rate, int clk_speed);
 
         int baud_wait;
         logic [7:0] uart_byte;
@@ -78,63 +80,83 @@ module debug_controller_tb;
         baud_wait = baud_wait*10;
 
         //4 loops for full 32 bit word to be sent as 4 bytes
+        data.data_address = debug_if.debug_address;
         for(int j=0; j<4; j++) begin
             @(posedge DUT.uart_trans_if.line_busy);
-
+            $display("yo");
             //2 to account for uart trans idle and start
-            repeat(2) #baud_wait;
+            #(baud_wait + (baud_wait / 2));
             for(int i=0; i<8; i++) begin
                 uart_byte[i] = debug_if.tx;
                 #baud_wait;
             end
-            #baud_wait;
+
+            #(baud_wait / 2); 
+
             //sets bytes in correct spot -- should probably change to multidimension array
-            if(j == 0)
+            if(j == 0) begin
                 data.data_return_out[7:0] = uart_byte;
-            else if(j == 1)
+                $display("tachyon %0h", uart_byte);
+            end
+            else if(j == 1) begin
                 data.data_return_out[15:8] = uart_byte;
-            else if(j == 2)
+                $display("tachyon2 %0h", uart_byte);
+            end
+            else if(j == 2) begin
                 data.data_return_out[23:16] = uart_byte;
-            else if(j == 3)
+                $display("tachyon3");
+            end
+            else if(j == 3) begin
+                $display("tachyon4");
                 data.data_return_out[31:24] = uart_byte;
+            end
         end
+        expected_outcome_tx_line(data);
+        $display(data.convert_to_string());
         $display("return: %0h", data.data_return_out);
     endtask
 
     //task to send sequence of commands to debug controller
-    task automatic debug_instruction_sequence(input logic [7:0] seq [], ref debug_controller_packet debug_data, input int baud_rate, int clk_speed);
+    task automatic debug_instruction_sequence(input logic [7:0] seq [], debug_controller_packet debug_data, input int baud_rate, int clk_speed);
 
         @(posedge clk);
 
         //runs all instructions through
-        foreach (seq[i]) begin
-            $display("[INSTRUCTION #%d: %0h]", i, seq[i]);
-            @(posedge clk);
-            send_rx_line(seq[i], baud_rate, clk_speed);
-            wait(DUT.uart_rec_if.uart_tran_done);
+        fork 
+            begin
+                foreach (seq[i]) begin
+                    $display("[INSTRUCTION #%d: %0h]", i, seq[i]);
+                    @(posedge clk);
+                    send_rx_line(seq[i], baud_rate, clk_speed);
+                    wait(DUT.uart_rec_if.uart_tran_done);
+                    //3 to account for internal pipeline
+                    repeat(3) @(posedge clk);
 
-            //3 to account for internal pipeline
-            repeat(3) @(posedge clk);
-            debug_data.debug_command = seq[i];
-            @(posedge clk);
-            debug_if.data_return_in = debug_if.core_signals;
+                    debug_data.debug_command = seq[i];
+                    //ensures all uart stuff is done
+                    repeat(1000) @(posedge clk);
 
-            //check recieved value
-            if(seq[i] > 3) begin
-                recieve_tx_line(debug_data, baud_rate, clk_speed);
+                    //updates and checks output
+                    debug_data.core_halt = debug_if.core_halt;
+                    debug_data.debug_state = DUT.debug_state;
+                    repeat(2000) @(posedge clk);
+                end
             end
-            //ensures all uart stuff is done
-            repeat(200) @(posedge clk);
+            
+            begin
+                forever begin
+                    @(posedge DUT.data_return_ready);
+                    recieve_tx_line(debug_data, baud_rate, clk_speed);
+                end
+            end
 
-            //updates and checks output
-            debug_data.core_halt = debug_if.core_halt;
-            debug_data.debug_state = DUT.debug_state;
-            expected_outcome_tx_line(debug_data);
-            $display(debug_data.convert_to_string());
-        end
-        
-        
-
+            begin
+                forever begin
+                    @(posedge clk);
+                    debug_if.data_return_in = debug_if.debug_address;
+                end
+            end
+        join_any
     endtask
     
     //clk
@@ -148,16 +170,19 @@ module debug_controller_tb;
         debug_controller_packet debug_controller_item = new();
 
         debug_if.rx = 1'b1;
+
+        clk_speed = 100000000;
+        baud_rate = 9600;
         
         $display("[DEBUG CONTROLLER STATE TEST START]");
 
         @(posedge clk)
 
-        test_instruction_sequence = new[7];
+        test_instruction_sequence = new[15];
         test_instruction_sequence = '{debug_controller_packet::NOP, debug_controller_packet::CORE_HALT, 
             debug_controller_packet::CORE_RESUME, debug_controller_packet::CORE_HALT, 
-            debug_controller_packet::RETURN_REG, debug_controller_packet::RETURN_MEM,
-            debug_controller_packet::CORE_RESUME};
+            debug_controller_packet::RETURN_REG, 8'h0, 8'h0, 8'h0, 8'h1, debug_controller_packet::RETURN_MEM,
+            8'h0, 8'h0, 8'h3, 8'h4, debug_controller_packet::CORE_RESUME};
 
             debug_instruction_sequence(test_instruction_sequence, debug_controller_item, 9600, 100000000);
 

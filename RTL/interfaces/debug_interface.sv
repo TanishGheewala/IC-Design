@@ -8,8 +8,9 @@ interface debug_interface();
     logic tx;
     logic rx;
     logic core_halt;
-    logic [31:0] core_signals;
+    logic [7:0] core_signals;
     logic [31:0] data_return_in;
+    logic [31:0] debug_address;
 
     //dut setup
     modport debug_dut
@@ -19,7 +20,8 @@ interface debug_interface();
         input data_return_in,
         output tx,
         output core_halt,
-        output core_signals
+        output core_signals,
+        output debug_address
     );
 
 endinterface

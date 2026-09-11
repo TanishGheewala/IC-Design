@@ -14,11 +14,13 @@
 //debug_states
 `define DEBUG_OFF               3'b000
 `define DEBUG_ON                3'b001
-`define DATA_RETURN             3'b010
-`define DATA_RETURN_CLEAN_UP    3'b011
-`define DEBUG_CLEAN_UP          3'b100
+`define DATA_LOCATION           3'b010
+`define DATA_RETURN             3'b011
+`define DATA_RETURN_CLEAN_UP    3'b100
+`define DEBUG_CLEAN_UP          3'b101
 
 //data_return_states
+//data_address states are the same but without recieve data
 `define IDLE                3'b000
 `define RECIEVE_DATA        3'b001
 `define BYTE_0              3'b010
@@ -35,9 +37,14 @@ module debug_controller(debug_interface.debug_dut debug_if);
     logic [7:0] debug_instruction = `NOP;
     logic byte_return_ready = 1'b0;    
     logic [2:0] debug_state = `DEBUG_OFF;
-    logic [1:0] data_return_state = `BYTE_0;
+    logic [2:0] data_return_state = `IDLE;
     logic data_return_ready = 1'b0;
-    //craete staging register so only fully transmitted command is shown to to debug controller
+    logic [2:0] data_address_state = `IDLE;
+    logic data_address_ready = 1'b0;
+    logic [31:0] data_address = 0;
+    logic get_address = 1'b0;
+    logic byte_rx_new = 1'b0;
+    logic data_return_done = 1'b0;
 
     //uart instanstiation
     uart_interface uart_rec_if();
@@ -60,8 +67,11 @@ module debug_controller(debug_interface.debug_dut debug_if);
     always_ff@(posedge debug_if.clk) begin
         if(uart_rec_if.uart_tran_done == 1'b1) begin
             debug_instruction <= uart_rec_if.byte_data;
-        end else begin
+            byte_rx_new <= 1'b1;
+        end 
+        else begin
             debug_instruction <= 0;
+            byte_rx_new <= 1'b0;
         end
     end
 
@@ -84,6 +94,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
     always_ff @(posedge debug_if.clk) begin
         unique case(data_return_state)
             `IDLE: begin
+                data_return_done <= 0;
                 if(data_return_ready)
                     data_return_state <= `RECIEVE_DATA;
                 else
@@ -146,10 +157,73 @@ module debug_controller(debug_interface.debug_dut debug_if);
                     data_return_state <= `END_TRANSMISION;
                     byte_return_ready <= 1'b0;
                 end else begin
+                    $display("DATA SENT THROUGH TX");
                     data_return_byte <= 0;
                     byte_return_ready <= 1'b0;
                     data_return_state <= `IDLE;
+                    data_return_done <= 1'b1;
                 end
+            end
+        endcase
+    end
+
+    //data address state machine gets 32 bit address from uart rx line
+    //make check for byte return done before moving through state
+    //logic for each byte state is to wait for line to clear
+    //then send value and move to next byte
+    //ex: byte 0 is sent and state moves to byte 1 and waits for clear
+    always_ff @(posedge debug_if.clk) begin
+        unique case(data_address_state)
+            `IDLE: begin
+                if(get_address) begin
+                    data_address_state <= `BYTE_0;
+                end
+                else begin
+                    data_address_state <= `IDLE;
+                end
+            end
+
+            `BYTE_0: begin
+                if(!byte_rx_new) begin
+                    data_address_state <= `BYTE_0;
+                end else begin
+                    data_address[31:24] <= debug_instruction;
+                    data_address_state <= `BYTE_1;
+                end
+            end
+
+            `BYTE_1: begin
+                if(!byte_rx_new) begin
+                    data_address_state <= `BYTE_1;
+                end else begin
+                    data_address[23:16] <= debug_instruction;
+                    data_address_state <= `BYTE_2;
+                end
+            end
+
+            `BYTE_2: begin
+                if(!byte_rx_new) begin
+                    data_address_state <= `BYTE_2;
+                end else begin
+                    data_address[15:8] <= debug_instruction;
+                    data_address_state <= `BYTE_3;
+                end
+            end
+
+            `BYTE_3: begin
+                if(!byte_rx_new) begin
+                    data_address_state <= `BYTE_3;
+                end else begin
+                    data_address[7:0] <= debug_instruction;
+                    data_address_ready <= 1'b1;
+                    data_address_state <= `END_TRANSMISION;
+                end
+            end
+            
+            `END_TRANSMISION: begin
+                    data_address_state <= `IDLE;
+                    data_address_ready <= 1'b0;
+                    get_address <= 0;
             end
         endcase
     end
@@ -178,12 +252,14 @@ module debug_controller(debug_interface.debug_dut debug_if);
                 case(debug_instruction)
                     `RETURN_REG: begin
                         debug_if.core_signals <= `RETURN_REG;
-                        debug_state <= `DATA_RETURN;
+                        debug_state <= `DATA_LOCATION;
+                        get_address <= 1'b1;
                     end 
 
                     `RETURN_MEM: begin
                         debug_if.core_signals <= `RETURN_MEM;
-                        debug_state <= `DATA_RETURN;
+                        debug_state <= `DATA_LOCATION;
+                        get_address <= 1'b1;
                     end 
 
                     `CORE_RESUME: begin
@@ -196,21 +272,39 @@ module debug_controller(debug_interface.debug_dut debug_if);
                     end
                 endcase
             end
+            
+            //listens on uart rx line for next 4 bytes
+            //32 bit word recieved will be used as address for data return
+            `DATA_LOCATION: begin
+                if(!data_address_ready) begin
+                    debug_state <= `DATA_LOCATION;
+                end
+                else begin
+                    debug_if.debug_address <= data_address;
+                    debug_state <= `DATA_RETURN;
+                end
+            end
 
             //core returns data to debug controller based on command entered\
             //loop backk to DEBUG ON
             `DATA_RETURN: begin
                 data_return_ready <= 1'b1;
                 debug_state <= `DATA_RETURN_CLEAN_UP;
-                $strobe("Data Return Hit");
             end
             
             //debug_controller gives control back to core
             //clears debug controller registers
             `DATA_RETURN_CLEAN_UP: begin
-                debug_if.core_signals <= 0;
-                debug_state <= `DEBUG_ON;
                 data_return_ready <= 1'b0;
+                if(data_return_done) begin
+                    debug_if.core_signals <= 0;
+                    debug_if.debug_address <= 0;
+                    debug_state <= `DEBUG_ON;
+                    data_address <= 0;
+                end
+                else begin
+                    debug_state <= `DATA_RETURN_CLEAN_UP;
+                end
             end
 
             //debug_controller gives control back to core
