@@ -26,10 +26,13 @@ module uart_trans
                 serial_out <= 1'b1;
                 clk_counter <= 0;
                 bit_counter <= 0;
+                uart_if.line_busy <= 0;
 
                 //transmits on tran_done_signal
                 if(uart_if.uart_tran_done == 1'b1) begin
                     byte_in <= uart_if.byte_data;
+                    $strobe("byte in dog:< %h", byte_in);
+                    uart_if.line_busy <= 1;
                     uart_state <= START;
                 end else begin
                     uart_state <= IDLE;
@@ -87,6 +90,7 @@ module uart_trans
                 //extra clk stop before entering another state
                 //ensures functionality with back to back inputs
                 uart_state <= IDLE;
+                uart_if.line_busy <= 0;
             end
 
             default: uart_state <= IDLE;

@@ -1,5 +1,8 @@
 /*
 *   Debug Controller: takes instructions from UART and decodes them into signals to control the core.
+* 
+*   TODO: create a better scoreboard that takes the data input in seq as the check
+*   TODO: create random inputs
 */
 
 //debug instructions
@@ -78,8 +81,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
     //uart transmission to controller connection
     always_ff@(posedge debug_if.clk) begin
         if(byte_return_ready == 1'b1) begin
-            uart_trans_if.byte_data <= data_return_byte;
-            uart_trans_if.uart_tran_done <= 1'b1;
+            uart_trans_if.byte_data = data_return_byte;
+            uart_trans_if.uart_tran_done = 1'b1;
         end else begin
             uart_trans_if.byte_data <= 0;
             uart_trans_if.uart_tran_done <= 1'b0;
@@ -107,7 +110,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             end
 
             `BYTE_0: begin
-                if(uart_trans_if.line_busy) begin
+                if(uart_trans_if.line_busy || byte_return_ready) begin
                     data_return_state <= `BYTE_0;
                     byte_return_ready <= 1'b0;
                 end else begin
@@ -118,7 +121,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             end
 
             `BYTE_1: begin
-                if(uart_trans_if.line_busy) begin
+                if(uart_trans_if.line_busy || byte_return_ready) begin
                     data_return_state <= `BYTE_1;
                     byte_return_ready <= 1'b0;
                 end else begin
@@ -129,7 +132,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             end
 
             `BYTE_2: begin
-                if(uart_trans_if.line_busy) begin
+                if(uart_trans_if.line_busy || byte_return_ready) begin
                     data_return_state <= `BYTE_2;
                     byte_return_ready <= 1'b0;
                 end else begin
@@ -140,7 +143,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             end
 
             `BYTE_3: begin
-                if(uart_trans_if.line_busy) begin
+                if(uart_trans_if.line_busy || byte_return_ready) begin
                     data_return_state <= `BYTE_3;
                     byte_return_ready <= 1'b0;
                 end else begin
@@ -153,7 +156,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
             //allwos byte 3 to send then clears all values
             //then proceeds to idle
             `END_TRANSMISION: begin
-                if(uart_trans_if.line_busy) begin
+                if(uart_trans_if.line_busy || byte_return_ready) begin
                     data_return_state <= `END_TRANSMISION;
                     byte_return_ready <= 1'b0;
                 end else begin
