@@ -1,8 +1,6 @@
 /*
 *   Debug Controller: takes instructions from UART and decodes them into signals to control the core.
 * 
-*   TODO: create a better scoreboard that takes the data input in seq as the check
-*   TODO: create random inputs
 */
 
 //debug instructions
@@ -160,7 +158,6 @@ module debug_controller(debug_interface.debug_dut debug_if);
                     data_return_state <= `END_TRANSMISION;
                     byte_return_ready <= 1'b0;
                 end else begin
-                    $display("DATA SENT THROUGH TX");
                     data_return_byte <= 0;
                     byte_return_ready <= 1'b0;
                     data_return_state <= `IDLE;

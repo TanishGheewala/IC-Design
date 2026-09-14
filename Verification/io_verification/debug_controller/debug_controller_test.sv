@@ -33,14 +33,14 @@ module debug_controller_tb;
             debug_controller_packet::RETURN_REG: begin
                 assert (data.core_halt == 1'b1) 
                 else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
-                assert (data.data_return_out == data.data_address) 
-                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, data.data_address);
+                assert (data.data_return_out == data.debug_address) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %h, expected: %h", data.data_return_out, data.debug_address);
             end
             debug_controller_packet::RETURN_MEM: begin
                 assert (data.core_halt == 1'b1) 
                 else   $error("CORE IS NOT STOPPED, actual: %0h, expected: %0h", data.core_halt, 1);
-                assert (data.data_return_out == data.data_address) 
-                else   $error("DATA RETURNED DOES NOT MATCH, actual: %0h, expected: %0h", data.data_return_out, data.data_address);
+                assert (data.data_return_out == data.debug_address) 
+                else   $error("DATA RETURNED DOES NOT MATCH, actual: %h, expected: %h", data.data_return_out, data.debug_address);
             end
             debug_controller_packet::CORE_RESUME: begin
                 assert (data.core_halt == 1'b0) 
@@ -79,39 +79,35 @@ module debug_controller_tb;
         baud_wait = (clk_speed/baud_rate) - 1;
         baud_wait = baud_wait*10;
 
-        if(DUT.data_return_state == 3'b001) begin
-            $display("what");
-            for(int j=0; j<4; j++) begin
-                @(negedge debug_if.tx)
-                data.core_halt = debug_if.core_halt;
-                data.debug_state = DUT.debug_state;
-                //2 to account for uart trans idle and start
-                #(baud_wait + (baud_wait / 2));
+        for(int j=0; j<4; j++) begin
+            @(negedge debug_if.tx)
+            data.core_halt = debug_if.core_halt;
+            data.debug_state = DUT.debug_state;
+            //1 1/2 to account for uart trans idle and start and take from middle of transmission
+            #(baud_wait + (baud_wait / 2));
 
-                for(int i=0; i<8; i++) begin
-                    uart_byte[i] = debug_if.tx;
-                    #baud_wait;
-                end
-                #(baud_wait / 2); 
-
-                //sets bytes in correct spot -- should probably change to multidimension array
-                if(j == 0) begin
-                    data.data_return_out[7:0] = uart_byte;
-                end
-                else if(j == 1) begin
-                    data.data_return_out[15:8] = uart_byte;
-                end
-                else if(j == 2) begin
-                    data.data_return_out[23:16] = uart_byte;
-                end
-                else if(j == 3) begin
-                    data.data_return_out[31:24] = uart_byte;
-                end
+            for(int i=0; i<8; i++) begin
+                uart_byte[i] = debug_if.tx;
+                #baud_wait;
             end
-            expected_outcome_tx_line(data);
-            $display(data.convert_to_string());
-            $display("return: %0h", data.data_return_out);
+            #(baud_wait / 2); 
+
+            //sets bits in correct position -- simulating python script
+            if(j == 0) begin
+                data.data_return_out[7:0] = uart_byte;
+            end
+            else if(j == 1) begin
+                data.data_return_out[15:8] = uart_byte;
+            end
+            else if(j == 2) begin
+                data.data_return_out[23:16] = uart_byte;
+            end
+            else if(j == 3) begin
+                data.data_return_out[31:24] = uart_byte;
+            end
         end
+        expected_outcome_tx_line(data);
+        $display(data.convert_to_string());
     endtask
 
     //task to send sequence of commands to debug controller
@@ -121,28 +117,23 @@ module debug_controller_tb;
 
         //fork to run instructions and monitor outputs
         //first fork sends data to uart
-        //second fork monitors tx line
-        //TODO: see if last fork actually should be there
+        //second fork circular address sending while before actually connecting to cpu
         fork 
             begin
                 foreach (seq[i]) begin
                     $display("[INSTRUCTION #%d: %0h]", i, seq[i]);
-                    debug_data.debug_command = seq[i];
                     @(posedge clk);
                     send_rx_line(seq[i], baud_rate, clk_speed);
                     wait(DUT.uart_rec_if.uart_tran_done);
                     //lets uart send data back
-                    if(i == 8 || i == 13)
-                        repeat(500000) @(posedge clk);
-                    debug_data.core_halt = debug_if.core_halt;
-                    debug_data.debug_state = DUT.debug_state;
-                end
-            end
-
-            begin
-                forever begin
-                    @(posedge clk);
-                    recieve_tx_line(debug_data, baud_rate, clk_speed);
+                    if((i == 8) || (i == 13)) begin
+                        debug_data.debug_command = seq[i-4];
+                        debug_data.debug_address = {seq[i-3], seq[i-2], seq[i-1], seq[i]};
+                        $display("%h", debug_data.debug_address);
+                        recieve_tx_line(debug_data, baud_rate, clk_speed);
+                    end
+                    
+                    repeat(1000) @(posedge clk);
                 end
             end
 
@@ -180,7 +171,7 @@ module debug_controller_tb;
             debug_controller_packet::RETURN_REG, 8'h0, 8'h0, 8'h0, 8'h1, debug_controller_packet::RETURN_MEM,
             8'h0, 8'h0, 8'h3, 8'h4, debug_controller_packet::CORE_RESUME};
 
-            debug_instruction_sequence(test_instruction_sequence, debug_controller_item, 9600, 100000000);
+            debug_instruction_sequence(test_instruction_sequence, debug_controller_item, baud_rate, clk_speed);
 
         //display results
         $display("[DEBUG TEST COMPLETE]");

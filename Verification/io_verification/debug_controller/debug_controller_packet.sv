@@ -13,7 +13,7 @@ class debug_controller_packet extends submodule_packet;
     bit [7:0] debug_state;
     bit [7:0] debug_command;
     bit [31:0] data_return_out;
-    bit [31:0] data_address;
+    bit [31:0] debug_address;
 
     typedef enum bit [7:0] 
     {
@@ -28,8 +28,8 @@ class debug_controller_packet extends submodule_packet;
 
     //function override for alu
     virtual function string convert_to_string();
-        return $sformatf("[DEBUG TESTBENCH OUTPUT]: core signals: %0h, core halt: %0h, data output: %0h, data address: %0h",
-                            core_signals, core_halt, data_return_out);
+        return $sformatf("[DEBUG TESTBENCH OUTPUT]: debug command: %0h, core signals: %0h, core halt: %0h, data output: %0h, data address: %0h",
+                            debug_command, core_signals, core_halt, data_return_out, debug_address);
     endfunction
 
 endclass
