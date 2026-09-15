@@ -79,10 +79,17 @@ module core #(
 
     //pc update
     always_ff @(posedge core_if.clk) begin
-        if (!core_if.rst_n)
+        if (!core_if.rst_n) begin
             pc <= '0;
-        else
+        end
+        else begin
             pc <= pc_next;
+        end
+
+        if (DEBUG_PRINT) begin
+            $strobe("[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h", $time, pc, pc_next);
+            $strobe("[STROBE DEBUG] Time: %0t | rom_if.inst: %h", $time, rom_if.inst);
+        end
     end
 
     //pc updatae logic 
@@ -104,6 +111,11 @@ module core #(
             pc_next = pc + 4;
             end
         end
+    end
+
+    //rom connections
+    always_comb begin
+        rom_if.addr = pc;
     end
 
     //alu connections
@@ -130,6 +142,10 @@ module core #(
     always_comb begin
         rf_if.clk = clk;
         if(core_if.core_halt) begin
+            rf_if.reg_write = 1'b0;
+            if(core_if.core_halt == 8'h02) begin
+                rf_if.rs1_addr = core_if.debug_address;
+            end
         end
         else begin
             rf_if.rs1_addr = dec_if.rs1_addr;
@@ -137,6 +153,20 @@ module core #(
             rf_if.rd_addr = dec_if.rd_addr;
             rf_if.reg_write = dec_if.reg_write;
         end
+    end
+
+    //reg file write select
+    always_comb begin
+        case (dec_if.wb_sel)
+        2'b00:
+            rf_if.write_data = alu_if.out_data;
+        2'b01:
+            rf_if.write_data = ram_if.data_out;
+        2'b10:
+            rf_if.write_data = {{(32-ADDR_WIDTH){1'b0}}, pc_plus4};
+        default:
+            rf_if.write_data = alu_if.out_data;
+        endcase
     end
 
     //decodder and sign extender connections
@@ -157,11 +187,28 @@ module core #(
     //ram connections
     always_comb begin
         if(core_if.core_halt) begin
+            ram_if.we = 1'b0;
+            if(core_if.debug_controller_instruction == 8'h02) begin
+                ram_if.addr = core_if.debug_address;
+            end
         end
         else begin
             ram_if.we = dec_if.mem_write;
             ram_if.addr = alu_if.out_data[ADDR_WIDTH-1:0];
             ram_if.data_in = rf_if.rs2_data;
+        end
+    end
+
+    always_comb begin
+        if(core_if.core_halt) begin
+            unique case(core_if.debug_controller_instruction)
+                8'h01: core_if.debug_data_return = rf_if.rs1_data;
+                8'h02: core_if.debug_data_return = ram_if.data_out;
+                default core_if.debug_data_return = '0;
+            endcase
+        end
+        else begin
+            core_if.debug_data_return = '0;
         end
     end
 endmodule

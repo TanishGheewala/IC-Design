@@ -24,12 +24,13 @@ module branch_unit(branch_unit_interface.bu_dut bu_if);
             `BLTU: branch_logic_out = ($unsigned(bu_if.input_0) < $unsigned(bu_if.input_1));
             `BGEU: branch_logic_out = ($unsigned(bu_if.input_0) >= $unsigned(bu_if.input_1));
             `JIC: branch_logic_out = 1'b1;
+            default: bu_if.output_flag = 1'b0;
         endcase
 
         //check if branch instruction
         unique case(bu_if.branch_flag)
             1'b1: bu_if.output_flag = branch_logic_out;
-            1'b0: bu_if.output_flag = 0;
+            default: bu_if.output_flag = 1'b0;
         endcase
     end
 

@@ -251,19 +251,19 @@ module debug_controller(debug_interface.debug_dut debug_if);
             `DEBUG_ON: begin
                 case(debug_instruction)
                     `RETURN_REG: begin
-                        debug_if.core_signals <= `RETURN_REG;
+                        debug_if.core_signals <= 7'b00000001;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
                     end 
 
                     `RETURN_MEM: begin
-                        debug_if.core_signals <= `RETURN_MEM;
+                        debug_if.core_signals <= 7'b00000010;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
                     end 
 
                     `CORE_RESUME: begin
-                        debug_if.core_signals <= `NOP;
+                        debug_if.core_signals <= 7'b00000000;
                         debug_state <= `DEBUG_CLEAN_UP;
                     end
 
