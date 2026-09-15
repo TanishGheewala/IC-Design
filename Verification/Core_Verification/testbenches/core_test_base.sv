@@ -7,7 +7,7 @@ module core_test_base;
   core_interface core_if();
 
   core #(
-          .ROM_INITIAL_FILE("/home/gogurt/Documents/senion_design_project/Verification/test_programs/test_program.hex"),
+          .ROM_INITIAL_FILE("test_program.hex"),
           .DEBUG_PRINT(1'b1)
         )
     core_dut(.core_if(core_if.dut));
@@ -26,10 +26,10 @@ module core_test_base;
     $dumpfile("core_test_base.vcd");
     $dumpvars(0, core_test_base);
     // reset
-    rst_n = 0;
+    core_if.rst_n = 0;
     repeat (2) @(posedge clk);
-    rst_n = 1;
-    repeat (10) @(posedge clk);
+    core_if.rst_n = 1;
+    repeat (4) @(posedge clk);
     // result
     $display("x1 = %0d (expect 5)", core_dut.u_register_file.registers[1]);
 

@@ -2,7 +2,7 @@
 * RISC V core top module
 */
 `timescale 1ns/1ps
-`include "memory/macros.vh"
+`include "../memory/macros.vh"
 
 module core #(
     parameter ADDR_WIDTH = `ADDR_WIDTH,
@@ -27,11 +27,9 @@ module core #(
     branch_unit_interface   bu_if();
 
     //pc register & multiplexor variables
-    logic [ADDR_WIDTH-1:0] pc = 0;
-    logic [ADDR_WIDTH-1:0] pc_next = 0;
+    logic [ADDR_WIDTH-1:0] pc = '0;
+    logic [ADDR_WIDTH-1:0] pc_next = '0;
     logic [ADDR_WIDTH-1:0] pc_plus4;
-    logic [ADDR_WIDTH-1:0] pc_plus_imm;
-    logic take_branch;
 
     //core submodules
     instruction_memory #(
@@ -70,7 +68,7 @@ module core #(
                 .MEM_INITIAL_FILE(RAM_INITIAL_FILE)
                 ) 
         ram (
-            .clk(clk),
+            .clk(core_if.clk),
             .we(ram_if.we),
             .addr(ram_if.addr),
             .data_in(ram_if.data_in),
@@ -94,21 +92,16 @@ module core #(
 
     //pc updatae logic 
     always_comb begin
-        take_branch = dec_if.branch_flag && bu_if.output_flag;
+        pc_plus4 = pc + 4;
         if(core_if.core_halt) begin
             pc_next = pc;
         end
         else begin
-            if (take_branch) begin
-                if (dec_if.jump_flag && dec_if.alu_src) begin
-                    pc_next = alu_if.out_data[ADDR_WIDTH-1:0]; // JALR
-                end
-                else begin
-                    pc_next = pc + se_if.immediate_output[ADDR_WIDTH-1:0];
-                end
-                end
+            if (bu_if.output_flag) begin
+                pc_next = alu_if.out_data;
+            end
             else begin
-            pc_next = pc + 4;
+                pc_next = pc_plus4;
             end
         end
     end
@@ -124,7 +117,7 @@ module core #(
 
         //multiplexors for input
         if(dec_if.alu_a_src) begin
-            alu_if.in_data_0 = {{(32-ADDR_WIDTH){1'b0}}, pc};
+            alu_if.in_data_0 = pc;
         end
         else begin
             alu_if.in_data_0 = rf_if.rs1_data;
@@ -140,7 +133,7 @@ module core #(
 
     //reg file connections
     always_comb begin
-        rf_if.clk = clk;
+        rf_if.clk = core_if.clk;
         if(core_if.core_halt) begin
             rf_if.reg_write = 1'b0;
             if(core_if.core_halt == 8'h02) begin
@@ -163,7 +156,7 @@ module core #(
         2'b01:
             rf_if.write_data = ram_if.data_out;
         2'b10:
-            rf_if.write_data = {{(32-ADDR_WIDTH){1'b0}}, pc_plus4};
+            rf_if.write_data = pc_plus4;
         default:
             rf_if.write_data = alu_if.out_data;
         endcase
