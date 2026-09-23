@@ -1,9 +1,10 @@
 /*
 * soc_debug_packet.sv contains the test data structures for debug instructions and data recieved
 */
-class soc_debug_packet;
+class soc_packet;
     bit [7:0] debug_instruction;
     bit [31:0] tx_line_return;
+    bit [31:0] gpio_pins;
 
     typedef enum bit [7:0] 
     {
