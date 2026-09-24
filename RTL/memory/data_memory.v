@@ -19,7 +19,11 @@ module data_memory
 // RAM Array
 reg [DATA_WIDTH-1:0] ram [0:MEM_DEPTH-1];
 
-wire [ADDR_WIDTH-3:0] word_addr = addr[ADDR_WIDTH-1:2];
+// Sized from MEM_DEPTH (not ADDR_WIDTH) so word_addr can never index past
+// the array, even when this RAM is instantiated smaller than the full
+// address space (e.g. when address_decoder.sv reserves part of it for I/O).
+localparam WORD_ADDR_WIDTH = $clog2(MEM_DEPTH);
+wire [WORD_ADDR_WIDTH-1:0] word_addr = addr[WORD_ADDR_WIDTH+1:2];
 
 // Load initial data when a file is provided
 initial begin

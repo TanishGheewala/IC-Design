@@ -1,0 +1,3 @@
+work, ../../../RTL/interfaces/address_decoder_interface.sv
+work, ../../../RTL/memory/address_decoder.sv
+work, address_decoder_test.sv
