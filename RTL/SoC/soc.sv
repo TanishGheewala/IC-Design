@@ -11,7 +11,7 @@ module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
     core_interface core0_if();
     debug_interface debug_if();
     
-    debug_controller debug_con(.core_if(core_if));
+    debug_controller debug_con(.debug_if(debug_if.debug_dut));
     core #(
         .ADDR_WIDTH(`ADDR_WIDTH),
         .MEM_DEPTH(`MEM_DEPTH),
@@ -25,7 +25,7 @@ module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
     //top level connections to modules
     always_comb begin
         debug_if.clk = soc_if.clk;
-        debug_if.rx = soc__if.rx;
+        debug_if.rx = soc_if.rx;
         soc_if.tx = debug_if.tx;
         core0_if.clk = soc_if.clk;
     end

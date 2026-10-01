@@ -1,10 +1,17 @@
 /*
 * soc_debug_packet.sv contains the test data structures for debug instructions and data recieved
 */
+
+`include "../../../../RTL/memory/macros.vh"
+
 class soc_packet;
     bit [7:0] debug_instruction;
     bit [31:0] tx_line_return;
     bit [31:0] gpio_pins;
+    bit core_halt;
+    bit [31:0] debug_address;
+    bit [31:0] registers [0:31];
+    bit [31:0] memory [0:`MEM_DEPTH];
 
     typedef enum bit [7:0] 
     {
