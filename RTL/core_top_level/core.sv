@@ -11,7 +11,7 @@ module core #(
     parameter RAM_INITIAL_FILE = "",
     parameter DEBUG_PRINT = 1'b1
 )
-(core_interface.dut core_if);
+(core_interface core_if);
     
     //interfaces
     instruction_memory_interface #(.ADDR_WIDTH(ADDR_WIDTH)) 
@@ -136,7 +136,7 @@ module core #(
         rf_if.clk = core_if.clk;
         if(core_if.core_halt) begin
             rf_if.reg_write = 1'b0;
-            if(core_if.core_halt == 8'h02) begin
+            if(core_if.debug_controller_instruction == 8'h01) begin
                 rf_if.rs1_addr = core_if.debug_address;
             end
         end

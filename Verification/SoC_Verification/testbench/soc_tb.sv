@@ -8,8 +8,8 @@ module soc_tb;
     import test_package::*;
 
     //tb clk
-    bit clk;
-    always #10 clk = ~clk;
+    bit clk = 0;
+    always #5 clk = ~clk;
     soc_interface soc_if();
 
     always_comb begin
@@ -18,21 +18,24 @@ module soc_tb;
 
     //module instance
     soc #(
-          .ROM_INITIAL_FILE("test_program.hex")
+          .ROM_INITIAL_FILE("soc_tb_test.hex")
         )
         soc_dut(.soc_if(soc_if.soc_io));
 
     initial begin
         soc_test test0;
         
-        clk <= 0;
+        soc_if.rx = 1'b1;
 
         //run test and starts all components
         test0 = new;
         test0.env.soc_vif = soc_if;
         test0.run();
-
-        #200 $finish;
+        
+        //ensure core is actually executing instructions
+        #200;
+        $display("reg value: %0h", soc.core0.u_register_file.registers[1]);
+        $finish;
     end
 
 endmodule

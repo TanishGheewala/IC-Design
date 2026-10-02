@@ -31,7 +31,7 @@ class soc_driver;
     //sends byte received from mailbox by generator
     task send_debug_command();
         baud = 9600;
-        clk_speed = 10000000;
+        clk_speed = 100000000;
         @(posedge soc_vif.clk);
 
         forever begin

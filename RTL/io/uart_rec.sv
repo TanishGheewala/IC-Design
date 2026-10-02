@@ -8,7 +8,7 @@ module uart_rec
                 HALF_BIT = CLK_BIT/2
     )
     (
-        uart_interface.uart_r uart_if
+        uart_interface uart_if
     );
 
     //enums for states

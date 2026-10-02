@@ -5,7 +5,7 @@ module uart_trans
                 HALF_BIT = CLK_BIT/2
     )
     (
-        uart_interface.uart_t uart_if
+        uart_interface uart_if
     );
 
     //enums for states
@@ -63,6 +63,7 @@ module uart_trans
                     if(bit_counter < 7) begin
                         bit_counter = bit_counter + 1;
                         uart_state = DATA;
+                        //  $strobe("serial out: %0b", serial_out);
                     end else begin
                         bit_counter <= 0;
                         uart_state <= STOP;

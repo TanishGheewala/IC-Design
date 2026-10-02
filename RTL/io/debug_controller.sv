@@ -30,7 +30,7 @@
 `define BYTE_3              3'b101
 `define END_TRANSMISION     3'b110
 
-module debug_controller(debug_interface.debug_dut debug_if);
+module debug_controller(debug_interface debug_if);
 
     logic [31:0] core_signals;
     logic [31:0] data_return;
@@ -46,6 +46,7 @@ module debug_controller(debug_interface.debug_dut debug_if);
     logic get_address = 1'b0;
     logic byte_rx_new = 1'b0;
     logic data_return_done = 1'b0;
+    logic tx_wire;
 
     //uart instanstiation
     uart_interface uart_rec_if();
@@ -60,9 +61,9 @@ module debug_controller(debug_interface.debug_dut debug_if);
         uart_rec_if.serial_data = debug_if.rx;
 
         uart_trans_if.clk = debug_if.clk;
+        tx_wire = uart_trans_if.serial_data;
         debug_if.tx = uart_trans_if.serial_data;
     end
-
 
     //uart reciever to debug controller conntection
     always_ff@(posedge debug_if.clk) begin
@@ -82,8 +83,8 @@ module debug_controller(debug_interface.debug_dut debug_if);
             uart_trans_if.byte_data = data_return_byte;
             uart_trans_if.uart_tran_done = 1'b1;
         end else begin
-            uart_trans_if.byte_data <= 0;
-            uart_trans_if.uart_tran_done <= 1'b0;
+            uart_trans_if.byte_data = 0;
+            uart_trans_if.uart_tran_done = 1'b0;
         end
     end
 
@@ -96,10 +97,12 @@ module debug_controller(debug_interface.debug_dut debug_if);
         unique case(data_return_state)
             `IDLE: begin
                 data_return_done <= 0;
-                if(data_return_ready)
+                if(data_return_ready) begin
                     data_return_state <= `RECIEVE_DATA;
-                else
+                end
+                else begin
                     data_return_state <= `IDLE;
+                end
             end
             `RECIEVE_DATA: begin
                     data_return <= debug_if.data_return_in;
@@ -251,19 +254,19 @@ module debug_controller(debug_interface.debug_dut debug_if);
             `DEBUG_ON: begin
                 case(debug_instruction)
                     `RETURN_REG: begin
-                        debug_if.core_signals <= 7'b00000001;
+                        debug_if.core_signals <= 8'b00000001;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
                     end 
 
                     `RETURN_MEM: begin
-                        debug_if.core_signals <= 7'b00000010;
+                        debug_if.core_signals <= 8'b00000010;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
                     end 
 
                     `CORE_RESUME: begin
-                        debug_if.core_signals <= 7'b00000000;
+                        debug_if.core_signals <= 8'b00000000;
                         debug_state <= `DEBUG_CLEAN_UP;
                     end
 
@@ -285,14 +288,13 @@ module debug_controller(debug_interface.debug_dut debug_if);
                 end
             end
 
-            //core returns data to debug controller based on command entered\
+            //core returns data to debug controller based on command entered
             //loop backk to DEBUG ON
             `DATA_RETURN: begin
                 data_return_ready <= 1'b1;
                 debug_state <= `DATA_RETURN_CLEAN_UP;
             end
             
-            //debug_controller gives control back to core
             //clears debug controller registers
             `DATA_RETURN_CLEAN_UP: begin
                 data_return_ready <= 1'b0;

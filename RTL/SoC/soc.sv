@@ -6,12 +6,13 @@
 `include "../memory/macros.vh"
 
 module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
-            (soc_interface.soc_io soc_if);
+            (soc_interface soc_if);
 
     core_interface core0_if();
     debug_interface debug_if();
     
-    debug_controller debug_con(.debug_if(debug_if.debug_dut));
+    debug_controller debug_con(.debug_if(debug_if));
+    
     core #(
         .ADDR_WIDTH(`ADDR_WIDTH),
         .MEM_DEPTH(`MEM_DEPTH),
@@ -36,7 +37,7 @@ module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
         core0_if.clk = soc_if.clk;
         core0_if.debug_controller_instruction = debug_if.core_signals;
         core0_if.debug_address = debug_if.debug_address;
-        core0_if.core_halt = debug_if.core_halt;
+        core0_if.core_halt = debug_if.core_halt; 
     end
 
 endmodule

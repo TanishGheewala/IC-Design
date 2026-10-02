@@ -1,5 +1,8 @@
 /*
 *   soc_debug_scoreboard.sv checks that debug instructions executed correctly.
+*
+*   TODO: add second scoreboad_mailbox.get(soc_item) inside case statement for 
+*   chekcing options with return values probably need second mailbox
 */
 
 class soc_debug_scoreboard;
@@ -10,6 +13,7 @@ class soc_debug_scoreboard;
             soc_packet soc_item;
             scoreboard_mailbox.get(soc_item);
             
+            //check to ensure proper behavior after instruction
             case(soc_item.debug_instruction)
 
                 soc_packet::NOP: begin
@@ -37,6 +41,8 @@ class soc_debug_scoreboard;
                         $error("Returned memory value does not match");
                 end
             endcase
+
+            $display("[soc_item] tx_line_return: %0h, debug_instruction: %0h", soc_item.tx_line_return, soc_item.debug_instruction);
         end
     endtask
 endclass
