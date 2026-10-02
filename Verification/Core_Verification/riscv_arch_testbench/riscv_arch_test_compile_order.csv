@@ -14,5 +14,5 @@ work, ../../../RTL/core/register_file.sv
 work, ../../../RTL/core/sign_extender.sv
 work, ../../../RTL/memory/data_memory.v
 work, ../../../RTL/memory/instruction_memory.v
-work, ../../../RTL/system.sv
+work, ../../../RTL/core_top_level/system.sv
 work, riscv_arch_test.sv

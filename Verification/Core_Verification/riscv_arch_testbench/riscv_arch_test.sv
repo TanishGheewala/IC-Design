@@ -5,6 +5,7 @@ module riscv_arch_test_tb;
   localparam int ADDR_WIDTH = 20;
   localparam int MEM_DEPTH = 262144;
   localparam int MAX_CYCLES = 1000000;
+  localparam logic TRACE_ENABLE = 1'b0;
 
   localparam logic [31:0] TEST_STATUS_ADDR = 32'h000F_F000;
   localparam string TEST_HEX = "I-add-00.hex";
@@ -34,6 +35,19 @@ module riscv_arch_test_tb;
     repeat (2) @(posedge clk);
     @(negedge clk);
     rst_n = 1;
+  end
+
+  // Trace execution to locate the first failing self-check
+  always_ff @(posedge clk)
+  begin
+    if (rst_n && TRACE_ENABLE)
+      $display("RVCP-TRACE: cycle=%0d pc=%08h inst=%08h rs1=%08h rs2=%08h alu=%08h",
+               cycle_counter,
+               dut.pc,
+               dut.rom_if.inst,
+               dut.rf_if.rs1_data,
+               dut.rf_if.rs2_data,
+               dut.alu_if.out_data);
   end
 
   always_ff @(posedge clk)
