@@ -1,4 +1,5 @@
 work, ../../../RTL/SoC/soc_interface.sv
+work, ./test_classes/core_probe.sv
 work, ../../../RTL/interfaces/alu_interface.sv
 work, ../../../RTL/interfaces/branch_unit_interface.sv
 work, ../../../RTL/interfaces/clk_interface.sv

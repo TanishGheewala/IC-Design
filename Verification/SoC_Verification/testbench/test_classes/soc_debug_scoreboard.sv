@@ -1,8 +1,6 @@
 /*
 *   soc_debug_scoreboard.sv checks that debug instructions executed correctly.
 *
-*   TODO: add second scoreboad_mailbox.get(soc_item) inside case statement for 
-*   chekcing options with return values probably need second mailbox
 */
 
 class soc_debug_scoreboard;
@@ -17,32 +15,35 @@ class soc_debug_scoreboard;
             case(soc_item.debug_instruction)
 
                 soc_packet::NOP: begin
-                    if(!(soc_item.tx_line_return == 0))
-                        $error("NOP produced data output");
+                    if(soc_item.core_halt)
+                        $error("NOP caused return data from tx line\n");
                 end
 
                 soc_packet::CORE_HALT: begin
                     if(!soc_item.core_halt)
-                        $error("Core did not halt");
+                        $error("Core did not halt\n");
                 end
 
                 soc_packet::CORE_RESUME: begin
                     if(soc_item.core_halt)
-                        $error("Core did not resume execution");
+                        $error("Core did not resume execution\n");
                 end
 
                 soc_packet::RETURN_REG: begin
-                    if(soc_item.tx_line_return != soc_item.registers[soc_item.debug_address]);
-                        $error("Returned register value does not match");
+                    if(soc_item.tx_line_return != soc_item.registers[soc_item.debug_address])
+                        $error("Returned register value does not match\n");
                 end
 
                 soc_packet::RETURN_MEM: begin
-                    if(soc_item.tx_line_return != soc_item.memory[soc_item.debug_address]);
-                        $error("Returned memory value does not match");
+                    if(soc_item.tx_line_return != soc_item.memory[soc_item.debug_address])
+                        $error("Returned memory value does not match\n");
                 end
             endcase
 
-            $display("[soc_item] tx_line_return: %0h, debug_instruction: %0h", soc_item.tx_line_return, soc_item.debug_instruction);
+
+            //temp display state
+            $display("[soc_item] tx_line_return: %0h, debug_instruction: %0h, core halt: %0h, register_value: %0h"
+                        , soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.registers[soc_item.debug_address]);
         end
     endtask
 endclass

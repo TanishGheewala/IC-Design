@@ -8,6 +8,7 @@ class soc_driver;
     mailbox driver_mailbox;
     int baud;
     int clk_speed;
+    bit [7:0] debug_controller_input;
 
     //task to send a byte over uart
     task automatic send_rx_line(input logic [7:0] uart_byte, int baud_rate, int clk_speed);
@@ -35,9 +36,8 @@ class soc_driver;
         @(posedge soc_vif.clk);
 
         forever begin
-            soc_packet soc_item;
-            driver_mailbox.get(soc_item);
-            send_rx_line(soc_item.debug_instruction, baud, clk_speed);
+            driver_mailbox.get(debug_controller_input);
+            send_rx_line(debug_controller_input, baud, clk_speed);
             repeat(1000) @(posedge soc_vif.clk);
             ->driver_done;
         end

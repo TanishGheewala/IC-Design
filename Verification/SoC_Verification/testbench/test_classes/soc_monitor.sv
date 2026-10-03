@@ -1,17 +1,17 @@
 /*
 *   soc_monitor.sv controls sending debug commands over uart.
 *
-*   TODO: add a way to check core state (regsiters, memory, pc),
-*   and a way to match instruction with address sent when instruction
-*   is followed by address
 */
 
 class soc_monitor;
     virtual soc_interface soc_vif;
+    virtual core_probe core_probe_vif;
     mailbox scoreboard_mailbox;
+    mailbox monitor_mailbox;
     int baud;
     int clk_speed;
     event monitor_done;
+    event driver_done;
     int baud_wait;
 
     //task recieve serial byte from debug controller
@@ -44,7 +44,6 @@ class soc_monitor;
                 tx_line_return[31:24] = uart_byte;
             end
         end
-        $display("tx_line_return: %0h", tx_line_return);
     endtask
 
     task receive_soc_message();
@@ -58,9 +57,23 @@ class soc_monitor;
 
         forever begin
             soc_packet soc_item;
+            soc_packet soc_input_address;
             soc_item = new();
-            $display("Monitor tx line start...");
-            receive_tx_line(soc_item.tx_line_return);
+            soc_input_address = new();
+            monitor_mailbox.get(soc_item);
+            case(soc_item.debug_instruction)
+                soc_packet::RETURN_REG,
+                soc_packet::RETURN_MEM: begin
+                    receive_tx_line(soc_item.tx_line_return);
+                end
+
+                default: begin
+                    @(driver_done);
+                end
+            endcase
+            soc_item.registers = core_probe_vif.registers;
+            soc_item.memory = core_probe_vif.memory;
+            soc_item.core_halt = core_probe_vif.core_halt;
             @(posedge soc_vif.clk);
             scoreboard_mailbox.put(soc_item);
             ->monitor_done;
