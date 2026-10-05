@@ -12,5 +12,6 @@ class soc_test;
 
     virtual task run();
         env.run_components();
+        $display("[SCOREBOARD] Total Errors: %d\n", env.debug_scoreboard.error_count);
     endtask
 endclass

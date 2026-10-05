@@ -1,5 +1,7 @@
 /*
 *   soc_tb.sv is the top level testbench for the soc module.
+*
+*   INFO: relplace debug_test.hex with actual file path
 */
 `timescale 1ns/1ps
 
@@ -19,7 +21,7 @@ module soc_tb;
 
     //module instance
     soc #(
-          .ROM_INITIAL_FILE("soc_tb_test.hex")
+          .ROM_INITIAL_FILE("debug_test.hex")
         )
         soc_dut(.soc_if(soc_if.soc_io));
 
@@ -40,7 +42,6 @@ module soc_tb;
         
         //ensure core is actually executing instructions
         #200;
-        $display("reg value: %0h", soc.core0.u_register_file.registers[1]);
         $finish;
     end
 
