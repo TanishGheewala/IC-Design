@@ -1,0 +1,4 @@
+work, ../../../RTL/interfaces/io_interface.sv
+work, ../../../RTL/interfaces/gpio_interface.sv
+work, ../../../RTL/io/gpio.sv
+work, gpio_test.sv

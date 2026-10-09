@@ -1,15 +1,11 @@
 // address_decoder.sv - Data address space decoder (RAM vs. memory-mapped I/O)
 //
-// Sits between the ALU (which computes the load/store address) and the
-// physical devices (data_memory, and later the I/O peripherals). It doesn't
-// move any data itself - it only looks at the address and read/write
+// Sits between the ALU and the
+// physical devices (data_memory, and later the I/O peripherals). Iit only looks at the address and read/write
 // strobes coming from the core each cycle, and produces one select + one
 // write-enable per device, so exactly the right device responds.
 //
-// addr[IO_SEL_BIT] selects the window: 0 -> RAM, 1 -> I/O. Peripheral-level
-// decoding of io_addr (which register within the I/O window) is left to
-// whatever sits downstream of io_sel - this module only knows about the
-// RAM/I/O split, not individual peripherals.
+// addr[IO_SEL_BIT] selects the window: 0 -> RAM, 1 -> I/O. 
 
 `timescale 1ns/1ps
 
@@ -47,10 +43,6 @@ module address_decoder #(
             dec_if.io_sel  = 1'b0;
         end
 
-        // *_sel just means "this device is being addressed" (true for both
-        // loads and stores). *_we narrows that down to "and it's a write",
-        // which is the actual signal each memory's `we` port needs - a
-        // load must never toggle a device's write-enable.
         dec_if.ram_we = dec_if.ram_sel & dec_if.mem_write;
         dec_if.io_we  = dec_if.io_sel  & dec_if.mem_write;
 
