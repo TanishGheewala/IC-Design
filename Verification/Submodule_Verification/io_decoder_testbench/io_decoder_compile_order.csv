@@ -1,0 +1,4 @@
+work, ../../../RTL/interfaces/io_interface.sv
+work, ../../../RTL/interfaces/io_decoder_interface.sv
+work, ../../../RTL/memory/io_decoder.sv
+work, io_decoder_test.sv

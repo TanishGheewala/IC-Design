@@ -1,5 +1,5 @@
 // Data Memory - Random Access Memory (RAM)
-
+`timescale 1ns/1ps
 `include "macros.vh"
 
 module data_memory
