@@ -1,0 +1,7 @@
+work, ../../../RTL/interfaces/io_interface.sv
+work, ../../../RTL/interfaces/spi_interface.sv
+work, ../../../RTL/io/spi_shift.sv
+work, ../../../RTL/io/spi_master.sv
+work, ../spi_slave_model.sv
+work, ../spi_shift_checks.sv
+work, spi_master_test.sv
