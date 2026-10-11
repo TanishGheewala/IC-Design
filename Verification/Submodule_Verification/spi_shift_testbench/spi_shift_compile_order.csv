@@ -1,0 +1,4 @@
+work, ../../../RTL/io/spi_shift.sv
+work, ../spi_slave_model.sv
+work, ../spi_shift_checks.sv
+work, spi_shift_test.sv
