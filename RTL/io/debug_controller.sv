@@ -1,5 +1,13 @@
 /*
 *   Debug Controller: takes instructions from UART and decodes them into signals to control the core.
+*
+*   TODO: add RETURN_PC, clean up excess code. 
+*   FUTURE TODO: add write functions (WRITE_REG, WRITE_MEM, WRITE_PC)
+*               with memory being most important sice we need a way to 
+*               write programs to flash. Should be able to treat the 
+*               flash set up as black box and just write to the memory
+*               location in the core.
+*   
 * 
 */
 

@@ -21,7 +21,7 @@ module soc_tb;
 
     //module instance
     soc #(
-          .ROM_INITIAL_FILE("debug_test.hex")
+          .ROM_INITIAL_FILE("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex")
         )
         soc_dut(.soc_if(soc_if.soc_io));
 

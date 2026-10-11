@@ -1,7 +1,9 @@
+#RISC V asm test program to fill registers and memory with values
+
 .global _start
 .section .text
 _start:
-_loop:
+_fill_registers:            #load register loop
     addi x1, zero, 1
     addi x2, zero, 2
     addi x3, zero, 3
@@ -33,4 +35,14 @@ _loop:
     addi x29, zero, 29
     addi x30, zero, 30
     addi x31, zero, 31
+
+
+    addi x20, zero, 0
+    addi x21, zero, 1000
+_mem_loop:                  #fill memory with values
+    sw x20, 0(x20)
+    addi x20, x20, 1
+    blt x20, x21, _mem_loop
+
+_loop:                      #infinite while loop to keep program running
     j _loop
