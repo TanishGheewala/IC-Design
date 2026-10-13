@@ -34,22 +34,22 @@ module data_memory_sram8k
 
   wire [DATA_WIDTH-1:0] dout0_0, dout0_1, dout0_2, dout0_3;
 
-  sky130_sram_2kbyte_1rw1r_32x512_8 bank0 (
+  sky130_sram_2kbyte_1rw1r_32x512_8 #(.VERBOSE(0)) bank0 (
                                       .clk0(clk), .csb0(csb0_0), .web0(~we), .wmask0(wmask),
                                       .addr0(bank_addr), .din0(data_in), .dout0(dout0_0),
                                       .clk1(clk), .csb1(1'b1), .addr1(bank_addr), .dout1()
                                     );
-  sky130_sram_2kbyte_1rw1r_32x512_8 bank1 (
+  sky130_sram_2kbyte_1rw1r_32x512_8 #(.VERBOSE(0)) bank1 (
                                       .clk0(clk), .csb0(csb0_1), .web0(~we), .wmask0(wmask),
                                       .addr0(bank_addr), .din0(data_in), .dout0(dout0_1),
                                       .clk1(clk), .csb1(1'b1), .addr1(bank_addr), .dout1()
                                     );
-  sky130_sram_2kbyte_1rw1r_32x512_8 bank2 (
+  sky130_sram_2kbyte_1rw1r_32x512_8 #(.VERBOSE(0)) bank2 (
                                       .clk0(clk), .csb0(csb0_2), .web0(~we), .wmask0(wmask),
                                       .addr0(bank_addr), .din0(data_in), .dout0(dout0_2),
                                       .clk1(clk), .csb1(1'b1), .addr1(bank_addr), .dout1()
                                     );
-  sky130_sram_2kbyte_1rw1r_32x512_8 bank3 (
+  sky130_sram_2kbyte_1rw1r_32x512_8 #(.VERBOSE(0)) bank3 (
                                       .clk0(clk), .csb0(csb0_3), .web0(~we), .wmask0(wmask),
                                       .addr0(bank_addr), .din0(data_in), .dout0(dout0_3),
                                       .clk1(clk), .csb1(1'b1), .addr1(bank_addr), .dout1()

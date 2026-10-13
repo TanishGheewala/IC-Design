@@ -1,5 +1,7 @@
 /*
 * soc.sv is the top most module of the chip. It will contain all the modules making up the ASIC.
+* TODO: connect all rst_n once bootloader created, create debug restart signal (maybe?, could use write to pc);
+* TODO: adjust memory to split 8kb between instruction and ram (4k instruction, 2k ram, 2k gpio?)
 */
 
 `timescale 1ns/1ps
@@ -7,12 +9,21 @@
 
 module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
             (soc_interface soc_if);
-
+    //interfaces
     core_interface core0_if();
     debug_interface debug_if();
     
+    //io modules
     debug_controller debug_con(.debug_if(debug_if));
+
+    //data memory
+    data_memory_sram8k data_memory(.clk(soc_if.clk), .we(core0_if.memory_write_en), .addr(core0_if.memory_address), .data_in(core0_if.memory_write), .data_out(core0_if.memory_read));
+
+    //instruction memory temp for testing will replace with sram block in the future
+    instruction_memory #(.MEM_INITIAL_FILE(ROM_INITIAL_FILE))
+        rom(.addr(core0_if.rom_address), .inst(core0_if.rom_read));
     
+    //core
     core #(
         .ADDR_WIDTH(`ADDR_WIDTH),
         .MEM_DEPTH(`MEM_DEPTH),
@@ -35,9 +46,13 @@ module soc #(parameter ROM_INITIAL_FILE = "test_program.hex")
     always_comb begin
         debug_if.data_return_in = core0_if.debug_data_return;
         core0_if.clk = soc_if.clk;
+        if(core_if.debug_instruction == 8'h02) begin
+            //wire for sram, may need to adjust timing for debug controller
+        end
+        else begin
+            core0_if.debug_address = debug_if.debug_address;
+        end
         core0_if.debug_controller_instruction = debug_if.core_signals;
-        core0_if.debug_address = debug_if.debug_address;
-        core0_if.core_halt = debug_if.core_halt; 
+        core0_if.core_halt = debug_if.core_halt;      
     end
-
 endmodule

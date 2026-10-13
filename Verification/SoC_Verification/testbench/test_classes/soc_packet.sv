@@ -11,7 +11,7 @@ class soc_packet;
     bit [31:0] gpio_pins;
     bit core_halt;
     bit [31:0] registers [0:31];
-    bit [31:0] memory [0:`MEM_DEPTH-1];
+    bit [31:0] memory_value
 
     typedef enum bit [7:0] 
     {
@@ -24,5 +24,5 @@ class soc_packet;
     } debug_instr_e;
 
     constraint c_registers { debug_address inside{[32'h0000:32'h0010]}; }
-    constraint c_memory { debug_address inside {[32'h0000:`MEM_DEPTH]}; }
+    constraint c_memory { debug_address inside {[32'h0000:32'h0010]}; }
 endclass
