@@ -57,9 +57,7 @@ class soc_monitor;
 
         forever begin
             soc_packet soc_item;
-            soc_packet soc_input_address;
             soc_item = new();
-            soc_input_address = new();
             monitor_mailbox.get(soc_item);
             case(soc_item.debug_instruction)
                 soc_packet::RETURN_REG,
@@ -72,7 +70,7 @@ class soc_monitor;
                 end
             endcase
             soc_item.registers = core_probe_vif.registers;
-            soc_item.memory = core_probe_vif.memory;
+            soc_item.memory = core_probe_vif.memory[(soc_item.debug_address / 4) + 1];
             soc_item.core_halt = core_probe_vif.core_halt;
             @(posedge soc_vif.clk);
             scoreboard_mailbox.put(soc_item);

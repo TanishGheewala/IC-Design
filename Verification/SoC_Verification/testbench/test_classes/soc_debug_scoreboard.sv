@@ -39,19 +39,19 @@ class soc_debug_scoreboard;
                 soc_packet::RETURN_REG: begin
                     if(soc_item.tx_line_return != soc_item.registers[soc_item.debug_address]) begin
                         $error("Returned register value does not match\n");
-                        $display("[SCOREBOARD] tx_line_return: %0h, debug_instruction: %0h, core halt: %0h, register_value: %0h\n"
-                        , soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.registers[soc_item.debug_address]);
                         error_count++;
                     end
+                    $display("[SCOREBOARD] tx_line_return: %0h, debug_instruction: %0h, core halt: %0h, register_value: %0h\n",
+                    soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.registers[soc_item.debug_address]);
                 end
 
                 soc_packet::RETURN_MEM: begin
-                    if(soc_item.tx_line_return != soc_item.memory[soc_item.debug_address]) begin
+                    if(soc_item.tx_line_return != soc_item.memory) begin
                         $error("Returned memory value does not match\n");
-                        $display("[SCOREBOARD] tx_line_return: %0h, debug_instruction: %0h, core halt: %0h, memory_value: %0h\n"
-                        , soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.memory[soc_item.debug_address]);
                         error_count++;
                     end
+                    $display("[SCOREBOARD] tx_line_return: %d, debug_instruction: %0h, core halt: %0h, memory_value: %d, address: %d\n",
+                    soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.memory, soc_item.debug_address);
                 end
             endcase
         end

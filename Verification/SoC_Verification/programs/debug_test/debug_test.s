@@ -38,10 +38,10 @@ _fill_registers:            #load register loop
 
 
     addi x20, zero, 0
-    addi x21, zero, 30
+    addi x21, zero, 32
 _mem_loop:                  #fill memory with values
     sw x20, 0(x20)
-    addi x20, x20, 1
+    addi x20, x20, 4
     blt x20, x21, _mem_loop
 
 _loop:                      #infinite while loop to keep program running

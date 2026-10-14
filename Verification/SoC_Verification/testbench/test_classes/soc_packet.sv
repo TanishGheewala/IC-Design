@@ -11,7 +11,7 @@ class soc_packet;
     bit [31:0] gpio_pins;
     bit core_halt;
     bit [31:0] registers [0:31];
-    bit [31:0] memory_value
+    bit [31:0] memory;
 
     typedef enum bit [7:0] 
     {

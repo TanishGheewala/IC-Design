@@ -26,11 +26,15 @@ module soc_tb;
         soc_dut(.soc_if(soc_if.soc_io));
 
     assign core_probe_if.registers = soc_dut.core0.u_register_file.registers;
+    assign core_probe_if.memory = soc_dut.data_memory.bank0.mem;
     assign core_probe_if.core_halt = soc_dut.core0_if.core_halt;
 
     initial begin
         soc_test test0;
         soc_if.rx = 1'b1;
+
+        //lets program run
+        #2000;
 
         //run test and starts all components
         test0 = new;
