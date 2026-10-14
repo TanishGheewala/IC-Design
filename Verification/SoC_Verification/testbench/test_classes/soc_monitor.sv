@@ -70,7 +70,7 @@ class soc_monitor;
                 end
             endcase
             soc_item.registers = core_probe_vif.registers;
-            soc_item.memory = core_probe_vif.memory[(soc_item.debug_address / 4) + 1];
+            soc_item.memory = core_probe_vif.memory[soc_item.debug_address[10:2]];
             soc_item.core_halt = core_probe_vif.core_halt;
             @(posedge soc_vif.clk);
             scoreboard_mailbox.put(soc_item);

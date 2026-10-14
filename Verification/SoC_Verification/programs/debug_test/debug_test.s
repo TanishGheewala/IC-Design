@@ -38,7 +38,7 @@ _fill_registers:            #load register loop
 
 
     addi x20, zero, 0
-    addi x21, zero, 32
+    addi x21, zero, 128
 _mem_loop:                  #fill memory with values
     sw x20, 0(x20)
     addi x20, x20, 4

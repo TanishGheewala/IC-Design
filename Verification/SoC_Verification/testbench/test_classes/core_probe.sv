@@ -6,6 +6,6 @@
 
 interface core_probe();
     logic [31:0] registers [0:31];
-    logic [31:0] memory [0:1 << 9];
+    logic [31:0] memory [0:(1 << 9) - 1];
     logic core_halt;
 endinterface

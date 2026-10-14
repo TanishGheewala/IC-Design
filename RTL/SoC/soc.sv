@@ -71,14 +71,11 @@ module soc #(
         // Debug-controller/core connections
         debug_if.data_return_in = core0_if.debug_data_return;
 
-        core0_if.debug_address =
-            debug_if.debug_address;
+        core0_if.debug_address = debug_if.debug_address;
 
-        core0_if.debug_controller_instruction =
-            debug_if.core_signals;
+        core0_if.debug_controller_instruction = debug_if.core_signals;
 
-        core0_if.core_halt =
-            debug_if.core_halt;
+        core0_if.core_halt = debug_if.core_halt;
 
         // GPIO is not connected yet.
         soc_if.gpio_out = '0;

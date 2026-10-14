@@ -4,7 +4,7 @@
 
 `include "../../../../RTL/memory/macros.vh"
 
-class soc_packet;
+class soc_packet;   
     bit [7:0] debug_instruction;
     randc bit [31:0] debug_address;
     bit [31:0] tx_line_return;
@@ -24,5 +24,6 @@ class soc_packet;
     } debug_instr_e;
 
     constraint c_registers { debug_address inside{[32'h0000:32'h0010]}; }
-    constraint c_memory { debug_address inside {[32'h0000:32'h0010]}; }
+    constraint c_memory { debug_address inside {[32'h0000:32'h0040]}; 
+                            debug_address % 4 == 0;}
 endclass

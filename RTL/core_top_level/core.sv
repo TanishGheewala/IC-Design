@@ -319,25 +319,22 @@ module core #(
     // External data-memory connections
     always_comb
     begin
-        core_if.memory_write_en   = 1'b0;
+        core_if.memory_write_en = 1'b0;
         core_if.memory_write_mask = store_mask;
-        core_if.memory_address =
-            alu_if.out_data;
-        core_if.memory_write      = store_data;
+        core_if.memory_address = alu_if.out_data;
+        core_if.memory_write = store_data;
 
         if (core_if.core_halt)
         begin
             core_if.memory_write_mask = 4'b0000;
 
             if (core_if.debug_controller_instruction == 8'h02)
-                core_if.memory_address =
-                    core_if.debug_address;
+                core_if.memory_address = core_if.debug_address;
         end
         else
         begin
             // Write only on the final execution cycle.
-            core_if.memory_write_en =
-                dec_if.mem_write && (clk_delay == 2'd1);
+            core_if.memory_write_en = dec_if.mem_write && (clk_delay == 2'd1);
         end
     end
 
@@ -351,8 +348,7 @@ module core #(
                     core_if.debug_data_return = rf_if.rs1_data;
 
                 8'h02:
-                    core_if.debug_data_return =
-                        core_if.memory_read;
+                    core_if.debug_data_return = core_if.memory_read;
 
                 default:
                     core_if.debug_data_return = '0;

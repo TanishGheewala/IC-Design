@@ -19,7 +19,7 @@ module data_memory_sram8k
 
   wire [10:0] word_addr = addr[ADDR_WIDTH-1:2];
   wire [1:0]  bank_sel  = word_addr[10:9];
-  wire [8:0]  bank_addr = word_addr[8:0];
+  wire [8:0]  bank_addr = word_addr[8:0]; 
 
   reg [1:0] bank_sel_q;
 
