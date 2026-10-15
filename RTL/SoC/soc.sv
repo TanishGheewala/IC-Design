@@ -3,8 +3,6 @@
 * that make up the ASIC.
 *
 * TODO: connect rst_n once the bootloader is created.
-* TODO: adjust memory to split 8 KB between instruction memory,
-*       data memory, and GPIO.
 */
 
 `timescale 1ns/1ps
@@ -17,6 +15,11 @@ module soc #(
     soc_interface soc_if
 );
 
+    //temp wires in place of bootloader;
+    logic rom_write_en;
+    logic [`DATA_WIDTH-1:0] rom_write;
+    logic [3:0] rom_write_mask;
+
     // Interfaces
     core_interface  core0_if();
     debug_interface debug_if();
@@ -27,7 +30,7 @@ module soc #(
     );
 
     // Data memory
-    data_memory_sram8k data_memory (
+    data_memory_sram2k data_memory (
         .clk      (soc_if.clk),
         .we       (core0_if.memory_write_en),
         .wmask    (core0_if.memory_write_mask),
@@ -36,13 +39,14 @@ module soc #(
         .data_out (core0_if.memory_read)
     );
 
-    // Temporary instruction memory for testing.
-    // This will eventually be replaced with an SRAM block.
-    instruction_memory #(
-        .MEM_INITIAL_FILE(ROM_INITIAL_FILE)
-    ) rom (
-        .addr (core0_if.rom_address),
-        .inst (core0_if.rom_read)
+    //instruction rom
+    instruction_memory_sram6k instruction_rom (
+        .clk      (soc_if.clk),
+        .we       (rom_write_en),
+        .wmask    (rom_write_mask),
+        .addr     (core0_if.rom_address),
+        .data_in  (rom_write),
+        .data_out (core0_if.rom_read)
     );
 
     // Processor core
@@ -57,8 +61,7 @@ module soc #(
     );
 
     // Top-level and intermodule connections
-    always_comb
-    begin
+    always_comb begin
         // Clock and temporary reset connection
         core0_if.clk   = soc_if.clk;
         core0_if.rst_n = 1'b1;
@@ -77,9 +80,12 @@ module soc #(
 
         core0_if.core_halt = debug_if.core_halt;
 
-        // GPIO is not connected yet.
+        // in place of bootloader and gpio
         soc_if.gpio_out = '0;
         soc_if.gpio_oe  = '0;
+        rom_write = '0;
+        rom_write_en = '0;
+        rom_write_mask = '0;
     end
 
 endmodule

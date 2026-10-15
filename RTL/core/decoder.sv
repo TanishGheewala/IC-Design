@@ -93,6 +93,8 @@ module decoder(decoder_interface.dec_dut dec_if);
             3'b101:  alu_op_itype = funct7[5] ? ALU_SRA : ALU_SRL; // srai/srli
             3'b110:  alu_op_itype = ALU_OR;   // ori
             3'b111:  alu_op_itype = ALU_AND;  // andi
+            default: alu_op_itype = ALU_ADD;
+
         endcase
     end
 

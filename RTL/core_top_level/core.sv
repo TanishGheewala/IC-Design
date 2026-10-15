@@ -75,7 +75,7 @@ module core #(
             pc        <= pc;
             clk_delay <= '0;
         end
-        else if (clk_delay == 2'd1)
+        else if (clk_delay == 2'b10)
         begin
             pc        <= pc_next;
             clk_delay <= '0;

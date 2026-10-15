@@ -21,7 +21,7 @@ module soc_tb;
 
     //module instance
     soc #(
-          .ROM_INITIAL_FILE("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex")
+          .ROM_INITIAL_FILE("debug_test.hex")
         )
         soc_dut(.soc_if(soc_if.soc_io));
 
@@ -31,6 +31,8 @@ module soc_tb;
 
     initial begin
         soc_test test0;
+        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", soc_dut.instruction_rom.bank0.mem);
+        $display("rom: %h", soc_dut.instruction_rom.bank0.mem[2]);
         soc_if.rx = 1'b1;
 
         //lets program run

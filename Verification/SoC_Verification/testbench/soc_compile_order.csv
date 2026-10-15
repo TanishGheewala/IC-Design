@@ -22,6 +22,8 @@ work, ../../../RTL/memory/macros.vh
 work, ../../../RTL/memory/data_memory.v
 work, ../../../RTL/memory/instruction_memory.v
 work, ../../../RTL/memory/data_memory_sram8k.v
+work, ../../../RTL/memory/data_memory_sram2k.sv
+work, ../../../RTL/memory/instruction_memory_sram6k.sv
 work, ../../../RTL/memory/sky130_sram_2kbyte_1rw1r_32x512_8.v
 work, ../../../RTL/core_top_level/core.sv
 work, ../../../RTL/interfaces/uart_interface.sv

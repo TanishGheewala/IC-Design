@@ -60,7 +60,6 @@ class soc_debug_generator;
         end
 
         //loops through first 32 memory locations and checks debug controller returns correct value for each
-        @(driver_done);
         for(int i = 0; i < num_memory; i++) begin
             soc_item = new;
             //turns on register contraint for debug address

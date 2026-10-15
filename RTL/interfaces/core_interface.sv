@@ -3,7 +3,7 @@
 */
 
 interface core_interface #(
-    parameter int ROM_ADDR_WIDTH    = 10,
+    parameter int ROM_ADDR_WIDTH    = 13,
     parameter int MEMORY_ADDR_WIDTH = 13
 )();
 
