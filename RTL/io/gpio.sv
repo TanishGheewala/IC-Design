@@ -21,7 +21,7 @@ module gpio #(
     parameter int DATA_WIDTH = 32
 )(
     gpio_interface.gpio_dut gpio_if,
-    io_interface.io_dev     bus
+    io_interface.io_dev     bus 
 );
 
     localparam int REG_DIR = 'h00;

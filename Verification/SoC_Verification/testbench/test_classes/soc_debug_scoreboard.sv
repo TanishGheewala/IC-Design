@@ -46,12 +46,45 @@ class soc_debug_scoreboard;
                 end
 
                 soc_packet::RETURN_MEM: begin
-                    if(soc_item.tx_line_return != soc_item.memory) begin
-                        $error("Returned memory value does not match\n");
-                        error_count++;
-                    end
-                    $display("[SCOREBOARD] tx_line_return: %d, debug_instruction: %0h, core halt: %0h, memory_value: %d, address: %d\n",
-                    soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.memory, soc_item.debug_address);
+                    case(soc_item.debug_address)
+                        //4096=4104 is gpio pins memmap
+                        4096: begin
+                            if(soc_item.tx_line_return != soc_item.gpio_dir) begin
+                                $error("Returned gpio_dir value does not match\n");
+                                error_count++;
+                            end
+                            $display("[SCOREBOARD] tx_line_return: %h, debug_instruction: %0h, core halt: %0h, gpio_dir: %h, address: %d\n",
+                            soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.gpio_dir, soc_item.debug_address);
+                        end
+
+                        4100: begin
+                            if(soc_item.tx_line_return != soc_item.gpio_out) begin
+                                $error("Returned gpio_out value does not match\n");
+                                error_count++;
+                            end
+                            $display("[SCOREBOARD] tx_line_return: %h, debug_instruction: %0h, core halt: %0h, gpio_out: %h, address: %d\n",
+                            soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.gpio_out, soc_item.debug_address);
+                        end
+
+                        4104: begin
+                            if(soc_item.tx_line_return != soc_item.gpio_in) begin
+                                $error("Returned gpio_in value does not match\n");
+                                error_count++;
+                            end
+                            $display("[SCOREBOARD] tx_line_return: %h, debug_instruction: %0h, core halt: %0h, gpio_in: %h, address: %d\n",
+                            soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.gpio_in, soc_item.debug_address);
+                        end
+
+                        default: begin
+                            if(soc_item.tx_line_return != soc_item.memory) begin
+                                $error("Returned memory value does not match\n");
+                                error_count++;
+                            end
+                            $display("[SCOREBOARD] tx_line_return: %d, debug_instruction: %0h, core halt: %0h, memory_value: %d, address: %d\n",
+                            soc_item.tx_line_return, soc_item.debug_instruction, soc_item.core_halt, soc_item.memory, soc_item.debug_address);
+                        end
+                    endcase
+
                 end
             endcase
         end

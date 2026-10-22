@@ -44,5 +44,9 @@ _mem_loop:                  #fill memory with values
     addi x20, x20, 4
     blt x20, x21, _mem_loop
 
+    li x20, 0x00001000
+    li x21, 0x00000000
+    sw x21, 0(x20)
+
 _loop:                      #infinite while loop to keep program running
     j _loop

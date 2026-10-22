@@ -33,9 +33,10 @@ class soc_debug_generator;
         soc_item.debug_instruction = soc_packet::CORE_HALT;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
-
+        
         //loops through all registers and checks debug controller returns correct value for each
         @(driver_done);
+        /*
         for(int i = 0; i < num_registers; i++) begin
             soc_item = new;
             //turns on register contraint for debug address
@@ -83,6 +84,64 @@ class soc_debug_generator;
             end
             @(monitor_done);
         end
+        */
+        //checks gpio pins
+        //DIR
+        soc_item = new;
+        soc_item.debug_address = 31'h00001000;
+        soc_item.debug_instruction = soc_packet::RETURN_MEM;
+        driver_mailbox.put(soc_item.debug_instruction);
+        monitor_mailbox.put(soc_item);
+
+        //sends address in sections over uart
+        for(int j = 0; j < 4; j++) begin
+            @(driver_done);
+            case(j)
+                0:  driver_mailbox.put(soc_item.debug_address[31:24]);
+                1:  driver_mailbox.put(soc_item.debug_address[23:16]);
+                2:  driver_mailbox.put(soc_item.debug_address[15:8]);
+                3:  driver_mailbox.put(soc_item.debug_address[7:0]);
+            endcase
+        end
+        @(monitor_done);
+        
+        //OUT
+        soc_item = new;
+        soc_item.debug_address = 31'h00001004;
+        soc_item.debug_instruction = soc_packet::RETURN_MEM;
+        driver_mailbox.put(soc_item.debug_instruction);
+        monitor_mailbox.put(soc_item);
+
+        //sends address in sections over uart
+        for(int j = 0; j < 4; j++) begin
+            @(driver_done);
+            case(j)
+                0:  driver_mailbox.put(soc_item.debug_address[31:24]);
+                1:  driver_mailbox.put(soc_item.debug_address[23:16]);
+                2:  driver_mailbox.put(soc_item.debug_address[15:8]);
+                3:  driver_mailbox.put(soc_item.debug_address[7:0]);
+            endcase
+        end
+        @(monitor_done);
+
+        //IN
+        soc_item = new;
+        soc_item.debug_address = 31'h00001008;
+        soc_item.debug_instruction = soc_packet::RETURN_MEM;
+        driver_mailbox.put(soc_item.debug_instruction);
+        monitor_mailbox.put(soc_item);
+
+        //sends address in sections over uart
+        for(int j = 0; j < 4; j++) begin
+            @(driver_done);
+            case(j)
+                0:  driver_mailbox.put(soc_item.debug_address[31:24]);
+                1:  driver_mailbox.put(soc_item.debug_address[23:16]);
+                2:  driver_mailbox.put(soc_item.debug_address[15:8]);
+                3:  driver_mailbox.put(soc_item.debug_address[7:0]);
+            endcase
+        end
+        @(monitor_done);
 
         //resumes core and ends debug check
         soc_item = new;

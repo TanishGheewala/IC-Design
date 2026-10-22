@@ -11,6 +11,7 @@ module soc_tb;
 
     //tb clk
     bit clk = 0;
+    logic [9:0] gpio_input = 10'hFFF;
     always #5 clk = ~clk;
     soc_interface soc_if();
     core_probe core_probe_if();
@@ -28,15 +29,19 @@ module soc_tb;
     assign core_probe_if.registers = soc_dut.core0.u_register_file.registers;
     assign core_probe_if.memory = soc_dut.data_memory.bank0.mem;
     assign core_probe_if.core_halt = soc_dut.core0_if.core_halt;
+    assign core_probe_if.gpio_dir = soc_dut.gpio_block.dir_q;
+    assign core_probe_if.gpio_out = soc_dut.gpio_block.out_q;
+    assign core_probe_if.gpio_in = gpio_input;
 
     initial begin
         soc_test test0;
-        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", soc_dut.instruction_rom.bank0.mem);
-        $display("rom: %h", soc_dut.instruction_rom.bank0.mem[2]);
+        $readmemh("debug_test.hex", soc_dut.instruction_rom.bank0.mem);
+        gpio_input = 10'hFFF;
+        soc_if.gpio_in = gpio_input;
         soc_if.rx = 1'b1;
 
         //lets program run
-        #2000;
+        #4000;
 
         //run test and starts all components
         test0 = new;
