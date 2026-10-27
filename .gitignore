@@ -1,0 +1,46 @@
+# ------------------------------------------------------------------
+# ASIC flow generated output (keep tool runs out of git)
+# ------------------------------------------------------------------
+# Genus (synthesis)
+ASIC/genus/out/
+ASIC/genus/reports/
+ASIC/genus/logs/
+ASIC/genus/fv/
+ASIC/genus/*.log
+ASIC/genus/genus.cmd*
+ASIC/genus/genus.log*
+ASIC/genus/fe.*
+ASIC/genus/.cadence/
+
+# Innovus (place & route)
+ASIC/innovus/out/
+ASIC/innovus/reports/
+ASIC/innovus/dbs/
+ASIC/innovus/logs/
+ASIC/innovus/*.log
+ASIC/innovus/innovus.cmd*
+ASIC/innovus/innovus.log*
+ASIC/innovus/.cadence/
+ASIC/innovus/timingReports/
+ASIC/innovus/*.rpt.old
+
+# Local SRAM / macro physical views (large; fetched per-machine)
+ASIC/macros/
+
+# ------------------------------------------------------------------
+# Generated hardware / sim artifacts
+# ------------------------------------------------------------------
+*.vvp
+*.vcd
+*.lxt2
+*.fst
+*.wlf
+transcript
+work/
+
+# ------------------------------------------------------------------
+# OS / editor junk
+# ------------------------------------------------------------------
+.DS_Store
+*.swp
+*~
