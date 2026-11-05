@@ -1,0 +1,9 @@
+work, ../../../RTL/interfaces/spi_interface.sv
+work, ../../../RTL/memory/macros.vh
+work, ../../../RTL/memory/sky130_sram_2kbyte_1rw1r_32x512_8.v
+work, ../../../RTL/memory/instruction_memory_sram6k.sv
+work, ../../../RTL/io/spi_shift.sv
+work, ../../../RTL/io/bootloader.sv
+work, ../spi_slave_model.sv
+work, ../spi_shift_checks.sv
+work, bootloader_test.sv
