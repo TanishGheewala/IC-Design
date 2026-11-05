@@ -67,11 +67,14 @@ set SRAM_GDS      $SRAM_DIR/$SRAM_NAME.gds
 #   TOP_OF      : top cell name in the synthesized netlist (matches Genus)
 #   USES_SRAM   : 1 if the design contains SRAM macros, 0 otherwise
 ###############################################################################
+# Synthesis wrappers follow the <design>_synth_top convention (see
+# ASIC/genus/wrappers/). alu + core wrappers exist; system/soc wrappers are
+# still TBD on the Genus side -- update these names if Person 1 picks others.
 array set TOP_OF {
     alu     alu_synth_top
-    core    core
-    system  system
-    soc     soc
+    core    core_synth_top
+    system  system_synth_top
+    soc     soc_synth_top
 }
 array set USES_SRAM {
     alu     0
