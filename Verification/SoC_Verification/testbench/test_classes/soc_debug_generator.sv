@@ -36,7 +36,7 @@ class soc_debug_generator;
         
         //loops through all registers and checks debug controller returns correct value for each
         @(driver_done);
-        /*
+        
         for(int i = 0; i < num_registers; i++) begin
             soc_item = new;
             //turns on register contraint for debug address
@@ -84,7 +84,7 @@ class soc_debug_generator;
             end
             @(monitor_done);
         end
-        */
+        
         //checks gpio pins
         //DIR
         soc_item = new;

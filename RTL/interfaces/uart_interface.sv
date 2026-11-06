@@ -7,7 +7,7 @@ interface uart_interface();
     logic serial_data;
     logic [7:0] byte_data;
     logic uart_tran_done;
-    logic line_busy;
+    logic done;
 
     modport uart_r(
         input clk,
@@ -21,6 +21,6 @@ interface uart_interface();
         input byte_data,
         input uart_tran_done,
         output serial_data,
-        output line_busy
+        output done
     );
 endinterface

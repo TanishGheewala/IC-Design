@@ -7,7 +7,9 @@
 *               write programs to flash. Should be able to treat the 
 *               flash set up as black box and just write to the memory
 *               location in the core.
-*   
+*       
+*   Plan: WRITE_PROGRAM_INTO_MEMORY command -> take image size -> loop for image size # of times -> upon finish set flag for debug controller to start trasnfer
+*   (use the previously set up loop for recieving uart address, add seperate thing that keeps it looping until bytes rec > image size bytes)
 * 
 */
 
@@ -18,6 +20,7 @@
 `define CORE_STEP           4'b0011
 `define RETURN_REG          4'b0100
 `define RETURN_MEM          4'b0101
+`define FLASH_WRITE         4'b0111
 `define EXIT_DEBUG          4'b0110
 
 //debug_states
@@ -242,7 +245,6 @@ module debug_controller(debug_interface debug_if);
     //debug_state_machine
     always_ff @(posedge debug_if.clk) begin
         unique case(debug_state)
-
             //core runs normally
             `DEBUG_OFF: begin
                 case(debug_instruction)
@@ -265,10 +267,16 @@ module debug_controller(debug_interface debug_if);
                         debug_if.core_signals <= 8'b00000001;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
-                    end 
+                    end
 
                     `RETURN_MEM: begin
                         debug_if.core_signals <= 8'b00000010;
+                        debug_state <= `DATA_LOCATION;
+                        get_address <= 1'b1;
+                    end 
+                    
+                    `FLASH_WRITE: begin
+                        debug_if.core_signals <= 8'b10000000;
                         debug_state <= `DATA_LOCATION;
                         get_address <= 1'b1;
                     end 

@@ -2,7 +2,6 @@
 * soc.sv is the top-most module of the chip. It contains the modules
 * that make up the ASIC.
 *
-* TODO: connect rst_n once the bootloader is created.
 */
 
 `timescale 1ns/1ps
@@ -21,6 +20,7 @@ module soc #(
     logic rom_write_en;
     logic [`DATA_WIDTH-1:0] rom_write;
     logic [3:0] rom_write_mask;
+    logic boot_done;
 
     //gpio wires from mux
     logic [MEMORY_ADDR_WIDTH-1:0] gpio_address;
@@ -39,13 +39,21 @@ module soc #(
     debug_interface debug_if();
     gpio_interface gpio_if();
     io_interface io_if();
-
-
-
+    io_interface io_if_spi();
+    spi_interface spi_if();
 
     // Debug controller
     debug_controller debug_con (
         .debug_if(debug_if)
+    );
+
+    bootloader bootloader_block (
+        .spi_if(spi_if),
+        .mem_we(rom_write_en),
+        .mem_wdata(rom_write),
+        .mem_addr(rom_address),
+        .mem_mask(rom_write_mask),
+        .boot_done(boot_done)
     );
     
     gpio gpio_block (
@@ -88,7 +96,6 @@ module soc #(
     always_comb begin
         // Clock and temporary reset connection
         core0_if.clk   = soc_if.clk;
-        core0_if.rst_n = 1'b1;
 
         // UART debug connections
         debug_if.clk = soc_if.clk;
@@ -106,11 +113,7 @@ module soc #(
         soc_if.gpio_out = gpio_if.gpio_out;
         soc_if.gpio_oe  = gpio_if.gpio_oe;
         gpio_if.gpio_in = soc_if.gpio_in;
-        rom_write = '0;
-        rom_write_en = '0;
-        rom_write_mask = '0;
 
-        //mux for gpio
         if(core0_if.memory_address[MEMORY_ADDR_WIDTH-1]) begin
             io_if.addr = core0_if.memory_address[9:0];
             io_if.we = core0_if.memory_write_en;
@@ -132,5 +135,5 @@ module soc #(
             core0_if.memory_read = memory_read;
         end
     end
-
+ 
 endmodule

@@ -8,28 +8,31 @@ class debug_controller_packet extends submodule_packet;
 
     //inputs and outputs except clk, tx, rx
     bit core_halt;
-    bit [7:0] core_signals;
-    bit [31:0] data_return_in;
-    bit [7:0] debug_state;
-    bit [7:0] debug_command;
-    bit [31:0] data_return_out;
-    bit [31:0] debug_address;
+    bit [7:0] command;
+    bit [31:0] core_data;
 
-    typedef enum bit [7:0] 
-    {
-        NOP          = 8'h00,
-        CORE_HALT    = 8'h01,
-        CORE_RESUME  = 8'h02,
-        CORE_STEP    = 8'h03,
-        RETURN_REG   = 8'h04,
-        RETURN_MEM   = 8'h05
-    } debug_instr_e;
+    bit write_en;
+    bit [31:0] write_data;
+    bit [31:0] data_address;
+
+    bit bootl_done;
+
+    //commands user can input to mircrocontroller
+    typedef enum logic [7:0] {
+        NOP,
+        CORE_HALT,
+        RETURN_REG,
+        RETURN_MEM,
+        RETURN_PC,
+        FLASH_WRITE,
+        CORE_RESUME = 8'hff
+    }debug_command_t;
 
 
     //function override for alu
     virtual function string convert_to_string();
-        return $sformatf("[DEBUG TESTBENCH OUTPUT]: debug command: %0h, core signals: %0h, core halt: %0h, data output: %0h, data address: %0h",
-                            debug_command, core_signals, core_halt, data_return_out, debug_address);
+        return $sformatf("[DEBUG TESTBENCH OUTPUT]: command: %0h, core_data: %0h, write_en: %0h, wrote_data: %0h, data_address: %0h, core_halt: %0h, bootl_done: %0h",
+                            command, core_data, write_en, write_data, data_address, core_halt, bootl_done);
     endfunction
 
 endclass

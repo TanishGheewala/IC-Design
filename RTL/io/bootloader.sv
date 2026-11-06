@@ -31,7 +31,8 @@ module bootloader #(parameter int DATA_WIDTH = 32,
                     output logic [DATA_WIDTH-1:0] mem_wdata,
                     output logic [ADDR_WIDTH-1:0] mem_addr,
                     output logic [3:0] mem_wmask,
-                    output logic boot_done
+                    output logic boot_done,
+                    input logic [DATA_WIDTH-1:0] mem_rdata
                 );
 
 localparam logic [7:0] READ_CMD = 8'h03;
@@ -50,6 +51,20 @@ logic [1:0] addr_idx;
 logic [WAIT_W-1:0] wait_cntr;
 logic xfer_pending; //a byte has been started and its done pulse hasn't arrived yet
 logic cs_n_reg;
+
+typedef enum logic [1:0] {
+    BOOT_READ,
+    FLASH_WRITE,
+    IDLE
+}bootloader_state_t;
+bootloader_state_t bootloader_state;
+
+typedef enum logic [1:0] {
+    FLASH_ERASE,
+    FLASH_PAGE_WRITE,
+    FLASH_WRITE_DONE
+}write_state_t;
+write_state_t write_state, wrtite_next_state;
 
 typedef enum logic [2:0] {
     POWER_ON,
@@ -107,71 +122,139 @@ end
 
 //Next state logic
 always_comb begin
-    next_state = state;
-    case (state)
-        POWER_ON: begin
-            if (wait_cntr == WAIT_W'(POWERUP_CYCLES-1))
-                next_state = CS_LOW;
-        end
-        CS_LOW: next_state = SEND_CMD;
-        SEND_CMD: begin
-            if (done)
-                next_state = SEND_ADDR;
-        end
-        SEND_ADDR: begin
-            if (done && addr_idx == 2'd2)
-                next_state = READ_BYTE;
-        end
-        READ_BYTE: begin
-            if (done)
-                next_state = WRITE_BYTE;
-        end
-        WRITE_BYTE: begin
-            if (byte_cntr == BYTE_W'(IMAGE_BYTES-1))
-                next_state = CS_HIGH;
-            else
-                next_state = READ_BYTE;
-        end
-        CS_HIGH: next_state = DONE;
-        DONE: next_state = DONE;
-        default: next_state = POWER_ON;
-    endcase
+    if(bootloader_state == BOOT_READ) begin
+        next_state = state;
+        case (state)
+            POWER_ON: begin
+                if (wait_cntr == WAIT_W'(POWERUP_CYCLES-1))
+                    next_state = CS_LOW;
+            end
+            CS_LOW: next_state = SEND_CMD;
+            SEND_CMD: begin
+                if (done)
+                    next_state = SEND_ADDR;
+            end
+            SEND_ADDR: begin
+                if (done && addr_idx == 2'd2)
+                    next_state = READ_BYTE;
+            end
+            READ_BYTE: begin
+                if (done)
+                    next_state = WRITE_BYTE;
+            end
+            WRITE_BYTE: begin
+                if (byte_cntr == BYTE_W'(IMAGE_BYTES-1))
+                    next_state = CS_HIGH;
+                else
+                    next_state = READ_BYTE;
+            end
+            CS_HIGH: next_state = DONE;
+            DONE: next_state = DONE;
+            default: next_state = POWER_ON;
+        endcase
+    end
+end
+
+always_comb begin
+    if(bootloader_state == FLASH_WRITE) begin
+        //case(write_state)
+        //FLASH_ERASE: begin
+        //  if(done) 
+        //      next_state = FLASH_PAGE_WRITE
+        //end
+        //FLASH_WRITE_PAGE: begin
+        //  if(address < IMAGE_SIZE)
+        //      next_state = FLASH_PAGE_WRITE
+        //  else
+        //      next state = FLASH_WRITE_DONE
+        //end
+        //FLASH_WRITE_DONE: begin
+        //  set bootloader state to idle
+        //end
+
+        //sub fsm for acutal command loop
+        /*
+        next_state = state;
+        case (state)
+            CS_LOW: next_state = SEND_CMD;
+            SEND_CMD: begin
+                if (done)
+                    next_state = SEND_ADDR ? CS_HIGH;
+            end
+            SEND_ADDR: begin
+                if (done && addr_idx == 2'd2)
+                    next_state = READ_BYTE;
+            end
+            READ_BYTE: begin
+                if (done)
+                    next_state = WRITE_BYTE;
+            end
+            WRITE_BYTE: begin
+                if (byte_cntr == BYTE_W'(IMAGE_BYTES-1))
+                    next_state = CS_HIGH;
+                else
+                    next_state = READ_BYTE;
+            end
+            CS_HIGH: next_state = DONE ? CS_LOW;
+            DONE: next_state = DONE;
+            default: next_state = SOMETHING;
+        endcase
+        */
+
+        //ERASE: CS_LOW -> SEND_CMD -> CS_HIGH -> CS_LOW -> SEND_CMD(read rx line) -> CS_HIGH
+        //WRITE_PAGE: CS_LOW -> SEND_CMD -> CS_HIGH -> CS_LOW -> SEND_CMD(read rx line) -> (read words from sram to place in shfiter) -> CS_HIGH
+        //WRITE_DONE: case statement in CS_HIGH to check abstract state
+    end
 end
 
 //State, counters, cs_n and boot_done registers
 always_ff @(posedge spi_if.clk) begin
-    if (!spi_if.rst_n) begin
-        state <= POWER_ON;
-        wait_cntr <= '0;
-        addr_idx <= '0;
-        byte_cntr <= '0;
-        xfer_pending <= 1'b0;
-        cs_n_reg <= 1'b1;
-        boot_done <= 1'b0;
-    end else begin
-        state <= next_state;
-
-        //transfer tracking: set on start, cleared on done
-        if (start)
-            xfer_pending <= 1'b1;
-        else if (done)
-            xfer_pending <= 1'b0;
-
-        case (state)
-            POWER_ON: wait_cntr <= wait_cntr + 1'b1;
-            CS_LOW: cs_n_reg <= 1'b0;
-            SEND_ADDR: begin
-                if (done)
-                    addr_idx <= addr_idx + 1'b1;
-            end
-            WRITE_BYTE: byte_cntr <= byte_cntr + 1'b1;
-            CS_HIGH: begin
+    case(bootloader_state)
+        BOOT_READ: begin
+            if (!spi_if.rst_n) begin
+                state <= POWER_ON;
+                wait_cntr <= '0;
+                addr_idx <= '0;
+                byte_cntr <= '0;
+                xfer_pending <= 1'b0;
                 cs_n_reg <= 1'b1;
-                boot_done <= 1'b1;
+                boot_done <= 1'b0;
+            end else begin
+                state <= next_state;
+
+                //transfer tracking: set on start, cleared on done
+                if (start)
+                    xfer_pending <= 1'b1;
+                else if (done)
+                    xfer_pending <= 1'b0;
+
+                case (state)
+                    POWER_ON: wait_cntr <= wait_cntr + 1'b1;
+                    CS_LOW: cs_n_reg <= 1'b0;
+                    SEND_ADDR: begin
+                        if (done)
+                            addr_idx <= addr_idx + 1'b1;
+                    end
+                    WRITE_BYTE: byte_cntr <= byte_cntr + 1'b1;
+                    CS_HIGH: begin
+                        cs_n_reg <= 1'b1;
+                        boot_done <= 1'b1;
+                    end
+                    default: ;
+                endcase
             end
-            default: ;
-        endcase
-    end
+            end
+        IDLE: begin
+            //stay idle and read input from debug controller
+            //once flash write is true, begin flash write sequence
+            end
+        FLASH_WRITE: begin
+            //case statment reading the state and rx_line to trigger next step
+            //handles state logic
+            //returns to idle post write OR power cycle to restart microcontroller and run through boot up
+        end
+        default: /* IDLE */;
+    endcase
 end
 
 //SRAM write port: one byte lane per write

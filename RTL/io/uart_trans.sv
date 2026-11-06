@@ -63,7 +63,6 @@ module uart_trans
                     if(bit_counter < 7) begin
                         bit_counter = bit_counter + 1;
                         uart_state = DATA;
-                        //  $strobe("serial out: %0b", serial_out);
                     end else begin
                         bit_counter <= 0;
                         uart_state <= STOP;
@@ -98,9 +97,9 @@ module uart_trans
     //includes bit to tell debug controller if the line is busy
     always_comb begin
         uart_if.serial_data = serial_out;
-        if(uart_state != IDLE)
-            uart_if.line_busy = 1'b1;
+        if(uart_state == FINAL)
+            uart_if.done = 1'b1;
         else 
-            uart_if.line_busy = 1'b0;
+            uart_if.done = 1'b0;
     end
 endmodule
