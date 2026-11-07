@@ -38,7 +38,7 @@ class soc_driver;
         forever begin
             driver_mailbox.get(debug_controller_input);
             send_rx_line(debug_controller_input, baud, clk_speed);
-            repeat(1000) @(posedge soc_vif.clk);
+            repeat(100) @(posedge soc_vif.clk);
             ->driver_done;
         end
     endtask

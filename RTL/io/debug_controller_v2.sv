@@ -19,6 +19,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         DEBUG_OFF,
         DEBUG_MENU,
         DEBUG_RX,
+        PROP_DELAY,
         DEBUG_TX,
         BOOTLOAD,
         CLEAN_UP
@@ -73,7 +74,8 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic debug_rx_done;
     logic debug_tx_done;
     logic halt;
-    logic [31:0] tx_word;  
+    logic [31:0] tx_word;
+    logic [1:0] delay_counter = 0;
 
     //debug controller state register updates
     always_ff @(posedge debug_if.clk) begin
@@ -83,14 +85,19 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                 if(uart_rec_if.uart_tran_done)
                     debug_command <= uart_rec_if.byte_data;
             end
+
+            PROP_DELAY: begin
+                delay_counter <= delay_counter + 1;
+            end
             
             DEBUG_TX: begin
                 tx_word <= debug_if.core_data;
             end
 
             CLEAN_UP: begin
-                debug_command = 0;
-                tx_word = 0;
+                debug_command <= 0;
+                tx_word <= 0;
+                delay_counter <= 0;
             end
 
             default: begin
@@ -153,6 +160,15 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                 end
                 else begin
                     next_debug_state = DEBUG_RX;
+                end
+            end
+
+            PROP_DELAY: begin
+                if(delay_counter > 1) begin
+                        next_debug_state = DEBUG_TX;
+                end
+                else begin
+                        next_debug_state = PROP_DELAY;
                 end
             end
 

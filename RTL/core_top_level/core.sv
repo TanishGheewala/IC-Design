@@ -16,6 +16,17 @@ module core #(
     core_interface core_if
 );
 
+    //debug commands
+    typedef enum logic [7:0] {
+        NOP,
+        CORE_HALT,
+        RETURN_REG,
+        RETURN_MEM,
+        RETURN_PC,
+        FLASH_WRITE,
+        CORE_RESUME = 8'hff
+    }debug_command_t;
+
     // Internal interfaces
     decoder_interface       dec_if();
     register_file_interface rf_if();
@@ -183,7 +194,7 @@ module core #(
         begin
             rf_if.reg_write = 1'b0;
 
-            if (core_if.debug_controller_instruction == 8'h01)
+            if (core_if.debug_controller_instruction == RETURN_REG)
                 rf_if.rs1_addr = core_if.debug_address[4:0];
         end
     end
@@ -328,7 +339,7 @@ module core #(
         begin
             core_if.memory_write_mask = 4'b0000;
 
-            if (core_if.debug_controller_instruction == 8'h02)
+            if (core_if.debug_controller_instruction == RETURN_MEM)
                 core_if.memory_address = core_if.debug_address;
         end
         else
@@ -344,10 +355,10 @@ module core #(
         if (core_if.core_halt)
         begin
             unique case (core_if.debug_controller_instruction)
-                8'h01:
+                RETURN_REG:
                     core_if.debug_data_return = rf_if.rs1_data;
 
-                8'h02:
+                RETURN_MEM:
                     core_if.debug_data_return = core_if.memory_read;
 
                 default:

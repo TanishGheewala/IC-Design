@@ -16,15 +16,16 @@ class soc_packet;
     bit [9:0] gpio_out;
     bit [9:0] gpio_in;
 
-    typedef enum bit [7:0] 
-    {
-        NOP          = 8'h00,
-        CORE_HALT    = 8'h01,
-        CORE_RESUME  = 8'h02,
-        CORE_STEP    = 8'h03,
-        RETURN_REG   = 8'h04,
-        RETURN_MEM   = 8'h05
-    } debug_instr_e;
+    //commands user can input to mircrocontroller
+    typedef enum logic [7:0] {
+        NOP,
+        CORE_HALT,
+        RETURN_REG,
+        RETURN_MEM,
+        RETURN_PC,
+        FLASH_WRITE,
+        CORE_RESUME = 8'hff
+    }debug_command_t;
 
     constraint c_registers { debug_address inside{[32'h0000:32'h0010]}; }
     constraint c_memory { debug_address inside {[32'h0000:32'h0040]}; 

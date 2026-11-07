@@ -3,7 +3,7 @@ work, ./test_classes/core_probe.sv
 work, ../../../RTL/interfaces/alu_interface.sv
 work, ../../../RTL/interfaces/branch_unit_interface.sv
 work, ../../../RTL/interfaces/clk_interface.sv
-work, ../../../RTL/interfaces/debug_interface.sv
+work, ../../../RTL/interfaces/debug_interface_v2.sv
 work, ../../../RTL/interfaces/decoder_interface.sv
 work, ../../../RTL/interfaces/ram_interface.sv
 work, ../../../RTL/interfaces/register_file_interface.sv
@@ -13,6 +13,7 @@ work, ../../../RTL/interfaces/uart_interface.sv
 work, ../../../RTL/interfaces/core_interface.sv
 work, ../../../RTL/interfaces/gpio_interface.sv
 work, ../../../RTL/interfaces/io_interface.sv
+work, ../../../RTL/interfaces/spi_interface.sv
 work, ../../../RTL/core/alu.sv
 work, ../../../RTL/core/branch_unit.sv
 work, ../../../RTL/core/decoder.sv
@@ -25,13 +26,14 @@ work, ../../../RTL/memory/data_memory_sram8k.v
 work, ../../../RTL/memory/data_memory_sram2k.sv
 work, ../../../RTL/memory/instruction_memory_sram6k.sv
 work, ../../../RTL/memory/sky130_sram_2kbyte_1rw1r_32x512_8.v
+work, ../../../RTL/memory/spi_flash_model.sv
 work, ../../../RTL/core_top_level/core.sv
-work, ../../../RTL/interfaces/uart_interface.sv
-work, ../../../RTL/interfaces/debug_interface.sv
 work, ../../../RTL/io/uart_rec.sv
 work, ../../../RTL/io/uart_trans.sv
-work, ../../../RTL/io/debug_controller.sv
+work, ../../../RTL/io/debug_controller_v2.sv
 work, ../../../RTL/io/gpio.sv
+work, ../../../RTL/io/bootloader.sv
+work, ../../../RTL/io/spi_shift.sv
 work, ../../../RTL/SoC/soc.sv
 work, test_package.sv
-work, soc_tb.sv
+work, soc_tb_flash.sv
