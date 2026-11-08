@@ -28,7 +28,7 @@ module soc_tb_flash;
     
     spi_flash_model #(
         .MEM_BYTES(6144),
-        .INIT_FILE("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test_8bit.hex")
+        .INIT_FILE("")
         )
         flash_memory(
             .sclk(soc_if.sclk),

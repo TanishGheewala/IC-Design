@@ -16,7 +16,8 @@ interface debug_interface_v2();
     logic [31:0] write_data;
     logic [31:0] data_address;
 
-    logic bootl_done;
+    logic flash_write_done;
+    logic flash_write_en;
 
     //dut setup
     modport debug_dut
@@ -24,13 +25,14 @@ interface debug_interface_v2();
         input clk,
         input rx,
         input core_data,
-        input bootl_done,
+        input flash_write_done,
         output tx,
         output core_halt,
         output command,
         output write_data,
         output write_en,
-        output data_address
+        output data_address,
+        output flash_write_en
     );
 
 endinterface

@@ -1,13 +1,9 @@
 /*
 *   Debug Controller: takes instructions from UART and decodes them into signals to control the core.
-*       
-*   Plan: WRITE_PROGRAM_INTO_MEMORY command -> take image size -> loop for image size # of times -> upon finish set flag for debug controller to start trasnfer
-*   (use the previously set up loop for recieving uart address, add seperate thing that keeps it looping until bytes rec > image size bytes)
 * 
 *   TODO: WRITE BOOTLOADER DEBUG STATE LOGIC
 *   (essentially wait for bootloader to say its done the go forward)
 *
-*   LOOK AT UART TIMING TO ENSURE IT LINES UP WITH BYTE DONE SIGNALS PROPERLY
 */
 module debug_controller_v2(debug_interface_v2 debug_if);
     //debug controller overall state
@@ -109,6 +105,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     always_comb begin
         unique case(debug_state)
             DEBUG_OFF: begin
+                debug_if.flash_write_en = 1'b0;
                 if(debug_command == CORE_HALT) begin
                     next_debug_state = DEBUG_MENU;
                     halt = 1'b1;
@@ -131,7 +128,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                     end
 
                     RETURN_PC: begin
-                        next_debug_state = DEBUG_TX;
+                        next_debug_state = PROP_DELAY;
                     end
 
                     FLASH_WRITE: begin
@@ -182,10 +179,18 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
             BOOTLOAD: begin
                 halt = 1'b1;
-                if(debug_if.bootl_done)
+                next_debug_state = CLEAN_UP;
+                /*
+                if(debug_if.flash_write_done) begin
                     next_debug_state = CLEAN_UP;
-                else
+                    debug_if.flash_write_en = 1'b0;
+                end
+                else begin
                     next_debug_state = BOOTLOAD;
+                    debug_if.flash_write_en = 1'b1;
+                end
+                */
+                
             end
 
             CLEAN_UP: begin
@@ -200,6 +205,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
             default begin
                 next_debug_state = DEBUG_OFF;
+                debug_if.flash_write_en = 1'b0;
             end
 
         endcase
@@ -217,13 +223,13 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         unique case(debug_rx_state)
             TRX_IDLE: begin
                 unique case(debug_command)
-                    RETURN_REG, RETURN_MEM: begin
-                        address_index <= 0;
-                        image_bytes <= 0;
+                    FLASH_WRITE: begin
+                        rx_word <= 0;
                     end
 
                     default: begin
-                        rx_word <= 0;
+                        image_bytes <= 0;
+                        address_index <= 0;
                     end
                 endcase
             end
@@ -252,6 +258,10 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                     else if(address_index < image_bytes) begin
                         address_index <= address_index + 4;
                     end
+                    else begin
+                        address_index <= 0;
+                        image_bytes <= 0;
+                    end
                 end
                 else begin
                     address_index <= 0;
@@ -260,6 +270,8 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             end
 
             default begin
+                address_index <= 0;
+                image_bytes <= 0;
             end
         endcase
     end

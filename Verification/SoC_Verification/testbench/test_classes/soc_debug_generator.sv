@@ -12,6 +12,12 @@ class soc_debug_generator;
     event monitor_done;
     int num_registers = 32;
     int num_memory = 32;
+    int file_handle;
+    int status;
+    logic [7:0] current_byte;
+    logic [31:0] image_size;
+    logic [31:0] image_word;
+    reg [31:0] hex_buffer [0:255]; 
 
     function new();
         driver_mailbox = new();
@@ -27,16 +33,60 @@ class soc_debug_generator;
         soc_item.debug_instruction = soc_packet::NOP;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
+        
+        @(driver_done);
+        soc_item = new;
+        soc_item.debug_instruction = soc_packet::CORE_HALT;
+        driver_mailbox.put(soc_item.debug_instruction);
+        monitor_mailbox.put(soc_item);
+
+        @(driver_done);
+        soc_item = new;
+        soc_item.debug_instruction = soc_packet::FLASH_WRITE;
+        driver_mailbox.put(soc_item.debug_instruction);
+
+        image_size = 160;
+        for(int j = 0; j < 4; j++) begin
+            @(driver_done);
+            case(j)
+                0:  driver_mailbox.put(image_size[31:24]);
+                1:  driver_mailbox.put(image_size[23:16]);
+                2:  driver_mailbox.put(image_size[15:8]);
+                3:  driver_mailbox.put(image_size[7:0]);
+            endcase
+        end
+
+        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", hex_buffer);
+        for(int i = 0; i < (image_size/4); i++) begin
+            image_word = hex_buffer[i];
+            for(int j = 0; j < 4; j++) begin
+                @(driver_done);
+                case(j)
+                    0:  driver_mailbox.put(image_word[31:24]);
+                    1:  driver_mailbox.put(image_word[23:16]);
+                    2:  driver_mailbox.put(image_word[15:8]);
+                    3:  driver_mailbox.put(image_word[7:0]);
+                endcase
+            end
+        end
+
+        //resumes core and ends debug check
+        @(driver_done);
+        soc_item = new;
+        soc_item.debug_instruction = soc_packet::CORE_RESUME;
+        driver_mailbox.put(soc_item.debug_instruction);
+        monitor_mailbox.put(soc_item);
+
+        #4000;
 
         @(driver_done);
         soc_item = new;
         soc_item.debug_instruction = soc_packet::CORE_HALT;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
-        
+
         //loops through all registers and checks debug controller returns correct value for each
         @(driver_done);
-        
         for(int i = 0; i < num_registers; i++) begin
             soc_item = new;
             //turns on register contraint for debug address

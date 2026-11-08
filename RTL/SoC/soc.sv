@@ -16,6 +16,17 @@ module soc #(
     soc_interface soc_if
 );
 
+    //commands user can input to mircrocontroller
+    typedef enum logic [7:0] {
+        NOP,
+        CORE_HALT,
+        RETURN_REG,
+        RETURN_MEM,
+        RETURN_PC,
+        FLASH_WRITE,
+        CORE_RESUME = 8'hff
+    }debug_command_t;
+    
     //rom wires
     logic rom_write_en;
     logic [`DATA_WIDTH-1:0] rom_write;
@@ -140,6 +151,15 @@ module soc #(
             rom_write_mask = boot_write_mask;
             rom_address = boot_address;
             rom_write = boot_write;
+            boot_read = rom_read;
+            core0_if.rom_read = '0;
+        end
+        else if(debug_if.command == FLASH_WRITE) begin
+            core0_if.rst_n = 1'b0;
+            rom_write_en = debug_if.write_en;
+            rom_write_mask = '1;
+            rom_address = debug_if.data_address;
+            rom_write = debug_if.write_data;
             boot_read = rom_read;
             core0_if.rom_read = '0;
         end

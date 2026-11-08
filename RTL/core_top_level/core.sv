@@ -361,6 +361,9 @@ module core #(
                 RETURN_MEM:
                     core_if.debug_data_return = core_if.memory_read;
 
+                RETURN_PC:
+                    core_if.debug_data_return = pc;
+
                 default:
                     core_if.debug_data_return = '0;
             endcase
