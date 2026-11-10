@@ -18,6 +18,8 @@ class soc_debug_generator;
     logic [31:0] image_size;
     logic [31:0] image_word;
     reg [31:0] hex_buffer [0:255]; 
+    virtual core_probe core_probe_vif;
+    virtual soc_interface soc_vif;
 
     function new();
         driver_mailbox = new();
@@ -33,7 +35,7 @@ class soc_debug_generator;
         soc_item.debug_instruction = soc_packet::NOP;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
-        
+
         @(driver_done);
         soc_item = new;
         soc_item.debug_instruction = soc_packet::CORE_HALT;
@@ -56,7 +58,7 @@ class soc_debug_generator;
             endcase
         end
 
-        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", hex_buffer);
+        $readmemh("debug_test.hex", hex_buffer);
         for(int i = 0; i < (image_size/4); i++) begin
             image_word = hex_buffer[i];
             for(int j = 0; j < 4; j++) begin
@@ -69,17 +71,27 @@ class soc_debug_generator;
                 endcase
             end
         end
+        
 
         //resumes core and ends debug check
-        @(driver_done);
+        @(posedge core_probe_vif.flash_write_done);
+        #1000;
+
         soc_item = new;
         soc_item.debug_instruction = soc_packet::CORE_RESUME;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
 
+        @(driver_done);
+        soc_vif.rst_n = 0;
+        repeat (10) @(posedge soc_vif.clk);
+        soc_vif.rst_n = 1;
+
+        //lets code run
+        @(posedge core_probe_vif.boot_done);
         #4000;
 
-        @(driver_done);
+        $display("mem_loc: %0h", core_probe_vif.memory[4]);
         soc_item = new;
         soc_item.debug_instruction = soc_packet::CORE_HALT;
         driver_mailbox.put(soc_item.debug_instruction);
@@ -109,7 +121,6 @@ class soc_debug_generator;
             end
             @(monitor_done);
         end
-
         //loops through first 32 memory locations and checks debug controller returns correct value for each
         for(int i = 0; i < num_memory; i++) begin
             soc_item = new;

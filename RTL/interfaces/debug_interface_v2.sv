@@ -5,6 +5,7 @@ interface debug_interface_v2();
 
     //instruction input and cpu controll output
     logic clk;
+    logic rst_n;
     logic tx;
     logic rx;
 

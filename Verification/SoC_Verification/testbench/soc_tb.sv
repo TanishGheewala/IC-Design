@@ -39,7 +39,6 @@ module soc_tb;
         gpio_input = 10'hFFF;
         soc_if.gpio_in = gpio_input;
         soc_if.rx = 1'b1;
-
         //lets program run
         #4000;
 
@@ -48,6 +47,9 @@ module soc_tb;
         test0.env.soc_vif = soc_if;
         test0.env.core_probe_vif = core_probe_if;
         test0.run();
+
+        @(posedge soc_dut.flash_write_done);
+        #1000
 
         #200;
         $finish;

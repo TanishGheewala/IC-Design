@@ -11,7 +11,7 @@ module soc_tb_flash;
 
     //tb clk
     bit clk = 0;
-    logic [9:0] gpio_input = 10'hFFF;
+    logic [9:0] gpio_input = 10'h3FF;
     always #5 clk = ~clk;
     soc_interface soc_if();
     core_probe core_probe_if();
@@ -28,7 +28,8 @@ module soc_tb_flash;
     
     spi_flash_model #(
         .MEM_BYTES(6144),
-        .INIT_FILE("")
+        .INIT_FILE(""),
+        .DUMP_FILE("")
         )
         flash_memory(
             .sclk(soc_if.sclk),
@@ -43,10 +44,12 @@ module soc_tb_flash;
     assign core_probe_if.gpio_dir = soc_dut.gpio_block.dir_q;
     assign core_probe_if.gpio_out = soc_dut.gpio_block.out_q;
     assign core_probe_if.gpio_in = gpio_input;
+    assign core_probe_if.flash_write_done = soc_dut.flash_write_done;
+    assign core_probe_if.boot_done = soc_dut.boot_done;
 
     initial begin
         soc_test test0;
-        gpio_input = 10'hFFF;
+        gpio_input = 10'h3FF;
         soc_if.gpio_in = gpio_input;
         soc_if.rx = 1'b1;
         soc_if.rst_n = 0;
@@ -64,6 +67,7 @@ module soc_tb_flash;
         test0.run();
 
         #200;
+
         $finish;
     end
 
