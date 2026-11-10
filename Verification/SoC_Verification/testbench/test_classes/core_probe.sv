@@ -11,4 +11,6 @@ interface core_probe();
     logic [9:0] gpio_dir;
     logic [9:0] gpio_out;
     logic core_halt;
+    logic flash_write_done;
+    logic boot_done;
 endinterface

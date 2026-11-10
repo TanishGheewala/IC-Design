@@ -30,6 +30,9 @@ class soc_environment;
         driver.soc_vif = soc_vif;
         monitor.soc_vif = soc_vif;
         monitor.core_probe_vif = core_probe_vif;
+        debug_generator.core_probe_vif = core_probe_vif;
+        debug_generator.soc_vif = soc_vif;
+
         //mailboxes
         debug_generator.driver_mailbox = driver_mailbox;
         driver.driver_mailbox = driver_mailbox;
@@ -48,6 +51,8 @@ class soc_environment;
             monitor.receive_soc_message();
             debug_generator.debug_instruction_sequence();
         join_any
+
+        
     endtask
 
 endclass

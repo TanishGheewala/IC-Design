@@ -16,7 +16,7 @@ module soc #(
     soc_interface soc_if
 );
 
-    //commands user can input to mircrocontroller
+    //commands user can input to microcontroller
     typedef enum logic [7:0] {
         NOP,
         CORE_HALT,
@@ -36,6 +36,9 @@ module soc #(
 
     //boot wires
     logic boot_write_en;
+    logic flash_write_en;
+    logic flash_write_done;
+    logic [`DATA_WIDTH-1:0] boot_image_size;
     logic [`DATA_WIDTH-1:0] boot_write;
     logic [`DATA_WIDTH-1:0] boot_read;
     logic [MEMORY_ADDR_WIDTH-1:0] boot_address;
@@ -78,6 +81,9 @@ module soc #(
         .mem_addr(boot_address),
         .mem_wmask(boot_write_mask),
         .boot_done(boot_done),
+        .image_size(boot_image_size),
+        .flash_write_en(flash_write_en),
+        .flash_write_done(flash_write_done),
         .mem_rdata(boot_read)
     );
 
@@ -112,10 +118,22 @@ module soc #(
         .core_if(core0_if)
     );
 
+    initial begin
+        $monitor("boot_done: %0h", boot_done);
+    end
+
     // Top-level and intermodule connections
     always_comb begin
+        // Defaults to avoid latches
+        rom_write_en = '0;
+        rom_write = '0;
+        rom_address = '0;
+        rom_write_mask = '0;
+        boot_read = '0;
+        boot_image_size = debug_if.write_data;
+
         // Clock and temporary reset connection
-        core0_if.clk   = soc_if.clk;
+        core0_if.clk = soc_if.clk;
 
         // UART debug connections
         debug_if.clk = soc_if.clk;
@@ -127,7 +145,9 @@ module soc #(
         core0_if.debug_address = debug_if.data_address;
         core0_if.debug_controller_instruction = debug_if.command;
         core0_if.core_halt = debug_if.core_halt;
-
+        flash_write_en = debug_if.flash_write_en;
+        debug_if.flash_write_done = flash_write_done;
+        debug_if.rst_n = soc_if.rst_n;
 
         //in place of bootloader and gpio
         gpio_if.clk = soc_if.clk;
@@ -143,8 +163,7 @@ module soc #(
         spi_if.miso = soc_if.miso;
         soc_if.cs_n = spi_if.cs_n;
 
-        $monitor("boot_done: %0h", boot_done);
-        //bootloader start up sequence;
+        //bootloader start up sequence
         if(!boot_done) begin
             core0_if.rst_n = 1'b0;
             rom_write_en = boot_write_en;
@@ -155,17 +174,24 @@ module soc #(
             core0_if.rom_read = '0;
         end
         else if(debug_if.command == FLASH_WRITE) begin
-            core0_if.rst_n = 1'b0;
+            core0_if.rst_n = soc_if.rst_n;
             rom_write_en = debug_if.write_en;
             rom_write_mask = '1;
-            rom_address = debug_if.data_address;
-            rom_write = debug_if.write_data;
+            boot_image_size = debug_if.write_data;
+            if(debug_if.write_en) begin
+                rom_address = debug_if.data_address;
+                rom_write = debug_if.write_data;
+            end
+            else begin
+                rom_address = boot_address;
+                rom_write = '0;
+            end
             boot_read = rom_read;
             core0_if.rom_read = '0;
         end
         else begin
-            core0_if.rst_n = 1'b1;
-            rom_write_en = boot_write_en;
+            core0_if.rst_n = soc_if.rst_n;
+            rom_write_en = 1'b0;
             rom_write_mask = '0;
             rom_address = core0_if.rom_address;
             rom_write = '0;
