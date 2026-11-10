@@ -58,7 +58,7 @@ class soc_debug_generator;
             endcase
         end
 
-        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", hex_buffer);
+        $readmemh("debug_test.hex", hex_buffer);
         for(int i = 0; i < (image_size/4); i++) begin
             image_word = hex_buffer[i];
             for(int j = 0; j < 4; j++) begin
@@ -99,7 +99,6 @@ class soc_debug_generator;
 
         //loops through all registers and checks debug controller returns correct value for each
         @(driver_done);
-        /*
         for(int i = 0; i < num_registers; i++) begin
             soc_item = new;
             //turns on register contraint for debug address
@@ -122,7 +121,6 @@ class soc_debug_generator;
             end
             @(monitor_done);
         end
-        */
         //loops through first 32 memory locations and checks debug controller returns correct value for each
         for(int i = 0; i < num_memory; i++) begin
             soc_item = new;

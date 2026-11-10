@@ -71,7 +71,9 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic debug_tx_done;
     logic halt;
     logic [31:0] tx_word;
+    logic [31:0] rx_word;
     logic [1:0] delay_counter = 0;
+    logic [31:0] address_out;
 
     //debug controller state register updates
     always_ff @(posedge debug_if.clk) begin
@@ -80,14 +82,20 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             debug_command <= 0;
             tx_word <= 0;
             delay_counter <= 0;
+            address_out <= 0;
         end
         else begin
             debug_state <= DEBUG_OFF;
             debug_state <= next_debug_state;
             unique case(debug_state)
                 DEBUG_MENU, DEBUG_OFF: begin
+                    address_out <= 0;
                     if(uart_rec_if.uart_tran_done)
                         debug_command <= uart_rec_if.byte_data;
+                end
+
+                DEBUG_RX: begin
+                    address_out <= rx_word;
                 end
 
                 PROP_DELAY: begin
@@ -102,6 +110,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                     debug_command <= 0;
                     tx_word <= 0;
                     delay_counter <= 0;
+                    address_out <= 0;
                 end
 
                 default: begin
@@ -164,7 +173,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                         debug_if.flash_write_en = 1'b1;
                     end
                     else begin
-                        next_debug_state = DEBUG_TX;
+                        next_debug_state = PROP_DELAY;
                         debug_if.flash_write_en = 1'b0;
                     end
                 end
@@ -177,7 +186,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             PROP_DELAY: begin
                 debug_if.flash_write_en = 1'b0;
                 halt = 1'b1;
-                if(delay_counter > 2) begin
+                if(delay_counter > 1) begin
                         next_debug_state = DEBUG_TX;
                 end
                 else begin
@@ -228,7 +237,6 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     //debug rx state logic
     debug_trx_state_t debug_rx_state = TRX_IDLE;
     debug_trx_state_t next_debug_rx_state;
-    logic [31:0] rx_word;
     logic [31:0] address_index = 0;
     logic [31:0] image_bytes = 0;
     logic [31:0] boot_image_size;
@@ -327,7 +335,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             RETURN_MEM: begin
                 debug_if.write_data = 0;
                 debug_if.write_en = 1'b0;
-                debug_if.data_address = rx_word;
+                debug_if.data_address = address_out;
             end
 
             default: begin

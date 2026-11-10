@@ -154,6 +154,7 @@ module soc #(
         soc_if.gpio_out = gpio_if.gpio_out;
         soc_if.gpio_oe  = gpio_if.gpio_oe;
         gpio_if.gpio_in = soc_if.gpio_in;
+        gpio_if.rst_n = soc_if.gpio_in;
 
         //bootloader connections
         spi_if.clk = soc_if.clk;

@@ -31,10 +31,11 @@ module bootloader #(
     output logic flash_write_done
 );
 
-localparam logic [7:0] READ_CMD       = 8'h03;
-localparam logic [7:0] WRITE_EN_CMD   = 8'h06;
+localparam logic [7:0] READ_CMD = 8'h03;
+localparam logic [7:0] WRITE_EN_CMD = 8'h06;
 localparam logic [7:0] PAGE_WRITE_CMD = 8'h02;
-localparam logic [7:0] STATUS_CMD     = 8'h05;
+localparam logic [7:0] STATUS_CMD = 8'h05;
+localparam logic [7:0] CHIP_ERASE_CMD = 8'hc7;
 
 localparam int WAIT_W = (POWERUP_CYCLES > 1) ? $clog2(POWERUP_CYCLES) : 1;
 localparam int BYTE_W = (IMAGE_BYTES > 1) ? $clog2(IMAGE_BYTES) : 1;
@@ -124,7 +125,7 @@ always_comb begin
                 if (wait_cntr == WAIT_W'(POWERUP_CYCLES-1))
                     next_state = CS_LOW;
             end
-            CS_LOW:    next_state = SEND_CMD;
+            CS_LOW: next_state = SEND_CMD;
             SEND_CMD: begin
                 if (done)
                     next_state = SEND_ADDR;
@@ -144,7 +145,7 @@ always_comb begin
                     next_state = READ_BYTE;
             end
             CS_HIGH: next_state = DONE;
-            DONE:    next_state = DONE;
+            DONE: next_state = DONE;
             default: next_state = POWER_ON;
         endcase
     end
@@ -153,7 +154,7 @@ end
 // =========================================================================
 // FLASH_WRITE State Machine
 // =========================================================================
-typedef enum logic [3:0] {
+typedef enum logic [4:0] {
     FW_IDLE,
     FW_START_PAGE,
     FW_WREN_CS_LOW,
@@ -168,6 +169,9 @@ typedef enum logic [3:0] {
     FW_POLL_CS_LOW,
     FW_POLL_CMD,
     FW_POLL_READ,
+    FW_CHIP_ERASE_CS_LOW, 
+    FW_CHIP_ERASE_CMD,
+    FW_CHIP_ERASE_CS_HIGH,
     FW_POLL_CS_HIGH,
     FW_DONE
 } fw_state_t;
@@ -178,15 +182,15 @@ logic [31:0] fw_total_bytes;
 logic [31:0] next_bytes_written;
 logic [23:0] fw_prog_addr;
 logic [23:0] fw_page_start_addr;
-logic [1:0]  fw_addr_idx;
+logic [1:0] fw_addr_idx;
 logic [31:0] mem_read_word;
-logic [7:0]  status_reg;
-logic [2:0]  delay_cntr;
-logic [1:0]  fetch_cntr;
-logic        cs_n_fw;
-logic        fw_xfer_pending;
-logic        fw_start;
-logic        fw_xfer_state;
+logic [7:0] status_reg;
+logic [2:0] delay_cntr;
+logic [1:0] fetch_cntr;
+logic cs_n_fw;
+logic fw_xfer_pending;
+logic fw_start;
+logic fw_xfer_state;
 logic [FRAME_WIDTH-1:0] tx_byte_fw;
 
 // Continuous assignment avoids parenthesized bit-slice in always_ff
@@ -197,7 +201,8 @@ assign fw_xfer_state = (fw_state == FW_WREN_CMD)  ||
                        (fw_state == FW_PROG_ADDR) ||
                        (fw_state == FW_PROG_DATA) ||
                        (fw_state == FW_POLL_CMD)  ||
-                       (fw_state == FW_POLL_READ);
+                       (fw_state == FW_POLL_READ) ||
+                       (fw_state == FW_CHIP_ERASE_CMD);
 
 assign fw_start = (bootloader_state == FLASH_WRITE) && fw_xfer_state && !fw_xfer_pending && !busy;
 
@@ -212,8 +217,8 @@ end
 
 always_comb begin
     case (fw_state)
-        FW_WREN_CMD:  tx_byte_fw = WRITE_EN_CMD;
-        FW_PROG_CMD:  tx_byte_fw = PAGE_WRITE_CMD;
+        FW_WREN_CMD: tx_byte_fw = WRITE_EN_CMD;
+        FW_PROG_CMD: tx_byte_fw = PAGE_WRITE_CMD;
         FW_PROG_ADDR: begin
             case (fw_addr_idx)
                 2'd0: tx_byte_fw = fw_page_start_addr[23:16];
@@ -229,52 +234,62 @@ always_comb begin
                 default: tx_byte_fw = mem_read_word[31:24];
             endcase
         end
-        FW_POLL_CMD:  tx_byte_fw = STATUS_CMD;
+        FW_CHIP_ERASE_CMD: tx_byte_fw = CHIP_ERASE_CMD;
+        FW_POLL_CMD: tx_byte_fw = STATUS_CMD;
         FW_POLL_READ: tx_byte_fw = 8'h00;
-        default:      tx_byte_fw = 8'h00;
+        default: tx_byte_fw = 8'h00;
     endcase
 end
 
+logic chip_eraseed;
+
 always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
     if (!spi_if.rst_n) begin
-        fw_state           <= FW_IDLE;
-        fw_bytes_written   <= '0;
-        fw_total_bytes     <= '0;
-        fw_prog_addr       <= FLASH_BASE_ADDR;
+        fw_state <= FW_IDLE;
+        fw_bytes_written <= '0;
+        fw_total_bytes <= '0;
+        fw_prog_addr <= FLASH_BASE_ADDR;
         fw_page_start_addr <= FLASH_BASE_ADDR;
-        fw_addr_idx        <= '0;
-        mem_read_word      <= '0;
-        status_reg         <= '0;
-        delay_cntr         <= '0;
-        fetch_cntr         <= '0;
-        cs_n_fw            <= 1'b1;
-        flash_write_done   <= 1'b0;
+        fw_addr_idx <= '0;
+        mem_read_word <= '0;
+        status_reg <= '0;
+        delay_cntr <= '0;
+        fetch_cntr <= '0;
+        cs_n_fw <= 1'b1;
+        flash_write_done <= 1'b0;
+        chip_eraseed <= 0;
     end else begin
         case (fw_state)
             FW_IDLE: begin
                 delay_cntr <= '0;
                 fetch_cntr <= '0;
-                cs_n_fw    <= 1'b1;
+                cs_n_fw <= 1'b1;
                 if (bootloader_state == FLASH_WRITE) begin
-                    flash_write_done   <= 1'b0;
-                    fw_bytes_written   <= '0;
-                    fw_prog_addr       <= FLASH_BASE_ADDR;
-                    fw_total_bytes     <= (image_size != '0) ? image_size : DATA_WIDTH'(IMAGE_BYTES);
-                    fw_state           <= FW_START_PAGE;
+                    flash_write_done <= 1'b0;
+                    fw_bytes_written <= '0;
+                    chip_eraseed <= 0;
+                    fw_prog_addr <= FLASH_BASE_ADDR;
+                    fw_total_bytes <= (image_size != '0) ? image_size : DATA_WIDTH'(IMAGE_BYTES);
+                    fw_state <= FW_START_PAGE;
                 end
             end
 
             FW_START_PAGE: begin
                 cs_n_fw <= 1'b1;
-                if (fw_bytes_written >= fw_total_bytes) begin
-                    fw_state <= FW_DONE;
-                end else begin
+                if(chip_eraseed) begin 
+                    if (fw_bytes_written >= fw_total_bytes) begin
+                        fw_state <= FW_DONE;
+                    end else begin
+                        fw_state <= FW_WREN_CS_LOW;
+                    end
+                end
+                else begin
                     fw_state <= FW_WREN_CS_LOW;
                 end
             end
 
             FW_WREN_CS_LOW: begin
-                cs_n_fw  <= 1'b0;
+                cs_n_fw <= 1'b0;
                 fw_state <= FW_WREN_CMD;
             end
 
@@ -288,18 +303,23 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
 
             // CS high deselect delay (t_SHSL)
             FW_WREN_CS_HIGH: begin
-                cs_n_fw    <= 1'b1;
+                cs_n_fw <= 1'b1;
                 delay_cntr <= delay_cntr + 1'b1;
                 if (delay_cntr >= 3'd3) begin
-                    fw_state           <= FW_PROG_CS_LOW;
-                    fw_page_start_addr <= fw_prog_addr;
+                    if(chip_eraseed) begin
+                        fw_state           <= FW_PROG_CS_LOW;
+                        fw_page_start_addr <= fw_prog_addr;
+                    end
+                    else begin
+                        fw_state <= FW_CHIP_ERASE_CS_LOW;
+                    end
                 end
             end
 
             FW_PROG_CS_LOW: begin
-                cs_n_fw     <= 1'b0;
+                cs_n_fw <= 1'b0;
                 fw_addr_idx <= 2'd0;
-                fw_state    <= FW_PROG_CMD;
+                fw_state <= FW_PROG_CMD;
             end
 
             FW_PROG_CMD: begin
@@ -314,7 +334,7 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
                 cs_n_fw <= 1'b0;
                 if (done) begin
                     if (fw_addr_idx == 2'd2) begin
-                        fw_state   <= FW_FETCH_WORD;
+                        fw_state <= FW_FETCH_WORD;
                         fetch_cntr <= '0;
                     end else begin
                         fw_addr_idx <= fw_addr_idx + 1'b1;
@@ -324,12 +344,12 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
 
             // Read 32-bit word from synchronous SRAM (accommodates 1-cycle RAM latency)
             FW_FETCH_WORD: begin
-                cs_n_fw    <= 1'b0;
+                cs_n_fw <= 1'b0;
                 fetch_cntr <= fetch_cntr + 1'b1;
                 if (fetch_cntr == 2'd1) begin
                     mem_read_word <= mem_rdata;
-                    fw_state      <= FW_PROG_DATA;
-                    fetch_cntr    <= '0;
+                    fw_state <= FW_PROG_DATA;
+                    fetch_cntr <= '0;
                 end
             end
 
@@ -337,18 +357,18 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
                 cs_n_fw <= 1'b0;
                 if (done) begin
                     fw_bytes_written <= next_bytes_written;
-                    fw_prog_addr     <= fw_prog_addr + 1'b1;
+                    fw_prog_addr <= fw_prog_addr + 1'b1;
 
                     if (next_bytes_written >= fw_total_bytes) begin
-                        fw_state   <= FW_PROG_CS_HIGH;
+                        fw_state <= FW_PROG_CS_HIGH;
                         delay_cntr <= '0;
                     end else if (fw_prog_addr[7:0] == 8'hFF) begin
                         // 256-byte page boundary reached, must close current page
-                        fw_state   <= FW_PROG_CS_HIGH;
+                        fw_state <= FW_PROG_CS_HIGH;
                         delay_cntr <= '0;
                     end else if (next_bytes_written[1:0] == 2'b00) begin
                         // Need next word from SRAM
-                        fw_state   <= FW_FETCH_WORD;
+                        fw_state <= FW_FETCH_WORD;
                         fetch_cntr <= '0;
                     end else begin
                         // Next byte is already in mem_read_word
@@ -359,7 +379,7 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
 
             // CS high deselect delay triggers write in Flash chip
             FW_PROG_CS_HIGH: begin
-                cs_n_fw    <= 1'b1;
+                cs_n_fw <= 1'b1;
                 delay_cntr <= delay_cntr + 1'b1;
                 if (delay_cntr >= 3'd3) begin
                     fw_state <= FW_POLL_CS_LOW;
@@ -367,7 +387,7 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
             end
 
             FW_POLL_CS_LOW: begin
-                cs_n_fw  <= 1'b0;
+                cs_n_fw <= 1'b0;
                 fw_state <= FW_POLL_CMD;
             end
 
@@ -382,13 +402,13 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
                 cs_n_fw <= 1'b0;
                 if (done) begin
                     status_reg <= rx_byte;
-                    fw_state   <= FW_POLL_CS_HIGH;
+                    fw_state <= FW_POLL_CS_HIGH;
                     delay_cntr <= '0;
                 end
             end
 
             FW_POLL_CS_HIGH: begin
-                cs_n_fw    <= 1'b1;
+                cs_n_fw <= 1'b1;
                 delay_cntr <= delay_cntr + 1'b1;
                 if (delay_cntr >= 3'd3) begin
                     if (status_reg[0] == 1'b1) begin
@@ -405,10 +425,32 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
                 end
             end
 
+            FW_CHIP_ERASE_CS_LOW: begin
+                cs_n_fw <= 1'b0;
+                fw_state <= FW_CHIP_ERASE_CMD;
+            end
+
+            FW_CHIP_ERASE_CMD: begin
+                cs_n_fw <= 1'b0;
+                if (done) begin
+                    fw_state   <= FW_CHIP_ERASE_CS_HIGH;
+                    delay_cntr <= '0;
+                end
+            end
+
+            FW_CHIP_ERASE_CS_HIGH: begin
+                cs_n_fw <= 1'b1;
+                delay_cntr <= delay_cntr + 1'b1;
+                if (delay_cntr >= 3'd3) begin
+                    fw_state <= FW_POLL_CS_LOW;
+                    chip_eraseed <= 1'b1;
+                end
+            end
+
             FW_DONE: begin
-                cs_n_fw          <= 1'b1;
+                cs_n_fw <= 1'b1;
                 flash_write_done <= 1'b1;
-                fw_state         <= FW_IDLE;
+                fw_state <= FW_IDLE;
             end
 
             default: fw_state <= FW_IDLE;
@@ -440,14 +482,14 @@ end
 
 always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
     if (!spi_if.rst_n) begin
-        state            <= POWER_ON;
+        state <= POWER_ON;
         bootloader_state <= BOOT_READ;
-        wait_cntr        <= '0;
-        addr_idx         <= '0;
-        byte_cntr        <= '0;
-        xfer_pending     <= 1'b0;
-        cs_n_boot        <= 1'b1;
-        boot_done        <= 1'b0;
+        wait_cntr <= '0;
+        addr_idx <= '0;
+        byte_cntr <= '0;
+        xfer_pending <= 1'b0;
+        cs_n_boot <= 1'b1;
+        boot_done <= 1'b0;
     end else begin
         bootloader_state <= bootloader_next_state;
         if (start_boot)
@@ -461,7 +503,7 @@ always_ff @(posedge spi_if.clk or negedge spi_if.rst_n) begin
 
                 case (state)
                     POWER_ON: wait_cntr <= wait_cntr + 1'b1;
-                    CS_LOW:   cs_n_boot <= 1'b0;
+                    CS_LOW: cs_n_boot <= 1'b0;
                     SEND_ADDR: begin
                         if (done)
                             addr_idx <= addr_idx + 1'b1;
@@ -481,24 +523,24 @@ end
 
 // Multiplex shared SPI signals
 assign spi_if.cs_n = (bootloader_state == BOOT_READ) ? cs_n_boot : cs_n_fw;
-assign start        = (bootloader_state == BOOT_READ) ? start_boot : fw_start;
-assign tx_byte      = (bootloader_state == BOOT_READ) ? tx_byte_boot : tx_byte_fw;
+assign start = (bootloader_state == BOOT_READ) ? start_boot : fw_start;
+assign tx_byte = (bootloader_state == BOOT_READ) ? tx_byte_boot : tx_byte_fw;
 
 // Memory interface multiplexing
 always_comb begin
     if (bootloader_state == BOOT_READ) begin
-        mem_we    = (state == WRITE_BYTE);
-        mem_addr  = ADDR_WIDTH'(byte_cntr);
+        mem_we = (state == WRITE_BYTE);
+        mem_addr = ADDR_WIDTH'(byte_cntr);
         mem_wdata = {(DATA_WIDTH/FRAME_WIDTH){rx_byte}};
         mem_wmask = 4'b0001 << byte_cntr[1:0];
     end else if (bootloader_state == FLASH_WRITE) begin
-        mem_we    = 1'b0;
-        mem_addr  = ADDR_WIDTH'(fw_bytes_written);
+        mem_we = 1'b0;
+        mem_addr = ADDR_WIDTH'(fw_bytes_written);
         mem_wdata = '0;
         mem_wmask = 4'b0000;
     end else begin
-        mem_we    = 1'b0;
-        mem_addr  = '0;
+        mem_we = 1'b0;
+        mem_addr = '0;
         mem_wdata = '0;
         mem_wmask = 4'b0000;
     end

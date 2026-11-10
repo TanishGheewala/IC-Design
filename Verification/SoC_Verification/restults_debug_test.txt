@@ -1,0 +1,245 @@
+2026-11-10 13:26:38.602 [info] 
+****** xsim v2025.2 (64-bit)
+  **** SW Build 6299465 on Fri Nov 14 12:34:56 MST 2025
+  **** IP Build 6300035 on Fri Nov 14 10:48:45 MST 2025
+  **** SharedData Build 6298862 on Thu Nov 13 04:50:51 MST 2025
+  **** Start of session at: Tue Nov 10 13:26:37 2026
+    ** Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
+    ** Copyright 2022-2025 Advanced Micro Devices, Inc. All Rights Reserved.
+
+source xsim.dir/soc_test/xsim_script.tcl
+
+2026-11-10 13:26:38.602 [info] # xsim {soc_test} -autoloadwcfg -runall
+
+2026-11-10 13:26:39.610 [info] Time resolution is 1 ps
+
+2026-11-10 13:26:39.611 [info] run -all
+
+2026-11-10 13:26:39.612 [info] boot_done: 0
+
+2026-11-10 13:26:40.980 [info] boot_done: 1
+
+2026-11-10 13:26:40.984 [info] T=4143165000 [Test] Starting Sequence ...
+
+2026-11-10 13:27:40.095 [info] boot_done: 0
+
+2026-11-10 13:27:41.588 [info] boot_done: 1
+
+2026-11-10 13:27:41.592 [info] mem_loc: 10
+
+2026-11-10 13:27:54.489 [info] [SCOREBOARD] tx_line_return: 9, debug_instruction: 2, core halt: 1, register_value: 9
+
+
+2026-11-10 13:28:06.008 [info] [SCOREBOARD] tx_line_return: 5, debug_instruction: 2, core halt: 1, register_value: 5
+
+
+2026-11-10 13:28:17.442 [info] [SCOREBOARD] tx_line_return: 2, debug_instruction: 2, core halt: 1, register_value: 2
+
+
+2026-11-10 13:28:28.912 [info] [SCOREBOARD] tx_line_return: 8, debug_instruction: 2, core halt: 1, register_value: 8
+
+
+2026-11-10 13:28:40.299 [info] [SCOREBOARD] tx_line_return: 2, debug_instruction: 2, core halt: 1, register_value: 2
+
+
+2026-11-10 13:28:51.787 [info] [SCOREBOARD] tx_line_return: d, debug_instruction: 2, core halt: 1, register_value: d
+
+
+2026-11-10 13:29:03.230 [info] [SCOREBOARD] tx_line_return: e, debug_instruction: 2, core halt: 1, register_value: e
+
+
+2026-11-10 13:29:14.707 [info] [SCOREBOARD] tx_line_return: 5, debug_instruction: 2, core halt: 1, register_value: 5
+
+
+2026-11-10 13:29:26.060 [info] [SCOREBOARD] tx_line_return: b, debug_instruction: 2, core halt: 1, register_value: b
+
+
+2026-11-10 13:29:37.566 [info] [SCOREBOARD] tx_line_return: 7, debug_instruction: 2, core halt: 1, register_value: 7
+
+
+2026-11-10 13:29:49.205 [info] [SCOREBOARD] tx_line_return: b, debug_instruction: 2, core halt: 1, register_value: b
+
+
+2026-11-10 13:30:00.764 [info] [SCOREBOARD] tx_line_return: 9, debug_instruction: 2, core halt: 1, register_value: 9
+
+
+2026-11-10 13:30:12.356 [info] [SCOREBOARD] tx_line_return: 8, debug_instruction: 2, core halt: 1, register_value: 8
+
+
+2026-11-10 13:30:23.910 [info] [SCOREBOARD] tx_line_return: 1, debug_instruction: 2, core halt: 1, register_value: 1
+
+
+2026-11-10 13:30:35.505 [info] [SCOREBOARD] tx_line_return: c, debug_instruction: 2, core halt: 1, register_value: c
+
+
+2026-11-10 13:30:47.137 [info] [SCOREBOARD] tx_line_return: 9, debug_instruction: 2, core halt: 1, register_value: 9
+
+
+2026-11-10 13:30:58.849 [info] [SCOREBOARD] tx_line_return: c, debug_instruction: 2, core halt: 1, register_value: c
+
+
+2026-11-10 13:31:10.483 [info] [SCOREBOARD] tx_line_return: d, debug_instruction: 2, core halt: 1, register_value: d
+
+
+2026-11-10 13:31:22.031 [info] [SCOREBOARD] tx_line_return: 5, debug_instruction: 2, core halt: 1, register_value: 5
+
+
+2026-11-10 13:31:33.583 [info] [SCOREBOARD] tx_line_return: a, debug_instruction: 2, core halt: 1, register_value: a
+
+
+2026-11-10 13:31:45.347 [info] [SCOREBOARD] tx_line_return: 5, debug_instruction: 2, core halt: 1, register_value: 5
+
+
+2026-11-10 13:31:56.968 [info] [SCOREBOARD] tx_line_return: 4, debug_instruction: 2, core halt: 1, register_value: 4
+
+
+2026-11-10 13:32:08.631 [info] [SCOREBOARD] tx_line_return: c, debug_instruction: 2, core halt: 1, register_value: c
+
+
+2026-11-10 13:32:20.343 [info] [SCOREBOARD] tx_line_return: 2, debug_instruction: 2, core halt: 1, register_value: 2
+
+
+2026-11-10 13:32:31.795 [info] [SCOREBOARD] tx_line_return: 0, debug_instruction: 2, core halt: 1, register_value: 0
+
+
+2026-11-10 13:32:43.450 [info] [SCOREBOARD] tx_line_return: 9, debug_instruction: 2, core halt: 1, register_value: 9
+
+
+2026-11-10 13:32:55.143 [info] [SCOREBOARD] tx_line_return: 8, debug_instruction: 2, core halt: 1, register_value: 8
+
+
+2026-11-10 13:33:06.793 [info] [SCOREBOARD] tx_line_return: 2, debug_instruction: 2, core halt: 1, register_value: 2
+
+
+2026-11-10 13:33:18.295 [info] [SCOREBOARD] tx_line_return: 10, debug_instruction: 2, core halt: 1, register_value: 10
+
+
+2026-11-10 13:33:29.915 [info] [SCOREBOARD] tx_line_return: 4, debug_instruction: 2, core halt: 1, register_value: 4
+
+
+2026-11-10 13:33:41.600 [info] [SCOREBOARD] tx_line_return: 1, debug_instruction: 2, core halt: 1, register_value: 1
+
+
+2026-11-10 13:33:53.225 [info] [SCOREBOARD] tx_line_return: 3, debug_instruction: 2, core halt: 1, register_value: 3
+
+
+2026-11-10 13:34:05.398 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:34:17.414 [info] [SCOREBOARD] tx_line_return:         40, debug_instruction: 3, core halt: 1, memory_value:         40, address:         40
+
+
+2026-11-10 13:34:29.281 [info] [SCOREBOARD] tx_line_return:          4, debug_instruction: 3, core halt: 1, memory_value:          4, address:          4
+
+
+2026-11-10 13:34:41.263 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:34:53.289 [info] [SCOREBOARD] tx_line_return:         40, debug_instruction: 3, core halt: 1, memory_value:         40, address:         40
+
+
+2026-11-10 13:35:05.307 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:35:17.455 [info] [SCOREBOARD] tx_line_return:         56, debug_instruction: 3, core halt: 1, memory_value:         56, address:         56
+
+
+2026-11-10 13:35:29.430 [info] [SCOREBOARD] tx_line_return:         64, debug_instruction: 3, core halt: 1, memory_value:         64, address:         64
+
+
+2026-11-10 13:35:41.626 [info] [SCOREBOARD] tx_line_return:         28, debug_instruction: 3, core halt: 1, memory_value:         28, address:         28
+
+
+2026-11-10 13:35:53.983 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:36:05.278 [info] [SCOREBOARD] tx_line_return:          0, debug_instruction: 3, core halt: 1, memory_value:          0, address:          0
+
+
+2026-11-10 13:36:17.274 [info] [SCOREBOARD] tx_line_return:          4, debug_instruction: 3, core halt: 1, memory_value:          4, address:          4
+
+
+2026-11-10 13:36:29.381 [info] [SCOREBOARD] tx_line_return:         24, debug_instruction: 3, core halt: 1, memory_value:         24, address:         24
+
+
+2026-11-10 13:36:41.583 [info] [SCOREBOARD] tx_line_return:         56, debug_instruction: 3, core halt: 1, memory_value:         56, address:         56
+
+
+2026-11-10 13:36:53.793 [info] [SCOREBOARD] tx_line_return:         20, debug_instruction: 3, core halt: 1, memory_value:         20, address:         20
+
+
+2026-11-10 13:37:05.853 [info] [SCOREBOARD] tx_line_return:          8, debug_instruction: 3, core halt: 1, memory_value:          8, address:          8
+
+
+2026-11-10 13:37:17.942 [info] [SCOREBOARD] tx_line_return:         12, debug_instruction: 3, core halt: 1, memory_value:         12, address:         12
+
+
+2026-11-10 13:37:29.825 [info] [SCOREBOARD] tx_line_return:         64, debug_instruction: 3, core halt: 1, memory_value:         64, address:         64
+
+
+2026-11-10 13:37:41.883 [info] [SCOREBOARD] tx_line_return:         40, debug_instruction: 3, core halt: 1, memory_value:         40, address:         40
+
+
+2026-11-10 13:37:53.956 [info] [SCOREBOARD] tx_line_return:          4, debug_instruction: 3, core halt: 1, memory_value:          4, address:          4
+
+
+2026-11-10 13:38:06.419 [info] [SCOREBOARD] tx_line_return:         60, debug_instruction: 3, core halt: 1, memory_value:         60, address:         60
+
+
+2026-11-10 13:38:18.661 [info] [SCOREBOARD] tx_line_return:         64, debug_instruction: 3, core halt: 1, memory_value:         64, address:         64
+
+
+2026-11-10 13:38:30.846 [info] [SCOREBOARD] tx_line_return:         40, debug_instruction: 3, core halt: 1, memory_value:         40, address:         40
+
+
+2026-11-10 13:38:43.054 [info] [SCOREBOARD] tx_line_return:         56, debug_instruction: 3, core halt: 1, memory_value:         56, address:         56
+
+
+2026-11-10 13:38:55.190 [info] [SCOREBOARD] tx_line_return:         64, debug_instruction: 3, core halt: 1, memory_value:         64, address:         64
+
+
+2026-11-10 13:39:07.384 [info] [SCOREBOARD] tx_line_return:          8, debug_instruction: 3, core halt: 1, memory_value:          8, address:          8
+
+
+2026-11-10 13:39:19.766 [info] [SCOREBOARD] tx_line_return:         60, debug_instruction: 3, core halt: 1, memory_value:         60, address:         60
+
+
+2026-11-10 13:39:32.042 [info] [SCOREBOARD] tx_line_return:         28, debug_instruction: 3, core halt: 1, memory_value:         28, address:         28
+
+
+2026-11-10 13:39:44.371 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:39:56.440 [info] [SCOREBOARD] tx_line_return:         36, debug_instruction: 3, core halt: 1, memory_value:         36, address:         36
+
+
+2026-11-10 13:40:08.413 [info] [SCOREBOARD] tx_line_return:         56, debug_instruction: 3, core halt: 1, memory_value:         56, address:         56
+
+
+2026-11-10 13:40:20.562 [info] [SCOREBOARD] tx_line_return:         52, debug_instruction: 3, core halt: 1, memory_value:         52, address:         52
+
+
+2026-11-10 13:40:32.297 [info] [SCOREBOARD] tx_line_return: 00000000, debug_instruction: 3, core halt: 1, gpio_dir: 000, address:       4096
+
+
+2026-11-10 13:40:43.936 [info] [SCOREBOARD] tx_line_return: 00000000, debug_instruction: 3, core halt: 1, gpio_out: 000, address:       4100
+
+
+2026-11-10 13:40:55.650 [info] [SCOREBOARD] tx_line_return: 000003ff, debug_instruction: 3, core halt: 1, gpio_in: 3ff, address:       4104
+
+
+2026-11-10 13:40:58.153 [info] [SCOREBOARD] Total Errors:           0
+
+
+2026-11-10 13:40:58.154 [info] $finish called at time : 814994555 ns : File "/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/testbench/soc_tb_flash.sv" Line 71
+
+2026-11-10 13:40:58.154 [info] run: Time (s): cpu = 00:00:00.08 ; elapsed = 00:14:19 . Memory (MB): peak = 1433.285 ; gain = 0.000 ; free physical = 1514 ; free virtual = 14407
+
+2026-11-10 13:40:58.154 [info] exit
+
+2026-11-10 13:40:58.155 [info] INFO: xsimkernel Simulation Memory Usage: 279440 KB (Peak: 336004 KB), Simulation CPU Usage: 855480 ms
+
+2026-11-10 13:40:58.160 [info] INFO: [Common 17-206] Exiting xsim at Tue Nov 10 13:40:58 2026...
+
+2026-11-10 13:40:58.203 [info] 
+****************************************
