@@ -1,4 +1,4 @@
-# IC-Design
+# Microcontroller Unit IC Design
 **Project #9: Tapeout-Ready Integrated Circuit Design Using Open-Source PDK**
 
 A RISC-V microcontroller built from scratch in SystemVerilog and taken from RTL to a fabrication-ready GDSII file using the open-source SkyWater SKY130 (130 nm) PDK.
