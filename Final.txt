@@ -1,3 +1,0 @@
-- Final GDSII File
-- Final Datasheet/Documentation
-- Project Reports
