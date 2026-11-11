@@ -1,15 +1,6 @@
 # ------------------------------------------------------------------
 # ASIC flow generated output (keep tool runs out of git)
 # ------------------------------------------------------------------
-# Genus (synthesis)
-ASIC/genus/out/
-ASIC/genus/logs/
-ASIC/genus/fv/
-ASIC/genus/*.log
-ASIC/genus/genus.cmd*
-ASIC/genus/genus.log*
-ASIC/genus/fe.*
-ASIC/genus/.cadence/
 
 # Innovus (place & route)
 ASIC/innovus/out/
