@@ -43,7 +43,7 @@ module uart_trans
                 
                 if(clk_counter < CLK_BIT) begin
                     clk_counter <= clk_counter + 1;
-                    uart_state = START;
+                    uart_state <= START;
                 end else begin
                     clk_counter <= 0;
                     uart_state <= DATA;
@@ -57,12 +57,12 @@ module uart_trans
                 
                 if(clk_counter < CLK_BIT) begin
                     clk_counter <= clk_counter + 1;
-                    uart_state = DATA;
+                    uart_state <= DATA;
                 end else begin
                     clk_counter <= 0;
                     if(bit_counter < 7) begin
-                        bit_counter = bit_counter + 1;
-                        uart_state = DATA;
+                        bit_counter <= bit_counter + 1;
+                        uart_state <= DATA;
                     end else begin
                         bit_counter <= 0;
                         uart_state <= STOP;
@@ -76,7 +76,7 @@ module uart_trans
                 
                 if(clk_counter < CLK_BIT) begin
                     clk_counter <= clk_counter + 1;
-                    uart_state = STOP;
+                    uart_state <= STOP;
                 end else begin
                     clk_counter <= 0;
                     uart_state <= FINAL;
