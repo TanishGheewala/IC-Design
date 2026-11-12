@@ -29,8 +29,8 @@ module soc_synth_top (
     genvar i;
     generate
         for (i = 0; i < 10; i++) begin : gen_gpio_pads
-            assign gpio_inout[i] = gpio_if.gpio_oe[i] ? gpio_if.gpio_out[i] : 1'bz;
-            assign gpio_if.gpio_in[i] = gpio_inout[i];
+            assign gpio_inout[i] = soc_if.gpio_oe[i] ? soc_if.gpio_out[i] : 1'bz;
+            assign soc_if.gpio_in[i] = gpio_inout[i];
         end
     endgenerate
     soc dut (
