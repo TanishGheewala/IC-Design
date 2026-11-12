@@ -48,8 +48,8 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     uart_interface uart_trans_if();
 
     //uart
-    uart_rec #(.CLK_RATE(100000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
-    uart_trans #(.CLK_RATE(100000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
+    uart_rec #(.CLK_RATE(80000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
+    uart_trans #(.CLK_RATE(80000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
 
     //interface connections output
     always_comb begin
@@ -76,7 +76,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic [31:0] address_out;
 
     //debug controller state register updates
-    always_ff @(posedge debug_if.clk) begin
+    always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
             debug_state <= DEBUG_OFF;
             debug_command <= 0;
@@ -85,7 +85,6 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             address_out <= 0;
         end
         else begin
-            debug_state <= DEBUG_OFF;
             debug_state <= next_debug_state;
             unique case(debug_state)
                 DEBUG_MENU, DEBUG_OFF: begin
@@ -242,7 +241,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic [31:0] boot_image_size;
     logic size_received = 0;
 
-    always_ff @(posedge debug_if.clk) begin
+    always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
             debug_rx_state <= TRX_IDLE;
             rx_word <= 0;
@@ -418,7 +417,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     debug_trx_state_t debug_tx_state = TRX_IDLE;
     debug_trx_state_t next_debug_tx_state;
 
-    always_ff @(posedge debug_if.clk) begin
+    always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
             debug_tx_state <= TRX_IDLE;
         end
