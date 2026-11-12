@@ -13,6 +13,7 @@ set EXTRA_LIBS {}
 # Design-Specific Settings:
 array set TOP_OF {
     alu  alu_synth_top
+    gpio gpio_synth_top
     core core_synth_top 
 }
 set TOP_MODULE $TOP_OF($DESIGN)
