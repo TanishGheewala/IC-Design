@@ -43,6 +43,32 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         END_TRANSMISION
     }debug_trx_state_t;
 
+        //state updates
+    debug_state_t debug_state = DEBUG_OFF;
+    debug_state_t next_debug_state = DEBUG_OFF;
+
+    //state logic
+    logic [7:0] debug_command = 0;
+    logic debug_rx_done;
+    logic debug_tx_done;
+    logic halt;
+    logic [31:0] tx_word;
+    logic [31:0] rx_word;
+    logic [1:0] delay_counter = 0;
+    logic [31:0] address_out;
+
+    //debug rx state logic
+    debug_trx_state_t debug_rx_state = TRX_IDLE;
+    debug_trx_state_t next_debug_rx_state;
+    logic [31:0] address_index = 0;
+    logic [31:0] image_bytes = 0;
+    logic [31:0] boot_image_size;
+    logic size_received = 0;
+
+    //debug tx state logic
+    debug_trx_state_t debug_tx_state = TRX_IDLE;
+    debug_trx_state_t next_debug_tx_state;
+
     //uart instanstiation
     uart_interface uart_rec_if();
     uart_interface uart_trans_if();
@@ -61,20 +87,6 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         uart_rec_if.serial_data = debug_if.rx;
     end
     
-    //state updates
-    debug_state_t debug_state = DEBUG_OFF;
-    debug_state_t next_debug_state = DEBUG_OFF;
-
-    //state logic
-    logic [7:0] debug_command = 0;
-    logic debug_rx_done;
-    logic debug_tx_done;
-    logic halt;
-    logic [31:0] tx_word;
-    logic [31:0] rx_word;
-    logic [1:0] delay_counter = 0;
-    logic [31:0] address_out;
-
     //debug controller state register updates
     always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
@@ -232,14 +244,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
         endcase
     end
-    
-    //debug rx state logic
-    debug_trx_state_t debug_rx_state = TRX_IDLE;
-    debug_trx_state_t next_debug_rx_state;
-    logic [31:0] address_index = 0;
-    logic [31:0] image_bytes = 0;
-    logic [31:0] boot_image_size;
-    logic size_received = 0;
+
 
     always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
@@ -412,10 +417,6 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             end
         endcase
     end
-
-    //debug tx state logic
-    debug_trx_state_t debug_tx_state = TRX_IDLE;
-    debug_trx_state_t next_debug_tx_state;
 
     always_ff @(posedge debug_if.clk or negedge debug_if.rst_n) begin
         if(!debug_if.rst_n) begin
