@@ -13,7 +13,7 @@ module soc_synth_top (
     inout logic [9:0] gpio_inout
 );
 
-    debug_interface_v2 soc_if();
+    soc_interface soc_if();
 
     assign soc_if.clk = clk;
     assign soc_if.rst_n = rst_n;

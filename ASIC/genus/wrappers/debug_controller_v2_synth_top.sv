@@ -30,7 +30,7 @@ module debug_controller_v2_synth_top (
     assign write_en = debug_if.write_en;
     assign write_data = debug_if.write_data;
     assign data_address = debug_if.data_address;
-    assign flash_write_en = deubg_if.flash_write_en;
+    assign flash_write_en = debug_if.flash_write_en;
 
     debug_controller_v2 dut (
         .debug_if(debug_if)
