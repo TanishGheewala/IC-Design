@@ -14,6 +14,7 @@ set EXTRA_LIBS {}
 array set TOP_OF {
     alu  alu_synth_top
     gpio gpio_synth_top
+    core core_synth_top 
 }
 set TOP_MODULE $TOP_OF($DESIGN)
 set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
