@@ -16,7 +16,7 @@ array set TOP_OF {
     gpio gpio_synth_top
     core core_synth_top
     debugcon debug_controller_v2_synth_top
-    soc soc_synth_top                       ;
+    soc soc_synth_top
 }
 set TOP_MODULE $TOP_OF($DESIGN)
 set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
