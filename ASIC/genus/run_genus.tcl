@@ -32,6 +32,7 @@ syn_opt
 report_timing > $RPT_DIR/${DESIGN}_timing.rpt
 report_area   > $RPT_DIR/${DESIGN}_area.rpt
 report_power  > $RPT_DIR/${DESIGN}_power.rpt
+report_qor    > $RPT_DIR/${DESIGN}_qor.rpt
 write_hdl > $OUT_DIR/${DESIGN}_netlist.v
 write_sdc > $OUT_DIR/${DESIGN}.sdc
 
