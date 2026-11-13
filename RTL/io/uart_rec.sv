@@ -14,17 +14,17 @@ module uart_rec
     //enums for states
     typedef enum logic [2:0] {IDLE, START, DATA, STOP, FINAL} state;
 
-    state uart_state = IDLE;
-    state uart_next_state = IDLE;
+    state uart_state;
+    state uart_next_state;
 
     logic [31:0] clk_counter;
 
-    logic serial_in = 1'b1;
-    logic serial_in_extra = 1'b1;
+    logic serial_in;
+    logic serial_in_extra;
 
-    logic [2:0] bit_counter = 0;
-    logic [7:0] byte_out  = 0;
-    logic transmission_done = 1'b0;
+    logic [2:0] bit_counter;
+    logic [7:0] byte_out;
+    logic transmission_done;
 
     //get serial input every clk
     always_ff @(posedge uart_if.clk) begin
@@ -111,7 +111,11 @@ module uart_rec
             end
 
             default: begin
+                clk_counter <= 0;
+                bit_counter <= 0;
+                transmission_done <= 1'b0;
                 uart_state <= IDLE;
+                uart_next_state <= IDLE;
             end
         endcase
 

@@ -16,6 +16,8 @@ module branch_unit(branch_unit_interface.bu_dut bu_if);
     logic branch_logic_out;
     always_comb begin
         //branch logic
+        bu_if.output_flag = 1'b0;
+        branch_logic_out = 1'b0;
         unique case(bu_if.branch_opcode)
             `BEQ: branch_logic_out = (bu_if.input_0 == bu_if.input_1);
             `BNE: branch_logic_out = (bu_if.input_0 != bu_if.input_1);

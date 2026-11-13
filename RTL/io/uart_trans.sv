@@ -10,13 +10,13 @@ module uart_trans
 
     //enums for states
     typedef enum logic [2:0] {IDLE, START, DATA, STOP, FINAL} state;
-    state uart_state = IDLE;
+    state uart_state;
     
     //transmission registers
     logic [31:0] clk_counter;
-    logic serial_out = 1'b1;
-    logic [2:0] bit_counter = 0;
-    logic [7:0] byte_in  = 0;
+    logic serial_out;
+    logic [2:0] bit_counter;
+    logic [7:0] byte_in;
 
     always_ff @(posedge uart_if.clk) begin
         
@@ -89,7 +89,12 @@ module uart_trans
                 uart_state <= IDLE;
             end
 
-            default: uart_state <= IDLE;
+            default: begin
+                uart_state <= IDLE;
+                serial_out <= 1'b1;
+                clk_counter <= 0;
+                bit_counter <= 0;
+            end
         endcase
     end
 

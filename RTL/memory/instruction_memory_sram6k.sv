@@ -42,9 +42,13 @@ module instruction_memory_sram6k
     logic [DATA_WIDTH-1:0] dout0_1;
     logic [DATA_WIDTH-1:0] dout0_2;
 
-    sky130_sram_2kbyte_1rw1r_32x512_8 #(
-        .VERBOSE(0)
+    `ifdef SYNTHESIS
+        sky130_sram_2kbyte_1rw1r_32x512_8 bank0 (
+    `else
+        sky130_sram_2kbyte_1rw1r_32x512_8 #(
+            .VERBOSE(0)
         ) bank0 (
+    `endif
             .clk0(clk),
             .csb0(csb0_0),
             .web0(~we),
@@ -58,9 +62,13 @@ module instruction_memory_sram6k
             .dout1()
     );
 
-    sky130_sram_2kbyte_1rw1r_32x512_8 #(
-        .VERBOSE(0)
+    `ifdef SYNTHESIS
+        sky130_sram_2kbyte_1rw1r_32x512_8 bank1 (
+    `else
+        sky130_sram_2kbyte_1rw1r_32x512_8 #(
+            .VERBOSE(0)
         ) bank1 (
+    `endif
             .clk0(clk),
             .csb0(csb0_1),
             .web0(~we),
@@ -74,9 +82,13 @@ module instruction_memory_sram6k
             .dout1()
     );
 
-    sky130_sram_2kbyte_1rw1r_32x512_8 #(
-        .VERBOSE(0)
+    `ifdef SYNTHESIS
+        sky130_sram_2kbyte_1rw1r_32x512_8 bank2 (
+    `else
+        sky130_sram_2kbyte_1rw1r_32x512_8 #(
+            .VERBOSE(0)
         ) bank2 (
+    `endif
             .clk0(clk),
             .csb0(csb0_2),
             .web0(~we),
