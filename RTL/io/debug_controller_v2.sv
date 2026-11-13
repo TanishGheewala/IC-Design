@@ -44,26 +44,26 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     }debug_trx_state_t;
 
         //state updates
-    debug_state_t debug_state = DEBUG_OFF;
-    debug_state_t next_debug_state = DEBUG_OFF;
+    debug_state_t debug_state;
+    debug_state_t next_debug_state;
 
     //state logic
-    logic [7:0] debug_command = 0;
+    logic [7:0] debug_command;
     logic debug_rx_done;
     logic debug_tx_done;
     logic halt;
     logic [31:0] tx_word;
     logic [31:0] rx_word;
-    logic [1:0] delay_counter = 0;
+    logic [1:0] delay_counter;
     logic [31:0] address_out;
 
     //debug rx state logic
-    debug_trx_state_t debug_rx_state = TRX_IDLE;
+    debug_trx_state_t debug_rx_state;
     debug_trx_state_t next_debug_rx_state;
-    logic [31:0] address_index = 0;
-    logic [31:0] image_bytes = 0;
+    logic [31:0] address_index;
+    logic [31:0] image_bytes;
     logic [31:0] boot_image_size;
-    logic size_received = 0;
+    logic size_received;
 
     //debug tx state logic
     debug_trx_state_t debug_tx_state = TRX_IDLE;
@@ -429,6 +429,9 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
     //tx state advance logic
     always_comb begin
+        next_debug_tx_state = TRX_IDLE;
+        uart_trans_if.uart_tran_done = 0;
+        debug_tx_done = 1'b0;
         unique case(debug_tx_state)
             TRX_IDLE: begin
                 debug_tx_done = 1'b0;

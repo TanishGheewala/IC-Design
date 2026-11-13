@@ -17,6 +17,7 @@
 module sign_extender(sign_extender_interface.se_dut se_if);
 
 always_comb begin
+    se_if.immediate_output ={32{1'b0}};
     unique case(se_if.sign_extender_opcode)
         `LUI, 
         `AUIPC: se_if.immediate_output = {se_if.instruction_input[31:12], {12{1'b0}}};
