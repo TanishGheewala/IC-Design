@@ -1,4 +1,4 @@
-// 2KB Single-Port SRAM wrapper
+    // 2KB Single-Port SRAM wrapper
 // 1 x 2KB SRAM macros
 
 `include "macros.vh"
