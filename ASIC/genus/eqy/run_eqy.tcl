@@ -231,7 +231,7 @@ engine $EQY_ENGINE"
 }
 
 # ----------------------------------------------------------------------------
-# Summary table (terminal + reports/eqy_summary.rpt)
+# Summary table (terminal + eqy/work/<design>/eqy_summary.rpt)
 # ----------------------------------------------------------------------------
 set line  [string repeat "=" 92]
 set table {}
@@ -264,10 +264,19 @@ lappend table $line
 set report [join $table "\n"]
 puts "\n$report"
 
-file mkdir $GENUS_DIR/reports
-set fp [open $GENUS_DIR/reports/eqy_summary.rpt w]
-puts $fp $report
-close $fp
-puts "Saved to [file join $GENUS_DIR reports eqy_summary.rpt]"
+# Save the table in each design's EQY work folder (eqy/work/<design>/), and
+# also in eqy/work/ when several designs were run together.
+set saved {}
+foreach r $rows {
+    set run_dir [file join $WORK_DIR [lindex $r 0]]
+    if {[file isdirectory $run_dir]} { lappend saved [file join $run_dir eqy_summary.rpt] }
+}
+if {[llength $designs] > 1} { lappend saved [file join $WORK_DIR eqy_summary.rpt] }
+foreach path $saved {
+    set fp [open $path w]
+    puts $fp $report
+    close $fp
+    puts "Saved to $path"
+}
 
 exit [expr {$failed > 0 ? 1 : 0}]
