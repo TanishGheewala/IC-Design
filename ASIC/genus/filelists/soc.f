@@ -30,8 +30,8 @@ RTL/io/uart_trans.sv
 RTL/io/debug_controller_v2.sv
 
 # memory
-RTL/memory/data_memory_sram2k.v
-RTL/memory/instruction_memory_sram6k.v
+RTL/memory/data_memory_sram2k.sv
+RTL/memory/instruction_memory_sram6k.sv
 
 # bootloader
 RTL/interfaces/spi_interface.sv

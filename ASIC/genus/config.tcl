@@ -7,8 +7,9 @@ set DESIGN    $env(DESIGN)
 set PDK_ROOT    /opt/open_pdks/sky130/sky130A
 set STD_LIB_DIR $PDK_ROOT/libs.ref/sky130_fd_sc_hd/lib
 set STD_LIB     $STD_LIB_DIR/sky130_fd_sc_hd__tt_025C_1v80.lib   ;
+set SRAM_LIB    $REPO_ROOT/ASIC/sky130_ram_macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
 
-set EXTRA_LIBS {}
+set EXTRA_LIBS [list $SRAM_LIB]
 
 # Design-Specific Settings:
 array set TOP_OF {
