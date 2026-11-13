@@ -16,5 +16,10 @@ set EQY_DEPTH_DEFAULT 10
 array set EQY_DEPTH {
 }
 
+# 1 = keep EQY's long output out of the terminal (it goes to
+# eqy/work/<design>.out and reports/<design>/<design>_eqy.log) and show only
+# progress lines and the summary table. 0 = stream everything as before.
+set EQY_QUIET 1
+
 # SBY solver engine.
 set EQY_ENGINE "smtbmc yices"

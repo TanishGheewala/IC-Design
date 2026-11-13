@@ -64,9 +64,51 @@ proc strip_sim_tasks {src dst} {
     return $count
 }
 
+# Pulls the key facts out of an EQY output log so they fit in one table row.
+# Returns a dict: result (PASS/FAIL/ERROR/...), eq, neq (partition counts),
+# neq_parts (names of non-equivalent partitions) and error (first ERROR line).
+proc parse_eqy_log {log} {
+    set res [dict create result "" eq 0 neq 0 neq_parts {} error ""]
+    if {![file exists $log]} { return $res }
+
+    set eq_parts  {}
+    set neq_parts {}
+    set fp [open $log r]
+    while {[gets $fp line] >= 0} {
+        # Drop the "EQY hh:mm:ss [design] " prefix.
+        regsub {^EQY\s+[0-9:]+\s+\[[^]]*\]\s*} $line "" msg
+
+        if {[regexp -nocase {DONE\s*\(\s*(\w+)\s*,\s*rc\s*=\s*\d+} $msg -> r]} {
+            dict set res result [string toupper $r]
+        } elseif {[regexp -nocase {partition '([^']+)'} $msg -> part]} {
+            if {[regexp -nocase {fail|could not|unable|not equiv|counterexample} $msg]} {
+                if {[lsearch -exact $neq_parts $part] < 0} { lappend neq_parts $part }
+            } elseif {[regexp -nocase {proved} $msg]} {
+                if {[lsearch -exact $eq_parts $part] < 0} { lappend eq_parts $part }
+            }
+        }
+        if {[dict get $res error] eq "" && [regexp {ERROR} $msg]} {
+            dict set res error [string trim $msg]
+        }
+    }
+    close $fp
+
+    dict set res eq        [llength $eq_parts]
+    dict set res neq       [llength $neq_parts]
+    dict set res neq_parts $neq_parts
+    return $res
+}
+
+# Shortens a note so the summary table stays one line per design.
+proc clip {text {max 58}} {
+    if {[string length $text] <= $max} { return $text }
+    return "[string range $text 0 [expr {$max - 4}]]..."
+}
+
 set WORK_DIR $EQY_DIR/work
 file mkdir $WORK_DIR
-set summary {}
+# One row per design: {design result eq neq note neq_parts}
+set rows {}
 
 foreach design $designs {
     # Per-design settings: TOP_MODULE, FILELIST, OUT_DIR, RPT_DIR, STD_LIB, ...
@@ -75,8 +117,8 @@ foreach design $designs {
 
     set netlist $OUT_DIR/${design}_netlist.v
     if {![file exists $netlist]} {
-        puts "\n=== $design: SKIPPED (no netlist at $netlist - run run_genus.sh $design first)"
-        lappend summary [list $design SKIPPED]
+        puts "=== $design: skipped (no netlist)"
+        lappend rows [list $design SKIPPED - - "no netlist - run run_genus.sh $design" {}]
         continue
     }
 
@@ -95,12 +137,14 @@ foreach design $designs {
     # under work/rtl/<design>/ with the same relative paths. The repo RTL is
     # never modified.
     set gold_files {}
+    set stripped   0
     foreach f $rtl_files {
         set src [file join $REPO_ROOT $f]
         if {$EQY_STRIP_SIM_TASKS} {
             set dst [file join $WORK_DIR rtl $design $f]
             set n [strip_sim_tasks $src $dst]
             if {$n > 0} { puts "  $design: removed $n simulation print call(s) from $f" }
+            incr stripped $n
             lappend gold_files $dst
         } else {
             lappend gold_files $src
@@ -147,24 +191,83 @@ depth $depth
 engine $EQY_ENGINE"
     close $fp
 
-    puts "\n=== $design: running EQY (top $TOP_MODULE, depth $depth)"
+    # EQY output goes to work/<design>.out (EQY_QUIET 1) or the terminal.
+    set out_file $WORK_DIR/${design}.out
+    puts -nonewline "=== $design: running EQY (top $TOP_MODULE, depth $depth) ... "
+    flush stdout
     cd $WORK_DIR
-    set rc [catch {exec >@stdout 2>@stderr eqy -f -d $design $eqy_file}]
-    set status [expr {$rc == 0 ? "PASS" : "FAIL"}]
+    if {$EQY_QUIET} {
+        set rc [catch {exec eqy -f -d $design $eqy_file >& $out_file}]
+    } else {
+        puts ""
+        set rc [catch {exec >@stdout 2>@stderr eqy -f -d $design $eqy_file}]
+    }
 
-    # Keep the summary log next to the Genus reports (work/ is not in git).
+    # Keep the EQY log next to the Genus reports (work/ is not in git).
     set log $WORK_DIR/$design/logfile.txt
+    if {![file exists $log]} { set log $out_file }
     if {[file exists $log]} {
         file mkdir $RPT_DIR
         file copy -force $log $RPT_DIR/${design}_eqy.log
     }
-    lappend summary [list $design $status]
+
+    # Result: EQY's own DONE(...) status, else PASS/FAIL from its exit code.
+    set info   [parse_eqy_log $log]
+    set result [dict get $info result]
+    if {$result eq ""} { set result [expr {$rc == 0 ? "PASS" : "FAIL"}] }
+    if {$rc != 0 && $result eq "PASS"} { set result FAIL }
+
+    set notes {}
+    if {[dict get $info error] ne ""} {
+        lappend notes [dict get $info error]
+    } elseif {$result eq "PASS" && [dict get $info eq] == 0} {
+        lappend notes "no partition results found in log - check it"
+    }
+    if {$stripped > 0} { lappend notes "$stripped sim print(s) removed" }
+
+    puts $result
+    lappend rows [list $design $result [dict get $info eq] [dict get $info neq] \
+                       [join $notes "; "] [dict get $info neq_parts]]
 }
 
-puts "\n=== EQY summary"
+# ----------------------------------------------------------------------------
+# Summary table (terminal + reports/eqy_summary.rpt)
+# ----------------------------------------------------------------------------
+set line  [string repeat "=" 92]
+set table {}
+lappend table $line
+lappend table " EQY equivalence summary (RTL vs Genus netlist)   [clock format [clock seconds] -format {%Y-%m-%d %H:%M}]"
+lappend table $line
+lappend table [format " %-10s %-8s %6s %7s   %s" Design Result EQ NON-EQ Notes]
+lappend table [format " %-10s %-8s %6s %7s   %s" ---------- -------- ------ ------- [string repeat - 30]]
+
 set failed 0
-foreach r $summary {
-    puts [format "  %-10s %s" [lindex $r 0] [lindex $r 1]]
-    if {[lindex $r 1] eq "FAIL"} { incr failed }
+set neq_lines {}
+foreach r $rows {
+    lassign $r design result eq neq note parts
+    set flag [expr {$result in {PASS SKIPPED} ? " " : "!"}]
+    lappend table [format "%s%-10s %-8s %6s %7s   %s" $flag $design $result $eq $neq [clip $note]]
+    if {$result ni {PASS SKIPPED}} { incr failed }
+    foreach p $parts { lappend neq_lines "   $design: $p" }
 }
+lappend table $line
+
+if {[llength $neq_lines] > 0} {
+    lappend table " Non-equivalent partitions:"
+    foreach l $neq_lines { lappend table $l }
+    lappend table $line
+}
+lappend table " EQ / NON-EQ = number of partitions proven / not proven equivalent."
+lappend table " Full logs: reports/<design>/<design>_eqy.log    Rows marked ! need attention."
+lappend table $line
+
+set report [join $table "\n"]
+puts "\n$report"
+
+file mkdir $GENUS_DIR/reports
+set fp [open $GENUS_DIR/reports/eqy_summary.rpt w]
+puts $fp $report
+close $fp
+puts "Saved to [file join $GENUS_DIR reports eqy_summary.rpt]"
+
 exit [expr {$failed > 0 ? 1 : 0}]
