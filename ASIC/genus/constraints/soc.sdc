@@ -15,12 +15,11 @@ set_clock_transition 0.1 [get_clocks clk]
 #async pins - designates pins as async so they dont need to be matched with clk
 set_false_path -from [get_ports rx]
 set_false_path -from [get_ports rst_n]
+set_false_path -from [get_ports gpio_inout[*]]
 
 #input delays - tells genus the possible timeframe for when data arrives - ie: time spent before reaching this block
 set_input_delay -clock clk -max 2.0 [get_ports {miso}]
 set_input_delay -clock clk -min 0.2 [get_ports {miso}]
-set_input_delay -clock clk -max 2.0 [get_ports {gpio_inout[*]}]
-set_input_delay -clock clk -min 0.2 [get_ports {gpio_inout[*]}]
 
 #output delays
 set_output_delay -clock clk -max 2.0 [get_ports {tx sclk mosi cs_n}]
@@ -31,5 +30,7 @@ set_output_delay -clock clk -min 0.2 [get_ports {gpio_inout[*]}]
 #used to prevent genus from toucing clk
 set_dont_touch_network [get_clocks clk]
 
+# sets input transistion time
+set_input_transition 0.03 [get_ports {miso rx rst_n gpio_inout[*]}]
 #sets load to outputs to represent external load on pins from future logic, genus will pick stronger libs than if this is not set
 set_load 0.05 [all_outputs]
