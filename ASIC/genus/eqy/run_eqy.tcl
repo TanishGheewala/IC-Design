@@ -32,6 +32,38 @@ if {$REQUEST eq "all"} {
 
 source $EQY_DIR/config.tcl
 
+# yosys-slang errors on simulation-only print tasks ($strobe, $monitor, ...)
+# instead of ignoring them like Genus/Conformal do, and has no option to skip
+# them. This writes a copy of an RTL file with each such call replaced by an
+# empty statement ';' (keeps 'if (x) $display(..);' valid). Newlines inside a
+# removed call are kept so error line numbers still match the original file.
+# Returns the number of calls removed.
+proc strip_sim_tasks {src dst} {
+    set fp [open $src r]
+    set text [read $fp]
+    close $fp
+
+    set re {\$(?:f?(?:display|strobe|write|monitor)[bho]?|monitoron|monitoroff)\s*(?:\([^;]*\))?\s*;}
+    set out   ""
+    set start 0
+    set count 0
+    while {[regexp -indices -start $start $re $text match]} {
+        lassign $match s e
+        set hit [string range $text $s $e]
+        append out [string range $text $start [expr {$s - 1}]] ";" \
+                   [string repeat "\n" [regexp -all {\n} $hit]]
+        set start [expr {$e + 1}]
+        incr count
+    }
+    append out [string range $text $start end]
+
+    file mkdir [file dirname $dst]
+    set fp [open $dst w]
+    puts -nonewline $fp $out
+    close $fp
+    return $count
+}
+
 set WORK_DIR $EQY_DIR/work
 file mkdir $WORK_DIR
 set summary {}
@@ -55,9 +87,25 @@ foreach design $designs {
         set line [string trim $line]
         if {$line eq "" || [string match "#*" $line]} continue
         if {[lsearch -exact {.sv .v .svh .vh} [file extension $line]] < 0} continue
-        lappend rtl_files [file join $REPO_ROOT $line]
+        lappend rtl_files $line
     }
     close $fp
+
+    # Read the original files, or cleaned copies (see strip_sim_tasks) kept
+    # under work/rtl/<design>/ with the same relative paths. The repo RTL is
+    # never modified.
+    set gold_files {}
+    foreach f $rtl_files {
+        set src [file join $REPO_ROOT $f]
+        if {$EQY_STRIP_SIM_TASKS} {
+            set dst [file join $WORK_DIR rtl $design $f]
+            set n [strip_sim_tasks $src $dst]
+            if {$n > 0} { puts "  $design: removed $n simulation print call(s) from $f" }
+            lappend gold_files $dst
+        } else {
+            lappend gold_files $src
+        }
+    }
 
     # --single-unit: macros from one file (e.g. macros.vh) are visible in the
     # following files, the same way Genus reads the filelist.
@@ -82,7 +130,7 @@ foreach design $designs {
 \[gold\]
 $macro_libs
 plugin -i slang
-read_slang $slang_opts $rtl_files
+read_slang $slang_opts $gold_files
 prep -flatten -top $TOP_MODULE
 
 # Gate: Genus netlist. The standard-cell .lib is read WITHOUT -lib so each
