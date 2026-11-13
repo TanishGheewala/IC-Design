@@ -233,10 +233,14 @@ engine $EQY_ENGINE"
 # ----------------------------------------------------------------------------
 # Summary table (terminal + eqy/work/<design>/eqy_summary.rpt)
 # ----------------------------------------------------------------------------
+# Date from the system 'date' command: 'clock format' needs Tcl's msgcat
+# package, which Yosys' built-in Tcl (used when there's no tclsh) doesn't have.
+if {[catch {exec date "+%Y-%m-%d %H:%M"} run_date]} { set run_date "" }
+
 set line  [string repeat "=" 92]
 set table {}
 lappend table $line
-lappend table " EQY equivalence summary (RTL vs Genus netlist)   [clock format [clock seconds] -format {%Y-%m-%d %H:%M}]"
+lappend table " EQY equivalence summary (RTL vs Genus netlist)   $run_date"
 lappend table $line
 lappend table [format " %-10s %-8s %6s %7s   %s" Design Result EQ NON-EQ Notes]
 lappend table [format " %-10s %-8s %6s %7s   %s" ---------- -------- ------ ------- [string repeat - 30]]
