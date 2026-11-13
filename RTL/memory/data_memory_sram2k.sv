@@ -36,9 +36,13 @@ module data_memory_sram2k
 
     logic [DATA_WIDTH-1:0] dout0_0;
 
-    sky130_sram_2kbyte_1rw1r_32x512_8 #(
-        .VERBOSE(0)
+    `ifdef SYNTHESIS
+        sky130_sram_2kbyte_1rw1r_32x512_8 bank0 (
+    `else
+        sky130_sram_2kbyte_1rw1r_32x512_8 #(
+            .VERBOSE(0)
         ) bank0 (
+    `endif
             .clk0(clk),
             .csb0(csb0_0),
             .web0(~we),
