@@ -28,8 +28,8 @@ module uart_rec
 
     //get serial input every clk
     always_ff @(posedge uart_if.clk) begin
-        serial_in <= uart_if.serial_data;
         serial_in_extra <= uart_if.serial_data;
+        serial_in <= serial_in_extra;
     end
 
     always_ff @(posedge uart_if.clk) begin
