@@ -430,6 +430,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     //tx state advance logic
     always_comb begin
         next_debug_tx_state = TRX_IDLE;
+        uart_trans_if.byte_data = '0;
         uart_trans_if.uart_tran_done = 0;
         debug_tx_done = 1'b0;
         unique case(debug_tx_state)
@@ -502,6 +503,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                 next_debug_tx_state = TRX_IDLE;
                 uart_trans_if.uart_tran_done = 0;
                 debug_tx_done = 1'b0;
+                uart_trans_if.byte_data = '0;
             end
         endcase
     end
