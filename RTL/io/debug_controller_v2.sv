@@ -66,7 +66,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic size_received;
 
     //debug tx state logic
-    debug_trx_state_t debug_tx_state = TRX_IDLE;
+    debug_trx_state_t debug_tx_state;
     debug_trx_state_t next_debug_tx_state;
 
     //uart instanstiation
@@ -317,7 +317,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     //read write output logic
     always_comb begin
         debug_if.write_data = 0;
-        debug_if.write_en = 1'b0;
+        debug_if.write_en = 1'b0;   
         debug_if.data_address = 0;
         unique case(debug_command)
             FLASH_WRITE: begin
