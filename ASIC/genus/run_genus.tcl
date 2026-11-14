@@ -25,6 +25,11 @@ read_sdc $SDC_FILE
 # Lists paths and ports that the SDC files doesn't constrain
 check_timing_intent > $RPT_DIR/${DESIGN}_timing_intent.rpt
 
+# for eqy, can del if we get LEC
+set_db auto_ungroup none
+set_db extract_fsm false
+set_db iopt_sequential_duplication false
+
 syn_generic
 syn_map
 syn_opt
