@@ -1,0 +1,32 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[10:38:08.354721] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+Version: 23.13-s073_1, built Fri Nov 08 10:01:49 PST 2024
+Options: -no_gui 
+Date:    Thu Nov 12 10:38:09 2026
+Host:    bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*1physical cpu*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB) (7813416KB)
+PID:     398009
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[10:38:09.131760] Periodic Lic check successful
+[10:38:09.131787] Feature usage summary:
+[10:38:09.131787] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (35 seconds elapsed).
+
+WARNING: This version of the tool is 734 days old.

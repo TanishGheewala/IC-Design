@@ -1,0 +1,197 @@
+
+ 	 Check Design Report (c)
+	 ------------------- 
+No subdesign's name is greater than 1.5k in length.
+
+ Feedthrough Module(s)
+ -------------------------
+No feed through module in 'gpio_synth_top'
+
+  Unresolved References & Empty Modules
+  ------------------------------------- 
+No unresolved references in design 'gpio_synth_top'
+
+No empty modules in design 'gpio_synth_top'
+
+ Unloaded Pin(s), Port(s)
+ -------------------------
+No unloaded sequential element in 'gpio_synth_top'
+
+design 'gpio_synth_top' has the following unloaded port(s)
+port:gpio_synth_top/wdata[31]
+port:gpio_synth_top/wdata[30]
+port:gpio_synth_top/wdata[29]
+port:gpio_synth_top/wdata[28]
+port:gpio_synth_top/wdata[27]
+port:gpio_synth_top/wdata[26]
+port:gpio_synth_top/wdata[25]
+port:gpio_synth_top/wdata[24]
+port:gpio_synth_top/wdata[23]
+port:gpio_synth_top/wdata[22]
+port:gpio_synth_top/wdata[21]
+port:gpio_synth_top/wdata[20]
+port:gpio_synth_top/wdata[19]
+port:gpio_synth_top/wdata[18]
+port:gpio_synth_top/wdata[17]
+port:gpio_synth_top/wdata[16]
+port:gpio_synth_top/wdata[15]
+port:gpio_synth_top/wdata[14]
+port:gpio_synth_top/wdata[13]
+port:gpio_synth_top/wdata[12]
+port:gpio_synth_top/wdata[11]
+port:gpio_synth_top/wdata[10]
+Total number of unloaded ports in design 'gpio_synth_top' : 22
+
+ Unloaded Combinational Pin(s)
+ -------------------------------
+design 'gpio_synth_top' has the following unloaded combinational elements
+pin:gpio_synth_top/u_gpio/ctl_bus_addr_55_19/g9/z
+Total number of unloaded combinational elements in design 'gpio_synth_top' : 1
+
+ Assigns
+ ------- 
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[31]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[30]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[29]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[28]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[27]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[26]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[25]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[24]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[23]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[22]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[21]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[20]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[19]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[18]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[17]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[16]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[15]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[14]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[13]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[12]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[11]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Encountered an assign statement at hport 'hport:gpio_synth_top/u_gpio/bus_rdata[10]' in module gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev
+Total number of assign statements in design 'gpio_synth_top' : 22
+
+ Undriven Port(s)/Pin(s)
+ ------------------------
+No undriven combinational pin in 'gpio_synth_top'
+
+No undriven sequential pin in 'gpio_synth_top'
+
+No undriven hierarchical pin in 'gpio_synth_top'
+
+No undriven port in 'gpio_synth_top'
+
+ Multidriven Port(s)/Pin(s)
+--------------------------
+
+No multidriven combinational pin in 'gpio_synth_top'
+
+No multidriven sequential pin in 'gpio_synth_top'
+
+No multidriven hierarchical pin in 'gpio_synth_top'
+
+No multidriven ports in 'gpio_synth_top'
+
+No multidriven unloaded nets in 'gpio_synth_top'
+
+  Constant Pin(s)
+  ----------------
+No constant combinational pin(s) in design 'gpio_synth_top'
+
+No constant sequential pin(s) in design 'gpio_synth_top'
+
+design 'gpio_synth_top' has the following constant input hierarchical pin(s)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[9] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[8] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[7] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[6] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[5] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[4] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[3] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[2] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[1] 	 (fanout : 1)
+hpin:gpio_synth_top/u_gpio/mux_bus_rdata_65_15/in_3[0] 	 (fanout : 1)
+Total number of constant hierarchical pins in design 'gpio_synth_top' : 10
+
+design 'gpio_synth_top' has the following constant port(s)
+port:gpio_synth_top/rdata[31]
+port:gpio_synth_top/rdata[30]
+port:gpio_synth_top/rdata[29]
+port:gpio_synth_top/rdata[28]
+port:gpio_synth_top/rdata[27]
+port:gpio_synth_top/rdata[26]
+port:gpio_synth_top/rdata[25]
+port:gpio_synth_top/rdata[24]
+port:gpio_synth_top/rdata[23]
+port:gpio_synth_top/rdata[22]
+port:gpio_synth_top/rdata[21]
+port:gpio_synth_top/rdata[20]
+port:gpio_synth_top/rdata[19]
+port:gpio_synth_top/rdata[18]
+port:gpio_synth_top/rdata[17]
+port:gpio_synth_top/rdata[16]
+port:gpio_synth_top/rdata[15]
+port:gpio_synth_top/rdata[14]
+port:gpio_synth_top/rdata[13]
+port:gpio_synth_top/rdata[12]
+port:gpio_synth_top/rdata[11]
+port:gpio_synth_top/rdata[10]
+Total number of constant port(s) in design 'gpio_synth_top' : 22
+
+  Preserved instances(s)
+  ----------------
+No preserved combinational instance(s) in design 'gpio_synth_top'
+No preserved sequential instance(s) in design 'gpio_synth_top'
+No preserved hierarchical instance(s) in design 'gpio_synth_top'
+
+  Physical only instances(s)
+  ----------------
+No physical only instance(s) in design 'gpio_synth_top'
+
+  Logical only instance(s) and linked libcells
+    -----------------------------------------
+No logical only instance(s) in design 'gpio_synth_top'
+
+Libcells with no corresponding LEF
+----------------------------------
+No libcell(s) found.
+
+LEF cells with no corresponding libcell
+---------------------------------------
+
+No physical (LEF) cells found.
+
+ Summary
+ ------- 
+
+              Name                       Total
+----------------------------------------------
+Unresolved References                        0
+Empty Modules                                0
+Unloaded Port(s)                            22
+Unloaded Sequential Pin(s)                   0
+Unloaded Combinational Pin(s)                1
+Assigns                                     22
+Undriven Port(s)                             0
+Undriven Leaf Pin(s)                         0
+Undriven hierarchical pin(s)                 0
+Multidriven Port(s)                          0
+Multidriven Leaf Pin(s)                      0
+Multidriven hierarchical Pin(s)              0
+Multidriven unloaded net(s)                  0
+Constant Port(s)                            22
+Constant Leaf Pin(s)                         0
+Constant hierarchical Pin(s)                10
+Preserved leaf instance(s)                   0
+Preserved hierarchical instance(s)           0
+Feedthrough Modules(s)                       0
+Libcells with no LEF cell                    0
+Physical (LEF) cells with no libcell         0
+Subdesigns with long module name             0
+Physical only instance(s)                    0
+Logical only instance(s)                     0
+
+  Done Checking the design.

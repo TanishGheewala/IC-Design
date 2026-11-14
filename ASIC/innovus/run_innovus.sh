@@ -8,4 +8,4 @@ export INNOVUS_DIR=$(cd "$(dirname "$0")" && pwd)
 export REPO_ROOT=$(cd "$INNOVUS_DIR/../.." && pwd)
 mkdir -p "$INNOVUS_DIR/logs"
 cd "$INNOVUS_DIR"
-innovus -no_gui -files run_innovus.tcl -log "logs/innovus_${DESIGN}.log" -overwrite
+innovus -win -files run_innovus.tcl -log "logs/innovus_${DESIGN}.log" -overwrite

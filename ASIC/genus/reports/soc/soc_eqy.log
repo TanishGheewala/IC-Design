@@ -1,0 +1,10 @@
+EQY 17:07:59 [soc] read_gold: starting process "yosys -ql soc/gold.log soc/gold.ys"
+EQY 17:07:59 [soc] read_gold: rtl/soc/RTL/memory/data_memory_sram2k.sv:40: ERROR: unknown module 'sky130_sram_2kbyte_1rw1r_32x512_8'
+EQY 17:07:59 [soc] read_gold: rtl/soc/RTL/memory/instruction_memory_sram6k.sv:46: ERROR: unknown module 'sky130_sram_2kbyte_1rw1r_32x512_8'
+EQY 17:07:59 [soc] read_gold: rtl/soc/RTL/memory/instruction_memory_sram6k.sv:66: ERROR: unknown module 'sky130_sram_2kbyte_1rw1r_32x512_8'
+EQY 17:07:59 [soc] read_gold: rtl/soc/RTL/memory/instruction_memory_sram6k.sv:86: ERROR: unknown module 'sky130_sram_2kbyte_1rw1r_32x512_8'
+EQY 17:07:59 [soc] read_gold: ERROR: Design elaboration failed; see full log for details
+EQY 17:07:59 [soc] read_gate: starting process "yosys -ql soc/gate.log soc/gate.ys"
+EQY 17:07:59 [soc] read_gold: finished (returncode=1)
+EQY 17:07:59 [soc] read_gold: job failed. ERROR.
+EQY 17:07:59 [soc] read_gate: terminating process

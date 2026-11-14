@@ -1,0 +1,240 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[11:04:17.354673] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+Version: 23.13-s073_1, built Fri Nov 08 10:01:49 PST 2024
+Options: -no_gui -files run_genus.tcl -log logs/genus_debugcon.log 
+Date:    Thu Nov 12 11:04:17 2026
+Host:    bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*1physical cpu*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB) (7813416KB)
+PID:     399478
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[11:04:17.169498] Periodic Lic check successful
+[11:04:17.693825] Feature usage summary:
+[11:04:17.693826] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (0 seconds elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (36 seconds elapsed).
+
+#@ Processing -files option
+@genus:root: 1> source run_genus.tcl
+#@ Begin verbose source ./run_genus.tcl
+@file(run_genus.tcl) 3: source $env(GENUS_DIR)/config.tcl
+Sourcing '/tapeout/IC-Design/ASIC/genus/config.tcl' (Thu Nov 12 11:04:53 PST 2026)...
+#@ Begin verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(config.tcl) 2: set REPO_ROOT $env(REPO_ROOT)
+@file(config.tcl) 3: set GENUS_DIR $env(GENUS_DIR)
+@file(config.tcl) 4: set DESIGN    $env(DESIGN)
+@file(config.tcl) 7: set PDK_ROOT    /opt/open_pdks/sky130/sky130A
+@file(config.tcl) 8: set STD_LIB_DIR $PDK_ROOT/libs.ref/sky130_fd_sc_hd/lib
+@file(config.tcl) 9: set STD_LIB     $STD_LIB_DIR/sky130_fd_sc_hd__tt_025C_1v80.lib   ;
+@file(config.tcl) 11: set EXTRA_LIBS {}
+@file(config.tcl) 14: array set TOP_OF {
+    alu  alu_synth_top
+    gpio gpio_synth_top
+    core core_synth_top
+    debugcon debug_controller_v2_synth_top
+    soc soc_synth_top
+}
+@file(config.tcl) 21: set TOP_MODULE $TOP_OF($DESIGN)
+@file(config.tcl) 22: set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
+@file(config.tcl) 23: set SDC_FILE   $GENUS_DIR/constraints/$DESIGN.sdc
+@file(config.tcl) 25: set INCLUDE_DIRS [list $REPO_ROOT/RTL/memory]
+@file(config.tcl) 28: set OUT_DIR $GENUS_DIR/out/$DESIGN
+@file(config.tcl) 29: set RPT_DIR $GENUS_DIR/reports/$DESIGN
+#@ End verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(run_genus.tcl) 4: file mkdir $OUT_DIR $RPT_DIR
+@file(run_genus.tcl) 6: read_libs [concat $STD_LIB $EXTRA_LIBS]
+
+  Message Summary for Library sky130_fd_sc_hd__tt_025C_1v80.lib:
+  **************************************************************
+  An unsupported construct was detected in this library. [LBR-40]: 11
+  **************************************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sky130_fd_sc_hd__tt_025C_1v80.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'LBR-9'.
+@file(run_genus.tcl) 8: set_db init_hdl_search_path $INCLUDE_DIRS
+  Setting attribute of root '/': 'init_hdl_search_path' = /tapeout/IC-Design/RTL/memory
+@file(run_genus.tcl) 9: set files {}
+@file(run_genus.tcl) 10: set fp [open $FILELIST r]
+@file(run_genus.tcl) 11: while {[gets $fp line] >= 0} {
+    set line [string trim $line]
+    if {$line eq "" || [string match "#*" $line]} continue
+    lappend files [file join $REPO_ROOT $line]
+}
+@file(run_genus.tcl) 16: close $fp
+@file(run_genus.tcl) 17: read_hdl -sv $files
+    state uart_state = IDLE;
+                           |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 17, column 28.
+        : For example, the following constructs will be ignored:
+    - initial block
+    - final block
+    - program block
+    - property block
+    - sequence block
+    - covergroup
+    - checker block
+    - gate drive strength
+    - system task enable
+    - reg declaration with initial value
+    - specify block.
+    state uart_next_state = IDLE;
+                                |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 18, column 33.
+    logic serial_in = 1'b1;
+                          |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 22, column 27.
+    logic serial_in_extra = 1'b1;
+                                |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 23, column 33.
+    logic [2:0] bit_counter = 0;
+                               |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 25, column 32.
+    logic [7:0] byte_out  = 0;
+                             |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 26, column 30.
+    logic transmission_done = 1'b0;
+                                  |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_rec.sv' on line 27, column 35.
+    state uart_state = IDLE;
+                           |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_trans.sv' on line 13, column 28.
+    logic serial_out = 1'b1;
+                           |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_trans.sv' on line 17, column 28.
+    logic [2:0] bit_counter = 0;
+                               |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_trans.sv' on line 18, column 32.
+    logic [7:0] byte_in  = 0;
+                            |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/uart_trans.sv' on line 19, column 29.
+        debug_if.command = debug_command;
+                           |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'debug_command' in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 58, column 28.
+        : Verilog module is using a parameter that is not defined in the module. You will get a notification for this, if you read the verilog file using the read_hdl command.
+        debug_if.core_halt = halt;
+                             |
+Error   : Reference to undeclared variable. A variable/parameter must be declared before it is referenced. [VLOGPT-20] [read_hdl]
+        : Symbol 'halt' in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 60, column 30.
+    debug_state_t debug_state = DEBUG_OFF;
+                                         |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 65, column 42.
+    debug_state_t next_debug_state = DEBUG_OFF;
+                                              |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 66, column 47.
+    logic [7:0] debug_command = 0;
+                                 |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 69, column 34.
+    logic [1:0] delay_counter = 0;
+                                 |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 75, column 34.
+    debug_trx_state_t debug_rx_state = TRX_IDLE;
+                                               |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 237, column 48.
+    logic [31:0] address_index = 0;
+                                  |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 239, column 35.
+    logic [31:0] image_bytes = 0;
+                                |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 240, column 33.
+    logic size_received = 0;
+                           |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 242, column 28.
+    debug_trx_state_t debug_tx_state = TRX_IDLE;
+                                               |
+Warning : Ignoring unsynthesizable construct. [VLOGPT-37]
+        : Initial value assignment to reg in file '/tapeout/IC-Design/RTL/io/debug_controller_v2.sv' on line 417, column 48.
+Warning : Cannot open file. [VLOGPT-650]
+        : File '/tapeout/IC-Design/ASIC/genus/wrappers/debug_controller_v2_synth_top.sv'.
+        : The specified file could not be opened.  Check the value of the init_hdl_search_path attribute.
+#@ End verbose source ./run_genus.tcl
+1
+Encountered problems processing file: run_genus.tcl
+WARNING: This version of the tool is 734 days old.
+@genus:root: 2> clear
+@genus:root: 3> exit
+
+Lic Summary:
+[11:12:02.228498] Cdslmd servers: volta
+[11:12:02.228531] Feature usage summary:
+[11:12:02.228531] Genus_Synthesis
+
+Normal exit.
