@@ -1,4 +1,4 @@
-#SDC constraints for soc
+#SDC constraints for core
 
 #sets max amount of gates something can drive without buffers
 set_max_fanout 20 [current_design]
@@ -31,4 +31,5 @@ set_output_delay -clock clk -min 0.2 [get_ports {debug_data_return[*] memory_wri
 set_dont_touch_network [get_clocks clk]
 
 #sets load to outputs to represent external load on pins from future logic, genus will pick stronger libs than if this is not set
+set_input_transition 0.03 [get_ports {core_halt debug_controller_instruction[*] debug_address[*] memory_read[*] rom_read[*]}]
 set_load 0.05 [all_outputs]
