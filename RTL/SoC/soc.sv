@@ -44,13 +44,7 @@ module soc #(
     logic [MEMORY_ADDR_WIDTH-1:0] boot_address;
     logic [3:0] boot_write_mask;
     logic boot_done;
-
-    //gpio wires from mux
-    logic [MEMORY_ADDR_WIDTH-1:0] gpio_address;
-    logic gpio_write_en;
-    logic [31:0] gpio_write;
-    logic [31:0] gpio_read;
-
+    
     //memory wires for mux
     logic [MEMORY_ADDR_WIDTH-1:0] memory_address;
     logic memory_write_en;
@@ -118,11 +112,22 @@ module soc #(
         .core_if(core0_if)
     );
 
-    initial begin
-        $monitor("boot_done: %0h", boot_done);
-    end
+    `ifndef SYNTHESIS
+        initial begin
+            $monitor("boot_done: %0h", boot_done);
+        end
+    `endif
 
     // Top-level and intermodule connections
+    assign debug_if.clk = soc_if.clk;
+    assign spi_if.clk = soc_if.clk;
+    assign core0_if.clk = soc_if.clk;
+    assign gpio_if.clk = soc_if.clk;
+    assign gpio_if.rst_n = soc_if.rst_n;
+    assign spi_if.rst_n = soc_if.rst_n;
+    assign debug_if.rst_n = soc_if.rst_n;
+    assign core0_if.rst_n = (!boot_done) ? 1'b0 : soc_if.rst_n;
+
     always_comb begin
         // Defaults to avoid latches
         rom_write_en = '0;
@@ -132,13 +137,9 @@ module soc #(
         boot_read = '0;
         boot_image_size = debug_if.write_data;
 
-        // Clock and temporary reset connection
-        core0_if.clk = soc_if.clk;
-
         // UART debug connections
-        debug_if.clk = soc_if.clk;
-        debug_if.rx  = soc_if.rx;
-        soc_if.tx    = debug_if.tx;
+        debug_if.rx = soc_if.rx;
+        soc_if.tx = debug_if.tx;
 
         // Debug-controller/core connections
         debug_if.core_data = core0_if.debug_data_return;
@@ -147,18 +148,13 @@ module soc #(
         core0_if.core_halt = debug_if.core_halt;
         flash_write_en = debug_if.flash_write_en;
         debug_if.flash_write_done = flash_write_done;
-        debug_if.rst_n = soc_if.rst_n;
 
         //in place of bootloader and gpio
-        gpio_if.clk = soc_if.clk;
         soc_if.gpio_out = gpio_if.gpio_out;
         soc_if.gpio_oe  = gpio_if.gpio_oe;
         gpio_if.gpio_in = soc_if.gpio_in;
-        gpio_if.rst_n = soc_if.gpio_in;
 
         //bootloader connections
-        spi_if.clk = soc_if.clk;
-        spi_if.rst_n = soc_if.rst_n;
         soc_if.sclk = spi_if.sclk;
         soc_if.mosi = spi_if.mosi;
         spi_if.miso = soc_if.miso;
@@ -166,7 +162,6 @@ module soc #(
 
         //bootloader start up sequence
         if(!boot_done) begin
-            core0_if.rst_n = 1'b0;
             rom_write_en = boot_write_en;
             rom_write_mask = boot_write_mask;
             rom_address = boot_address;
@@ -175,7 +170,6 @@ module soc #(
             core0_if.rom_read = '0;
         end
         else if(debug_if.command == FLASH_WRITE) begin
-            core0_if.rst_n = soc_if.rst_n;
             rom_write_en = debug_if.write_en;
             rom_write_mask = '1;
             boot_image_size = debug_if.write_data;
@@ -191,7 +185,6 @@ module soc #(
             core0_if.rom_read = '0;
         end
         else begin
-            core0_if.rst_n = soc_if.rst_n;
             rom_write_en = 1'b0;
             rom_write_mask = '0;
             rom_address = core0_if.rom_address;

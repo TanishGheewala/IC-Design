@@ -1,8 +1,5 @@
 /*
 *   Debug Controller: takes instructions from UART and decodes them into signals to control the core.
-* 
-*   TODO: WRITE BOOTLOADER DEBUG STATE LOGIC
-*   (essentially wait for bootloader to say its done the go forward)
 *
 */
 module debug_controller_v2(debug_interface_v2 debug_if);
@@ -74,13 +71,15 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     uart_interface uart_trans_if();
 
     //uart
-    uart_rec #(.CLK_RATE(80000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
-    uart_trans #(.CLK_RATE(80000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
+    uart_rec #(.CLK_RATE(100000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
+    uart_trans #(.CLK_RATE(100000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
 
     //interface connections output
+    assign uart_rec_if.clk = debug_if.clk;
+    assign uart_trans_if.clk = debug_if.clk;
+    assign uart_rec_if.rst_n = debug_if.rst_n;
+    assign uart_trans_if.rst_n = debug_if.rst_n;
     always_comb begin
-        uart_rec_if.clk = debug_if.clk;
-        uart_trans_if.clk = debug_if.clk;
         debug_if.command = debug_command;
         debug_if.tx = uart_trans_if.serial_data;
         debug_if.core_halt = halt;

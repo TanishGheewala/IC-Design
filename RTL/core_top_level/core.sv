@@ -35,13 +35,13 @@ module core #(
     branch_unit_interface   bu_if();
 
     // Program counter
-    logic [ADDR_WIDTH-1:0] pc = '0;
-    logic [ADDR_WIDTH-1:0] pc_next = '0;
+    logic [ADDR_WIDTH-1:0] pc;
+    logic [ADDR_WIDTH-1:0] pc_next;
     logic [ADDR_WIDTH-1:0] pc_plus4;
     logic [ADDR_WIDTH-1:0] pc_plus_imm;
 
     // Wait cycle for synchronous SRAM reads
-    logic [1:0] clk_delay = '0;
+    logic [1:0] clk_delay;
 
     // Load formatting
     logic [7:0]  selected_byte;
@@ -95,22 +95,23 @@ module core #(
         begin
             clk_delay <= clk_delay + 1'b1;
         end
+        `ifndef SYNTHESIS
+            if (DEBUG_PRINT)
+            begin
+                $strobe(
+                    "[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h",
+                    $time,
+                    pc,
+                    pc_next
+                );
 
-        if (DEBUG_PRINT)
-        begin
-            $strobe(
-                "[STROBE DEBUG] Time: %0t | pc: %h | pc_next: %h",
-                $time,
-                pc,
-                pc_next
-            );
-
-            $strobe(
-                "[STROBE DEBUG] Time: %0t | instruction: %h",
-                $time,
-                core_if.rom_read
-            );
-        end
+                $strobe(
+                    "[STROBE DEBUG] Time: %0t | instruction: %h",
+                    $time,
+                    core_if.rom_read
+                );
+            end
+        `endif
     end
 
     // Next-PC logic
@@ -178,10 +179,10 @@ module core #(
         bu_if.input_1       = rf_if.rs2_data;
     end
 
+    assign rf_if.clk = core_if.clk;
     // Register-file connections
     always_comb
     begin
-        rf_if.clk       = core_if.clk;
         rf_if.rs1_addr  = dec_if.rs1_addr;
         rf_if.rs2_addr  = dec_if.rs2_addr;
         rf_if.rd_addr   = dec_if.rd_addr;
@@ -351,8 +352,8 @@ module core #(
 
     // Debug readback
     always_comb
-    core_if.debug_data_return = '0;
     begin
+        core_if.debug_data_return = '0;
         if (core_if.core_halt)
         begin
             unique case (core_if.debug_controller_instruction)

@@ -27,93 +27,106 @@ module uart_rec
     logic transmission_done;
 
     //get serial input every clk
-    always_ff @(posedge uart_if.clk) begin
+    always_ff @(posedge uart_if.clk or negedge uart_if.rst_n) begin
+    if (!uart_if.rst_n) begin
+        serial_in_extra <= 1'b1;
+        serial_in       <= 1'b1;
+    end else begin
         serial_in_extra <= uart_if.serial_data;
-        serial_in <= serial_in_extra;
+        serial_in       <= serial_in_extra;
     end
+end
 
-    always_ff @(posedge uart_if.clk) begin
-        case(uart_state)
-            IDLE: begin
-                //check for low value
-                if(serial_in == 1'b0)
-                    uart_state <= START;
-                else
-                    uart_state <= IDLE;
+    always_ff @(posedge uart_if.clk or negedge uart_if.rst_n) begin
+        if(!uart_if.rst_n) begin
+            clk_counter <= 0;
+            bit_counter <= 0;
+            transmission_done <= 1'b0;
+            uart_state <= IDLE;
+            byte_out <= '0;
+        end
+        else begin
+            case(uart_state)
+                IDLE: begin
+                    //check for low value
+                    if(serial_in == 1'b0)
+                        uart_state <= START;
+                    else
+                        uart_state <= IDLE;
 
-                clk_counter <= 0;
-                bit_counter <= 0;
-                transmission_done <= 1'b0;
+                    clk_counter <= 0;
+                    bit_counter <= 0;
+                    transmission_done <= 1'b0;
 
-            end
+                end
 
-            START: begin
-                if(clk_counter == CLK_BIT) begin
-                    uart_state <= DATA;
-                    clk_counter <= 0;   
-                end 
-                else begin
-                    if(clk_counter == HALF_BIT) begin
-                        if(serial_in == 1'b0) begin
+                START: begin
+                    if(clk_counter == CLK_BIT) begin
+                        uart_state <= DATA;
+                        clk_counter <= 0;   
+                    end 
+                    else begin
+                        if(clk_counter == HALF_BIT) begin
+                            if(serial_in == 1'b0) begin
+                                uart_state <= START;
+                                clk_counter <= clk_counter + 1;
+                            end else begin
+                                uart_state <= IDLE;
+                                clk_counter <= 0; 
+                            end
+                        end
+                        else begin
                             uart_state <= START;
                             clk_counter <= clk_counter + 1;
-                        end else begin
-                            uart_state <= IDLE;
-                            clk_counter <= 0; 
                         end
+                    end               
+                end
+
+                DATA: begin
+                    //wait for half to ensure value
+                    //fill in byte bits
+                    if(clk_counter == HALF_BIT) begin
+                            byte_out[bit_counter] <= serial_in;
                     end
-                    else begin
-                        uart_state <= START;
+
+                    //clk count and then increment bit counter
+                    if(clk_counter == CLK_BIT) begin
+                        uart_state  <= (bit_counter == 7) ? STOP : DATA;
+                        clk_counter <= 0;
+                        bit_counter <= bit_counter + 1;
+                    end else begin
+                        clk_counter <= clk_counter + 1;
+                    end      
+                end
+
+                STOP: begin
+                    //mark transmission done for output
+                    bit_counter <= 0;
+
+                    //count clks per bit, then increment
+                    if(clk_counter == CLK_BIT) begin
+                        uart_state <= FINAL;
+                        clk_counter <= 0;
+                    end else begin
+                        uart_state <= STOP;
                         clk_counter <= clk_counter + 1;
                     end
-                end               
-            end
-
-            DATA: begin
-                //wait for half to ensure value
-                //fill in byte bits
-                if(clk_counter == HALF_BIT) begin
-                        byte_out[bit_counter] <= serial_in;
                 end
 
-                //clk count and then increment bit counter
-                if(clk_counter == CLK_BIT) begin
-                    uart_state  <= (bit_counter == 7) ? STOP : DATA;
-                    clk_counter <= 0;
-                    bit_counter <= bit_counter + 1;
-                end else begin
-                    clk_counter <= clk_counter + 1;
-                end      
-            end
-
-            STOP: begin
-                //mark transmission done for output
-                bit_counter <= 0;
-
-                //count clks per bit, then increment
-                if(clk_counter == CLK_BIT) begin
-                    uart_state <= FINAL;
-                    clk_counter <= 0;
-                end else begin
-                    uart_state <= STOP;
-                    clk_counter <= clk_counter + 1;
+                FINAL: begin
+                    //wait one cycle to go back to listening on IDLE
+                    uart_state <= IDLE;
+                    transmission_done <= 1'b1;
                 end
-            end
 
-            FINAL: begin
-                //wait one cycle to go back to listening on IDLE
-                uart_state <= IDLE;
-                transmission_done <= 1'b1;
-            end
-
-            default: begin
-                clk_counter <= 0;
-                bit_counter <= 0;
-                transmission_done <= 1'b0;
-                uart_state <= IDLE;
-            end
-        endcase
-
+                default: begin
+                    clk_counter <= 0;
+                    bit_counter <= 0;
+                    transmission_done <= 1'b0;
+                    uart_state <= IDLE;
+                end
+            endcase
+        end
     end
 
     //output values

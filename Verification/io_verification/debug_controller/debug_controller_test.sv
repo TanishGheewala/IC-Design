@@ -156,6 +156,7 @@ module debug_controller_tb;
         debug_controller_packet debug_controller_item = new();
 
         debug_if.rx = 1'b1;
+        debug_if.rst_n = 1'b0;
 
         clk_speed = 100000000;
         baud_rate = 9600;
@@ -163,6 +164,7 @@ module debug_controller_tb;
         $display("[DEBUG CONTROLLER STATE TEST START]");
 
         @(posedge clk)
+        debug_if.rst_n = 1'b1;
 
         test_instruction_sequence = new[15];
         test_instruction_sequence = '{debug_controller_packet::NOP, debug_controller_packet::CORE_HALT, 
