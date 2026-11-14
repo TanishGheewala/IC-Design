@@ -1,141 +1,141 @@
-EQY 16:32:55 [debugcon] read_gold: starting process "yosys -ql debugcon/gold.log debugcon/gold.ys"
-EQY 16:32:56 [debugcon] read_gold: finished (returncode=0)
-EQY 16:32:56 [debugcon] read_gate: starting process "yosys -ql debugcon/gate.log debugcon/gate.ys"
-EQY 16:32:57 [debugcon] read_gate: finished (returncode=0)
-EQY 16:32:57 [debugcon] combine: starting process "yosys -ql debugcon/combine.log debugcon/combine.ys"
-EQY 16:32:57 [debugcon] combine: finished (returncode=0)
-EQY 16:32:58 [debugcon] partition: starting process "cd debugcon; yosys -ql partition.log partition.ys"
-EQY 16:33:00 [debugcon] partition: finished (returncode=0)
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.write_data contains 1 unused gold inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.flash_write_en contains 1 unused gold inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.flash_write_en contains 4 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.debug_state contains 1 unused gold inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.debug_state contains 2 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.address_index contains 1 unused gold inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.address_index contains 2 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.TRN.uart_state contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.TRN.bit_counter contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.REC.uart_state contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.data_address contains 1 unused gold inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.data_address contains 4 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.7 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.6 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.5 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.4 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.3 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.2 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.1 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.0 contains 1 unused gate inputs.
-EQY 16:33:00 [debugcon] run: starting process "make -C debugcon -f strategies.mk"
-EQY 16:33:00 [debugcon] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
-EQY 16:33:00 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.0'..
-EQY 16:33:02 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.0' using strategy 'sby': equivalence unknown
-EQY 16:33:02 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.1'..
-EQY 16:33:04 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.1' using strategy 'sby': equivalence unknown
-EQY 16:33:04 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.2'..
-EQY 16:33:07 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.2' using strategy 'sby': equivalence unknown
-EQY 16:33:07 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.3'..
-EQY 16:33:09 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.3' using strategy 'sby': equivalence unknown
-EQY 16:33:09 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.4'..
-EQY 16:33:11 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.4' using strategy 'sby': equivalence unknown
-EQY 16:33:11 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.5'..
-EQY 16:33:13 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.5' using strategy 'sby': equivalence unknown
-EQY 16:33:13 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.6'..
-EQY 16:33:15 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.6' using strategy 'sby': equivalence unknown
-EQY 16:33:15 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.7'..
-EQY 16:33:17 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.7' using strategy 'sby': equivalence unknown
-EQY 16:33:17 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.core_halt'..
-EQY 16:33:18 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.core_halt' using strategy 'sby'
-EQY 16:33:18 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.data_address'..
-EQY 16:33:19 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.data_address' using strategy 'sby': partitions not equivalent
-EQY 16:33:19 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.bit_counter'..
-EQY 16:33:19 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.bit_counter' using strategy 'sby'
-EQY 16:33:19 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.clk_counter'..
-EQY 16:33:21 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.clk_counter' using strategy 'sby'
-EQY 16:33:21 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.serial_in'..
-EQY 16:33:22 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.serial_in' using strategy 'sby'
-EQY 16:33:22 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.uart_next_state'..
-EQY 16:33:23 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.REC.uart_next_state' using strategy 'sby': partitions not equivalent
-EQY 16:33:23 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.uart_state'..
-EQY 16:33:24 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.REC.uart_state' using strategy 'sby': equivalence unknown
-EQY 16:33:24 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.bit_counter'..
-EQY 16:33:25 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.bit_counter' using strategy 'sby': partitions not equivalent
-EQY 16:33:25 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.byte_in'..
-EQY 16:33:26 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.byte_in' using strategy 'sby'
-EQY 16:33:26 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.clk_counter'..
-EQY 16:33:27 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.clk_counter' using strategy 'sby': partitions not equivalent
-EQY 16:33:27 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.uart_state'..
-EQY 16:33:28 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.uart_state' using strategy 'sby': equivalence unknown
-EQY 16:33:28 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.address_index'..
-EQY 16:33:30 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.address_index' using strategy 'sby': partitions not equivalent
-EQY 16:33:30 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.address_out'..
-EQY 16:33:31 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.address_out' using strategy 'sby'
-EQY 16:33:31 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.boot_image_size'..
-EQY 16:33:33 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.boot_image_size' using strategy 'sby'
-EQY 16:33:33 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_rx_state'..
-EQY 16:33:35 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.debug_rx_state' using strategy 'sby': equivalence unknown
-EQY 16:33:35 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_state'..
-EQY 16:33:37 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.debug_state' using strategy 'sby': partitions not equivalent
-EQY 16:33:37 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_tx_state'..
-EQY 16:33:38 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.debug_tx_state' using strategy 'sby': partitions not equivalent
-EQY 16:33:38 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.delay_counter'..
-EQY 16:33:39 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.delay_counter' using strategy 'sby'
-EQY 16:33:39 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.image_bytes'..
-EQY 16:33:41 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.image_bytes' using strategy 'sby'
-EQY 16:33:41 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.rx_word'..
-EQY 16:33:54 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.rx_word' using strategy 'sby': equivalence unknown
-EQY 16:33:54 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.size_received'..
-EQY 16:33:55 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.size_received' using strategy 'sby'
-EQY 16:33:55 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.tx_word'..
-EQY 16:33:57 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.tx_word' using strategy 'sby'
-EQY 16:33:57 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.flash_write_en'..
-EQY 16:33:58 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.flash_write_en' using strategy 'sby': partitions not equivalent
-EQY 16:33:58 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.tx'..
-EQY 16:33:58 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.tx' using strategy 'sby'
-EQY 16:33:58 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.write_data'..
-EQY 16:33:59 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.write_data' using strategy 'sby': partitions not equivalent
-EQY 16:33:59 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.write_en'..
-EQY 16:34:00 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.write_en' using strategy 'sby'
-EQY 16:34:00 [debugcon] run: make -f strategies.mk summary
-EQY 16:34:00 [debugcon] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
-EQY 16:34:00 [debugcon] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
-EQY 16:34:00 [debugcon] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
-EQY 16:34:00 [debugcon] run: finished (returncode=0)
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.write_en
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.tx
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.tx_word
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.size_received
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.image_bytes
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.delay_counter
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.boot_image_size
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.address_out
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.TRN.byte_in
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.serial_in
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.clk_counter
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.bit_counter
-EQY 16:34:00 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.core_halt
-EQY 16:34:00 [debugcon] Warning: Failed to prove equivalence for 21/34 partitions:
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.write_data
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.flash_write_en
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.rx_word
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.debug_tx_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.debug_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.debug_rx_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.address_index
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.uart_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.clk_counter
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.bit_counter
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.REC.uart_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.REC.uart_next_state
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.data_address
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.7
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.6
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.5
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.4
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.3
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.2
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.1
-EQY 16:34:00 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.0
-EQY 16:34:00 [debugcon] summary: Elapsed clock time [H:MM:SS (secs)]: 0:01:04 (64)
-EQY 16:34:00 [debugcon] summary: Elapsed process time [H:MM:SS (secs)]: 0:01:14 (74)
-EQY 16:34:00 [debugcon] DONE (FAIL, rc=2)
+EQY 17:37:27 [debugcon] read_gold: starting process "yosys -ql debugcon/gold.log debugcon/gold.ys"
+EQY 17:37:27 [debugcon] read_gold: finished (returncode=0)
+EQY 17:37:27 [debugcon] read_gate: starting process "yosys -ql debugcon/gate.log debugcon/gate.ys"
+EQY 17:37:28 [debugcon] read_gate: finished (returncode=0)
+EQY 17:37:28 [debugcon] combine: starting process "yosys -ql debugcon/combine.log debugcon/combine.ys"
+EQY 17:37:28 [debugcon] combine: finished (returncode=0)
+EQY 17:37:29 [debugcon] partition: starting process "cd debugcon; yosys -ql partition.log partition.ys"
+EQY 17:37:31 [debugcon] partition: finished (returncode=0)
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.write_data contains 1 unused gold inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.flash_write_en contains 1 unused gold inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.flash_write_en contains 4 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.debug_state contains 1 unused gold inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.debug_state contains 2 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.address_index contains 1 unused gold inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.address_index contains 2 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.TRN.uart_state contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.TRN.bit_counter contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.dut.REC.uart_state contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.data_address contains 1 unused gold inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.data_address contains 4 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.7 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.6 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.5 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.4 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.3 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.2 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.1 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] Warning: Partition debug_controller_v2_synth_top.command.0 contains 1 unused gate inputs.
+EQY 17:37:31 [debugcon] run: starting process "make -C debugcon -f strategies.mk"
+EQY 17:37:31 [debugcon] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
+EQY 17:37:31 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.0'..
+EQY 17:37:33 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.0' using strategy 'sby': equivalence unknown
+EQY 17:37:33 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.1'..
+EQY 17:37:35 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.1' using strategy 'sby': equivalence unknown
+EQY 17:37:35 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.2'..
+EQY 17:37:37 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.2' using strategy 'sby': equivalence unknown
+EQY 17:37:37 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.3'..
+EQY 17:37:39 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.3' using strategy 'sby': equivalence unknown
+EQY 17:37:39 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.4'..
+EQY 17:37:42 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.4' using strategy 'sby': equivalence unknown
+EQY 17:37:42 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.5'..
+EQY 17:37:44 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.5' using strategy 'sby': equivalence unknown
+EQY 17:37:44 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.6'..
+EQY 17:37:46 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.6' using strategy 'sby': equivalence unknown
+EQY 17:37:46 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.command.7'..
+EQY 17:37:48 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.command.7' using strategy 'sby': equivalence unknown
+EQY 17:37:48 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.core_halt'..
+EQY 17:37:49 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.core_halt' using strategy 'sby'
+EQY 17:37:49 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.data_address'..
+EQY 17:37:50 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.data_address' using strategy 'sby': partitions not equivalent
+EQY 17:37:50 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.bit_counter'..
+EQY 17:37:51 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.bit_counter' using strategy 'sby'
+EQY 17:37:51 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.clk_counter'..
+EQY 17:37:52 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.clk_counter' using strategy 'sby'
+EQY 17:37:52 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.serial_in'..
+EQY 17:37:53 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.REC.serial_in' using strategy 'sby'
+EQY 17:37:53 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.uart_next_state'..
+EQY 17:37:54 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.REC.uart_next_state' using strategy 'sby': partitions not equivalent
+EQY 17:37:54 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.REC.uart_state'..
+EQY 17:37:56 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.REC.uart_state' using strategy 'sby': equivalence unknown
+EQY 17:37:56 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.bit_counter'..
+EQY 17:37:56 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.bit_counter' using strategy 'sby': partitions not equivalent
+EQY 17:37:56 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.byte_in'..
+EQY 17:37:58 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.byte_in' using strategy 'sby'
+EQY 17:37:58 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.clk_counter'..
+EQY 17:37:59 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.clk_counter' using strategy 'sby': partitions not equivalent
+EQY 17:37:59 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.TRN.uart_state'..
+EQY 17:38:00 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.TRN.uart_state' using strategy 'sby': equivalence unknown
+EQY 17:38:00 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.address_index'..
+EQY 17:38:02 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.address_index' using strategy 'sby': partitions not equivalent
+EQY 17:38:02 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.address_out'..
+EQY 17:38:03 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.address_out' using strategy 'sby'
+EQY 17:38:03 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.boot_image_size'..
+EQY 17:38:05 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.boot_image_size' using strategy 'sby'
+EQY 17:38:05 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_rx_state'..
+EQY 17:38:07 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.debug_rx_state' using strategy 'sby': equivalence unknown
+EQY 17:38:07 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_state'..
+EQY 17:38:09 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.debug_state' using strategy 'sby': partitions not equivalent
+EQY 17:38:09 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.debug_tx_state'..
+EQY 17:38:10 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.debug_tx_state' using strategy 'sby'
+EQY 17:38:10 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.delay_counter'..
+EQY 17:38:10 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.delay_counter' using strategy 'sby'
+EQY 17:38:10 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.image_bytes'..
+EQY 17:38:12 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.image_bytes' using strategy 'sby'
+EQY 17:38:12 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.rx_word'..
+EQY 17:38:26 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.dut.rx_word' using strategy 'sby': equivalence unknown
+EQY 17:38:26 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.size_received'..
+EQY 17:38:27 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.size_received' using strategy 'sby'
+EQY 17:38:27 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.dut.tx_word'..
+EQY 17:38:28 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.dut.tx_word' using strategy 'sby'
+EQY 17:38:28 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.flash_write_en'..
+EQY 17:38:29 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.flash_write_en' using strategy 'sby': partitions not equivalent
+EQY 17:38:29 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.tx'..
+EQY 17:38:30 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.tx' using strategy 'sby'
+EQY 17:38:30 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.write_data'..
+EQY 17:38:31 [debugcon] run: Could not prove equivalence of partition 'debug_controller_v2_synth_top.write_data' using strategy 'sby': partitions not equivalent
+EQY 17:38:31 [debugcon] run: Running strategy 'sby' on 'debug_controller_v2_synth_top.write_en'..
+EQY 17:38:31 [debugcon] run: Proved equivalence of partition 'debug_controller_v2_synth_top.write_en' using strategy 'sby'
+EQY 17:38:31 [debugcon] run: make -f strategies.mk summary
+EQY 17:38:31 [debugcon] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
+EQY 17:38:31 [debugcon] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
+EQY 17:38:31 [debugcon] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/debugcon'
+EQY 17:38:31 [debugcon] run: finished (returncode=0)
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.write_en
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.tx
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.tx_word
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.size_received
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.image_bytes
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.delay_counter
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.debug_tx_state
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.boot_image_size
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.address_out
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.TRN.byte_in
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.serial_in
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.clk_counter
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.dut.REC.bit_counter
+EQY 17:38:31 [debugcon] Successfully proved equivalence of partition debug_controller_v2_synth_top.core_halt
+EQY 17:38:31 [debugcon] Warning: Failed to prove equivalence for 20/34 partitions:
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.write_data
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.flash_write_en
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.rx_word
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.debug_state
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.debug_rx_state
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.address_index
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.uart_state
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.clk_counter
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.TRN.bit_counter
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.REC.uart_state
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.dut.REC.uart_next_state
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.data_address
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.7
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.6
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.5
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.4
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.3
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.2
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.1
+EQY 17:38:31 [debugcon] Failed to prove equivalence of partition debug_controller_v2_synth_top.command.0
+EQY 17:38:31 [debugcon] summary: Elapsed clock time [H:MM:SS (secs)]: 0:01:04 (64)
+EQY 17:38:31 [debugcon] summary: Elapsed process time [H:MM:SS (secs)]: 0:01:15 (75)
+EQY 17:38:31 [debugcon] DONE (FAIL, rc=2)

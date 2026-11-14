@@ -1698,20 +1698,20 @@
 "object":"/designs/debug_controller_v2_synth_top/instances_hier/dut/instances_seq/tx_word_reg[31]",
 "type":"instance"},
 {"index": "2", 
- "date": "Sat Nov 14 01:11:49 UTC 2026",
- "seconds": 1794618709.731922,
+ "date": "Sat Nov 14 01:35:56 UTC 2026",
+ "seconds": 1794620156.9148479,
  "netlist": "/tapeout/IC-Design/ASIC/genus/out/debugcon/debugcon_netlist.v", 
  "netlist_exists": "1", 
  "netlist_normalize": "/tapeout/IC-Design/ASIC/genus/out/debugcon/debugcon_netlist.v", 
- "netlist_mtime": "1794618706", 
- "netlist_timestamp": "Sat Nov 14 01:11:46 UTC 2026", 
+ "netlist_mtime": "1794620153", 
+ "netlist_timestamp": "Sat Nov 14 01:35:53 UTC 2026", 
  "netlist_size": "140173", 
- "netlist_cksum": "4102492458", 
+ "netlist_cksum": "2526302651", 
  "design_name": "debug_controller_v2_synth_top", 
  "synth_workdir": "/tapeout/IC-Design/ASIC/genus", 
  "synthesis_command":"",
  "current_label": "debugcon_netlistv", 
  "previous_label": "fv_map", 
- "write_verif_file_runtime": 1.840358 
+ "write_verif_file_runtime": 1.961722 
  }
 ]
