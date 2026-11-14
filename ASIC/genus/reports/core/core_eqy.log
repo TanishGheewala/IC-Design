@@ -1,0 +1,20 @@
+EQY 17:18:21 [core] read_gold: starting process "yosys -ql core/gold.log core/gold.ys"
+EQY 17:18:21 [core] read_gold: finished (returncode=0)
+EQY 17:18:21 [core] read_gate: starting process "yosys -ql core/gate.log core/gate.ys"
+EQY 17:18:28 [core] read_gate: finished (returncode=0)
+EQY 17:18:28 [core] combine: starting process "yosys -ql core/combine.log core/combine.ys"
+EQY 17:18:29 [core] combine: finished (returncode=0)
+EQY 17:18:34 [core] partition: starting process "cd core; yosys -ql partition.log partition.ys"
+EQY 17:19:05 [core] partition: finished (returncode=0)
+EQY 17:19:06 [core] run: starting process "make -C core -f strategies.mk"
+EQY 17:19:06 [core] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 17:19:06 [core] run: Running strategy 'sby' on 'core_synth_top.debug_data_return'..
+EQY 17:19:08 [core] run: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
+EQY 17:19:08 [core] run: Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
+EQY 17:19:08 [core] run: engine_0 (smtbmc yices) did not return a status
+EQY 17:19:08 [core] run: engine_0 did not produce any traces
+EQY 17:19:08 [core] run: Execution of strategy 'sby' on partition 'core_synth_top.debug_data_return' encountered an error.
+EQY 17:19:08 [core] run: More details can be found in 'core/strategies/core_synth_top.debug_data_return/sby/core_synth_top.debug_data_return/logfile.txt'.
+EQY 17:19:08 [core] run: make: *** [strategies.mk:113: strategies/core_synth_top.debug_data_return/sby/status] Error 1
+EQY 17:19:08 [core] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 17:19:08 [core] run: finished (returncode=2)

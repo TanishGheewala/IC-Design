@@ -1,0 +1,82 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[16:14:21.354681] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+Version: 23.13-s073_1, built Fri Nov 08 10:01:49 PST 2024
+Options: -no_gui -files run_genus.tcl -log logs/genus_debugcon.log 
+Date:    Fri Nov 13 16:14:21 2026
+Host:    bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*1physical cpu*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB) (7813416KB)
+PID:     451194
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[16:14:21.485834] Periodic Lic check successful
+[16:14:21.485857] Feature usage summary:
+[16:14:21.485858] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (37 seconds elapsed).
+
+#@ Processing -files option
+@genus:root: 1> source run_genus.tcl
+#@ Begin verbose source ./run_genus.tcl
+@file(run_genus.tcl) 3: source $env(GENUS_DIR)/config.tcl
+Sourcing '/tapeout/IC-Design/ASIC/genus/config.tcl' (Fri Nov 13 16:14:58 PST 2026)...
+#@ Begin verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(config.tcl) 2: set REPO_ROOT $env(REPO_ROOT)
+@file(config.tcl) 3: set GENUS_DIR $env(GENUS_DIR)
+@file(config.tcl) 4: set DESIGN    $env(DESIGN)
+@file(config.tcl) 7: set PDK_ROOT    /opt/open_pdks/sky130/sky130A
+@file(config.tcl) 8: set STD_LIB_DIR $PDK_ROOT/libs.ref/sky130_fd_sc_hd/lib
+@file(config.tcl) 9: set STD_LIB     $STD_LIB_DIR/sky130_fd_sc_hd__tt_025C_1v80.lib   ;
+@file(config.tcl) 10: set SRAM_LIB    $REPO_ROOT/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
+@file(config.tcl) 12: set EXTRA_LIBS [list $SRAM_LIB]
+@file(config.tcl) 15: array set TOP_OF {
+    alu  alu_synth_top
+    gpio gpio_synth_top
+    core core_synth_top
+    debugcon debug_controller_v2_synth_top
+    soc soc_synth_top
+}
+@file(config.tcl) 22: set TOP_MODULE $TOP_OF($DESIGN)
+@file(config.tcl) 23: set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
+@file(config.tcl) 24: set SDC_FILE   $GENUS_DIR/constraints/$DESIGN.sdc
+@file(config.tcl) 26: set INCLUDE_DIRS [list $REPO_ROOT/RTL/memory]
+@file(config.tcl) 29: set OUT_DIR $GENUS_DIR/out/$DESIGN
+@file(config.tcl) 30: set RPT_DIR $GENUS_DIR/reports/$DESIGN
+#@ End verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(run_genus.tcl) 4: file mkdir $OUT_DIR $RPT_DIR
+@file(run_genus.tcl) 6: read_libs [concat $STD_LIB $EXTRA_LIBS]
+Error   : File error. [FILE-100] [::legacy::set_attribute]
+        : Cannot open file '/tapeout/IC-Design/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib'. File not found.
+        : Make sure that the file is a readable regular file and has the specified name.
+Error   : A library file does not exist. [LBR-68] [::legacy::set_attribute]
+        : File '/tapeout/IC-Design/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib' could not be found. File '<none>' was the last file that was successfully read in.
+        : Make sure that the library file exists or check for a typo in the file name.
+Error   : The data value for this attribute is invalid. [TUI-24] [::legacy::set_attribute]
+        : The value '  { /opt/open_pdks/sky130/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib }  { /tapeout/IC-Design/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib } ' cannot be set for attribute 'library'.
+        : To see the usage/description for this attribute, type '::legacy::set_attribute -h <attr_name> *' (in legacy UI mode) or 'help * <attr_name> -detail' (in CUI mode).
+#@ End verbose source ./run_genus.tcl
+1
+Encountered problems processing file: run_genus.tcl
+WARNING: This version of the tool is 735 days old.
+@genus:root: 2> exit
+
+Lic Summary:
+[16:20:07.043667] Cdslmd servers: volta
+[16:20:07.043697] Feature usage summary:
+[16:20:07.043699] Genus_Synthesis
+
+Normal exit.

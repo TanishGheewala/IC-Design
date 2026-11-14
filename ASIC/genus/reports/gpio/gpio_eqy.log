@@ -1,0 +1,218 @@
+EQY 20:53:18 [gpio] read_gold: starting process "yosys -ql gpio/gold.log gpio/gold.ys"
+EQY 20:53:18 [gpio] read_gold: finished (returncode=0)
+EQY 20:53:18 [gpio] read_gate: starting process "yosys -ql gpio/gate.log gpio/gate.ys"
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [31] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [30] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [29] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [28] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [27] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [26] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [25] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [24] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [23] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [22] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [21] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [20] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [19] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [18] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [17] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [16] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [15] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [14] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [13] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [12] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [11] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_GPIO_WIDTH10_DATA_WIDTH32_gpio_if_gpio_interface_GPIO_WIDTH10_gpio_dut_bus_io_interface_ADDR_WIDTH10_DATA_WIDTH32_io_dev.\bus_rdata [10] is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z20 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z19 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z18 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z17 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z16 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z15 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z14 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z13 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z12 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z11 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z10 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z9 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z8 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z7 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z6 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z5 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z4 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z3 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z2 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z1 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z0 is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: Warning: Wire gpio_synth_top.\UNCONNECTED_HIER_Z is used but has no driver.
+EQY 20:53:18 [gpio] read_gate: finished (returncode=0)
+EQY 20:53:18 [gpio] combine: starting process "yosys -ql gpio/combine.log gpio/combine.ys"
+EQY 20:53:18 [gpio] combine: finished (returncode=0)
+EQY 20:53:18 [gpio] partition: starting process "cd gpio; yosys -ql partition.log partition.ys"
+EQY 20:53:19 [gpio] partition: finished (returncode=0)
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.9 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.8 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.7 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.6 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.5 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.4 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.3 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.2 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.1 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_out.0 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.9 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.8 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.7 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.6 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.5 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.4 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.3 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.2 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.1 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] Warning: Partition gpio_synth_top.gpio_oe.0 contains 2 unused gate inputs.
+EQY 20:53:19 [gpio] run: starting process "make -C gpio -f strategies.mk"
+EQY 20:53:19 [gpio] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/gpio'
+EQY 20:53:19 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.0'..
+EQY 20:53:19 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.0' using strategy 'sby'
+EQY 20:53:19 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.1'..
+EQY 20:53:20 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.1' using strategy 'sby'
+EQY 20:53:20 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.2'..
+EQY 20:53:21 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.2' using strategy 'sby'
+EQY 20:53:21 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.3'..
+EQY 20:53:21 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.3' using strategy 'sby'
+EQY 20:53:21 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.4'..
+EQY 20:53:22 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.4' using strategy 'sby'
+EQY 20:53:22 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.5'..
+EQY 20:53:22 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.5' using strategy 'sby'
+EQY 20:53:22 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.6'..
+EQY 20:53:23 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.6' using strategy 'sby'
+EQY 20:53:23 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.7'..
+EQY 20:53:24 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.7' using strategy 'sby'
+EQY 20:53:24 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.8'..
+EQY 20:53:24 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.8' using strategy 'sby'
+EQY 20:53:24 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_oe.9'..
+EQY 20:53:25 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_oe.9' using strategy 'sby'
+EQY 20:53:25 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.0'..
+EQY 20:53:26 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.0' using strategy 'sby'
+EQY 20:53:26 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.1'..
+EQY 20:53:26 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.1' using strategy 'sby'
+EQY 20:53:26 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.2'..
+EQY 20:53:27 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.2' using strategy 'sby'
+EQY 20:53:27 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.3'..
+EQY 20:53:27 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.3' using strategy 'sby'
+EQY 20:53:27 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.4'..
+EQY 20:53:28 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.4' using strategy 'sby'
+EQY 20:53:28 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.5'..
+EQY 20:53:29 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.5' using strategy 'sby'
+EQY 20:53:29 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.6'..
+EQY 20:53:29 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.6' using strategy 'sby'
+EQY 20:53:29 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.7'..
+EQY 20:53:30 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.7' using strategy 'sby'
+EQY 20:53:30 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.8'..
+EQY 20:53:30 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.8' using strategy 'sby'
+EQY 20:53:30 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.gpio_out.9'..
+EQY 20:53:31 [gpio] run: Proved equivalence of partition 'gpio_synth_top.gpio_out.9' using strategy 'sby'
+EQY 20:53:31 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.0'..
+EQY 20:53:32 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.0' using strategy 'sby'
+EQY 20:53:32 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.10'..
+EQY 20:53:32 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.10' using strategy 'sby'
+EQY 20:53:32 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.11'..
+EQY 20:53:33 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.11' using strategy 'sby'
+EQY 20:53:33 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.12'..
+EQY 20:53:33 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.12' using strategy 'sby'
+EQY 20:53:33 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.13'..
+EQY 20:53:34 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.13' using strategy 'sby'
+EQY 20:53:34 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.14'..
+EQY 20:53:34 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.14' using strategy 'sby'
+EQY 20:53:34 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.15'..
+EQY 20:53:35 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.15' using strategy 'sby'
+EQY 20:53:35 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.16'..
+EQY 20:53:35 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.16' using strategy 'sby'
+EQY 20:53:35 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.17'..
+EQY 20:53:36 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.17' using strategy 'sby'
+EQY 20:53:36 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.18'..
+EQY 20:53:36 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.18' using strategy 'sby'
+EQY 20:53:36 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.19'..
+EQY 20:53:37 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.19' using strategy 'sby'
+EQY 20:53:37 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.20'..
+EQY 20:53:37 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.20' using strategy 'sby'
+EQY 20:53:37 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.21'..
+EQY 20:53:38 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.21' using strategy 'sby'
+EQY 20:53:38 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.22'..
+EQY 20:53:38 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.22' using strategy 'sby'
+EQY 20:53:38 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.23'..
+EQY 20:53:39 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.23' using strategy 'sby'
+EQY 20:53:39 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.24'..
+EQY 20:53:39 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.24' using strategy 'sby'
+EQY 20:53:39 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.25'..
+EQY 20:53:40 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.25' using strategy 'sby'
+EQY 20:53:40 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.26'..
+EQY 20:53:40 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.26' using strategy 'sby'
+EQY 20:53:40 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.27'..
+EQY 20:53:41 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.27' using strategy 'sby'
+EQY 20:53:41 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.28'..
+EQY 20:53:41 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.28' using strategy 'sby'
+EQY 20:53:41 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.29'..
+EQY 20:53:42 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.29' using strategy 'sby'
+EQY 20:53:42 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.30'..
+EQY 20:53:42 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.30' using strategy 'sby'
+EQY 20:53:42 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.rdata.31'..
+EQY 20:53:43 [gpio] run: Proved equivalence of partition 'gpio_synth_top.rdata.31' using strategy 'sby'
+EQY 20:53:43 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.u_gpio.in_meta'..
+EQY 20:53:43 [gpio] run: Proved equivalence of partition 'gpio_synth_top.u_gpio.in_meta' using strategy 'sby'
+EQY 20:53:43 [gpio] run: Running strategy 'sby' on 'gpio_synth_top.u_gpio.in_sync'..
+EQY 20:53:44 [gpio] run: Proved equivalence of partition 'gpio_synth_top.u_gpio.in_sync' using strategy 'sby'
+EQY 20:53:44 [gpio] run: make -f strategies.mk summary
+EQY 20:53:44 [gpio] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/gpio'
+EQY 20:53:44 [gpio] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/gpio'
+EQY 20:53:44 [gpio] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/gpio'
+EQY 20:53:44 [gpio] run: finished (returncode=0)
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.u_gpio.in_sync
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.u_gpio.in_meta
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.31
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.30
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.29
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.28
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.27
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.26
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.25
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.24
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.23
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.22
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.21
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.20
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.19
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.18
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.17
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.16
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.15
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.14
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.13
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.12
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.11
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.10
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.rdata.0
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.9
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.8
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.7
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.6
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.5
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.4
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.3
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.2
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.1
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_out.0
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.9
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.8
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.7
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.6
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.5
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.4
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.3
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.2
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.1
+EQY 20:53:44 [gpio] Successfully proved equivalence of partition gpio_synth_top.gpio_oe.0
+EQY 20:53:44 [gpio] Successfully proved designs equivalent
+EQY 20:53:44 [gpio] summary: Elapsed clock time [H:MM:SS (secs)]: 0:00:26 (26)
+EQY 20:53:44 [gpio] summary: Elapsed process time [H:MM:SS (secs)]: 0:00:33 (33)
+EQY 20:53:44 [gpio] DONE (PASS, rc=0)
