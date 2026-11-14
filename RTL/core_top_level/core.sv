@@ -351,6 +351,7 @@ module core #(
 
     // Debug readback
     always_comb
+    core_if.debug_data_return = '0;
     begin
         if (core_if.core_halt)
         begin
