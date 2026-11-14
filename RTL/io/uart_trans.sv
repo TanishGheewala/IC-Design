@@ -13,7 +13,8 @@ module uart_trans
     state uart_state;
     
     //transmission registers
-    logic [31:0] clk_counter;
+    localparam int CNT_WIDTH = $clog2(CLK_BIT + 1);
+    logic [CNT_WIDTH-1:0] clk_counter;
     logic serial_out;
     logic [2:0] bit_counter;
     logic [7:0] byte_in;
@@ -86,6 +87,8 @@ module uart_trans
             FINAL: begin
                 //extra clk stop before entering another state
                 //ensures functionality with back to back inputs
+                clk_counter <= 0;
+                bit_counter <= 0;
                 uart_state <= IDLE;
             end
 

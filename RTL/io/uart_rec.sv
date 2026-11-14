@@ -15,9 +15,9 @@ module uart_rec
     typedef enum logic [2:0] {IDLE, START, DATA, STOP, FINAL} state;
 
     state uart_state;
-    state uart_next_state;
 
-    logic [31:0] clk_counter;
+    localparam int CNT_WIDTH = $clog2(CLK_BIT + 1);
+    logic [CNT_WIDTH-1:0] clk_counter;
 
     logic serial_in;
     logic serial_in_extra;
@@ -48,21 +48,24 @@ module uart_rec
             end
 
             START: begin
-                //ensure start bit is true bty checking low bit halfway
-                if(clk_counter == HALF_BIT) begin
-                    if(serial_in == 1'b0) begin
-                        uart_next_state <= DATA;
-                    end else begin
-                        uart_next_state <= IDLE;
-                    end
-                end
-                //go to DATA state on true check, IDLE otherwise
                 if(clk_counter == CLK_BIT) begin
-                    uart_state <= uart_next_state;
-                    clk_counter <= 0;
-                end else begin
-                    uart_state <= START;
-                    clk_counter <= clk_counter + 1;
+                    uart_state <= DATA;
+                    clk_counter <= 0;   
+                end 
+                else begin
+                    if(clk_counter == HALF_BIT) begin
+                        if(serial_in == 1'b0) begin
+                            uart_state <= START;
+                            clk_counter <= clk_counter + 1;
+                        end else begin
+                            uart_state <= IDLE;
+                            clk_counter <= 0; 
+                        end
+                    end
+                    else begin
+                        uart_state <= START;
+                        clk_counter <= clk_counter + 1;
+                    end
                 end               
             end
 
@@ -73,21 +76,14 @@ module uart_rec
                         byte_out[bit_counter] <= serial_in;
                 end
 
-                //change state after last bit
-                if(bit_counter == 7) begin
-                    uart_next_state <= STOP;
-                end else begin
-                    uart_next_state <= DATA;
-                end
-
                 //clk count and then increment bit counter
                 if(clk_counter == CLK_BIT) begin
-                    uart_state <= uart_next_state;
+                    uart_state  <= (bit_counter == 7) ? STOP : DATA;
                     clk_counter <= 0;
                     bit_counter <= bit_counter + 1;
                 end else begin
                     clk_counter <= clk_counter + 1;
-                end        
+                end      
             end
 
             STOP: begin
@@ -115,7 +111,6 @@ module uart_rec
                 bit_counter <= 0;
                 transmission_done <= 1'b0;
                 uart_state <= IDLE;
-                uart_next_state <= IDLE;
             end
         endcase
 
