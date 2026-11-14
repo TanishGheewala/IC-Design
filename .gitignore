@@ -14,9 +14,6 @@ ASIC/innovus/.cadence/
 ASIC/innovus/timingReports/
 ASIC/innovus/*.rpt.old
 
-# Local SRAM / macro physical views (large; fetched per-machine)
-ASIC/macros/
-
 # ------------------------------------------------------------------
 # Generated hardware / sim artifacts
 # ------------------------------------------------------------------
