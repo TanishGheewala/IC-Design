@@ -97,7 +97,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         end
         else begin
             debug_state <= next_debug_state;
-            unique case(debug_state)
+            case(debug_state)
                 DEBUG_MENU, DEBUG_OFF: begin
                     address_out <= 0;
                     if(uart_rec_if.uart_tran_done)
@@ -132,7 +132,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
     //debug comtroller state advance logic
     always_comb begin
-        unique case(debug_state)
+        case(debug_state)
             DEBUG_OFF: begin
                 debug_if.flash_write_en = 1'b0;
                 if(debug_command == CORE_HALT) begin
@@ -148,7 +148,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
             DEBUG_MENU: begin
                 halt = 1'b1;
                 debug_if.flash_write_en = 1'b0;
-                unique case(debug_command)
+                 case(debug_command)
                     RETURN_REG: begin
                         next_debug_state = DEBUG_RX;
                     end
@@ -256,7 +256,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         end
         else begin
             debug_rx_state <= next_debug_rx_state;
-            unique case(debug_rx_state)
+            case(debug_rx_state)
                 TRX_IDLE: begin
                     rx_word <= 0;
                     if(debug_state != DEBUG_RX) begin
@@ -318,7 +318,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         debug_if.write_data = 0;
         debug_if.write_en = 1'b0;   
         debug_if.data_address = 0;
-        unique case(debug_command)
+        case(debug_command)
             FLASH_WRITE: begin
                 if(size_received && (debug_rx_state == END_TRANSMISION)) begin
                     debug_if.data_address = address_index;
@@ -351,7 +351,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
     //rx state advance logic
     always_comb begin
-        unique case(debug_rx_state)
+        case(debug_rx_state)
             TRX_IDLE: begin
                 debug_rx_done = 1'b0;
                 if(debug_state == DEBUG_RX)
@@ -394,7 +394,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
             END_TRANSMISION: begin
                 next_debug_rx_state = TRX_IDLE; 
-                unique case(debug_command)
+                case(debug_command)
                     FLASH_WRITE: begin
                         if(size_received && (address_index + 4 >= image_bytes)) begin
                             debug_rx_done = 1'b1;
@@ -432,7 +432,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         uart_trans_if.byte_data = '0;
         uart_trans_if.uart_tran_done = 0;
         debug_tx_done = 1'b0;
-        unique case(debug_tx_state)
+        case(debug_tx_state)
             TRX_IDLE: begin
                 debug_tx_done = 1'b0;
                 uart_trans_if.uart_tran_done = 0;
