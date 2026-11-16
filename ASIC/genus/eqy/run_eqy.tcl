@@ -175,7 +175,7 @@ foreach design $designs {
 $macro_libs
 plugin -i slang
 read_slang $slang_opts $gold_files
-choformal -remove
+chformal -remove
 prep -flatten -top $TOP_MODULE
 memory_map
 opt_clean
