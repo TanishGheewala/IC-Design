@@ -175,7 +175,10 @@ foreach design $designs {
 $macro_libs
 plugin -i slang
 read_slang $slang_opts $gold_files
+chformal -remove
 prep -flatten -top $TOP_MODULE
+memory_map
+opt_clean
 
 # Gate: Genus netlist. The standard-cell .lib is read WITHOUT -lib so each
 # cell gets its logic from the 'function' attributes.
@@ -185,10 +188,20 @@ $macro_libs
 read_verilog $netlist
 prep -flatten -top $TOP_MODULE
 
+\[strategy sat\]
+use sat
+depth $depth
+
 \[strategy sby\]
 use sby
 depth $depth
-engine $EQY_ENGINE"
+timeout 90
+engine $EQY_ENGINE
+
+\[strategy pdr\]
+use sby
+timeout 90
+engine abc pdr"
     close $fp
 
     # EQY output goes to work/<design>.out (EQY_QUIET 1) or the terminal.

@@ -22,4 +22,4 @@ array set EQY_DEPTH {
 set EQY_QUIET 1
 
 # SBY solver engine.
-set EQY_ENGINE "smtbmc yices"
+set EQY_ENGINE "smtbmc bitwuzla"
