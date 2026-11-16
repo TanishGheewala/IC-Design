@@ -175,7 +175,10 @@ foreach design $designs {
 $macro_libs
 plugin -i slang
 read_slang $slang_opts $gold_files
+choformal -remove
 prep -flatten -top $TOP_MODULE
+memory_map
+opt_clean
 
 # Gate: Genus netlist. The standard-cell .lib is read WITHOUT -lib so each
 # cell gets its logic from the 'function' attributes.
