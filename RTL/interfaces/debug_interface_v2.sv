@@ -27,6 +27,7 @@ interface debug_interface_v2();
         input rx,
         input core_data,
         input flash_write_done,
+        input rst_n,
         output tx,
         output core_halt,
         output command,

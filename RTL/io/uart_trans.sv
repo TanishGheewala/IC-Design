@@ -19,86 +19,93 @@ module uart_trans
     logic [2:0] bit_counter;
     logic [7:0] byte_in;
 
-    always_ff @(posedge uart_if.clk) begin
-        
-        case(uart_state)
-            IDLE: begin
-                //cleans inputs
-                serial_out <= 1'b1;
-                clk_counter <= 0;
-                bit_counter <= 0;
+    always_ff @(posedge uart_if.clk or negedge uart_if.rst_n) begin
+        if(!uart_if.rst_n) begin
+            uart_state <= IDLE;
+            serial_out <= 1'b1;
+            clk_counter <= 0;
+            bit_counter <= 0;
+        end
+        else begin
+            case(uart_state)
+                IDLE: begin
+                    //cleans inputs
+                    serial_out <= 1'b1;
+                    clk_counter <= 0;
+                    bit_counter <= 0;
 
-                //transmits on tran_done_signal
-                if(uart_if.uart_tran_done == 1'b1) begin
-                    byte_in <= uart_if.byte_data;
-                    uart_state <= START;
-                end else begin
+                    //transmits on tran_done_signal
+                    if(uart_if.uart_tran_done == 1'b1) begin
+                        byte_in <= uart_if.byte_data;
+                        uart_state <= START;
+                    end else begin
+                        uart_state <= IDLE;
+                    end
+
+                end
+
+                START: begin
+                    //outputs start bit for 1 frame
+                    serial_out <= 1'b0;
+                    
+                    if(clk_counter < CLK_BIT) begin
+                        clk_counter <= clk_counter + 1;
+                        uart_state <= START;
+                    end else begin
+                        clk_counter <= 0;
+                        uart_state <= DATA;
+                    end
+
+                end
+
+                DATA: begin
+                    //outputs all data bits each taking 1 frame
+                    serial_out <= byte_in[bit_counter];
+                    
+                    if(clk_counter < CLK_BIT) begin
+                        clk_counter <= clk_counter + 1;
+                        uart_state <= DATA;
+                    end else begin
+                        clk_counter <= 0;
+                        if(bit_counter < 7) begin
+                            bit_counter <= bit_counter + 1;
+                            uart_state <= DATA;
+                        end else begin
+                            bit_counter <= 0;
+                            uart_state <= STOP;
+                        end
+                    end
+                end
+
+                STOP: begin    
+                    //outputs stop bit for 1 frame
+                    serial_out <= 1'b1;
+                    
+                    if(clk_counter < CLK_BIT) begin
+                        clk_counter <= clk_counter + 1;
+                        uart_state <= STOP;
+                    end else begin
+                        clk_counter <= 0;
+                        uart_state <= FINAL;
+                    end
+                end
+
+                FINAL: begin
+                    //extra clk stop before entering another state
+                    //ensures functionality with back to back inputs
+                    clk_counter <= 0;
+                    bit_counter <= 0;
                     uart_state <= IDLE;
                 end
 
-            end
-
-            START: begin
-                //outputs start bit for 1 frame
-                serial_out <= 1'b0;
-                
-                if(clk_counter < CLK_BIT) begin
-                    clk_counter <= clk_counter + 1;
-                    uart_state <= START;
-                end else begin
+                default: begin
+                    uart_state <= IDLE;
+                    serial_out <= 1'b1;
                     clk_counter <= 0;
-                    uart_state <= DATA;
+                    bit_counter <= 0;
                 end
-
-            end
-
-            DATA: begin
-                //outputs all data bits each taking 1 frame
-                serial_out <= byte_in[bit_counter];
-                
-                if(clk_counter < CLK_BIT) begin
-                    clk_counter <= clk_counter + 1;
-                    uart_state <= DATA;
-                end else begin
-                    clk_counter <= 0;
-                    if(bit_counter < 7) begin
-                        bit_counter <= bit_counter + 1;
-                        uart_state <= DATA;
-                    end else begin
-                        bit_counter <= 0;
-                        uart_state <= STOP;
-                    end
-                end
-            end
-
-            STOP: begin    
-                //outputs stop bit for 1 frame
-                serial_out <= 1'b1;
-                
-                if(clk_counter < CLK_BIT) begin
-                    clk_counter <= clk_counter + 1;
-                    uart_state <= STOP;
-                end else begin
-                    clk_counter <= 0;
-                    uart_state <= FINAL;
-                end
-            end
-
-            FINAL: begin
-                //extra clk stop before entering another state
-                //ensures functionality with back to back inputs
-                clk_counter <= 0;
-                bit_counter <= 0;
-                uart_state <= IDLE;
-            end
-
-            default: begin
-                uart_state <= IDLE;
-                serial_out <= 1'b1;
-                clk_counter <= 0;
-                bit_counter <= 0;
-            end
-        endcase
+            endcase
+        end
     end
 
     //output

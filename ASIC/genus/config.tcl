@@ -8,15 +8,18 @@ set PDK_ROOT    /opt/open_pdks/sky130/sky130A
 set STD_LIB_DIR $PDK_ROOT/libs.ref/sky130_fd_sc_hd/lib
 set STD_LIB     $STD_LIB_DIR/sky130_fd_sc_hd__tt_025C_1v80.lib   ;
 
-set EXTRA_LIBS {}
+# SRAM Macro Liberty (timing/pins for Genus):
+set SRAM_LIB    $REPO_ROOT/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
+set EXTRA_LIBS  [list $SRAM_LIB]
 
 # Design-Specific Settings:
 array set TOP_OF {
-    alu  alu_synth_top
-    gpio gpio_synth_top
-    core core_synth_top
+    alu      alu_synth_top
+    gpio     gpio_synth_top
+    core     core_synth_top
     debugcon debug_controller_v2_synth_top
-    soc soc_synth_top
+    sram2k   data_memory_sram2k
+    soc      soc_synth_top
 }
 set TOP_MODULE $TOP_OF($DESIGN)
 set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
