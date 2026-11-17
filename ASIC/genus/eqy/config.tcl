@@ -12,7 +12,7 @@ set EQY_STRIP_SIM_TASKS 1
 
 # Proof depth (clock cycles) for each partition. Raise it for a design whose
 # partitions come back unproven, e.g. add "core 20" inside the braces below.
-set EQY_DEPTH_DEFAULT 2
+set EQY_DEPTH_DEFAULT 10
 array set EQY_DEPTH {
 }
 

@@ -3,46 +3,43 @@
 *
 */
 module debug_controller_v2(debug_interface_v2 debug_if);
-    //debug controller overall state
+    //debug controller overall state<	
     //OFF when core running
     //MENU when core halted and awaitin command
     //TX when transmiting to user PC
     //RX when receiving from user PC
-    typedef enum logic [2:0] {
-        DEBUG_OFF,
-        DEBUG_MENU,
-        DEBUG_RX,
-        PROP_DELAY,
-        DEBUG_TX,
-        BOOTLOAD,
-        CLEAN_UP
-    }debug_state_t;
+    localparam logic [2:0]
+        DEBUG_OFF = 3'd0,
+        DEBUG_MENU = 3'd1,
+        DEBUG_RX  = 3'd2,
+        PROP_DELAY = 3'd3,
+        DEBUG_TX  = 3'd4,
+        BOOTLOAD = 3'd5,
+        CLEAN_UP = 3'd6;
 
     //commands user can input to mircrocontroller
-    typedef enum logic [7:0] {
-        NOP,
-        CORE_HALT,
-        RETURN_REG,
-        RETURN_MEM,
-        RETURN_PC,
-        FLASH_WRITE,
-        CORE_RESUME = 8'hff
-    }debug_command_t;
+    localparam logic [7:0]
+        NOP = 8'd0,
+        CORE_HALT = 8'd1,
+        RETURN_REG = 8'd2,
+        RETURN_MEM = 8'd3,
+        RETURN_PC = 8'd4,
+        FLASH_WRITE = 8'd5,
+        CORE_RESUME = 8'hff;
 
     //transmission and recieve word stages
-    typedef enum logic [2:0] {
-        TRX_IDLE,
-        RECIEVE_DATA,
-        BYTE_0,
-        BYTE_1,
-        BYTE_2,
-        BYTE_3,
-        END_TRANSMISION
-    }debug_trx_state_t;
+    localparam logic [2:0]
+        TRX_IDLE = 3'd0,
+        RECIEVE_DATA = 3'd1,
+        BYTE_0 = 3'd2,
+        BYTE_1 = 3'd3,
+        BYTE_2 = 3'd4,
+        BYTE_3 = 3'd5,
+        END_TRANSMISION = 3'd6;
 
         //state updates
-    debug_state_t debug_state;
-    debug_state_t next_debug_state;
+    logic [2:0] debug_state;
+    logic [2:0] next_debug_state;
 
     //state logic
     logic [7:0] debug_command;
@@ -55,24 +52,24 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     logic [31:0] address_out;
 
     //debug rx state logic
-    debug_trx_state_t debug_rx_state;
-    debug_trx_state_t next_debug_rx_state;
+    logic [2:0]  debug_rx_state;
+    logic [2:0]  next_debug_rx_state;
     logic [29:0] address_index;
     logic [31:0] image_bytes;
     logic [31:0] boot_image_size;
     logic size_received;
 
     //debug tx state logic
-    debug_trx_state_t debug_tx_state;
-    debug_trx_state_t next_debug_tx_state;
+    logic [2:0]  debug_tx_state;
+    logic [2:0]  next_debug_tx_state;
 
     //uart instanstiation
     uart_interface uart_rec_if();
     uart_interface uart_trans_if();
 
     //uart
-    uart_rec #(.CLK_RATE(100000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
-    uart_trans #(.CLK_RATE(100000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
+    uart_rec #(.CLK_RATE(80000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
+    uart_trans #(.CLK_RATE(80000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
 
     //interface connections output
     assign uart_rec_if.clk = debug_if.clk;
@@ -124,6 +121,10 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                 end
 
                 default: begin
+		    debug_command <= 0;
+		    tx_word <= 0;
+		    delay_counter <= 0;
+		    address_out <= 0;
                 end
             endcase
         end
@@ -132,6 +133,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
 
     //debug comtroller state advance logic
     always_comb begin
+	next_debug_state = DEBUG_OFF;
         case(debug_state)
             DEBUG_OFF: begin
                 debug_if.flash_write_en = 1'b0;
@@ -290,7 +292,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                             size_received <= 1'b1;
                             address_index <= 0;
                         end
-                        else if(address_index + 4 < image_bytes) begin
+                        else if({(address_index + 1),2'b00} < image_bytes) begin
                             address_index <= address_index + 1;
                         end
                         else begin
@@ -328,9 +330,12 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                 else if(debug_state == BOOTLOAD) begin
                     debug_if.write_data = boot_image_size;
                     debug_if.write_en = 1'b0;
+		    debug_if.data_address = 0;
                 end
                 else begin
                     debug_if.write_en = 1'b0;
+		    debug_if.data_address = 0;
+                    debug_if.write_data = 0;
                 end
             end
 

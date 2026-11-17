@@ -71,7 +71,6 @@ syn_generic
 syn_map
 # syn_opt
 
-get_db * > genus_root_values.txt
 report_timing > $RPT_DIR/${DESIGN}_timing.rpt
 report_area   > $RPT_DIR/${DESIGN}_area.rpt
 report_power  > $RPT_DIR/${DESIGN}_power.rpt

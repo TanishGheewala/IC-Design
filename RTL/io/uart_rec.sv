@@ -12,9 +12,9 @@ module uart_rec
     );
 
     //enums for states
-    typedef enum logic [2:0] {IDLE, START, DATA, STOP, FINAL} state;
+    localparam logic [2:0] IDLE = 3'd0, START = 3'd1, DATA = 3'd2, STOP = 3'd3, FINAL = 3'd4;
 
-    state uart_state;
+    logic [2:0] uart_state;
 
     localparam int CNT_WIDTH = $clog2(CLK_BIT + 1);
     logic [CNT_WIDTH-1:0] clk_counter;
