@@ -1,0 +1,363 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[17:56:23.354753] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+Version: 23.13-s073_1, built Fri Nov 08 10:01:49 PST 2024
+Options: -no_gui 
+Date:    Mon Nov 16 17:56:23 2026
+Host:    bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*1physical cpu*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB) (7813416KB)
+PID:     595270
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[17:56:23.473459] Periodic Lic check successful
+[17:56:23.473482] Feature usage summary:
+[17:56:23.473483] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (37 seconds elapsed).
+
+WARNING: This version of the tool is 738 days old.
+@genus:root: 1> help -attribute *fsm*
+No help entry for *fsm*
+@genus:root: 2> help -attribute *encoding*
+Attributes:
+  apply_booth_encoding(root):
+                        # enum { nonbooth auto_bitwidth auto_togglerate manual inherited }, read/write, default=auto_bitwidth, indices={}
+                        # Apply booth encoding by using user specified method (for all instances).
+  dpopt_toggle_skew_threshold_for_booth_encoding(root):
+                        # int, read/write, default=0, indices={}
+                        # Set an int value for the skew threshold when in the auto toggle rate mode.
+  apply_booth_encoding(hinst):
+                        # enum { nonbooth auto_bitwidth auto_togglerate manual inherited }, read/write, default=inherited, indices={}
+                        # Apply booth encoding by using user specified method (for a specified instance).
+  apply_booth_encoding(inst):
+                        # enum { nonbooth auto_bitwidth auto_togglerate manual inherited }, read/write, default=inherited, indices={}
+                        # Apply booth encoding by using user specified method (for a specified instance).
+@genus:root: 3> help attribute *inst*
+No help entry for attribute
+@genus:root: 4> help -attribute *inst*
+Attributes:
+  inst_prefix(root):    # string, read/write, default=g, indices={}
+                        # Prefix for new instances.
+  group_instance_suffix(root):
+                        # string, read/write, default=i, indices={}
+                        # Suffix to be added to instance name of new group hierarchy.
+  delete_hier_insts_on_preserved_net(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Allows to delete the hierarchical instances connected to a preserved net.
+  delete_unloaded_insts(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Control deletion of unloaded hierarchical instances.
+  merge_combinational_hier_instances(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Allow merging of combinational hierarchical instances.
+  preserve_sdc_annotated_comb_insts(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Preserve comb insts.
+  add_pin_name_to_lp_instance(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Add interface pin name to the low power instance that commit_power_intent inserts for 1801 flow.
+  incr_joules_instance_threshold_count_MT(root):
+                        # int, read/write, default=1000, indices={}
+                        # Incremental joules instance threshold count in MT.
+  dft_use_abstract_segment_instance_power_domain_for_scan_connection(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Use abstract segment instance power domain for scan connection.
+  multibit_seqs_instance_naming_style(root):
+                        # string, read/write, default=concat, indices={}
+                        # Naming style to be used for newly created sequential multibit instance.
+  multibit_preserve_inferred_instances(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Preserve size_delete_ok inferred multibit instances.
+  hdl_instance_array_naming_style(root):
+                        # string, read/write, default=%s[%d], indices={}
+                        # Format of instance array labels.
+  hdl_case_sensitive_instances(root):
+                        # string, read/write, default=none, indices={}
+                        # When set to false, allows case insensitive name matching for instances in Verilog whose definition exists in VHDL or Verilog files.
+  hdl_allow_instance_name_conflict(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Allow a Verilog instance and wire to have the same name.
+  hdl_resolve_instance_with_libcell(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Use a technology element rather than a Verilog module or VHDL architecture for any instantiation.
+  hdl_resolve_parameterized_instance_with_structural_module(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Uses a module named with a parameterized name for any instance of parameterized Verilog modules or VHDL entities.
+  frc_treat_modules_as_leaf_insts(root):
+                        # string, read/write, default={}, indices={}
+                        # Specifies list of primitive modules.
+  hdl_allow_positional_connections_for_pg_inst(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Allows positional port association for instantiation of cell with power and ground pins..
+  gui_pv_highlight_hier_instances_show_legend(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Controls the legend dialog from 'gui_highlight_hier_instances_pv'.
+  dft_jtag_instance_name(root):
+                        # string, read/write, default=JTAG_MODULE, indices={}
+                        # Specifies the name of the the JTAG instance.
+  timing_enable_get_ports_for_current_instance(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Clean up the global variables set during read_sdc.
+  place_detail_pad_fixed_insts(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # honor cell-padding for FIXED instances in refinePlace
+  place_detail_legalization_inst_gap(root):
+                        # int, read/write, default=0, indices={}
+                        # minimum gap between instances (unit sites)
+  place_detail_honor_inst_pad(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # honor padding from set_inst_padding in detail placement
+  place_detail_eco_priority_insts(root):
+                        # enum { placed fixed eco }, read/write, default=placed, indices={}
+                        # select instance priority for refinePlace ECO mode
+  place_detail_check_inst_space_group(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # check inst space group
+  opt_down_size_insts(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables instance downsizing
+  opt_unfix_clock_insts(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables unfixing clock instances flow
+  opt_resize_level_shifter_and_iso_insts(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Enables resizing of shifters and isolation instances
+  opt_move_insts(root): # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables moving instances while fixing setup violations
+  opt_clone_insts_list(root):
+                        # string, read/write, default={}, indices={}
+                        # list of instance list
+  opt_resize_power_switch_insts(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Enables resizing of power switch instances during optimization
+  opt_new_inst_prefix(root):
+                        # string, read/write, default={}, indices={}
+                        # Prefix string for name of new instances
+  opt_add_insts(root):  # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables adding of new instances
+  opt_remove_redundant_insts(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables simplifying the netlist during optimization
+  opt_delete_insts(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Enables instance deletion on all paths
+  route_allow_inst_overlaps(root):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # don't do instance overlap check
+  route_add_antenna_inst_prefix(root):
+                        # string, read/write, default={}, indices={}
+                        # prefix for the diode insts added to fix antenna
+  delaycal_write_set_inst_voltage_cmd(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Enable set_inst_voltage cmd saving in persistant db
+  reorder_scan_keep_hinst_port_name(root):
+                        # string, read/write, default={}, indices={}
+                        # Specifies filename which contains HInsts
+  floorplan_inst_grid(root):
+                        # rect, read/write, default={0.0 0.0 0.0 0.0}, indices={}
+                        # The inst grid {x_origin y_origin x_pitch y_pitch}. The x_origin y_origin is lower left corner of core box (e.g. the core rows). The x_pitch is default technical site's width and separates the vertical grid lines. The y_pitch is default technical site¡¯s height and separates the horizontal grid lines.
+  floorplan_finfet_inst_grid(root):
+                        # rect, read/write, default={0.0 0.0 0.0 0.0}, indices={}
+                        # The finfet_inst grid {x_origin y_origin x_pitch y_pitch}. The x_origin y_origin is lower left corner of core box.  (e.g. the core rows). The x_pitch is default technical site's width and separates the vertical grid lines. The y_pitch is FinFET pitch as defined in LEF and separates the horizontal grid lines.
+  ilm_keep_inst_in_sdc(root):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Keep instances which have constraints on it
+  ilm_max_num_insts(root):
+                        # int, read/write, default=1000, indices={}
+                        # Specify the maximum number of instances per port (used to define high_fanout_ports)
+  insts(design):        # inst*, read-only, default=no_value, indices={}
+                        # All leaf instances under the design.
+  hinsts(design):       # hinst*, read-only, default=no_value, indices={}
+                        # All hierarchical instances under the design.
+  phys_insts(design):   # pcell*, read-only, default=no_value, indices={}
+                        # Design physical instance objects.
+  num_phys_insts(design):
+                        # int, read-only, default=0, indices={}
+                        # Number of design physical instance objects.
+  insts_area(design):   # area, read-only, default=no_value, indices={}
+                        # Cell area of a design/subdesign (excludes net area).  An estimate is used for unmapped logic.
+  num_insts(design):    # int, read-only, default=no_value, indices={}
+                        # Number of all leaf instances of a design/module.
+  local_hinsts(design): # hinst*, read-only, default={}, indices={}
+                        # List of 'hinst' objects.
+  local_insts(design):  # inst*, read-only, default={}, indices={}
+                        # List of 'inst' objects.
+  pinstances(design):   # pinstance*, read-only, default={}, indices={}
+                        # List of 'pinstance' objects.
+  jtag_instructions(design):
+                        # jtag_instruction*, read-only, default={}, indices={}
+                        # List of 'jtag_instruction' objects.
+  hinsts(module):       # inst*|hinst*, read-only, default=no_value, indices={}
+                        # Instances that refer to this subdesign.
+  delete_unloaded_insts(module):
+                        # enum { 1 0 true false inherited }, read/write, default=inherited, indices={}
+                        # Control deletion of unloaded hierarchical instances.
+  insts_area(module):   # area, read-only, default=no_value, indices={}
+                        # Cell area of a design/subdesign (excludes net area).  An estimate is used for unmapped logic.
+  num_insts(module):    # int, read-only, default=no_value, indices={}
+                        # Number of all leaf instances of a design/module.
+  insts(hinst):         # inst*, read-only, default=no_value, indices={}
+                        # All leaf instances under the hierarchical instance.
+  hinsts(hinst):        # hinst*, read-only, default=no_value, indices={}
+                        # All hierarchical instances under the hierarchical instance.
+  hdl_instantiated(hinst):
+                        # bool { 1 0 true false }, read-only, default=false, indices={}
+                        # Returns true if the instance was present in the user input.
+  merge_combinational_hier_instance(hinst):
+                        # enum { 1 0 true false inherited }, read/write, default=inherited, indices={}
+                        # Allow the combinational hierarchical instance to be merged.
+  instance_leakage_power(hinst):
+                        # double, read/write, default=no_value, indices={}
+                        # The instance's leakage power.
+  instance_internal_power(hinst):
+                        # double, read/write, default=no_value, indices={}
+                        # The instance's internal power.
+  iopt_allow_inst_dup(hinst):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Turns on/off duplication on this instance.
+  dpopt_instance_constant_input_based_speculation(hinst):
+                        # bool { true false }, read/write, default=false, indices={}
+                        # Controls constant input based datapath speculation of datapath module in 'syn_generic'.
+  hinst(hinst):         # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  local_hinsts(hinst):  # hinst*, read-only, default={}, indices={}
+                        # List of 'hinst' objects.
+  local_insts(hinst):   # inst*, read-only, default={}, indices={}
+                        # List of 'inst' objects.
+  dft_hier_instance_for_dedicated_wrapper(hinst):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # The hier instance for dedicated wrapper cells.
+  dft_exclude_instance_from_wrapping(hinst):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Exclude port from wrapping if fanin/fanout hits the instance. This attribute is settable on hierarchical instance only if it is a black box.
+  pmbist_instruction_set(hinst):
+                        # string, read/write, default={}, indices={}
+                        # Attribute to define different programmable MBIST instructions for the different instances of the same block on which programmable MBIST has been inserted.
+  fcu_instruction_set(hinst):
+                        # string, read/write, default={}, indices={}
+                        # Attribute to define different repair specific instructions for the different instances of the same block on which fuse control unit has been inserted.
+  hdl_instantiated(inst):
+                        # bool { 1 0 true false }, read-only, default=false, indices={}
+                        # Returns true if the instance was present in the user input.
+  merge_combinational_hier_instance(inst):
+                        # enum { 1 0 true false inherited }, read/write, default=inherited, indices={}
+                        # Allow the combinational hierarchical instance to be merged.
+  instance_leakage_power(inst):
+                        # double, read/write, default=no_value, indices={}
+                        # The instance's leakage power.
+  instance_internal_power(inst):
+                        # double, read/write, default=no_value, indices={}
+                        # The instance's internal power.
+  iopt_allow_inst_dup(inst):
+                        # bool { 1 0 true false }, read/write, default=true, indices={}
+                        # Turns on/off duplication on this instance.
+  dpopt_instance_constant_input_based_speculation(inst):
+                        # bool { true false }, read/write, default=false, indices={}
+                        # Controls constant input based datapath speculation of datapath module in 'syn_generic'.
+  hinst(inst):          # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  dft_exclude_instance_from_wrapping(inst):
+                        # bool { 1 0 true false }, read/write, default=false, indices={}
+                        # Exclude port from wrapping if fanin/fanout hits the instance. This attribute is settable on hierarchical instance only if it is a black box.
+  pmbist_instruction_set(inst):
+                        # string, read/write, default={}, indices={}
+                        # Attribute to define different programmable MBIST instructions for the different instances of the same block on which programmable MBIST has been inserted.
+  fcu_instruction_set(inst):
+                        # string, read/write, default={}, indices={}
+                        # Attribute to define different repair specific instructions for the different instances of the same block on which fuse control unit has been inserted.
+  hinst(hnet):          # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(net):           # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(pg_net):        # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  inst(pg_net):         # inst, read-only, default=no_value, indices={}
+                        # Parent 'inst' object.
+  pg_hports_of_hinsts(pg_hnet):
+                        # pg_port|pg_hport*, read-only, default={}, indices={}
+                        # Returns pg_hports of hierarchical instances connected to pg_hnet.
+  hinst(pg_hnet):       # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(pg_hport):      # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(hport):         # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  inst(pin):            # inst, read-only, default=no_value, indices={}
+                        # Parent 'inst' object.
+  hinst(hpin):          # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(pg_pin):        # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  inst(pg_pin):         # inst, read-only, default=no_value, indices={}
+                        # Parent 'inst' object.
+  hinst(hpin_bus):      # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  inst(pin_bus):        # inst, read-only, default=no_value, indices={}
+                        # Parent 'inst' object.
+  hinst(constant):      # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  hinst(hport_bus):     # hinst, read-only, default=no_value, indices={}
+                        # Parent 'hinst' object.
+  inst(place_blockage): # string, read-only, default={}, indices={}
+                        # Blockage instance.
+  instance_count(gcell):
+                        # int, read-only, default=0, indices={}
+                        # Instance count within gcell.
+  instances(gcell):     # string, read-only, default={}, indices={}
+                        # Instances within gcell.
+  hinsts(group):        # hinst*, read-only, default=no_value, indices={}
+                        # Hinsts associated with group.
+  disjoint_hinst_box_list(power_domain):
+                        # string, read/write, default={}, indices={}
+                        # List of hierarchical instances and disjoint boxes defining power domain boundary.
+  sdp_instances(sdp_row):
+                        # sdp_instance*, read-only, default={}, indices={}
+                        # List of 'sdp_instance' objects.
+  sdp_instances(sdp_column):
+                        # sdp_instance*, read-only, default={}, indices={}
+                        # List of 'sdp_instance' objects.
+  instance(sdp_instance):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # Link the instance.
+  instance(actual_scan_segment):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # Instance for an abstract segment.
+  instance(scan_segment):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # Instance for an abstract segment.
+  instance(boundary_scan_segment):
+                        # inst|hinst, read/write, default=no_value, indices={}
+                        # Instance of the module where the boundary-scan segment resides.
+  instance(jtag_macro): # inst|hinst, read/write, default=no_value, indices={}
+                        # Instance of the module where the Jtag Macro resides.
+  jtag_instruction(dft_configuration_mode):
+                        # jtag_instruction, read-only, default=no_value, indices={}
+                        # Jtag instruction corresponding to mode.
+  inside_inst(opcg_trigger):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # Hierarchy for opcg trigger.
+  instance(opcg_trigger):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # OPCG trigger instance.
+  instance(opcg_domain):
+                        # inst|hinst, read-only, default=no_value, indices={}
+                        # OPCG domain instance.
+  instances(hdl_architecture):
+                        # hdl_inst*, read-only, default={}, indices={}
+                        # List of 'hdl_inst' objects.
+  instances(hdl_block): # hdl_inst*, read-only, default={}, indices={}
+                        # List of 'hdl_inst' objects.

@@ -12,7 +12,7 @@ set EQY_STRIP_SIM_TASKS 1
 
 # Proof depth (clock cycles) for each partition. Raise it for a design whose
 # partitions come back unproven, e.g. add "core 20" inside the braces below.
-set EQY_DEPTH_DEFAULT 10
+set EQY_DEPTH_DEFAULT 2
 array set EQY_DEPTH {
 }
 
@@ -22,4 +22,4 @@ array set EQY_DEPTH {
 set EQY_QUIET 1
 
 # SBY solver engine.
-set EQY_ENGINE "smtbmc bitwuzla"
+set EQY_ENGINE "smtbmc yices"

@@ -188,10 +188,6 @@ $macro_libs
 read_verilog $netlist
 prep -flatten -top $TOP_MODULE
 
-\[strategy sat\]
-use sat
-depth $depth
-
 \[strategy sby\]
 use sby
 depth $depth

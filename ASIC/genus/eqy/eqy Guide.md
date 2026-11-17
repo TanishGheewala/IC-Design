@@ -24,4 +24,4 @@
 
 - `Found logic loop` / `check -assert` error: a combinational loop in the RTL, usually an `always_comb` that doesn't assign a signal in every case (a latch). The loop message names the wire. Fix the RTL, rerun Genus, then rerun eqy
 - `no netlist` (SKIPPED): Genus hasn't been run for that design yet
-- `eqy not on PATH`: step 2 was skipped in this terminal
+- `eqy not on PATH`: step 2 was skipped in this terminal<	<	
