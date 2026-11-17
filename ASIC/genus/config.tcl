@@ -20,6 +20,7 @@ array set TOP_OF {
     debugcon debug_controller_v2_synth_top
     sram2k   data_memory_sram2k
     soc      soc_synth_top
+    spi      spi_synth_top
 }
 set TOP_MODULE $TOP_OF($DESIGN)
 set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
