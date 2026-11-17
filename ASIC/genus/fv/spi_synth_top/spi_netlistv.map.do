@@ -188,13 +188,6 @@ add mapped point u_spi_bootloader/flash_write_done/q u_spi_bootloader/flash_writ
 add mapped point u_spi_bootloader/fw_addr_idx[0]/q u_spi_bootloader/fw_addr_idx_reg[0]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_addr_idx[1]/q u_spi_bootloader/fw_addr_idx_reg[1]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_bytes_written[0]/q u_spi_bootloader/fw_bytes_written_reg[0]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[1]/q u_spi_bootloader/fw_bytes_written_reg[1]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[2]/q u_spi_bootloader/fw_bytes_written_reg[2]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[3]/q u_spi_bootloader/fw_bytes_written_reg[3]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[4]/q u_spi_bootloader/fw_bytes_written_reg[4]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[5]/q u_spi_bootloader/fw_bytes_written_reg[5]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[6]/q u_spi_bootloader/fw_bytes_written_reg[6]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_bytes_written[7]/q u_spi_bootloader/fw_bytes_written_reg[7]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_bytes_written[8]/q u_spi_bootloader/fw_bytes_written_reg[8]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_bytes_written[9]/q u_spi_bootloader/fw_bytes_written_reg[9]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_bytes_written[10]/q u_spi_bootloader/fw_bytes_written_reg[10]/Q -type DFF DFF
@@ -267,7 +260,6 @@ add mapped point u_spi_bootloader/fw_prog_addr[20]/q u_spi_bootloader/fw_prog_ad
 add mapped point u_spi_bootloader/fw_prog_addr[21]/q u_spi_bootloader/fw_prog_addr_reg[21]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_prog_addr[22]/q u_spi_bootloader/fw_prog_addr_reg[22]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_prog_addr[23]/q u_spi_bootloader/fw_prog_addr_reg[23]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_state[0]/q u_spi_bootloader/fw_state_reg[0]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[0]/q u_spi_bootloader/fw_total_bytes_reg[0]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[1]/q u_spi_bootloader/fw_total_bytes_reg[1]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[2]/q u_spi_bootloader/fw_total_bytes_reg[2]/Q -type DFF DFF
@@ -279,8 +271,6 @@ add mapped point u_spi_bootloader/fw_total_bytes[7]/q u_spi_bootloader/fw_total_
 add mapped point u_spi_bootloader/fw_total_bytes[8]/q u_spi_bootloader/fw_total_bytes_reg[8]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[9]/q u_spi_bootloader/fw_total_bytes_reg[9]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[10]/q u_spi_bootloader/fw_total_bytes_reg[10]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_total_bytes[11]/q u_spi_bootloader/fw_total_bytes_reg[11]/Q -type DFF DFF
-add mapped point u_spi_bootloader/fw_total_bytes[12]/q u_spi_bootloader/fw_total_bytes_reg[12]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[13]/q u_spi_bootloader/fw_total_bytes_reg[13]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[14]/q u_spi_bootloader/fw_total_bytes_reg[14]/Q -type DFF DFF
 add mapped point u_spi_bootloader/fw_total_bytes[15]/q u_spi_bootloader/fw_total_bytes_reg[15]/Q -type DFF DFF
@@ -363,6 +353,16 @@ add mapped point u_spi_bootloader/fw_state[3]/q u_spi_bootloader/fw_state_reg[3]
 add mapped point u_spi_bootloader/fw_state[4]/q u_spi_bootloader/fw_state_reg[4]/Q -type DFF DFF
 add mapped point u_spi_bootloader/state[1]/q u_spi_bootloader/state_reg[1]/Q -type DFF DFF
 add mapped point u_spi_bootloader/state[2]/q u_spi_bootloader/state_reg[2]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_state[0]/q u_spi_bootloader/fw_state_reg[0]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[2]/q u_spi_bootloader/fw_bytes_written_reg[2]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[1]/q u_spi_bootloader/fw_bytes_written_reg[1]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[5]/q u_spi_bootloader/fw_bytes_written_reg[5]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[3]/q u_spi_bootloader/fw_bytes_written_reg[3]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[7]/q u_spi_bootloader/fw_bytes_written_reg[7]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[4]/q u_spi_bootloader/fw_bytes_written_reg[4]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_bytes_written[6]/q u_spi_bootloader/fw_bytes_written_reg[6]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_total_bytes[11]/q u_spi_bootloader/fw_total_bytes_reg[11]/Q -type DFF DFF
+add mapped point u_spi_bootloader/fw_total_bytes[12]/q u_spi_bootloader/fw_total_bytes_reg[12]/Q -type DFF DFF
 
 
 

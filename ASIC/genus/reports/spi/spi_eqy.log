@@ -1,680 +1,687 @@
-EQY 14:41:56 [spi] read_gold: starting process "yosys -ql spi/gold.log spi/gold.ys"
-EQY 14:41:57 [spi] read_gold: finished (returncode=0)
-EQY 14:41:57 [spi] read_gate: starting process "yosys -ql spi/gate.log spi/gate.ys"
-EQY 14:41:58 [spi] read_gate: finished (returncode=0)
-EQY 14:41:58 [spi] combine: starting process "yosys -ql spi/combine.log spi/combine.ys"
-EQY 14:41:58 [spi] combine: finished (returncode=0)
-EQY 14:41:59 [spi] partition: starting process "cd spi; yosys -ql partition.log partition.ys"
-EQY 14:42:00 [spi] partition: finished (returncode=0)
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.xfer_pending contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.xfer_pending contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.status_reg contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.status_reg contains 2 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.state contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.state contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg contains 2 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done contains 5 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.31 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.31 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.30 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.30 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.29 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.29 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.28 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.28 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.27 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.27 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.26 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.26 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.25 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.25 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.24 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.24 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.23 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.23 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.22 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.22 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.21 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.21 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.20 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.20 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.19 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.19 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.18 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.18 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.17 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.17 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.16 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.16 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.15 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.15 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.14 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.14 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.13 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.13 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.12 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.12 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.11 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.11 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.10 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.10 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.9 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.9 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.8 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.8 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.7 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.7 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.6 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.6 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.5 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.5 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.4 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.4 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.3 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.3 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.2 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.2 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.1 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.1 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.0 contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.0 contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_xfer_pending contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_xfer_pending contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_state contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_state contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_prog_addr contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_prog_addr contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_page_start_addr contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_page_start_addr contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_bytes_written contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_bytes_written contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_addr_idx contains 7 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_addr_idx contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.flash_write_done contains 4 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fetch_cntr contains 4 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fetch_cntr contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.done contains 5 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.done contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.delay_cntr contains 5 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.delay_cntr contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.cs_n_fw contains 8 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.byte_cntr contains 1 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.byte_cntr contains 2 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.bootloader_state contains 9 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.boot_done contains 4 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.addr_idx contains 2 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.addr_idx contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.mosi contains 10 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.mosi contains 1 unused gate inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.flash_write_done contains 9 unused gold inputs.
-EQY 14:42:00 [spi] Warning: Partition spi_synth_top.boot_done contains 4 unused gold inputs.
-EQY 14:42:01 [spi] run: starting process "make -C spi -f strategies.mk"
-EQY 14:42:01 [spi] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
-EQY 14:42:01 [spi] run: Running strategy 'sby' on 'spi_synth_top.boot_done'..
-EQY 14:42:02 [spi] run: Could not prove equivalence of partition 'spi_synth_top.boot_done' using strategy 'sby': partitions not equivalent
-EQY 14:42:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.cs_n'..
-EQY 14:42:02 [spi] run: Proved equivalence of partition 'spi_synth_top.cs_n' using strategy 'sby'
-EQY 14:42:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.flash_write_done'..
-EQY 14:42:03 [spi] run: Could not prove equivalence of partition 'spi_synth_top.flash_write_done' using strategy 'sby': partitions not equivalent
-EQY 14:42:03 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_addr'..
-EQY 14:42:04 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_addr' using strategy 'sby'
-EQY 14:42:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_wdata'..
-EQY 14:42:04 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_wdata' using strategy 'sby'
-EQY 14:42:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_we'..
-EQY 14:42:05 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_we' using strategy 'sby'
-EQY 14:42:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_wmask'..
-EQY 14:42:05 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_wmask' using strategy 'sby'
-EQY 14:42:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.mosi'..
-EQY 14:42:06 [spi] run: Could not prove equivalence of partition 'spi_synth_top.mosi' using strategy 'sby': partitions not equivalent
-EQY 14:42:06 [spi] run: Running strategy 'sby' on 'spi_synth_top.sclk'..
-EQY 14:42:07 [spi] run: Proved equivalence of partition 'spi_synth_top.sclk' using strategy 'sby'
-EQY 14:42:07 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.addr_idx'..
-EQY 14:42:07 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.addr_idx' using strategy 'sby': partitions not equivalent
-EQY 14:42:07 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.boot_done'..
-EQY 14:42:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.boot_done' using strategy 'sby': partitions not equivalent
-EQY 14:42:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.bootloader_state'..
-EQY 14:42:09 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.bootloader_state' using strategy 'sby': partitions not equivalent
-EQY 14:42:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.busy'..
-EQY 14:42:10 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.busy' using strategy 'sby'
-EQY 14:42:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.byte_cntr'..
-EQY 14:42:11 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.byte_cntr' using strategy 'sby': partitions not equivalent
-EQY 14:42:11 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.chip_eraseed'..
-EQY 14:42:12 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.chip_eraseed' using strategy 'sby'
-EQY 14:42:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.cs_n_boot'..
-EQY 14:42:12 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.cs_n_boot' using strategy 'sby'
-EQY 14:42:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.cs_n_fw'..
-EQY 14:42:14 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.cs_n_fw' using strategy 'sby': partitions not equivalent
-EQY 14:42:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.delay_cntr'..
-EQY 14:42:15 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.delay_cntr' using strategy 'sby': partitions not equivalent
-EQY 14:42:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.done'..
-EQY 14:42:16 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.done' using strategy 'sby': partitions not equivalent
-EQY 14:42:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fetch_cntr'..
-EQY 14:42:17 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fetch_cntr' using strategy 'sby': partitions not equivalent
-EQY 14:42:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.flash_write_done'..
-EQY 14:42:18 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.flash_write_done' using strategy 'sby': partitions not equivalent
-EQY 14:42:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.flash_write_en'..
-EQY 14:42:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.flash_write_en' using strategy 'sby'
-EQY 14:42:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_addr_idx'..
-EQY 14:42:20 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_addr_idx' using strategy 'sby': partitions not equivalent
-EQY 14:42:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_bytes_written'..
-EQY 14:42:21 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_bytes_written' using strategy 'sby': partitions not equivalent
-EQY 14:42:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_page_start_addr'..
-EQY 14:42:22 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_page_start_addr' using strategy 'sby': partitions not equivalent
-EQY 14:42:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_prog_addr'..
-EQY 14:42:23 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_prog_addr' using strategy 'sby': partitions not equivalent
-EQY 14:42:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_state'..
-EQY 14:42:25 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_state' using strategy 'sby': partitions not equivalent
-EQY 14:42:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_total_bytes'..
-EQY 14:42:27 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_total_bytes' using strategy 'sby'
-EQY 14:42:27 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_xfer_pending'..
-EQY 14:42:28 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_xfer_pending' using strategy 'sby': partitions not equivalent
-EQY 14:42:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.0'..
-EQY 14:42:28 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.0' using strategy 'sby'
-EQY 14:42:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.1'..
-EQY 14:42:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.1' using strategy 'sby'
-EQY 14:42:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.10'..
-EQY 14:42:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.10' using strategy 'sby'
-EQY 14:42:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.11'..
-EQY 14:42:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.11' using strategy 'sby'
-EQY 14:42:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.12'..
-EQY 14:42:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.12' using strategy 'sby'
-EQY 14:42:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.13'..
-EQY 14:42:31 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.13' using strategy 'sby'
-EQY 14:42:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.14'..
-EQY 14:42:31 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.14' using strategy 'sby'
-EQY 14:42:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.15'..
-EQY 14:42:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.15' using strategy 'sby'
-EQY 14:42:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.16'..
-EQY 14:42:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.16' using strategy 'sby'
-EQY 14:42:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.17'..
-EQY 14:42:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.17' using strategy 'sby'
-EQY 14:42:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.18'..
-EQY 14:42:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.18' using strategy 'sby'
-EQY 14:42:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.19'..
-EQY 14:42:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.19' using strategy 'sby'
-EQY 14:42:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.2'..
-EQY 14:42:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.2' using strategy 'sby'
-EQY 14:42:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.20'..
-EQY 14:42:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.20' using strategy 'sby'
-EQY 14:42:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.21'..
-EQY 14:42:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.21' using strategy 'sby'
-EQY 14:42:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.22'..
-EQY 14:42:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.22' using strategy 'sby'
-EQY 14:42:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.23'..
-EQY 14:42:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.23' using strategy 'sby'
-EQY 14:42:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.24'..
-EQY 14:42:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.24' using strategy 'sby'
-EQY 14:42:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.25'..
-EQY 14:42:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.25' using strategy 'sby'
-EQY 14:42:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.26'..
-EQY 14:42:38 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.26' using strategy 'sby'
-EQY 14:42:38 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.27'..
-EQY 14:42:38 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.27' using strategy 'sby'
-EQY 14:42:38 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.28'..
-EQY 14:42:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.28' using strategy 'sby'
-EQY 14:42:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.29'..
-EQY 14:42:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.29' using strategy 'sby'
-EQY 14:42:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.3'..
-EQY 14:42:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.3' using strategy 'sby'
-EQY 14:42:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.30'..
-EQY 14:42:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.30' using strategy 'sby'
-EQY 14:42:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.31'..
-EQY 14:42:41 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.31' using strategy 'sby'
-EQY 14:42:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.4'..
-EQY 14:42:41 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.4' using strategy 'sby'
-EQY 14:42:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.5'..
-EQY 14:42:42 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.5' using strategy 'sby'
-EQY 14:42:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.6'..
-EQY 14:42:42 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.6' using strategy 'sby'
-EQY 14:42:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.7'..
-EQY 14:42:43 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.7' using strategy 'sby'
-EQY 14:42:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.8'..
-EQY 14:42:43 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.8' using strategy 'sby'
-EQY 14:42:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.9'..
-EQY 14:42:44 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.9' using strategy 'sby'
-EQY 14:42:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.0'..
-EQY 14:42:44 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.0' using strategy 'sby'
-EQY 14:42:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.1'..
-EQY 14:42:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.1' using strategy 'sby'
-EQY 14:42:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.10'..
-EQY 14:42:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.10' using strategy 'sby'
-EQY 14:42:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.11'..
-EQY 14:42:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.11' using strategy 'sby'
-EQY 14:42:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.12'..
-EQY 14:42:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.12' using strategy 'sby'
-EQY 14:42:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.2'..
-EQY 14:42:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.2' using strategy 'sby'
-EQY 14:42:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.3'..
-EQY 14:42:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.3' using strategy 'sby'
-EQY 14:42:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.4'..
-EQY 14:42:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.4' using strategy 'sby'
-EQY 14:42:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.5'..
-EQY 14:42:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.5' using strategy 'sby'
-EQY 14:42:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.6'..
-EQY 14:42:49 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.6' using strategy 'sby'
-EQY 14:42:49 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.7'..
-EQY 14:42:49 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.7' using strategy 'sby'
-EQY 14:42:49 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.8'..
-EQY 14:42:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.8' using strategy 'sby'
-EQY 14:42:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.9'..
-EQY 14:42:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.9' using strategy 'sby'
-EQY 14:42:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.0'..
-EQY 14:42:51 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.0' using strategy 'sby'
-EQY 14:42:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.1'..
-EQY 14:42:51 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.1' using strategy 'sby'
-EQY 14:42:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.10'..
-EQY 14:42:51 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.10' using strategy 'sby'
-EQY 14:42:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.11'..
-EQY 14:42:52 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.11' using strategy 'sby'
-EQY 14:42:52 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.12'..
-EQY 14:42:52 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.12' using strategy 'sby'
-EQY 14:42:52 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.13'..
-EQY 14:42:53 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.13' using strategy 'sby'
-EQY 14:42:53 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.14'..
-EQY 14:42:53 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.14' using strategy 'sby'
-EQY 14:42:53 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.15'..
-EQY 14:42:54 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.15' using strategy 'sby'
-EQY 14:42:54 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.16'..
-EQY 14:42:54 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.16' using strategy 'sby'
-EQY 14:42:54 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.17'..
-EQY 14:42:55 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.17' using strategy 'sby'
-EQY 14:42:55 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.18'..
-EQY 14:42:55 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.18' using strategy 'sby'
-EQY 14:42:55 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.19'..
-EQY 14:42:56 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.19' using strategy 'sby'
-EQY 14:42:56 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.2'..
-EQY 14:42:56 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.2' using strategy 'sby'
-EQY 14:42:56 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.20'..
-EQY 14:42:57 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.20' using strategy 'sby'
-EQY 14:42:57 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.21'..
-EQY 14:42:57 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.21' using strategy 'sby'
-EQY 14:42:57 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.22'..
-EQY 14:42:58 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.22' using strategy 'sby'
-EQY 14:42:58 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.23'..
-EQY 14:42:58 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.23' using strategy 'sby'
-EQY 14:42:58 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.24'..
-EQY 14:42:59 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.24' using strategy 'sby'
-EQY 14:42:59 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.25'..
-EQY 14:42:59 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.25' using strategy 'sby'
-EQY 14:42:59 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.26'..
-EQY 14:43:00 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.26' using strategy 'sby'
-EQY 14:43:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.27'..
-EQY 14:43:00 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.27' using strategy 'sby'
-EQY 14:43:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.28'..
-EQY 14:43:01 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.28' using strategy 'sby'
-EQY 14:43:01 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.29'..
-EQY 14:43:01 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.29' using strategy 'sby'
-EQY 14:43:01 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.3'..
-EQY 14:43:02 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.3' using strategy 'sby'
-EQY 14:43:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.30'..
-EQY 14:43:02 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.30' using strategy 'sby'
-EQY 14:43:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.31'..
-EQY 14:43:03 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.31' using strategy 'sby'
-EQY 14:43:03 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.4'..
-EQY 14:43:03 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.4' using strategy 'sby'
-EQY 14:43:03 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.5'..
-EQY 14:43:04 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.5' using strategy 'sby'
-EQY 14:43:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.6'..
-EQY 14:43:04 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.6' using strategy 'sby'
-EQY 14:43:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.7'..
-EQY 14:43:05 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.7' using strategy 'sby'
-EQY 14:43:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.8'..
-EQY 14:43:05 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.8' using strategy 'sby'
-EQY 14:43:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.9'..
-EQY 14:43:06 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.9' using strategy 'sby'
-EQY 14:43:06 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_read_word'..
-EQY 14:43:07 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_read_word' using strategy 'sby'
-EQY 14:43:07 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.0'..
-EQY 14:43:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.0' using strategy 'sby': partitions not equivalent
-EQY 14:43:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.1'..
-EQY 14:43:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.1' using strategy 'sby': partitions not equivalent
-EQY 14:43:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.10'..
-EQY 14:43:09 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.10' using strategy 'sby': partitions not equivalent
-EQY 14:43:09 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.11'..
-EQY 14:43:09 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.11' using strategy 'sby': partitions not equivalent
-EQY 14:43:09 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.12'..
-EQY 14:43:10 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.12' using strategy 'sby': partitions not equivalent
-EQY 14:43:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.13'..
-EQY 14:43:11 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.13' using strategy 'sby': partitions not equivalent
-EQY 14:43:11 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.14'..
-EQY 14:43:11 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.14' using strategy 'sby': partitions not equivalent
-EQY 14:43:11 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.15'..
-EQY 14:43:12 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.15' using strategy 'sby': partitions not equivalent
-EQY 14:43:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.16'..
-EQY 14:43:12 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.16' using strategy 'sby': partitions not equivalent
-EQY 14:43:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.17'..
-EQY 14:43:13 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.17' using strategy 'sby': partitions not equivalent
-EQY 14:43:13 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.18'..
-EQY 14:43:13 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.18' using strategy 'sby': partitions not equivalent
-EQY 14:43:13 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.19'..
-EQY 14:43:14 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.19' using strategy 'sby': partitions not equivalent
-EQY 14:43:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.2'..
-EQY 14:43:14 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.2' using strategy 'sby': partitions not equivalent
-EQY 14:43:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.20'..
-EQY 14:43:15 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.20' using strategy 'sby': partitions not equivalent
-EQY 14:43:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.21'..
-EQY 14:43:15 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.21' using strategy 'sby': partitions not equivalent
-EQY 14:43:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.22'..
-EQY 14:43:16 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.22' using strategy 'sby': partitions not equivalent
-EQY 14:43:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.23'..
-EQY 14:43:16 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.23' using strategy 'sby': partitions not equivalent
-EQY 14:43:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.24'..
-EQY 14:43:17 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.24' using strategy 'sby': partitions not equivalent
-EQY 14:43:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.25'..
-EQY 14:43:17 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.25' using strategy 'sby': partitions not equivalent
-EQY 14:43:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.26'..
-EQY 14:43:17 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.26' using strategy 'sby': partitions not equivalent
-EQY 14:43:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.27'..
-EQY 14:43:18 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.27' using strategy 'sby': partitions not equivalent
-EQY 14:43:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.28'..
-EQY 14:43:18 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.28' using strategy 'sby': partitions not equivalent
-EQY 14:43:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.29'..
-EQY 14:43:19 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.29' using strategy 'sby': partitions not equivalent
-EQY 14:43:19 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.3'..
-EQY 14:43:19 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.3' using strategy 'sby': partitions not equivalent
-EQY 14:43:19 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.30'..
-EQY 14:43:20 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.30' using strategy 'sby': partitions not equivalent
-EQY 14:43:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.31'..
-EQY 14:43:20 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.31' using strategy 'sby': partitions not equivalent
-EQY 14:43:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.4'..
-EQY 14:43:21 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.4' using strategy 'sby': partitions not equivalent
-EQY 14:43:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.5'..
-EQY 14:43:21 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.5' using strategy 'sby': partitions not equivalent
-EQY 14:43:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.6'..
-EQY 14:43:22 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.6' using strategy 'sby': partitions not equivalent
-EQY 14:43:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.7'..
-EQY 14:43:22 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.7' using strategy 'sby': partitions not equivalent
-EQY 14:43:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.8'..
-EQY 14:43:23 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.8' using strategy 'sby': partitions not equivalent
-EQY 14:43:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.9'..
-EQY 14:43:23 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.9' using strategy 'sby': partitions not equivalent
-EQY 14:43:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_we'..
-EQY 14:43:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_we' using strategy 'sby'
-EQY 14:43:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.0'..
-EQY 14:43:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.0' using strategy 'sby'
-EQY 14:43:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.1'..
-EQY 14:43:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.1' using strategy 'sby'
-EQY 14:43:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.2'..
-EQY 14:43:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.2' using strategy 'sby'
-EQY 14:43:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.3'..
-EQY 14:43:26 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.3' using strategy 'sby'
-EQY 14:43:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.rx_byte'..
-EQY 14:43:26 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.rx_byte' using strategy 'sby'
-EQY 14:43:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order'..
-EQY 14:43:27 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order' using strategy 'sby'
-EQY 14:43:27 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg'..
-EQY 14:43:27 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg' using strategy 'sby'
-EQY 14:43:27 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.busy'..
-EQY 14:43:28 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.busy' using strategy 'sby'
-EQY 14:43:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.clk'..
-EQY 14:43:28 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.clk' using strategy 'sby'
-EQY 14:43:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha'..
-EQY 14:43:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha' using strategy 'sby'
-EQY 14:43:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg'..
-EQY 14:43:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg' using strategy 'sby'
-EQY 14:43:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol'..
-EQY 14:43:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol' using strategy 'sby'
-EQY 14:43:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr'..
-EQY 14:43:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr' using strategy 'sby'
-EQY 14:43:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.done'..
-EQY 14:43:31 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.done' using strategy 'sby': partitions not equivalent
-EQY 14:43:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr'..
-EQY 14:43:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr' using strategy 'sby'
-EQY 14:43:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso'..
-EQY 14:43:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso' using strategy 'sby'
-EQY 14:43:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta'..
-EQY 14:43:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta' using strategy 'sby'
-EQY 14:43:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync'..
-EQY 14:43:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync' using strategy 'sby'
-EQY 14:43:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi'..
-EQY 14:43:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi' using strategy 'sby'
-EQY 14:43:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n'..
-EQY 14:43:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n' using strategy 'sby'
-EQY 14:43:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0'..
-EQY 14:43:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0' using strategy 'sby'
-EQY 14:43:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1'..
-EQY 14:43:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1' using strategy 'sby'
-EQY 14:43:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2'..
-EQY 14:43:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2' using strategy 'sby'
-EQY 14:43:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3'..
-EQY 14:43:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3' using strategy 'sby'
-EQY 14:43:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4'..
-EQY 14:43:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4' using strategy 'sby'
-EQY 14:43:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5'..
-EQY 14:43:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5' using strategy 'sby'
-EQY 14:43:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6'..
-EQY 14:43:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6' using strategy 'sby'
-EQY 14:43:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7'..
-EQY 14:43:38 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7' using strategy 'sby'
-EQY 14:43:38 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg'..
-EQY 14:43:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg' using strategy 'sby'
-EQY 14:43:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk'..
-EQY 14:43:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk' using strategy 'sby'
-EQY 14:43:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.start'..
-EQY 14:43:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.start' using strategy 'sby'
-EQY 14:43:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte'..
-EQY 14:43:41 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte' using strategy 'sby'
-EQY 14:43:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg'..
-EQY 14:43:42 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg' using strategy 'sby': partitions not equivalent
-EQY 14:43:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.start'..
-EQY 14:43:43 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.start' using strategy 'sby'
-EQY 14:43:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.state'..
-EQY 14:43:44 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.state' using strategy 'sby': partitions not equivalent
-EQY 14:43:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.status_reg'..
-EQY 14:43:44 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.status_reg' using strategy 'sby': partitions not equivalent
-EQY 14:43:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.0'..
-EQY 14:43:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.0' using strategy 'sby'
-EQY 14:43:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.1'..
-EQY 14:43:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.1' using strategy 'sby'
-EQY 14:43:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.2'..
-EQY 14:43:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.2' using strategy 'sby'
-EQY 14:43:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.3'..
-EQY 14:43:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.3' using strategy 'sby'
-EQY 14:43:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.4'..
-EQY 14:43:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.4' using strategy 'sby'
-EQY 14:43:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.5'..
-EQY 14:43:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.5' using strategy 'sby'
-EQY 14:43:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.6'..
-EQY 14:43:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.6' using strategy 'sby'
-EQY 14:43:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.7'..
-EQY 14:43:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.7' using strategy 'sby'
-EQY 14:43:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.wait_cntr'..
-EQY 14:43:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.wait_cntr' using strategy 'sby'
-EQY 14:43:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.xfer_pending'..
-EQY 14:43:50 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.xfer_pending' using strategy 'sby': partitions not equivalent
-EQY 14:43:50 [spi] run: make -f strategies.mk summary
-EQY 14:43:50 [spi] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
-EQY 14:43:50 [spi] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
-EQY 14:43:50 [spi] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
-EQY 14:43:50 [spi] run: finished (returncode=0)
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.wait_cntr
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.7
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.6
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.5
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.4
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.start
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.start
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.clk
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.busy
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.rx_byte
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_we
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_read_word
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.31
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.30
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.29
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.28
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.27
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.26
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.25
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.24
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.23
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.22
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.21
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.20
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.19
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.18
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.17
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.16
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.15
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.14
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.13
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.12
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.11
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.10
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.9
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.8
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.7
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.6
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.5
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.4
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.12
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.11
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.10
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.9
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.8
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.7
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.6
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.5
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.4
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.31
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.30
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.29
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.28
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.27
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.26
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.25
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.24
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.23
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.22
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.21
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.20
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.19
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.18
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.17
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.16
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.15
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.14
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.13
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.12
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.11
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.10
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.9
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.8
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.7
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.6
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.5
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.4
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.3
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.2
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.1
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.0
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.fw_total_bytes
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.flash_write_en
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.cs_n_boot
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.chip_eraseed
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.busy
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.sclk
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.mem_wmask
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.mem_we
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.mem_wdata
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.mem_addr
-EQY 14:43:50 [spi] Successfully proved equivalence of partition spi_synth_top.cs_n
-EQY 14:43:50 [spi] Warning: Failed to prove equivalence for 55/186 partitions:
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.xfer_pending
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.status_reg
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.state
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.31
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.30
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.29
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.28
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.27
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.26
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.25
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.24
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.23
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.22
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.21
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.20
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.19
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.18
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.17
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.16
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.15
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.14
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.13
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.12
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.11
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.10
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.9
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.8
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.7
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.6
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.5
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.4
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.3
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.2
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.1
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.0
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_xfer_pending
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_state
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_prog_addr
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_page_start_addr
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_bytes_written
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_addr_idx
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.flash_write_done
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fetch_cntr
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.done
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.delay_cntr
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.cs_n_fw
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.byte_cntr
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.bootloader_state
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.boot_done
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.addr_idx
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.mosi
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.flash_write_done
-EQY 14:43:50 [spi] Failed to prove equivalence of partition spi_synth_top.boot_done
-EQY 14:43:50 [spi] summary: Elapsed clock time [H:MM:SS (secs)]: 0:01:54 (114)
-EQY 14:43:50 [spi] summary: Elapsed process time [H:MM:SS (secs)]: 0:02:10 (130)
-EQY 14:43:50 [spi] DONE (FAIL, rc=2)
+EQY 15:03:36 [spi] read_gold: starting process "yosys -ql spi/gold.log spi/gold.ys"
+EQY 15:03:36 [spi] read_gold: finished (returncode=0)
+EQY 15:03:36 [spi] read_gate: starting process "yosys -ql spi/gate.log spi/gate.ys"
+EQY 15:03:37 [spi] read_gate: finished (returncode=0)
+EQY 15:03:37 [spi] combine: starting process "yosys -ql spi/combine.log spi/combine.ys"
+EQY 15:03:37 [spi] combine: finished (returncode=0)
+EQY 15:03:38 [spi] partition: starting process "cd spi; yosys -ql partition.log partition.ys"
+EQY 15:03:40 [spi] partition: finished (returncode=0)
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.xfer_pending contains 3 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.xfer_pending contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.wait_cntr contains 3 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.status_reg contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.status_reg contains 2 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.state contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.state contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg contains 2 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte contains 11 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.start contains 14 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done contains 5 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.31 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.31 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.30 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.30 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.29 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.29 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.28 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.28 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.27 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.27 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.26 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.26 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.25 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.25 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.24 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.24 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.23 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.23 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.22 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.22 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.21 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.21 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.20 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.20 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.19 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.19 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.18 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.18 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.17 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.17 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.16 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.16 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.15 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.15 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.14 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.14 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.13 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.13 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.12 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.12 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.11 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.11 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.10 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.10 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.9 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.9 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.8 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.8 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.7 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.7 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.6 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.6 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.5 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.5 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.4 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.4 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.3 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.3 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.2 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.2 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.1 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.1 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.0 contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_wdata.0 contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.mem_read_word contains 10 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_xfer_pending contains 10 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_xfer_pending contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_total_bytes contains 8 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_state contains 2 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_state contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_prog_addr contains 9 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_prog_addr contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_page_start_addr contains 8 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_bytes_written contains 9 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_bytes_written contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_addr_idx contains 10 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fw_addr_idx contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.flash_write_done contains 4 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fetch_cntr contains 6 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.fetch_cntr contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.done contains 5 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.done contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.delay_cntr contains 7 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.delay_cntr contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.cs_n_fw contains 11 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.cs_n_boot contains 3 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.chip_eraseed contains 8 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.byte_cntr contains 1 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.byte_cntr contains 2 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.bootloader_state contains 12 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.boot_done contains 4 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.addr_idx contains 2 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.u_spi_bootloader.addr_idx contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.mosi contains 10 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.mosi contains 1 unused gate inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.mem_we contains 5 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.flash_write_done contains 14 unused gold inputs.
+EQY 15:03:40 [spi] Warning: Partition spi_synth_top.boot_done contains 4 unused gold inputs.
+EQY 15:03:40 [spi] run: starting process "make -C spi -f strategies.mk"
+EQY 15:03:40 [spi] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
+EQY 15:03:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.boot_done'..
+EQY 15:03:41 [spi] run: Could not prove equivalence of partition 'spi_synth_top.boot_done' using strategy 'sby': partitions not equivalent
+EQY 15:03:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.cs_n'..
+EQY 15:03:42 [spi] run: Proved equivalence of partition 'spi_synth_top.cs_n' using strategy 'sby'
+EQY 15:03:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.flash_write_done'..
+EQY 15:03:43 [spi] run: Could not prove equivalence of partition 'spi_synth_top.flash_write_done' using strategy 'sby': partitions not equivalent
+EQY 15:03:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_addr'..
+EQY 15:03:44 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_addr' using strategy 'sby'
+EQY 15:03:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_wdata'..
+EQY 15:03:44 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_wdata' using strategy 'sby'
+EQY 15:03:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_we'..
+EQY 15:03:45 [spi] run: Could not prove equivalence of partition 'spi_synth_top.mem_we' using strategy 'sby': partitions not equivalent
+EQY 15:03:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.mem_wmask'..
+EQY 15:03:45 [spi] run: Proved equivalence of partition 'spi_synth_top.mem_wmask' using strategy 'sby'
+EQY 15:03:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.mosi'..
+EQY 15:03:46 [spi] run: Could not prove equivalence of partition 'spi_synth_top.mosi' using strategy 'sby': partitions not equivalent
+EQY 15:03:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.sclk'..
+EQY 15:03:46 [spi] run: Proved equivalence of partition 'spi_synth_top.sclk' using strategy 'sby'
+EQY 15:03:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.addr_idx'..
+EQY 15:03:47 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.addr_idx' using strategy 'sby': partitions not equivalent
+EQY 15:03:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.boot_done'..
+EQY 15:03:48 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.boot_done' using strategy 'sby': partitions not equivalent
+EQY 15:03:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.bootloader_state'..
+EQY 15:03:50 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.bootloader_state' using strategy 'sby': partitions not equivalent
+EQY 15:03:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.busy'..
+EQY 15:03:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.busy' using strategy 'sby'
+EQY 15:03:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.byte_cntr'..
+EQY 15:03:51 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.byte_cntr' using strategy 'sby': partitions not equivalent
+EQY 15:03:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.chip_eraseed'..
+EQY 15:03:53 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.chip_eraseed' using strategy 'sby': partitions not equivalent
+EQY 15:03:53 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.cs_n_boot'..
+EQY 15:03:53 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.cs_n_boot' using strategy 'sby': partitions not equivalent
+EQY 15:03:53 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.cs_n_fw'..
+EQY 15:03:55 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.cs_n_fw' using strategy 'sby': partitions not equivalent
+EQY 15:03:55 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.delay_cntr'..
+EQY 15:03:57 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.delay_cntr' using strategy 'sby': partitions not equivalent
+EQY 15:03:57 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.done'..
+EQY 15:03:57 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.done' using strategy 'sby': partitions not equivalent
+EQY 15:03:58 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fetch_cntr'..
+EQY 15:03:59 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fetch_cntr' using strategy 'sby': partitions not equivalent
+EQY 15:03:59 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.flash_write_done'..
+EQY 15:04:00 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.flash_write_done' using strategy 'sby': partitions not equivalent
+EQY 15:04:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.flash_write_en'..
+EQY 15:04:00 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.flash_write_en' using strategy 'sby'
+EQY 15:04:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_addr_idx'..
+EQY 15:04:02 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_addr_idx' using strategy 'sby': partitions not equivalent
+EQY 15:04:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_bytes_written'..
+EQY 15:04:04 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_bytes_written' using strategy 'sby': partitions not equivalent
+EQY 15:04:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_page_start_addr'..
+EQY 15:04:06 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_page_start_addr' using strategy 'sby': partitions not equivalent
+EQY 15:04:06 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_prog_addr'..
+EQY 15:04:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_prog_addr' using strategy 'sby': partitions not equivalent
+EQY 15:04:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_state'..
+EQY 15:04:10 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_state' using strategy 'sby': partitions not equivalent
+EQY 15:04:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_total_bytes'..
+EQY 15:04:12 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_total_bytes' using strategy 'sby': partitions not equivalent
+EQY 15:04:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.fw_xfer_pending'..
+EQY 15:04:14 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.fw_xfer_pending' using strategy 'sby': partitions not equivalent
+EQY 15:04:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.0'..
+EQY 15:04:14 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.0' using strategy 'sby'
+EQY 15:04:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.1'..
+EQY 15:04:15 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.1' using strategy 'sby'
+EQY 15:04:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.10'..
+EQY 15:04:15 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.10' using strategy 'sby'
+EQY 15:04:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.11'..
+EQY 15:04:16 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.11' using strategy 'sby'
+EQY 15:04:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.12'..
+EQY 15:04:16 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.12' using strategy 'sby'
+EQY 15:04:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.13'..
+EQY 15:04:17 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.13' using strategy 'sby'
+EQY 15:04:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.14'..
+EQY 15:04:17 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.14' using strategy 'sby'
+EQY 15:04:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.15'..
+EQY 15:04:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.15' using strategy 'sby'
+EQY 15:04:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.16'..
+EQY 15:04:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.16' using strategy 'sby'
+EQY 15:04:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.17'..
+EQY 15:04:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.17' using strategy 'sby'
+EQY 15:04:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.18'..
+EQY 15:04:19 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.18' using strategy 'sby'
+EQY 15:04:19 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.19'..
+EQY 15:04:20 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.19' using strategy 'sby'
+EQY 15:04:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.2'..
+EQY 15:04:20 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.2' using strategy 'sby'
+EQY 15:04:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.20'..
+EQY 15:04:21 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.20' using strategy 'sby'
+EQY 15:04:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.21'..
+EQY 15:04:21 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.21' using strategy 'sby'
+EQY 15:04:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.22'..
+EQY 15:04:22 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.22' using strategy 'sby'
+EQY 15:04:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.23'..
+EQY 15:04:22 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.23' using strategy 'sby'
+EQY 15:04:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.24'..
+EQY 15:04:23 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.24' using strategy 'sby'
+EQY 15:04:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.25'..
+EQY 15:04:23 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.25' using strategy 'sby'
+EQY 15:04:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.26'..
+EQY 15:04:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.26' using strategy 'sby'
+EQY 15:04:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.27'..
+EQY 15:04:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.27' using strategy 'sby'
+EQY 15:04:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.28'..
+EQY 15:04:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.28' using strategy 'sby'
+EQY 15:04:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.29'..
+EQY 15:04:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.29' using strategy 'sby'
+EQY 15:04:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.3'..
+EQY 15:04:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.3' using strategy 'sby'
+EQY 15:04:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.30'..
+EQY 15:04:26 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.30' using strategy 'sby'
+EQY 15:04:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.31'..
+EQY 15:04:26 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.31' using strategy 'sby'
+EQY 15:04:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.4'..
+EQY 15:04:27 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.4' using strategy 'sby'
+EQY 15:04:27 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.5'..
+EQY 15:04:27 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.5' using strategy 'sby'
+EQY 15:04:27 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.6'..
+EQY 15:04:28 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.6' using strategy 'sby'
+EQY 15:04:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.7'..
+EQY 15:04:28 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.7' using strategy 'sby'
+EQY 15:04:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.8'..
+EQY 15:04:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.8' using strategy 'sby'
+EQY 15:04:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.image_size.9'..
+EQY 15:04:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.image_size.9' using strategy 'sby'
+EQY 15:04:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.0'..
+EQY 15:04:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.0' using strategy 'sby'
+EQY 15:04:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.1'..
+EQY 15:04:30 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.1' using strategy 'sby'
+EQY 15:04:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.10'..
+EQY 15:04:31 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.10' using strategy 'sby'
+EQY 15:04:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.11'..
+EQY 15:04:31 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.11' using strategy 'sby'
+EQY 15:04:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.12'..
+EQY 15:04:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.12' using strategy 'sby'
+EQY 15:04:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.2'..
+EQY 15:04:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.2' using strategy 'sby'
+EQY 15:04:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.3'..
+EQY 15:04:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.3' using strategy 'sby'
+EQY 15:04:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.4'..
+EQY 15:04:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.4' using strategy 'sby'
+EQY 15:04:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.5'..
+EQY 15:04:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.5' using strategy 'sby'
+EQY 15:04:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.6'..
+EQY 15:04:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.6' using strategy 'sby'
+EQY 15:04:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.7'..
+EQY 15:04:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.7' using strategy 'sby'
+EQY 15:04:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.8'..
+EQY 15:04:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.8' using strategy 'sby'
+EQY 15:04:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_addr.9'..
+EQY 15:04:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_addr.9' using strategy 'sby'
+EQY 15:04:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.0'..
+EQY 15:04:36 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.0' using strategy 'sby'
+EQY 15:04:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.1'..
+EQY 15:04:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.1' using strategy 'sby'
+EQY 15:04:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.10'..
+EQY 15:04:37 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.10' using strategy 'sby'
+EQY 15:04:37 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.11'..
+EQY 15:04:38 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.11' using strategy 'sby'
+EQY 15:04:38 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.12'..
+EQY 15:04:38 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.12' using strategy 'sby'
+EQY 15:04:38 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.13'..
+EQY 15:04:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.13' using strategy 'sby'
+EQY 15:04:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.14'..
+EQY 15:04:39 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.14' using strategy 'sby'
+EQY 15:04:39 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.15'..
+EQY 15:04:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.15' using strategy 'sby'
+EQY 15:04:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.16'..
+EQY 15:04:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.16' using strategy 'sby'
+EQY 15:04:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.17'..
+EQY 15:04:40 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.17' using strategy 'sby'
+EQY 15:04:40 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.18'..
+EQY 15:04:41 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.18' using strategy 'sby'
+EQY 15:04:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.19'..
+EQY 15:04:41 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.19' using strategy 'sby'
+EQY 15:04:41 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.2'..
+EQY 15:04:42 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.2' using strategy 'sby'
+EQY 15:04:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.20'..
+EQY 15:04:42 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.20' using strategy 'sby'
+EQY 15:04:42 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.21'..
+EQY 15:04:43 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.21' using strategy 'sby'
+EQY 15:04:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.22'..
+EQY 15:04:43 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.22' using strategy 'sby'
+EQY 15:04:43 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.23'..
+EQY 15:04:44 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.23' using strategy 'sby'
+EQY 15:04:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.24'..
+EQY 15:04:44 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.24' using strategy 'sby'
+EQY 15:04:44 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.25'..
+EQY 15:04:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.25' using strategy 'sby'
+EQY 15:04:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.26'..
+EQY 15:04:45 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.26' using strategy 'sby'
+EQY 15:04:45 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.27'..
+EQY 15:04:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.27' using strategy 'sby'
+EQY 15:04:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.28'..
+EQY 15:04:46 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.28' using strategy 'sby'
+EQY 15:04:46 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.29'..
+EQY 15:04:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.29' using strategy 'sby'
+EQY 15:04:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.3'..
+EQY 15:04:47 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.3' using strategy 'sby'
+EQY 15:04:47 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.30'..
+EQY 15:04:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.30' using strategy 'sby'
+EQY 15:04:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.31'..
+EQY 15:04:48 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.31' using strategy 'sby'
+EQY 15:04:48 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.4'..
+EQY 15:04:49 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.4' using strategy 'sby'
+EQY 15:04:49 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.5'..
+EQY 15:04:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.5' using strategy 'sby'
+EQY 15:04:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.6'..
+EQY 15:04:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.6' using strategy 'sby'
+EQY 15:04:50 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.7'..
+EQY 15:04:50 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.7' using strategy 'sby'
+EQY 15:04:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.8'..
+EQY 15:04:51 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.8' using strategy 'sby'
+EQY 15:04:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_rdata.9'..
+EQY 15:04:51 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_rdata.9' using strategy 'sby'
+EQY 15:04:51 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_read_word'..
+EQY 15:04:53 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_read_word' using strategy 'sby': partitions not equivalent
+EQY 15:04:53 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.0'..
+EQY 15:04:54 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.0' using strategy 'sby': partitions not equivalent
+EQY 15:04:54 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.1'..
+EQY 15:04:54 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.1' using strategy 'sby': partitions not equivalent
+EQY 15:04:54 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.10'..
+EQY 15:04:55 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.10' using strategy 'sby': partitions not equivalent
+EQY 15:04:55 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.11'..
+EQY 15:04:55 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.11' using strategy 'sby': partitions not equivalent
+EQY 15:04:55 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.12'..
+EQY 15:04:56 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.12' using strategy 'sby': partitions not equivalent
+EQY 15:04:56 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.13'..
+EQY 15:04:56 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.13' using strategy 'sby': partitions not equivalent
+EQY 15:04:56 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.14'..
+EQY 15:04:57 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.14' using strategy 'sby': partitions not equivalent
+EQY 15:04:57 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.15'..
+EQY 15:04:57 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.15' using strategy 'sby': partitions not equivalent
+EQY 15:04:57 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.16'..
+EQY 15:04:58 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.16' using strategy 'sby': partitions not equivalent
+EQY 15:04:58 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.17'..
+EQY 15:04:58 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.17' using strategy 'sby': partitions not equivalent
+EQY 15:04:58 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.18'..
+EQY 15:04:59 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.18' using strategy 'sby': partitions not equivalent
+EQY 15:04:59 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.19'..
+EQY 15:04:59 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.19' using strategy 'sby': partitions not equivalent
+EQY 15:04:59 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.2'..
+EQY 15:05:00 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.2' using strategy 'sby': partitions not equivalent
+EQY 15:05:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.20'..
+EQY 15:05:00 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.20' using strategy 'sby': partitions not equivalent
+EQY 15:05:00 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.21'..
+EQY 15:05:01 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.21' using strategy 'sby': partitions not equivalent
+EQY 15:05:01 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.22'..
+EQY 15:05:01 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.22' using strategy 'sby': partitions not equivalent
+EQY 15:05:01 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.23'..
+EQY 15:05:02 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.23' using strategy 'sby': partitions not equivalent
+EQY 15:05:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.24'..
+EQY 15:05:02 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.24' using strategy 'sby': partitions not equivalent
+EQY 15:05:02 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.25'..
+EQY 15:05:03 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.25' using strategy 'sby': partitions not equivalent
+EQY 15:05:03 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.26'..
+EQY 15:05:03 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.26' using strategy 'sby': partitions not equivalent
+EQY 15:05:03 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.27'..
+EQY 15:05:04 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.27' using strategy 'sby': partitions not equivalent
+EQY 15:05:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.28'..
+EQY 15:05:04 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.28' using strategy 'sby': partitions not equivalent
+EQY 15:05:04 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.29'..
+EQY 15:05:04 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.29' using strategy 'sby': partitions not equivalent
+EQY 15:05:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.3'..
+EQY 15:05:05 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.3' using strategy 'sby': partitions not equivalent
+EQY 15:05:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.30'..
+EQY 15:05:05 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.30' using strategy 'sby': partitions not equivalent
+EQY 15:05:05 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.31'..
+EQY 15:05:06 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.31' using strategy 'sby': partitions not equivalent
+EQY 15:05:06 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.4'..
+EQY 15:05:06 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.4' using strategy 'sby': partitions not equivalent
+EQY 15:05:06 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.5'..
+EQY 15:05:07 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.5' using strategy 'sby': partitions not equivalent
+EQY 15:05:07 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.6'..
+EQY 15:05:07 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.6' using strategy 'sby': partitions not equivalent
+EQY 15:05:07 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.7'..
+EQY 15:05:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.7' using strategy 'sby': partitions not equivalent
+EQY 15:05:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.8'..
+EQY 15:05:08 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.8' using strategy 'sby': partitions not equivalent
+EQY 15:05:08 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wdata.9'..
+EQY 15:05:09 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wdata.9' using strategy 'sby': partitions not equivalent
+EQY 15:05:09 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_we'..
+EQY 15:05:09 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_we' using strategy 'sby'
+EQY 15:05:09 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.0'..
+EQY 15:05:10 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.0' using strategy 'sby'
+EQY 15:05:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.1'..
+EQY 15:05:10 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.1' using strategy 'sby'
+EQY 15:05:10 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.2'..
+EQY 15:05:11 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.2' using strategy 'sby'
+EQY 15:05:11 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.mem_wmask.3'..
+EQY 15:05:11 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.mem_wmask.3' using strategy 'sby'
+EQY 15:05:11 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.rx_byte'..
+EQY 15:05:12 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.rx_byte' using strategy 'sby'
+EQY 15:05:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order'..
+EQY 15:05:12 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order' using strategy 'sby'
+EQY 15:05:12 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg'..
+EQY 15:05:13 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg' using strategy 'sby'
+EQY 15:05:13 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.busy'..
+EQY 15:05:13 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.busy' using strategy 'sby'
+EQY 15:05:13 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.clk'..
+EQY 15:05:14 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.clk' using strategy 'sby'
+EQY 15:05:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha'..
+EQY 15:05:14 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha' using strategy 'sby'
+EQY 15:05:14 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg'..
+EQY 15:05:15 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg' using strategy 'sby'
+EQY 15:05:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol'..
+EQY 15:05:15 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol' using strategy 'sby'
+EQY 15:05:15 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr'..
+EQY 15:05:16 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr' using strategy 'sby'
+EQY 15:05:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.done'..
+EQY 15:05:16 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.done' using strategy 'sby': partitions not equivalent
+EQY 15:05:16 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr'..
+EQY 15:05:17 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr' using strategy 'sby'
+EQY 15:05:17 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso'..
+EQY 15:05:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso' using strategy 'sby'
+EQY 15:05:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta'..
+EQY 15:05:18 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta' using strategy 'sby'
+EQY 15:05:18 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync'..
+EQY 15:05:19 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync' using strategy 'sby'
+EQY 15:05:19 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi'..
+EQY 15:05:19 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi' using strategy 'sby'
+EQY 15:05:19 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n'..
+EQY 15:05:20 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n' using strategy 'sby'
+EQY 15:05:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0'..
+EQY 15:05:20 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0' using strategy 'sby'
+EQY 15:05:20 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1'..
+EQY 15:05:21 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1' using strategy 'sby'
+EQY 15:05:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2'..
+EQY 15:05:21 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2' using strategy 'sby'
+EQY 15:05:21 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3'..
+EQY 15:05:22 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3' using strategy 'sby'
+EQY 15:05:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4'..
+EQY 15:05:22 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4' using strategy 'sby'
+EQY 15:05:22 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5'..
+EQY 15:05:23 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5' using strategy 'sby'
+EQY 15:05:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6'..
+EQY 15:05:23 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6' using strategy 'sby'
+EQY 15:05:23 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7'..
+EQY 15:05:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7' using strategy 'sby'
+EQY 15:05:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg'..
+EQY 15:05:24 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg' using strategy 'sby'
+EQY 15:05:24 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk'..
+EQY 15:05:25 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk' using strategy 'sby'
+EQY 15:05:25 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.start'..
+EQY 15:05:26 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.start' using strategy 'sby': partitions not equivalent
+EQY 15:05:26 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte'..
+EQY 15:05:28 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte' using strategy 'sby': partitions not equivalent
+EQY 15:05:28 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg'..
+EQY 15:05:29 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg' using strategy 'sby': partitions not equivalent
+EQY 15:05:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.start'..
+EQY 15:05:29 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.start' using strategy 'sby'
+EQY 15:05:29 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.state'..
+EQY 15:05:30 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.state' using strategy 'sby': partitions not equivalent
+EQY 15:05:30 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.status_reg'..
+EQY 15:05:31 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.status_reg' using strategy 'sby': partitions not equivalent
+EQY 15:05:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.0'..
+EQY 15:05:31 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.0' using strategy 'sby'
+EQY 15:05:31 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.1'..
+EQY 15:05:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.1' using strategy 'sby'
+EQY 15:05:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.2'..
+EQY 15:05:32 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.2' using strategy 'sby'
+EQY 15:05:32 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.3'..
+EQY 15:05:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.3' using strategy 'sby'
+EQY 15:05:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.4'..
+EQY 15:05:33 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.4' using strategy 'sby'
+EQY 15:05:33 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.5'..
+EQY 15:05:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.5' using strategy 'sby'
+EQY 15:05:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.6'..
+EQY 15:05:34 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.6' using strategy 'sby'
+EQY 15:05:34 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.tx_byte.7'..
+EQY 15:05:35 [spi] run: Proved equivalence of partition 'spi_synth_top.u_spi_bootloader.tx_byte.7' using strategy 'sby'
+EQY 15:05:35 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.wait_cntr'..
+EQY 15:05:36 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.wait_cntr' using strategy 'sby': partitions not equivalent
+EQY 15:05:36 [spi] run: Running strategy 'sby' on 'spi_synth_top.u_spi_bootloader.xfer_pending'..
+EQY 15:05:37 [spi] run: Could not prove equivalence of partition 'spi_synth_top.u_spi_bootloader.xfer_pending' using strategy 'sby': partitions not equivalent
+EQY 15:05:37 [spi] run: make -f strategies.mk summary
+EQY 15:05:37 [spi] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
+EQY 15:05:37 [spi] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
+EQY 15:05:37 [spi] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/spi'
+EQY 15:05:37 [spi] run: finished (returncode=0)
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.7
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.6
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.5
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.4
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.tx_byte.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.start
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.sclk
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_shift_reg
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.7
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.6
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.5
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.4
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rx_byte.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.rst_n
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.mosi
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_sync
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso_meta
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.miso
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.edge_cntr
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.div_cntr
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpol
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha_reg
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.cpha
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.clk
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.busy
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order_reg
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.bit_order
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.rx_byte
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_wmask.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_we
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.31
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.30
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.29
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.28
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.27
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.26
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.25
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.24
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.23
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.22
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.21
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.20
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.19
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.18
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.17
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.16
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.15
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.14
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.13
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.12
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.11
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.10
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.9
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.8
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.7
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.6
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.5
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.4
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_rdata.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.12
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.11
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.10
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.9
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.8
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.7
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.6
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.5
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.4
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.mem_addr.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.31
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.30
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.29
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.28
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.27
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.26
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.25
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.24
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.23
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.22
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.21
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.20
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.19
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.18
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.17
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.16
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.15
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.14
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.13
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.12
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.11
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.10
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.9
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.8
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.7
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.6
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.5
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.4
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.3
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.2
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.1
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.image_size.0
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.flash_write_en
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.u_spi_bootloader.busy
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.sclk
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.mem_wmask
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.mem_wdata
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.mem_addr
+EQY 15:05:37 [spi] Successfully proved equivalence of partition spi_synth_top.cs_n
+EQY 15:05:37 [spi] Warning: Failed to prove equivalence for 63/186 partitions:
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.xfer_pending
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.wait_cntr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.status_reg
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.state
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_shift_reg
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.tx_byte
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.start
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.spi_shift_inst.done
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.31
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.30
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.29
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.28
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.27
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.26
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.25
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.24
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.23
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.22
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.21
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.20
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.19
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.18
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.17
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.16
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.15
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.14
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.13
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.12
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.11
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.10
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.9
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.8
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.7
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.6
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.5
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.4
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.3
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.2
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.1
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_wdata.0
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.mem_read_word
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_xfer_pending
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_total_bytes
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_state
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_prog_addr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_page_start_addr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_bytes_written
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fw_addr_idx
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.flash_write_done
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.fetch_cntr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.done
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.delay_cntr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.cs_n_fw
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.cs_n_boot
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.chip_eraseed
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.byte_cntr
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.bootloader_state
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.boot_done
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.u_spi_bootloader.addr_idx
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.mosi
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.mem_we
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.flash_write_done
+EQY 15:05:37 [spi] Failed to prove equivalence of partition spi_synth_top.boot_done
+EQY 15:05:37 [spi] summary: Elapsed clock time [H:MM:SS (secs)]: 0:02:01 (121)
+EQY 15:05:37 [spi] summary: Elapsed process time [H:MM:SS (secs)]: 0:02:17 (137)
+EQY 15:05:37 [spi] DONE (FAIL, rc=2)
