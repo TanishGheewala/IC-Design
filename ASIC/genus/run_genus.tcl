@@ -40,9 +40,9 @@ if {[llength [get_db modules *]] > 0} {
     set_db [get_db modules *] .boundary_opto false
 }
 
-set_db boundary_optimize_constant_hpins false
-set_db boundary_optimize_equal_opposite_hpins false
-set_db boundary_optimize_feedthrough_hpins false
+# set_db boundary_optimize_constant_hpins false
+# set_db boundary_optimize_equal_opposite_hpins false
+# set_db boundary_optimize_feedthrough_hpins false
 set_db dp_ungroup_during_syn_map false
 set_db merge_combinational_hier_instances false
 
@@ -62,14 +62,14 @@ set_db opt_constant_nets false
 set_db iopt_sequential_duplication false
 set_db iopt_sequential_resynthesis false
 set_db use_multibit_cells false
-set_db lp_insert_clock_gating false
+# set_db lp_insert_clock_gating false
 
 # Optional if FSM/control still diverges (check `help control_logic_optimization` first):
-# set_db control_logic_optimization none
+set_db control_logic_optimization false
 
 syn_generic
 syn_map
-# syn_opt
+syn_opt
 
 report_timing > $RPT_DIR/${DESIGN}_timing.rpt
 report_area   > $RPT_DIR/${DESIGN}_area.rpt
