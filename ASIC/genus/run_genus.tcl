@@ -65,7 +65,7 @@ set_db use_multibit_cells false
 # set_db lp_insert_clock_gating false
 
 # Optional if FSM/control still diverges (check `help control_logic_optimization` first):
-set_db control_logic_optimization false
+set_db control_logic_optimization none
 
 syn_generic
 syn_map
