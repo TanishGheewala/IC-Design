@@ -8,8 +8,11 @@ set_db max_cpus_per_server 2
 
 read_libs [concat $STD_LIB $EXTRA_LIBS]
 
-# Must be set before elaborate so unused registers aren't dropped at elaboration
+# Must be set before elaborate so unused/feedback logic isn't pruned at elaboration
 set_db hdl_preserve_unused_registers true
+set_db hdl_preserve_unused_flop true
+set_db hdl_cdfg_early_redundancy_removal false
+set_db hdl_ff_keep_feedback true
 
 set_db init_hdl_search_path $INCLUDE_DIRS
 set files {}
@@ -31,30 +34,42 @@ read_sdc $SDC_FILE
 # Lists paths and ports that the SDC files doesn't constrain
 check_timing_intent > $RPT_DIR/${DESIGN}_timing_intent.rpt
 
-# Keep hierarchy & FF boundaries intact for Yosys EQY (and Innovus macro paths)
+# Keep hierarchy, FF boundaries, and constants intact for Yosys EQY (and Innovus macro paths)
 set_db auto_ungroup none
-set_db [get_db modules *] .boundary_opto false
+if {[llength [get_db modules *]] > 0} {
+    set_db [get_db modules *] .boundary_opto false
+}
+
+set_db boundary_optimize_constant_hpins false
+set_db boundary_optimize_equal_opposite_hpins false
+set_db boundary_optimize_feedthrough_hpins false
+set_db dp_ungroup_during_syn_map false
+set_db merge_combinational_hier_instances false
 
 set_db delete_unloaded_seqs false
 set_db optimize_constant_0_flops false
 set_db optimize_constant_1_flops false
-set_db optimize_constant_feedback_seq false
+set_db optimize_constant_feedback_seqs false
 set_db optimize_constant_latches false
+set_db optimize_constant_across_preserved false
 set_db optimize_merge_flops false
 set_db optimize_merge_latches false
+
+set_db opt_preserve_all_sequential true
+set_db opt_preserve_hpin_function true
+set_db opt_constant_nets false
 
 set_db iopt_sequential_duplication false
 set_db iopt_sequential_resynthesis false
 set_db use_multibit_cells false
 set_db lp_insert_clock_gating false
 
-if {[llength [get_db modules *]] > 0} {
-    set_db [get_db modules *] .boundary_opto false
-}
+# Optional if FSM/control still diverges (check `help control_logic_optimization` first):
+# set_db control_logic_optimization none
 
 syn_generic
 syn_map
-#syn_opt
+# syn_opt
 
 get_db * > genus_root_values.txt
 report_timing > $RPT_DIR/${DESIGN}_timing.rpt
