@@ -56,10 +56,10 @@ set SRAM_NAME     sky130_sram_2kbyte_1rw1r_32x512_8
 if {[info exists env(SRAM_DIR)]} {
     set SRAM_DIR $env(SRAM_DIR)
 } else {
-    set SRAM_DIR $REPO_ROOT/ASIC/macros/$SRAM_NAME
+    set SRAM_DIR $REPO_ROOT/ASIC/macros
 }
 set SRAM_LEF      $SRAM_DIR/$SRAM_NAME.lef
-set SRAM_LIB      $SRAM_DIR/$SRAM_NAME.lib
+set SRAM_LIB      $SRAM_DIR/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
 set SRAM_GDS      $SRAM_DIR/$SRAM_NAME.gds
 
 ###############################################################################
