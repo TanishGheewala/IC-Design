@@ -71,12 +71,12 @@ proc step_init {} {
     set lefs [list $TECH_LEF $STD_CELL_LEF]
     if {$HAS_SRAM} { lappend lefs $SRAM_LEF }
 
-    set init_mmmc_file $mmmc
-    set init_lef_file  $lefs
-    set init_verilog   $NETLIST
-    set init_top_cell  $TOP_MODULE
-    set init_pwr_net   $POWER_NET
-    set init_gnd_net   $GROUND_NET
+    set ::init_mmmc_file $mmmc
+    set ::init_lef_file  $lefs
+    set ::init_verilog   $NETLIST
+    set ::init_top_cell  $TOP_MODULE
+    set ::init_pwr_net   $POWER_NET
+    set ::init_gnd_net   $GROUND_NET
 
     init_design
     setDesignMode -process 130
@@ -201,7 +201,6 @@ proc step_route {} {
     setNanoRouteMode -routeTopRoutingLayer $MAX_ROUTE_LAYER
     setNanoRouteMode -routeWithTimingDriven true
     routeDesign
-    optDesign -postRoute
 }
 
 ###############################################################################
@@ -221,7 +220,7 @@ proc step_verify {} {
     global RPT_DIR DESIGN
     verify_drc          -report $RPT_DIR/${DESIGN}_drc.rpt
     verifyConnectivity  -type all -report $RPT_DIR/${DESIGN}_conn.rpt
-    checkDesign -all -outfile $RPT_DIR/${DESIGN}_checkdesign.rpt
+    checkDesign -all -noHtml -outfile $RPT_DIR/${DESIGN}_checkdesign.rpt
 }
 
 ###############################################################################
