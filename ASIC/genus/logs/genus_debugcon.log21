@@ -1,0 +1,417 @@
+Cadence Genus(TM) Synthesis Solution.
+Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+Cadence and the Cadence logo are registered trademarks and Genus is a trademark
+of Cadence Design Systems, Inc. in the United States and other countries.
+
+[15:56:13.354729] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+Version: 23.13-s073_1, built Fri Nov 08 10:01:49 PST 2024
+Options: -no_gui -files run_genus.tcl -log logs/genus_debugcon.log 
+Date:    Mon Nov 16 15:56:13 2026
+Host:    bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*1physical cpu*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB) (7813416KB)
+PID:     560705
+OS:      Rocky Linux 8.10 (Green Obsidian)
+
+Checking out license: Genus_Synthesis
+[15:56:13.486554] Periodic Lic check successful
+[15:56:13.486586] Feature usage summary:
+[15:56:13.486587] Genus_Synthesis
+
+
+
+***********************************************************************************************************
+***********************************************************************************************************
+
+
+
+Finished executable startup (1 second elapsed).
+
+Loading tool scripts...
+Finished loading tool scripts (36 seconds elapsed).
+
+#@ Processing -files option
+@genus:root: 1> source run_genus.tcl
+#@ Begin verbose source ./run_genus.tcl
+@file(run_genus.tcl) 3: source $env(GENUS_DIR)/config.tcl
+Sourcing '/tapeout/IC-Design/ASIC/genus/config.tcl' (Mon Nov 16 15:56:49 PST 2026)...
+#@ Begin verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(config.tcl) 2: set REPO_ROOT $env(REPO_ROOT)
+@file(config.tcl) 3: set GENUS_DIR $env(GENUS_DIR)
+@file(config.tcl) 4: set DESIGN    $env(DESIGN)
+@file(config.tcl) 7: set PDK_ROOT    /opt/open_pdks/sky130/sky130A
+@file(config.tcl) 8: set STD_LIB_DIR $PDK_ROOT/libs.ref/sky130_fd_sc_hd/lib
+@file(config.tcl) 9: set STD_LIB     $STD_LIB_DIR/sky130_fd_sc_hd__tt_025C_1v80.lib   ;
+@file(config.tcl) 12: set SRAM_LIB    $REPO_ROOT/ASIC/macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib
+@file(config.tcl) 13: set EXTRA_LIBS  [list $SRAM_LIB]
+@file(config.tcl) 16: array set TOP_OF {
+    alu      alu_synth_top
+    gpio     gpio_synth_top
+    core     core_synth_top
+    debugcon debug_controller_v2_synth_top
+    sram2k   data_memory_sram2k
+    soc      soc_synth_top
+}
+@file(config.tcl) 24: set TOP_MODULE $TOP_OF($DESIGN)
+@file(config.tcl) 25: set FILELIST   $GENUS_DIR/filelists/$DESIGN.f
+@file(config.tcl) 26: set SDC_FILE   $GENUS_DIR/constraints/$DESIGN.sdc
+@file(config.tcl) 28: set INCLUDE_DIRS [list $REPO_ROOT/RTL/memory]
+@file(config.tcl) 31: set OUT_DIR $GENUS_DIR/out/$DESIGN
+@file(config.tcl) 32: set RPT_DIR $GENUS_DIR/reports/$DESIGN
+#@ End verbose source /tapeout/IC-Design/ASIC/genus/config.tcl
+@file(run_genus.tcl) 4: file mkdir $OUT_DIR $RPT_DIR
+@file(run_genus.tcl) 7: set_db max_cpus_per_server 2
+  Setting attribute of root '/': 'max_cpus_per_server' = 2
+@file(run_genus.tcl) 9: read_libs [concat $STD_LIB $EXTRA_LIBS]
+
+  Message Summary for Library both libraries:
+  *******************************************
+  Missing library level attribute. [LBR-516]: 1
+  An unsupported construct was detected in this library. [LBR-40]: 13
+  *******************************************
+ 
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sky130_fd_sc_hd__tt_025C_1v80.lib'.
+        : The nominal operating condition is represented, either by the nominal PVT values specified in the library source (via nom_process,nom_voltage and nom_temperature respectively), or by the default PVT values (1.0,1.0,1.0).
+Info    : Created nominal operating condition. [LBR-412]
+        : Operating condition '_nominal_' was created for the PVT values (1.000000, 1.800000, 25.000000) in library 'sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib'.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+        : Add the missing output pin(s), then reload the library. Else the library cell will be marked as timing model i.e. unusable. Timing_model means that the cell does not have any defined function. If there is no output pin, Genus will mark library cell as unusable i.e. the attribute 'usable' will be marked to 'false' on the libcell. Therefore, the cell is not used for mapping and it will not be picked up from the library for synthesis. If you query the attribute 'unusable_reason' on the libcell; result will be: 'Library cell has no output pins.'Note: The message LBR-9 is only for the logical pins and not for the power_ground pins. Genus will depend upon the output function defined in the pin group (output pin) of the cell, to use it for mapping. The pg_pin will not have any function defined.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_6' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__decap_8' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__diode_2' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_bleeder_1' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_12' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_3' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Library cell has no output pins defined. [LBR-9]
+        : Library cell 'sky130_fd_sc_hd__lpflow_decapkapwr_4' must have an output pin.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'LBR-9'.
+@file(run_genus.tcl) 12: set_db hdl_preserve_unused_registers true
+  Setting attribute of root '/': 'hdl_preserve_unused_registers' = true
+@file(run_genus.tcl) 14: set_db init_hdl_search_path $INCLUDE_DIRS
+  Setting attribute of root '/': 'init_hdl_search_path' = /tapeout/IC-Design/RTL/memory
+@file(run_genus.tcl) 15: set files {}
+@file(run_genus.tcl) 16: set fp [open $FILELIST r]
+@file(run_genus.tcl) 17: while {[gets $fp line] >= 0} {
+    set line [string trim $line]
+    if {$line eq "" || [string match "#*" $line]} continue
+    lappend files [file join $REPO_ROOT $line]
+}
+@file(run_genus.tcl) 22: close $fp
+@file(run_genus.tcl) 23: read_hdl -sv $files
+Warning : Cannot open file. [VLOGPT-650]
+        : File '/tapeout/IC-Design/ASIC/sky130_ram_macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib'.
+        : The specified file could not be opened.  Check the value of the init_hdl_search_path attribute.
+@file(run_genus.tcl) 24: elaborate $TOP_MODULE
+  Libraries have 328 usable logic and 62 usable sequential lib-cells.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+        : Non-monotonic wireload models can cause problems during synthesis and/or mapping.  Raising some of the points in the curve to give it a monotonic shape.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Huge' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Large' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Medium' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Warning : Non-monotonic wireload model found. [LBR-81]
+        : 'Length' table in wireload model 'Small' is non-monotonic.
+Info    : Elaborating Design. [ELAB-1]
+        : Elaborating top-level block 'debug_controller_v2_synth_top' from file '/tapeout/IC-Design/ASIC/genus/wrappers/debug_controller_v2_synth_top.sv'.
+Warning : An interface-type port has no modport specified. [CDFG-483]
+        : No modport specified for interface port 'debug_if' of type 'debug_interface_v2' in file '/tapeout/IC-Design/ASIC/genus/wrappers/debug_controller_v2_synth_top.sv' on line 37.
+        : If no modport is specified in the declaration of an interface-type port or in the connection of such a port, then all variables and wires from the interface are accessible with direction inout. This can result in multiple drivers to these variables and wires. It is therefore recommended that all interface-type ports be used with modports.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'clk' in module 'debug_controller_v2_synth_top'.
+        : This may cause simulation mismatches between the original and synthesized designs.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'rst_n' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'rx' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[0]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[1]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[2]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[3]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[4]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[5]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[6]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[7]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[8]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[9]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[10]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[11]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[12]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[13]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[14]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[15]' in module 'debug_controller_v2_synth_top'.
+Warning : Signal or variable has multiple drivers. [CDFG2G-622]
+        : 'core_data[16]' in module 'debug_controller_v2_synth_top'.
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'CDFG2G-622'.
+Info    : Done Elaborating Design. [ELAB-3]
+        : Done elaborating 'debug_controller_v2_synth_top'.
+Checking for source RTL...
+Check completed for source RTL.
+Running Unified Mux Engine Tricks...
+Completed Unified Mux Engine Tricks
+
+Stage: post_elab
+-------------------------------------------------------
+| Trick             | Accepts | Rejects | Runtime (s) | 
+-------------------------------------------------------
+| ume_constant_bmux |       0 |       0 |        0.00 | 
+| ume_merge         |       0 |       0 |        0.00 | 
+| ume_ssm           |       0 |       0 |        0.00 | 
+| ume_cse           |       1 |       0 |        0.01 | 
+| ume_shrink        |       0 |       0 |        0.00 | 
+| ume_sweep         |       0 |       0 |        0.00 | 
+| ume_constant_bmux |       0 |       0 |        0.00 | 
+| ume_merge         |       0 |       0 |        0.00 | 
+| ume_ssm           |       0 |       0 |        0.00 | 
+| ume_cse           |       0 |       0 |        0.01 | 
+| ume_shrink        |       0 |       0 |        0.00 | 
+| ume_sweep         |       0 |       0 |        0.00 | 
+-------------------------------------------------------
+Starting optimize datapath shifters [v1.0] (stage: post_elab, startdef: debug_controller_v2_synth_top, recur: true)
+Completed optimize datapath shifters (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip mux common data inputs [v1.0] (stage: post_elab, startdef: debug_controller_v2_synth_top, recur: true)
+Completed clip mux common data inputs (accepts: 0, rejects: 0, runtime: 0.000s)
+Starting clip the non-user hierarchies [v2.0] (stage: post_elab, startdef: debug_controller_v2_synth_top, recur: true)
+Completed clip the non-user hierarchies (accepts: 0, rejects: 0, runtime: 0.001s)
+Starting basic netlist cleanup [v1.0] (stage: post_elab, startdef: debug_controller_v2_synth_top, recur: true)
+Completed basic netlist cleanup (accepts: 0, rejects: 0, runtime: 0.000s)
+
+Stage: post_elab
+--------------------------------------------------------------------
+| Transform                      | Accepts | Rejects | Runtime (s) | 
+--------------------------------------------------------------------
+| hlo_optimize_datapath_shifters |       0 |       0 |        0.00 | 
+| hlo_clip_mux_input             |       0 |       0 |        0.00 | 
+| hlo_clip                       |       0 |       0 |        0.00 | 
+| hlo_cleanup                    |       0 |       0 |        0.00 | 
+--------------------------------------------------------------------
+UM:   flow.cputime  flow.realtime  timing.setup.tns  timing.setup.wns  snapshot
+UM:*                                                                   elaborate
+@file(run_genus.tcl) 27: check_design -all > $RPT_DIR/${DESIGN}_check_design.rpt
+
+
+ No LEF file read in.
+@file(run_genus.tcl) 29: read_sdc $SDC_FILE
+Statistics for commands executed by read_sdc:
+ "all_outputs"              - successful      1 , failed      0 (runtime  0.00)
+ "create_clock"             - successful      1 , failed      0 (runtime  0.01)
+ "current_design"           - successful      2 , failed      0 (runtime  0.02)
+ "get_clocks"               - successful      3 , failed      0 (runtime  0.00)
+ "get_ports"                - successful     11 , failed      0 (runtime  0.02)
+ "set_clock_transition"     - successful      1 , failed      0 (runtime  0.00)
+ "set_clock_uncertainty"    - successful      1 , failed      0 (runtime  0.00)
+ "set_dont_touch_network"   - successful      1 , failed      0 (runtime  0.08)
+ "set_false_path"           - successful      2 , failed      0 (runtime  0.00)
+ "set_input_delay"          - successful      4 , failed      0 (runtime  0.01)
+ "set_load"                 - successful      1 , failed      0 (runtime  0.01)
+ "set_max_fanout"           - successful      1 , failed      0 (runtime  0.01)
+ "set_max_transition"       - successful      1 , failed      0 (runtime  0.01)
+ "set_output_delay"         - successful      4 , failed      0 (runtime  0.01)
+read_sdc completed in 00:00:00 (hh:mm:ss)
+@file(run_genus.tcl) 32: check_timing_intent > $RPT_DIR/${DESIGN}_timing_intent.rpt
+@file(run_genus.tcl) 35: set_db auto_ungroup none
+  Setting attribute of root '/': 'auto_ungroup' = none
+@file(run_genus.tcl) 36: set_db [get_db modules *] .boundary_opto false
+  Setting attribute of module 'uart_rec_CLK_RATE100000000_BAUDRATE9600_uart_if_uart_interface_uart_r': 'boundary_opto' = false
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'Decoder_3_7_0'.
+        : User is not allowed and should not need to disable boundary optimization on internal created hierarchies.
+  Setting attribute of module 'Decoder_3_7_0': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux'.
+  Setting attribute of module 'bmux': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'equal_unsigned_9'.
+  Setting attribute of module 'equal_unsigned_9': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'add_unsigned'.
+  Setting attribute of module 'add_unsigned': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'add_unsigned_13'.
+  Setting attribute of module 'add_unsigned_13': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'equal_unsigned_15'.
+  Setting attribute of module 'equal_unsigned_15': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_19'.
+  Setting attribute of module 'bmux_19': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_20'.
+  Setting attribute of module 'bmux_20': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'case_box'.
+  Setting attribute of module 'case_box': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'mux'.
+  Setting attribute of module 'mux': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_24'.
+  Setting attribute of module 'bmux_24': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'case_box_5'.
+  Setting attribute of module 'case_box_5': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'mux_25'.
+  Setting attribute of module 'mux_25': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'mux_28'.
+  Setting attribute of module 'mux_28': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_29'.
+  Setting attribute of module 'bmux_29': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'mux_31'.
+  Setting attribute of module 'mux_31': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_33'.
+  Setting attribute of module 'bmux_33': 'boundary_opto' = true
+  Setting attribute of module 'uart_trans_CLK_RATE100000000_BAUDRATE9600_uart_if_uart_interface_uart_t': 'boundary_opto' = false
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'bmux_35'.
+  Setting attribute of module 'bmux_35': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'lt_unsigned'.
+  Setting attribute of module 'lt_unsigned': 'boundary_opto' = true
+Info    : Skipping 'boundary_opto' = false setting since set on an internal created hierarchy. [GLO-52]
+        : The module is 'lt_unsigned_39'.
+  Setting attribute of module 'lt_unsigned_39': 'boundary_opto' = true
+Warning : Maximum message print count reached. [MESG-11]
+        : Maximum print count of '20' reached for message 'GLO-52'.
+  Setting attribute of module 'bmux_49': 'boundary_opto' = true
+  Setting attribute of module 'case_box_11': 'boundary_opto' = true
+  Setting attribute of module 'debug_controller_v2_debug_if_debug_interface_v2_default': 'boundary_opto' = false
+  Setting attribute of module 'geq_unsigned': 'boundary_opto' = true
+  Setting attribute of module 'gt_unsigned': 'boundary_opto' = true
+  Setting attribute of module 'add_unsigned_71': 'boundary_opto' = true
+  Setting attribute of module 'lt_unsigned_75': 'boundary_opto' = true
+  Setting attribute of module 'add_unsigned_77': 'boundary_opto' = true
+  Setting attribute of module 'case_box_22': 'boundary_opto' = true
+  Setting attribute of module 'mux_84': 'boundary_opto' = true
+  Setting attribute of module 'case_box_23': 'boundary_opto' = true
+  Setting attribute of module 'mux_86': 'boundary_opto' = true
+  Setting attribute of module 'case_box_26': 'boundary_opto' = true
+  Setting attribute of module 'mux_88': 'boundary_opto' = true
+  Setting attribute of module 'case_box_29': 'boundary_opto' = true
+  Setting attribute of module 'mux_94': 'boundary_opto' = true
+  Setting attribute of module 'case_box_32': 'boundary_opto' = true
+  Setting attribute of module 'mux_98': 'boundary_opto' = true
+  Setting attribute of module 'bmux_99': 'boundary_opto' = true
+  Setting attribute of module 'mux_101': 'boundary_opto' = true
+  Setting attribute of module 'case_box_35': 'boundary_opto' = true
+  Setting attribute of module 'mux_109': 'boundary_opto' = true
+  Setting attribute of module 'case_box_38': 'boundary_opto' = true
+  Setting attribute of module 'mux_111': 'boundary_opto' = true
+  Setting attribute of module 'mux_114': 'boundary_opto' = true
+  Setting attribute of module 'case_box_41': 'boundary_opto' = true
+  Setting attribute of module 'mux_121': 'boundary_opto' = true
+  Setting attribute of module 'mux_124': 'boundary_opto' = true
+  Setting attribute of module 'mux_126': 'boundary_opto' = true
+  Setting attribute of module 'case_box_44': 'boundary_opto' = true
+  Setting attribute of module 'case_box_47': 'boundary_opto' = true
+  Setting attribute of module 'case_box_50': 'boundary_opto' = true
+  Setting attribute of module 'mux_143': 'boundary_opto' = true
+@file(run_genus.tcl) 38: set_db delete_unloaded_seqs false
+  Setting attribute of root '/': 'delete_unloaded_seqs' = false
+@file(run_genus.tcl) 39: set_db optimize_constant_0_flops false
+  Setting attribute of root '/': 'optimize_constant_0_flops' = false
+@file(run_genus.tcl) 40: set_db optimize_constant_1_flops false
+  Setting attribute of root '/': 'optimize_constant_1_flops' = false
+@file(run_genus.tcl) 41: set_db optimize_constant_feedback_seq false
+  Setting attribute of root '/': 'optimize_constant_feedback_seqs' = false
+@file(run_genus.tcl) 42: set_db optimize_constant_latches false
+  Setting attribute of root '/': 'optimize_constant_latches' = false
+@file(run_genus.tcl) 43: set_db optimize_merge_flops false
+  Setting attribute of root '/': 'optimize_merge_flops' = false
+@file(run_genus.tcl) 44: set_db optimize_merge_latches false
+  Setting attribute of root '/': 'optimize_merge_latches' = false
+@file(run_genus.tcl) 46: set_db iopt_sequential_duplication false
+  Setting attribute of root '/': 'iopt_sequential_duplication' = false
+@file(run_genus.tcl) 47: set_db iopt_sequential_resynthesis false
+  Setting attribute of root '/': 'iopt_sequential_resynthesis' = false
+@file(run_genus.tcl) 48: set_db use_multibit_cells false
+  Setting attribute of root '/': 'use_multibit_cells' = false
+@file(run_genus.tcl) 49: set_db lp_insert_clock_gating false
+  Setting attribute of root '/': 'lp_insert_clock_gating' = false
+@file(run_genus.tcl) 52: set_db [get_db designs *] .optimize_constant_0_seq false
+Error   : Unrecognized attribute. [TUI-183] [set_db]
+        : 'optimize_constant_0_seq' is not a recognized attribute for object 'design'.
+        : To see the usage/description for this attribute, type 'help * <attr_name> -detail'.
+#@ End verbose source ./run_genus.tcl
+1
+Encountered problems processing file: run_genus.tcl
+WARNING: This version of the tool is 738 days old.
+@genus:root: 2> exir
+invalid command name "exir"
+@genus:root: 3> exit
+
+Lic Summary:
+[15:59:21.509097] Cdslmd servers: volta
+[15:59:21.509123] Feature usage summary:
+[15:59:21.509128] Genus_Synthesis
+
+Normal exit.

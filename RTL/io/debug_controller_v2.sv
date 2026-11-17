@@ -57,7 +57,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     //debug rx state logic
     debug_trx_state_t debug_rx_state;
     debug_trx_state_t next_debug_rx_state;
-    logic [31:0] address_index;
+    logic [29:0] address_index;
     logic [31:0] image_bytes;
     logic [31:0] boot_image_size;
     logic size_received;
@@ -291,7 +291,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
                             address_index <= 0;
                         end
                         else if(address_index + 4 < image_bytes) begin
-                            address_index <= address_index + 4;
+                            address_index <= address_index + 1;
                         end
                         else begin
                             address_index <= 0;
@@ -321,7 +321,7 @@ module debug_controller_v2(debug_interface_v2 debug_if);
         case(debug_command)
             FLASH_WRITE: begin
                 if(size_received && (debug_rx_state == END_TRANSMISION)) begin
-                    debug_if.data_address = address_index;
+                    debug_if.data_address = {address_index, 2'b00};
                     debug_if.write_data = rx_word;
                     debug_if.write_en = 1'b1;
                 end

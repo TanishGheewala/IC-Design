@@ -181,6 +181,8 @@ add mapped point dut/TRN/serial_out/q dut/TRN/serial_out_reg/Q -type DFF DFF
 add mapped point dut/TRN/uart_state[0]/q dut/TRN/uart_state_reg[0]/Q -type DFF DFF
 add mapped point dut/TRN/uart_state[1]/q dut/TRN/uart_state_reg[1]/Q -type DFF DFF
 add mapped point dut/TRN/uart_state[2]/q dut/TRN/uart_state_reg[2]/Q -type DFF DFF
+add mapped point dut/address_index[0]/q dut/address_index_reg[0]/Q -type DFF DFF
+add mapped point dut/address_index[1]/q dut/address_index_reg[1]/Q -type DFF DFF
 add mapped point dut/address_index[2]/q dut/address_index_reg[2]/Q -type DFF DFF
 add mapped point dut/address_index[3]/q dut/address_index_reg[3]/Q -type DFF DFF
 add mapped point dut/address_index[4]/q dut/address_index_reg[4]/Q -type DFF DFF
@@ -209,8 +211,6 @@ add mapped point dut/address_index[26]/q dut/address_index_reg[26]/Q -type DFF D
 add mapped point dut/address_index[27]/q dut/address_index_reg[27]/Q -type DFF DFF
 add mapped point dut/address_index[28]/q dut/address_index_reg[28]/Q -type DFF DFF
 add mapped point dut/address_index[29]/q dut/address_index_reg[29]/Q -type DFF DFF
-add mapped point dut/address_index[30]/q dut/address_index_reg[30]/Q -type DFF DFF
-add mapped point dut/address_index[31]/q dut/address_index_reg[31]/Q -type DFF DFF
 add mapped point dut/address_out[0]/q dut/address_out_reg[0]/Q -type DFF DFF
 add mapped point dut/address_out[1]/q dut/address_out_reg[1]/Q -type DFF DFF
 add mapped point dut/address_out[2]/q dut/address_out_reg[2]/Q -type DFF DFF

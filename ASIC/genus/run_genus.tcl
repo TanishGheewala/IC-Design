@@ -48,22 +48,15 @@ set_db iopt_sequential_resynthesis false
 set_db use_multibit_cells false
 set_db lp_insert_clock_gating false
 
-# Design- and module-level attributes (must come AFTER elaborate)
-set_db [get_db designs *] .optimize_constant_0_seq false
-set_db [get_db designs *] .optimize_constant_1_seq false
-set_db [get_db designs *] .optimize_merge_seq false
-
 if {[llength [get_db modules *]] > 0} {
     set_db [get_db modules *] .boundary_opto false
-    set_db [get_db modules *] .optimize_constant_0_seq false
-    set_db [get_db modules *] .optimize_constant_1_seq false
-    set_db [get_db modules *] .optimize_merge_seq false
 }
 
 syn_generic
 syn_map
-syn_opt
+#syn_opt
 
+get_db * > genus_root_values.txt
 report_timing > $RPT_DIR/${DESIGN}_timing.rpt
 report_area   > $RPT_DIR/${DESIGN}_area.rpt
 report_power  > $RPT_DIR/${DESIGN}_power.rpt

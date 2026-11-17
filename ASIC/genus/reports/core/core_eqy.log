@@ -1,20 +1,221 @@
-EQY 17:18:21 [core] read_gold: starting process "yosys -ql core/gold.log core/gold.ys"
-EQY 17:18:21 [core] read_gold: finished (returncode=0)
-EQY 17:18:21 [core] read_gate: starting process "yosys -ql core/gate.log core/gate.ys"
-EQY 17:18:28 [core] read_gate: finished (returncode=0)
-EQY 17:18:28 [core] combine: starting process "yosys -ql core/combine.log core/combine.ys"
-EQY 17:18:29 [core] combine: finished (returncode=0)
-EQY 17:18:34 [core] partition: starting process "cd core; yosys -ql partition.log partition.ys"
-EQY 17:19:05 [core] partition: finished (returncode=0)
-EQY 17:19:06 [core] run: starting process "make -C core -f strategies.mk"
-EQY 17:19:06 [core] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
-EQY 17:19:06 [core] run: Running strategy 'sby' on 'core_synth_top.debug_data_return'..
-EQY 17:19:08 [core] run: Elapsed clock time [H:MM:SS (secs)]: 0:00:01 (1)
-EQY 17:19:08 [core] run: Elapsed process time [H:MM:SS (secs)]: 0:00:01 (1)
-EQY 17:19:08 [core] run: engine_0 (smtbmc yices) did not return a status
-EQY 17:19:08 [core] run: engine_0 did not produce any traces
-EQY 17:19:08 [core] run: Execution of strategy 'sby' on partition 'core_synth_top.debug_data_return' encountered an error.
-EQY 17:19:08 [core] run: More details can be found in 'core/strategies/core_synth_top.debug_data_return/sby/core_synth_top.debug_data_return/logfile.txt'.
-EQY 17:19:08 [core] run: make: *** [strategies.mk:113: strategies/core_synth_top.debug_data_return/sby/status] Error 1
-EQY 17:19:08 [core] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
-EQY 17:19:08 [core] run: finished (returncode=2)
+EQY 16:50:06 [core] read_gold: starting process "yosys -ql core/gold.log core/gold.ys"
+EQY 16:50:06 [core] read_gold: finished (returncode=0)
+EQY 16:50:06 [core] read_gate: starting process "yosys -ql core/gate.log core/gate.ys"
+EQY 16:50:14 [core] read_gate: finished (returncode=0)
+EQY 16:50:14 [core] combine: starting process "yosys -ql core/combine.log core/combine.ys"
+EQY 16:50:15 [core] combine: finished (returncode=0)
+EQY 16:50:21 [core] partition: starting process "cd core; yosys -ql partition.log partition.ys"
+EQY 16:51:04 [core] partition: finished (returncode=0)
+EQY 16:51:05 [core] Warning: Partition core_synth_top.u_core.u_register_file.registers.0 contains 39 unused gate inputs.
+EQY 16:51:05 [core] Warning: Partition core_synth_top.rom_address.10 contains 1 unused gate inputs.
+EQY 16:51:05 [core] Warning: Partition core_synth_top.rom_address.9 contains 1 unused gate inputs.
+EQY 16:51:05 [core] Warning: Partition core_synth_top.rom_address.8 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.7 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.6 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.5 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.4 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.3 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.2 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.1 contains 1 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.rom_address.0 contains 2 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.16 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.10 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.7 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.6 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.5 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.4 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.3 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.2 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.1 contains 32 unused gate inputs.
+EQY 16:51:06 [core] Warning: Partition core_synth_top.memory_write.0 contains 32 unused gate inputs.
+EQY 16:51:07 [core] run: starting process "make -C core -f strategies.mk"
+EQY 16:51:07 [core] run: make: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 16:51:07 [core] run: Running strategy 'sby' on 'core_synth_top.debug_data_return'..
+EQY 16:51:13 [core] run: Proved equivalence of partition 'core_synth_top.debug_data_return' using strategy 'sby'
+EQY 16:51:13 [core] run: Running strategy 'sby' on 'core_synth_top.memory_address'..
+EQY 16:51:33 [core] run: Proved equivalence of partition 'core_synth_top.memory_address' using strategy 'sby'
+EQY 16:51:33 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.0'..
+EQY 16:51:34 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.0' using strategy 'sby'
+EQY 16:51:34 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.1'..
+EQY 16:51:35 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.1' using strategy 'sby'
+EQY 16:51:35 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.10'..
+EQY 16:51:37 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.10' using strategy 'sby'
+EQY 16:51:37 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.16'..
+EQY 16:51:41 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.16' using strategy 'sby'
+EQY 16:51:41 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.2'..
+EQY 16:51:42 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.2' using strategy 'sby'
+EQY 16:51:42 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.3'..
+EQY 16:51:43 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.3' using strategy 'sby'
+EQY 16:51:43 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.4'..
+EQY 16:51:44 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.4' using strategy 'sby'
+EQY 16:51:44 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.5'..
+EQY 16:51:45 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.5' using strategy 'sby'
+EQY 16:51:45 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.6'..
+EQY 16:51:46 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.6' using strategy 'sby'
+EQY 16:51:46 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write.7'..
+EQY 16:51:47 [core] run: Proved equivalence of partition 'core_synth_top.memory_write.7' using strategy 'sby'
+EQY 16:51:47 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write_en'..
+EQY 16:51:48 [core] run: Proved equivalence of partition 'core_synth_top.memory_write_en' using strategy 'sby'
+EQY 16:51:48 [core] run: Running strategy 'sby' on 'core_synth_top.memory_write_mask'..
+EQY 16:51:57 [core] run: Proved equivalence of partition 'core_synth_top.memory_write_mask' using strategy 'sby'
+EQY 16:51:57 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.0'..
+EQY 16:52:03 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.0' using strategy 'sby'
+EQY 16:52:03 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.1'..
+EQY 16:52:17 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.1' using strategy 'sby'
+EQY 16:52:17 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.10'..
+EQY 16:52:31 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.10' using strategy 'sby'
+EQY 16:52:31 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.11'..
+EQY 16:52:44 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.11' using strategy 'sby'
+EQY 16:52:44 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.12'..
+EQY 16:52:57 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.12' using strategy 'sby'
+EQY 16:52:57 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.2'..
+EQY 16:53:11 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.2' using strategy 'sby'
+EQY 16:53:11 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.3'..
+EQY 16:53:21 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.3' using strategy 'sby'
+EQY 16:53:21 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.4'..
+EQY 16:53:34 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.4' using strategy 'sby'
+EQY 16:53:34 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.5'..
+EQY 16:53:48 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.5' using strategy 'sby'
+EQY 16:53:48 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.6'..
+EQY 16:53:59 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.6' using strategy 'sby'
+EQY 16:53:59 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.7'..
+EQY 16:54:13 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.7' using strategy 'sby'
+EQY 16:54:13 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.8'..
+EQY 16:54:27 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.8' using strategy 'sby'
+EQY 16:54:27 [core] run: Running strategy 'sby' on 'core_synth_top.rom_address.9'..
+EQY 16:54:39 [core] run: Proved equivalence of partition 'core_synth_top.rom_address.9' using strategy 'sby'
+EQY 16:54:39 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.clk_delay'..
+EQY 16:54:40 [core] run: Proved equivalence of partition 'core_synth_top.u_core.clk_delay' using strategy 'sby'
+EQY 16:54:40 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.0'..
+EQY 16:54:41 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.0' using strategy 'sby'
+EQY 16:54:41 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.1'..
+EQY 16:55:03 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.1' using strategy 'sby'
+EQY 16:55:03 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.10'..
+EQY 16:55:28 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.10' using strategy 'sby'
+EQY 16:55:28 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.11'..
+EQY 16:56:01 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.11' using strategy 'sby'
+EQY 16:56:01 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.12'..
+EQY 16:56:30 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.12' using strategy 'sby'
+EQY 16:56:30 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.13'..
+EQY 16:56:50 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.13' using strategy 'sby'
+EQY 16:56:50 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.14'..
+EQY 16:57:15 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.14' using strategy 'sby'
+EQY 16:57:15 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.15'..
+EQY 16:57:42 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.15' using strategy 'sby'
+EQY 16:57:42 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.16'..
+EQY 16:58:03 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.16' using strategy 'sby'
+EQY 16:58:03 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.17'..
+EQY 16:58:35 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.17' using strategy 'sby'
+EQY 16:58:35 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.18'..
+EQY 16:58:53 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.18' using strategy 'sby'
+EQY 16:58:53 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.19'..
+EQY 16:59:19 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.19' using strategy 'sby'
+EQY 16:59:19 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.2'..
+EQY 16:59:40 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.2' using strategy 'sby'
+EQY 16:59:40 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.20'..
+EQY 17:00:09 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.20' using strategy 'sby'
+EQY 17:00:09 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.21'..
+EQY 17:00:28 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.21' using strategy 'sby'
+EQY 17:00:28 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.22'..
+EQY 17:01:03 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.22' using strategy 'sby'
+EQY 17:01:03 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.23'..
+EQY 17:01:25 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.23' using strategy 'sby'
+EQY 17:01:25 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.24'..
+EQY 17:01:55 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.24' using strategy 'sby'
+EQY 17:01:55 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.25'..
+EQY 17:02:16 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.25' using strategy 'sby'
+EQY 17:02:16 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.26'..
+EQY 17:02:34 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.26' using strategy 'sby'
+EQY 17:02:34 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.27'..
+EQY 17:03:07 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.27' using strategy 'sby'
+EQY 17:03:07 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.28'..
+EQY 17:03:27 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.28' using strategy 'sby'
+EQY 17:03:27 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.29'..
+EQY 17:03:47 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.29' using strategy 'sby'
+EQY 17:03:47 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.3'..
+EQY 17:04:06 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.3' using strategy 'sby'
+EQY 17:04:06 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.30'..
+EQY 17:04:25 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.30' using strategy 'sby'
+EQY 17:04:25 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.31'..
+EQY 17:04:56 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.31' using strategy 'sby'
+EQY 17:04:56 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.4'..
+EQY 17:05:16 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.4' using strategy 'sby'
+EQY 17:05:16 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.5'..
+EQY 17:05:43 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.5' using strategy 'sby'
+EQY 17:05:43 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.6'..
+EQY 17:06:13 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.6' using strategy 'sby'
+EQY 17:06:13 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.7'..
+EQY 17:06:38 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.7' using strategy 'sby'
+EQY 17:06:38 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.8'..
+EQY 17:07:02 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.8' using strategy 'sby'
+EQY 17:07:02 [core] run: Running strategy 'sby' on 'core_synth_top.u_core.u_register_file.registers.9'..
+EQY 17:07:35 [core] run: Proved equivalence of partition 'core_synth_top.u_core.u_register_file.registers.9' using strategy 'sby'
+EQY 17:07:35 [core] run: make -f strategies.mk summary
+EQY 17:07:35 [core] run: make[1]: Entering directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 17:07:36 [core] run: make[1]: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 17:07:36 [core] run: make: Leaving directory '/tapeout/IC-Design/ASIC/genus/eqy/work/core'
+EQY 17:07:36 [core] run: finished (returncode=0)
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.9
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.8
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.7
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.6
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.5
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.4
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.3
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.31
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.30
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.2
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.29
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.28
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.27
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.26
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.25
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.24
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.23
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.22
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.21
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.20
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.1
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.19
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.18
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.17
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.16
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.15
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.14
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.13
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.12
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.11
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.10
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.u_register_file.registers.0
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.u_core.clk_delay
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.12
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.11
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.10
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.9
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.8
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.7
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.6
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.5
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.4
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.3
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.2
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.1
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.rom_address.0
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write_mask
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write_en
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.16
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.10
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.7
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.6
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.5
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.4
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.3
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.2
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.1
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_write.0
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.memory_address
+EQY 17:07:36 [core] Successfully proved equivalence of partition core_synth_top.debug_data_return
+EQY 17:07:36 [core] Successfully proved designs equivalent
+EQY 17:07:36 [core] summary: Elapsed clock time [H:MM:SS (secs)]: 0:17:30 (1050)
+EQY 17:07:36 [core] summary: Elapsed process time [H:MM:SS (secs)]: 0:25:24 (1524)
+EQY 17:07:36 [core] DONE (PASS, rc=0)
