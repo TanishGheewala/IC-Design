@@ -84,6 +84,7 @@ proc step_init {} {
     global TECH_LEF STD_CELL_LEF SRAM_LEF NETLIST TOP_MODULE
     global POWER_NET GROUND_NET
     global init_mmmc_file init_lef_file init_verilog init_top_cell init_pwr_net init_gnd_net
+    global MIN_ROUTE_LAYER MAX_ROUTE_LAYER
 
     # ---- Multi-Mode Multi-Corner setup (one typical corner) -----------------
     set libs [list $STD_LIB]
@@ -120,7 +121,8 @@ proc step_init {} {
     set init_gnd_net   $GROUND_NET
 
     init_design
-    setDesignMode -process 130
+    setDesignMode -process 130 
+    setDesignMode -bottomRoutingLayer $MIN_ROUTE_LAYER - topRoutingLayer $MAX_ROUTE_LAYER
 
     # On-chip-variation timing with clock pessimism removal (CPPR). Post-route
     # optimization turns on SI (crosstalk) aware delay calculation, and the
@@ -300,12 +302,6 @@ proc step_cts {} {
 proc step_route {} {
     global MAX_ROUTE_LAYER ANTENNA_CELL FILLER_CELLS MIN_ROUTE_LAYER
 
-    # Top routing layer: newer releases use setDesignMode; older ones only
-    # have the (now obsolete) NanoRoute option.
-    if {[catch {setDesignMode -topRoutingLayer $MAX_ROUTE_LAYER}]} {
-        setNanoRouteMode -routeTopRoutingLayer $MAX_ROUTE_LAYER
-    }
-    setNanoRouteMode -routeBottomRoutingLayer $MIN_ROUTE_LAYER
     setNanoRouteMode -routeWithTimingDriven true
 
     # sky130 antenna rules: fix by layer hopping, and insert diodes where needed.
