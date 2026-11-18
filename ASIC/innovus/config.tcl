@@ -70,6 +70,15 @@ set TAP_CELL      ${STD_CELL}__tapvpwrvgnd_1
 set TAP_INTERVAL  13
 set ENDCAP_CELL   ${STD_CELL}__decap_3
 set TIE_CELL      ${STD_CELL}__conb_1
+
+# Antenna diode NanoRoute inserts to fix antenna violations
+set ANTENNA_CELL  ${STD_CELL}__diode_2
+
+# Clock tree cells: dedicated clock buffers/inverters (balanced rise/fall)
+set CTS_BUFFER_CELLS   [list ${STD_CELL}__clkbuf_2 ${STD_CELL}__clkbuf_4 \
+                             ${STD_CELL}__clkbuf_8 ${STD_CELL}__clkbuf_16]
+set CTS_INVERTER_CELLS [list ${STD_CELL}__clkinv_2 ${STD_CELL}__clkinv_4 \
+                             ${STD_CELL}__clkinv_8]
 set FILLER_CELLS  [list ${STD_CELL}__decap_12 ${STD_CELL}__decap_8 \
                         ${STD_CELL}__decap_6  ${STD_CELL}__decap_4 \
                         ${STD_CELL}__decap_3  ${STD_CELL}__fill_2  \

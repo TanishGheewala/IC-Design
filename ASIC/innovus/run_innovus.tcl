@@ -17,8 +17,8 @@
 source $env(INNOVUS_DIR)/config.tcl
 file mkdir $OUT_DIR $RPT_DIR $DBS_DIR
 
-# Cap to 2 threads for the dual-core workstation (same as Genus).
-setMultiCpuUsage -localCpu 2
+# Cap to 4 threads for the dual-core workstation (same as Genus).
+setMultiCpuUsage -localCpu 4
 
 ###############################################################################
 # Sanity checks -- fail early with a clear message instead of deep in the tool
@@ -261,9 +261,23 @@ proc step_cts {} {
         puts "  no registers in this design -> skipping clock tree synthesis."
         return
     }
-    create_clock_tree_spec
+    global CTS_BUFFER_CELLS CTS_INVERTER_CELLS
+
+    # Build the clock tree from the sky130 clock buffers/inverters only.
+    set_ccopt_property buffer_cells   $CTS_BUFFER_CELLS
+    set_ccopt_property inverter_cells $CTS_INVERTER_CELLS
+
+    # Clock tree spec from the SDC clocks. The legacy UI (what this script
+    # uses) calls it create_ccopt_clock_tree_spec; Stylus calls it
+    # create_clock_tree_spec. Use whichever this Innovus has.
+    if {[llength [info commands create_ccopt_clock_tree_spec]] > 0} {
+        create_ccopt_clock_tree_spec
+    } else {
+        create_clock_tree_spec
+    }
     ccopt_design
-    # The real clock tree adds skew, so fix hold violations right after CTS.
+    # The real clock tree changes timing: fix setup first, then hold.
+    optDesign -postCTS
     optDesign -postCTS -hold
 }
 
@@ -271,15 +285,25 @@ proc step_cts {} {
 # 7. route -- global + detailed route, then post-route optimization
 ###############################################################################
 proc step_route {} {
-    global MAX_ROUTE_LAYER
-    setNanoRouteMode -routeTopRoutingLayer $MAX_ROUTE_LAYER
+    global MAX_ROUTE_LAYER ANTENNA_CELL FILLER_CELLS
+
+    # Top routing layer: newer releases use setDesignMode; older ones only
+    # have the (now obsolete) NanoRoute option.
+    if {[catch {setDesignMode -topRoutingLayer $MAX_ROUTE_LAYER}]} {
+        setNanoRouteMode -routeTopRoutingLayer $MAX_ROUTE_LAYER
+    }
     setNanoRouteMode -routeWithTimingDriven true
+
+    # sky130 antenna rules: fix by layer hopping, and insert diodes where needed.
+    setNanoRouteMode -drouteFixAntenna true
+    setNanoRouteMode -routeInsertAntennaDiode true
+    setNanoRouteMode -routeAntennaCellName $ANTENNA_CELL
+
     routeDesign
     optDesign -postRoute
     optDesign -postRoute -hold
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
-    global FILLER_CELLS
     addFiller -cell $FILLER_CELLS -prefix FILLER
     connect_global_nets
 }
@@ -291,7 +315,8 @@ proc step_timing {} {
     global RPT_DIR DESIGN
     timeDesign -postRoute                 -outDir $RPT_DIR/timing_setup
     timeDesign -postRoute -hold           -outDir $RPT_DIR/timing_hold
-    report_timing -nworst 10 > $RPT_DIR/${DESIGN}_timing.rpt
+    # -max_paths = total paths reported (-nworst is paths per endpoint)
+    report_timing -max_paths 10 > $RPT_DIR/${DESIGN}_timing.rpt
 }
 
 ###############################################################################
@@ -299,19 +324,36 @@ proc step_timing {} {
 ###############################################################################
 proc step_verify {} {
     global RPT_DIR DESIGN
-    verify_drc          -report $RPT_DIR/${DESIGN}_drc.rpt
+    # Default limit stops at 1000 violations, which hides the real count.
+    verify_drc          -limit 100000 -report $RPT_DIR/${DESIGN}_drc.rpt
     verifyConnectivity  -type all -report $RPT_DIR/${DESIGN}_conn.rpt
-    checkDesign -all -outfile $RPT_DIR/${DESIGN}_checkdesign.rpt
+    verifyProcessAntenna -reportfile $RPT_DIR/${DESIGN}_antenna.rpt
+
+    # Some releases only take -outdir for checkDesign.
+    if {[catch {checkDesign -all -outfile $RPT_DIR/${DESIGN}_checkdesign.rpt}]} {
+        checkDesign -all -outdir $RPT_DIR/checkdesign
+    }
 }
 
 ###############################################################################
 # 10. save -- design database, final netlist, SPEF, DEF and GDSII
 ###############################################################################
 proc step_save {} {
-    global DBS_DIR OUT_DIR DESIGN TOP_MODULE GDS_MAP STD_GDS SRAM_GDS HAS_SRAM
+    global DBS_DIR OUT_DIR DESIGN GDS_MAP STD_GDS SRAM_GDS HAS_SRAM
+    global TAP_CELL ENDCAP_CELL FILLER_CELLS
 
     saveDesign $DBS_DIR/${DESIGN}_final.enc
+
+    # Logical netlist (timing / LEC) and an LVS netlist with power pins and
+    # the physical-only cells (taps, end caps, fillers) included.
     saveNetlist $OUT_DIR/${DESIGN}_pnr_netlist.v
+    set phys_cells [lsort -unique [concat $TAP_CELL $ENDCAP_CELL $FILLER_CELLS]]
+    saveNetlist $OUT_DIR/${DESIGN}_pnr_lvs.v \
+        -includePowerGround -includePhysicalCell $phys_cells
+
+    # Re-extract so the SPEF includes the hold buffers and fillers added
+    # after the last extraction.
+    extractRC
     rcOut -spef $OUT_DIR/${DESIGN}.spef
     defOut -floorplan -netlist -routing $OUT_DIR/${DESIGN}.def
 
