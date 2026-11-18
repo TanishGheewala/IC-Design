@@ -1,0 +1,11 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_1 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN542_dout0_0_4 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/data_memory/DIODE_2 1 addPortAsNeeded
+INSTTERM DIODE dut/data_memory/FE_OFN3771_core0_if_memory_write_mask_3 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_3 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN162_memory_read_23 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_4 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN6709_n -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_5 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/TIE_LTIE_HINET -
