@@ -66,6 +66,7 @@ if {[llength [get_db modules *]] > 0} {
 
 # Optional if FSM/control still diverges (check `help control_logic_optimization` first):
 # set_db control_logic_optimization none
+set_db use_scan_seqs_for_non_dft false
 
 syn_generic
 syn_map

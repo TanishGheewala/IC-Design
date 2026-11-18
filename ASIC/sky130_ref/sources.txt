@@ -1,0 +1,12 @@
+./custom/sky130_fd_sc_hd/verilog/*.v
+../sources/sky130_fd_sc_hd/models/*/*.v
+../sources/sky130_fd_sc_hd/cells/*/*.blackbox.v
+../sources/sky130_fd_sc_hd/cells/*/*.blackbox.pp.v
+../sources/sky130_fd_sc_hd/cells/*/*.*.v
+../sources/sky130_fd_sc_hd/cells/*/*.v
+./custom/sky130_fd_sc_hd/verilog/*.v
+../sources/sky130_fd_sc_hd/models/*/*.v
+../sources/sky130_fd_sc_hd/cells/*/*.blackbox.v
+../sources/sky130_fd_sc_hd/cells/*/*.blackbox.pp.v
+../sources/sky130_fd_sc_hd/cells/*/*.*.v
+../sources/sky130_fd_sc_hd/cells/*/*.v

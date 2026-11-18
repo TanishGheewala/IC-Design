@@ -298,7 +298,7 @@ proc step_cts {} {
 # 7. route -- global + detailed route, then post-route optimization
 ###############################################################################
 proc step_route {} {
-    global MAX_ROUTE_LAYER ANTENNA_CELL FILLER_CELLS
+    global MAX_ROUTE_LAYER ANTENNA_CELL FILLER_CELLS MIN_ROUTE_LAYER
 
     # Top routing layer: newer releases use setDesignMode; older ones only
     # have the (now obsolete) NanoRoute option.
