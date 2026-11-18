@@ -37,12 +37,43 @@ set TECH_LEF      $STD_REF/techlef/${STD_CELL}__nom.tlef
 set STD_CELL_LEF  $STD_REF/lef/${STD_CELL}.lef
 set STD_GDS       $STD_REF/gds/${STD_CELL}.gds
 
-# GDS stream-out layer map shipped with open_pdks (used at streamOut)
-set GDS_MAP       $PDK_ROOT/libs.tech/klayout/tech/sky130A.map
+# GDS stream-out layer map (used at streamOut).
+#   NOTE: streamOut needs an INNOVUS-format map (lines like "met1 NET 68 20").
+#   Check this file is in that format; if not, point GDS_MAP at one that is:
+#     export GDS_MAP=/path/to/sky130_innovus.map
+if {[info exists env(GDS_MAP)]} {
+    set GDS_MAP $env(GDS_MAP)
+} else {
+    set GDS_MAP $PDK_ROOT/libs.tech/klayout/tech/sky130A.map
+}
+
+# Optional RC extraction tech file (QRC techfile or cap table) for the rc
+# corner. Empty = Innovus estimates RC from the LEF only (timing is rough).
+#     export QRC_TECH=/path/to/qrcTechFile     (or a .captable)
+if {[info exists env(QRC_TECH)]} {
+    set QRC_TECH $env(QRC_TECH)
+} else {
+    set QRC_TECH ""
+}
 
 # Placement/routing site and top metal layer for sky130_fd_sc_hd
 set CORE_SITE     unithd
 set MAX_ROUTE_LAYER 5
+
+# Physical-only cells from sky130_fd_sc_hd
+#   TAP_CELL      : well tap (the hd cells have no built-in taps)
+#   TAP_INTERVAL  : max distance (um) between taps in a row
+#   ENDCAP_CELL   : placed at both ends of every row
+#   TIE_CELL      : drives constant 1'b0/1'b1 nets (has both HI and LO outputs)
+#   FILLER_CELLS  : fill row gaps after routing, largest first (decaps first)
+set TAP_CELL      ${STD_CELL}__tapvpwrvgnd_1
+set TAP_INTERVAL  13
+set ENDCAP_CELL   ${STD_CELL}__decap_3
+set TIE_CELL      ${STD_CELL}__conb_1
+set FILLER_CELLS  [list ${STD_CELL}__decap_12 ${STD_CELL}__decap_8 \
+                        ${STD_CELL}__decap_6  ${STD_CELL}__decap_4 \
+                        ${STD_CELL}__decap_3  ${STD_CELL}__fill_2  \
+                        ${STD_CELL}__fill_1]
 
 ###############################################################################
 # SRAM macro  (sky130_sram_2kbyte_1rw1r_32x512_8, from VLSIDA/sky130_sram_macros)
@@ -71,16 +102,22 @@ set SRAM_GDS      $SRAM_DIR/$SRAM_NAME.gds
 # ASIC/genus/wrappers/). alu + core wrappers exist; system/soc wrappers are
 # still TBD on the Genus side -- update these names if Person 1 picks others.
 array set TOP_OF {
-    alu     alu_synth_top
-    core    core_synth_top
-    system  system_synth_top
-    soc     soc_synth_top
+    alu      alu_synth_top
+    core     core_synth_top
+    gpio     gpio_synth_top
+    debugcon debug_controller_v2_synth_top
+    spi      spi_synth_top
+    system   system_synth_top
+    soc      soc_synth_top
 }
 array set USES_SRAM {
-    alu     0
-    core    0
-    system  1
-    soc     1
+    alu      0
+    core     0
+    gpio     0
+    debugcon 0
+    spi      0
+    system   1
+    soc      1
 }
 
 if {![info exists TOP_OF($DESIGN)]} {

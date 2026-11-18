@@ -8,4 +8,5 @@ export INNOVUS_DIR=$(cd "$(dirname "$0")" && pwd)
 export REPO_ROOT=$(cd "$INNOVUS_DIR/../.." && pwd)
 mkdir -p "$INNOVUS_DIR/logs"
 cd "$INNOVUS_DIR"
-innovus -win -files run_innovus.tcl -log "logs/innovus_${DESIGN}.log" -overwrite
+# -nowin: batch mode (works over SSH without X; doesn't hang in the GUI on an error)
+innovus -nowin -files run_innovus.tcl -log "logs/innovus_${DESIGN}.log" -overwrite

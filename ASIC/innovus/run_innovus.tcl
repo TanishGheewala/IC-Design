@@ -4,8 +4,9 @@
 # Launch with:   ./run_innovus.sh <design>        (design = alu | core | system | soc)
 #
 # Consumes the Genus handoff (ASIC/genus/out/<design>/<design>_netlist.v + .sdc)
-# and runs:  init -> floorplan -> (SRAM place) -> power -> place -> CTS ->
-#            route -> optimize -> timing -> verify (DRC + connectivity) ->
+# and runs:  init -> floorplan -> (SRAM place) -> well taps/end caps -> power ->
+#            place (+ tie cells) -> CTS (+ hold fix) -> route (+ setup/hold
+#            fix, fillers) -> timing -> verify (DRC + connectivity) ->
 #            save + GDS/netlist/SPEF out.
 #
 # The flow is written as one proc per step with a run-all driver at the bottom,
@@ -16,8 +17,8 @@
 source $env(INNOVUS_DIR)/config.tcl
 file mkdir $OUT_DIR $RPT_DIR $DBS_DIR
 
-# Use a few CPUs if the machine has them (harmless on a single-core box).
-setMultiCpuUsage -localCpu 4
+# Cap to 2 threads for the dual-core workstation (same as Genus).
+setMultiCpuUsage -localCpu 2
 
 ###############################################################################
 # Sanity checks -- fail early with a clear message instead of deep in the tool
@@ -31,17 +32,47 @@ proc check_file {label path} {
 }
 
 proc step_check {} {
-    global NETLIST SDC_FILE TECH_LEF STD_CELL_LEF STD_LIB
-    global HAS_SRAM SRAM_LEF SRAM_LIB DESIGN TOP_MODULE
+    global NETLIST SDC_FILE TECH_LEF STD_CELL_LEF STD_LIB STD_GDS GDS_MAP
+    global HAS_SRAM SRAM_LEF SRAM_LIB SRAM_GDS DESIGN TOP_MODULE QRC_TECH
     puts "=== checking inputs for design '$DESIGN' (top: $TOP_MODULE) ==="
     check_file "Netlist"        $NETLIST
     check_file "SDC"            $SDC_FILE
     check_file "Tech LEF"       $TECH_LEF
     check_file "Std-cell LEF"   $STD_CELL_LEF
     check_file "Std-cell .lib"  $STD_LIB
+    # GDS inputs are only used at the very end (streamOut); check them now so a
+    # missing file doesn't fail the run after hours of P&R.
+    check_file "Std-cell GDS"   $STD_GDS
+    check_file "GDS layer map"  $GDS_MAP
     if {$HAS_SRAM} {
         check_file "SRAM LEF"   $SRAM_LEF
         check_file "SRAM .lib"  $SRAM_LIB
+        check_file "SRAM GDS"   $SRAM_GDS
+    }
+    if {$QRC_TECH ne ""} {
+        check_file "RC tech file" $QRC_TECH
+    } else {
+        puts "  NOTE: no QRC_TECH set -> RC is estimated from the LEF (rough post-route timing)."
+    }
+}
+
+# Tie logical power nets to the physical P/G pins. Called again after cells
+# are added (tie cells, fillers) so every new instance gets connected too.
+proc connect_global_nets {} {
+    global POWER_NET GROUND_NET HAS_SRAM
+    # sky130_fd_sc_hd std cells: VPWR/VPB (power), VGND/VNB (ground).
+    # Constants (1'b0/1'b1) are NOT tied straight to the rails here; addTieHiLo
+    # in step_place drives them from tie cells instead.
+    clearGlobalNets
+    globalNetConnect $POWER_NET  -type pgpin -pin VPWR -all
+    globalNetConnect $GROUND_NET -type pgpin -pin VGND -all
+    globalNetConnect $POWER_NET  -type pgpin -pin VPB  -all
+    globalNetConnect $GROUND_NET -type pgpin -pin VNB  -all
+
+    # SRAM macro power pins (vccd1/vssd1) tie to the same supplies.
+    if {$HAS_SRAM} {
+        globalNetConnect $POWER_NET  -type pgpin -pin vccd1 -all
+        globalNetConnect $GROUND_NET -type pgpin -pin vssd1 -all
     }
 }
 
@@ -49,9 +80,10 @@ proc step_check {} {
 # 1. init -- build the MMMC view, read LEF + netlist, initialize the design
 ###############################################################################
 proc step_init {} {
-    global OUT_DIR SDC_FILE STD_LIB SRAM_LIB HAS_SRAM
+    global OUT_DIR SDC_FILE STD_LIB SRAM_LIB HAS_SRAM QRC_TECH
     global TECH_LEF STD_CELL_LEF SRAM_LEF NETLIST TOP_MODULE
     global POWER_NET GROUND_NET
+    global init_mmmc_file init_lef_file init_verilog init_top_cell init_pwr_net init_gnd_net
 
     # ---- Multi-Mode Multi-Corner setup (one typical corner) -----------------
     set libs [list $STD_LIB]
@@ -60,7 +92,16 @@ proc step_init {} {
     set mmmc $OUT_DIR/mmmc.tcl
     set fp [open $mmmc w]
     puts $fp "create_library_set -name libs_tt -timing \[list $libs\]"
-    puts $fp "create_rc_corner     -name rc_typ -T 25"
+    # RC tech: a QRC techfile (-qx_tech_file) or a cap table (-cap_table).
+    set rc_opt ""
+    if {$QRC_TECH ne ""} {
+        if {[string match -nocase "*captable*" $QRC_TECH] || [string match -nocase "*.capTbl" $QRC_TECH]} {
+            set rc_opt "-cap_table $QRC_TECH"
+        } else {
+            set rc_opt "-qx_tech_file $QRC_TECH"
+        }
+    }
+    puts $fp "create_rc_corner     -name rc_typ -T 25 $rc_opt"
     puts $fp "create_delay_corner  -name corner_tt -library_set libs_tt -rc_corner rc_typ"
     puts $fp "create_constraint_mode -name func -sdc_files \[list $SDC_FILE\]"
     puts $fp "create_analysis_view -name view_tt -delay_corner corner_tt -constraint_mode func"
@@ -87,62 +128,80 @@ proc step_init {} {
 ###############################################################################
 proc step_floorplan {} {
     global TARGET_UTIL ASPECT CORE_MARGIN CORE_SITE
-    global POWER_NET GROUND_NET HAS_SRAM
 
     floorPlan -site $CORE_SITE -r $ASPECT $TARGET_UTIL \
               $CORE_MARGIN $CORE_MARGIN $CORE_MARGIN $CORE_MARGIN
 
-    # Tie the logical power nets to the physical cell pins.
-    # sky130_fd_sc_hd std cells: VPWR/VPB (power), VGND/VNB (ground).
-    clearGlobalNets
-    globalNetConnect $POWER_NET  -type pgpin -pin VPWR -all -verbose
-    globalNetConnect $GROUND_NET -type pgpin -pin VGND -all -verbose
-    globalNetConnect $POWER_NET  -type pgpin -pin VPB  -all -verbose
-    globalNetConnect $GROUND_NET -type pgpin -pin VNB  -all -verbose
-    globalNetConnect $POWER_NET  -type tiehi -all -verbose
-    globalNetConnect $GROUND_NET -type tielo -all -verbose
-
-    # SRAM macro power pins (vccd1/vssd1) tie to the same supplies.
-    if {$HAS_SRAM} {
-        globalNetConnect $POWER_NET  -type pgpin -pin vccd1 -all -verbose
-        globalNetConnect $GROUND_NET -type pgpin -pin vssd1 -all -verbose
-    }
+    connect_global_nets
 }
 
 ###############################################################################
-# 3. SRAM placement -- auto-discover macros and lay them out along the left
-#    edge with a keep-out halo.  Tune coordinates here once you see the design;
-#    for a first pass this spreads them evenly inside the core.
+# 3. SRAM placement -- auto-discover macros and place them in a grid from the
+#    lower-left corner of the core: left to right, then the next row up.
+#    Spacing comes from the macro's real size in the LEF (683.1 x 416.54 um for
+#    sky130_sram_2kbyte_1rw1r_32x512_8), plus a routing channel between them.
+#    Replace with explicit placeInstance calls once you settle on a floorplan.
 ###############################################################################
 proc step_place_sram {} {
     global HAS_SRAM SRAM_NAME
     if {!$HAS_SRAM} { puts "  (no SRAM in this design, skipping)"; return }
 
-    set macros [get_cells -hierarchical -filter "ref_name==$SRAM_NAME"]
-    if {[llength $macros] == 0} {
-        puts "  WARNING: no instances of $SRAM_NAME found in the netlist."
-        return
-    }
-    puts "  placing [llength $macros] SRAM macro(s): $macros"
+    # Edge gap from the core boundary and channel between macros (um).
+    set edge    20
+    set channel 30
+    set halo    5
 
-    # Core box: {llx lly urx ury}
-    set core [get_db current_design .core_bbox]
+    # All leaf instances of the SRAM cell (hierarchical names included).
+    set insts [dbGet -p2 top.insts.cell.name $SRAM_NAME]
+    if {$insts eq "0x0" || [llength $insts] == 0} {
+        puts "ERROR: no instances of $SRAM_NAME found in the netlist."
+        exit 1
+    }
+    set names [dbGet $insts.name]
+    puts "  placing [llength $names] SRAM macro(s): $names"
+
+    # Macro size from the LEF: {{w h}}
+    set size [dbGet [dbGet -p head.libCells.name $SRAM_NAME].size]
+    set mw [lindex $size 0 0]
+    set mh [lindex $size 0 1]
+
+    # Core box: {{llx lly urx ury}}
+    set core [dbGet top.fPlan.coreBox]
     set llx [lindex $core 0 0]; set lly [lindex $core 0 1]
-    set urx [lindex $core 1 0]; set ury [lindex $core 1 1]
+    set urx [lindex $core 0 2]; set ury [lindex $core 0 3]
+    puts "  core box: ($llx, $lly) - ($urx, $ury); macro: $mw x $mh um"
 
-    # Stack macros up the left side, 20um in from the core edge.
-    set x [expr {$llx + 20}]
-    set y [expr {$lly + 20}]
-    set pitch_y 0
-    foreach m $macros {
-        set inst [get_db $m .name]
+    set x [expr {$llx + $edge}]
+    set y [expr {$lly + $edge}]
+    foreach inst $names {
+        # Start a new row if this macro would cross the right edge.
+        if {$x + $mw > $urx - $edge} {
+            set x [expr {$llx + $edge}]
+            set y [expr {$y + $mh + $channel}]
+        }
+        if {$y + $mh > $ury - $edge} {
+            puts "ERROR: SRAM macros don't fit in the core ($urx x $ury um)."
+            puts "       Lower TARGET_UTIL or change ASPECT in config.tcl."
+            exit 1
+        }
         placeInstance $inst $x $y R0 -fixed
-        # keep standard cells a few microns clear of the macro
-        addHaloToBlock -allMacro 5 5 5 5
-        # next macro higher up (bump 250um; adjust to the real macro height)
-        set y [expr {$y + 250}]
-        if {$y > [expr {$ury - 200}]} { set y [expr {$lly + 20}]; set x [expr {$x + 350}] }
+        set x [expr {$x + $mw + $channel}]
     }
+
+    # Keep standard cells a few microns clear of every macro (applies to all).
+    addHaloToBlock $halo $halo $halo $halo -allMacro
+}
+
+###############################################################################
+# 3b. well taps + end caps -- sky130_fd_sc_hd cells have no built-in well
+#     taps, so taps go in every row at TAP_INTERVAL; end caps close each row.
+#     Done after macro placement so they avoid the macros and halos.
+###############################################################################
+proc step_physical_cells {} {
+    global TAP_CELL TAP_INTERVAL ENDCAP_CELL
+    addEndCap -preCap $ENDCAP_CELL -postCap $ENDCAP_CELL -prefix ENDCAP
+    addWellTap -cell $TAP_CELL -cellInterval $TAP_INTERVAL -prefix WELLTAP
+    connect_global_nets
 }
 
 ###############################################################################
@@ -158,11 +217,19 @@ proc step_power {} {
             -layer {top met5 bottom met5 left met4 right met4} \
             -width 3 -spacing 2 -offset 2
 
-    # Vertical power stripes on met4 across the core.
+    # Vertical power stripes on met4 across the core. The SRAM macros block
+    # met4, so stripes are cut at the macros (not switched to another layer).
     addStripe -nets [list $POWER_NET $GROUND_NET] \
               -layer met4 -direction vertical \
               -width 1.5 -spacing 2 -set_to_set_distance 50 \
               -start_from left -switch_layer_over_obs false
+
+    # Horizontal power stripes on met5 (met5 is free over the SRAMs, so these
+    # also run across the macros and feed their met4 power pins).
+    addStripe -nets [list $POWER_NET $GROUND_NET] \
+              -layer met5 -direction horizontal \
+              -width 3 -spacing 2 -set_to_set_distance 100 \
+              -start_from bottom -switch_layer_over_obs false
 
     # Connect stripes + follow-pin rails + macro pins.
     setSrouteMode -viaConnectToShape { ring stripe }
@@ -175,8 +242,13 @@ proc step_power {} {
 # 5. place -- standard-cell placement with optimization
 ###############################################################################
 proc step_place {} {
+    global TIE_CELL
     setPlaceMode -place_global_place_io_pins true
+    # Constant 1'b0/1'b1 nets get driven by tie cells, not wired to the rails.
+    setTieHiLoMode -cell $TIE_CELL -maxFanout 10
     place_opt_design
+    addTieHiLo -cell $TIE_CELL -prefix TIE
+    connect_global_nets
     checkPlace
 }
 
@@ -191,6 +263,8 @@ proc step_cts {} {
     }
     create_clock_tree_spec
     ccopt_design
+    # The real clock tree adds skew, so fix hold violations right after CTS.
+    optDesign -postCTS -hold
 }
 
 ###############################################################################
@@ -202,6 +276,12 @@ proc step_route {} {
     setNanoRouteMode -routeWithTimingDriven true
     routeDesign
     optDesign -postRoute
+    optDesign -postRoute -hold
+
+    # Fill the gaps left in the rows (keeps n-well and power rails continuous).
+    global FILLER_CELLS
+    addFiller -cell $FILLER_CELLS -prefix FILLER
+    connect_global_nets
 }
 
 ###############################################################################
@@ -252,6 +332,7 @@ proc run_all {} {
     step_init
     step_floorplan
     step_place_sram
+    step_physical_cells
     step_power
     step_place
     step_cts
@@ -263,7 +344,13 @@ proc run_all {} {
 }
 
 # Run everything unless the user sourced this file to drive steps by hand.
+# A Tcl error anywhere stops the run with a non-zero exit code instead of
+# leaving Innovus sitting at its prompt.
 if {![info exists ::INTERACTIVE]} {
-    run_all
+    if {[catch {run_all} err]} {
+        puts "ERROR: P&R flow stopped: $err"
+        puts $::errorInfo
+        exit 1
+    }
     exit
 }
