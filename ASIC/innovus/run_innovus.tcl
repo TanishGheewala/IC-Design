@@ -305,9 +305,12 @@ proc step_route {} {
     if {[catch {setDesignMode -topRoutingLayer $MAX_ROUTE_LAYER}]} {
         setNanoRouteMode -routeTopRoutingLayer $MAX_ROUTE_LAYER
     }
+    setNanoRouteMode -routeBottomRoutingLayer $MIN_ROUTE_LAYER
     setNanoRouteMode -routeWithTimingDriven true
 
     # sky130 antenna rules: fix by layer hopping, and insert diodes where needed.
+    setNanoRouteMode -routeWithViaInPin "1:1"
+    setNanoRouteMode -routeWithViaOnlyForStandardCellPin "1:1"
     setNanoRouteMode -drouteFixAntenna true
     setNanoRouteMode -routeInsertAntennaDiode true
     setNanoRouteMode -routeAntennaCellName $ANTENNA_CELL

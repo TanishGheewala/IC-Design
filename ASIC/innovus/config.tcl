@@ -59,6 +59,7 @@ if {[info exists env(QRC_TECH)]} {
 # Placement/routing site and top metal layer for sky130_fd_sc_hd
 set CORE_SITE     unithd
 set MAX_ROUTE_LAYER 5
+set MIN_ROUTE_LAYER 2
 
 # Physical-only cells from sky130_fd_sc_hd
 #   TAP_CELL      : well tap (the hd cells have no built-in taps)
