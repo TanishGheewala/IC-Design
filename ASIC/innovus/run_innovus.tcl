@@ -121,6 +121,12 @@ proc step_init {} {
 
     init_design
     setDesignMode -process 130
+
+    # On-chip-variation timing with clock pessimism removal (CPPR). Post-route
+    # optimization turns on SI (crosstalk) aware delay calculation, and the
+    # delay engine (AAE) only allows SI optimization in OCV mode. Set here so
+    # the whole flow is timed the same way, not just the post-route steps.
+    setAnalysisMode -analysisType onChipVariation -cppr both
 }
 
 ###############################################################################
