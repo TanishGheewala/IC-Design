@@ -275,9 +275,16 @@ proc step_cts {} {
     } else {
         create_clock_tree_spec
     }
-    ccopt_design
-    # The real clock tree changes timing: fix setup first, then hold.
-    optDesign -postCTS
+    # Newer releases: place_opt_design leaves the DB in the "PODv2" flow, which
+    # ccopt_design rejects. clock_opt_design is its CTS step and includes the
+    # post-CTS setup fix. Older releases only have ccopt_design + optDesign.
+    if {[llength [info commands clock_opt_design]] > 0} {
+        clock_opt_design
+    } else {
+        ccopt_design
+        optDesign -postCTS
+    }
+    # The real clock tree changes timing: fix hold after the setup fix.
     optDesign -postCTS -hold
 }
 
