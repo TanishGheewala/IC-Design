@@ -1,0 +1,139 @@
+/*
+*   soc_tb.sv is the top level testbench for the soc module (netlist GLS).
+*
+*   INFO: replace debug_test.hex with actual file path
+*/
+`timescale 1ns/1ps
+
+module soc_tb_flash;
+    //imports test components
+    import test_package::*;
+
+    //tb clk
+    bit clk = 0;
+    always #5 clk = ~clk;
+
+    soc_interface soc_if();
+    core_probe core_probe_if();
+
+    wire [9:0] gpio_inout;
+    wire tx;
+    wire sclk;
+    wire mosi;
+    wire miso;
+    wire cs_n;
+
+    //wire tb interface to netlist ports
+    assign soc_if.clk = clk;
+    assign soc_if.tx = tx;
+    assign soc_if.sclk = sclk;
+    assign soc_if.mosi = mosi;
+    assign soc_if.miso = miso;
+    assign soc_if.cs_n = cs_n;
+    assign soc_if.gpio_out = dut.dut.soc_if_gpio_out;
+    assign soc_if.gpio_oe = dut.dut.soc_if_gpio_oe;
+
+    //only drive gpio pins when chip oe is 0 (input mode)
+    assign gpio_inout[0] = (dut.dut.soc_if_gpio_oe[0] === 1'b0) ? soc_if.gpio_in[0] : 1'bz;
+    assign gpio_inout[1] = (dut.dut.soc_if_gpio_oe[1] === 1'b0) ? soc_if.gpio_in[1] : 1'bz;
+    assign gpio_inout[2] = (dut.dut.soc_if_gpio_oe[2] === 1'b0) ? soc_if.gpio_in[2] : 1'bz;
+    assign gpio_inout[3] = (dut.dut.soc_if_gpio_oe[3] === 1'b0) ? soc_if.gpio_in[3] : 1'bz;
+    assign gpio_inout[4] = (dut.dut.soc_if_gpio_oe[4] === 1'b0) ? soc_if.gpio_in[4] : 1'bz;
+    assign gpio_inout[5] = (dut.dut.soc_if_gpio_oe[5] === 1'b0) ? soc_if.gpio_in[5] : 1'bz;
+    assign gpio_inout[6] = (dut.dut.soc_if_gpio_oe[6] === 1'b0) ? soc_if.gpio_in[6] : 1'bz;
+    assign gpio_inout[7] = (dut.dut.soc_if_gpio_oe[7] === 1'b0) ? soc_if.gpio_in[7] : 1'bz;
+    assign gpio_inout[8] = (dut.dut.soc_if_gpio_oe[8] === 1'b0) ? soc_if.gpio_in[8] : 1'bz;
+    assign gpio_inout[9] = (dut.dut.soc_if_gpio_oe[9] === 1'b0) ? soc_if.gpio_in[9] : 1'bz;
+
+    //module instance
+    soc_synth_top dut (
+        .clk(clk),
+        .rst_n(soc_if.rst_n),
+        .rx(soc_if.rx),
+        .tx(tx),
+        .sclk(sclk),
+        .mosi(mosi),
+        .miso(miso),
+        .cs_n(cs_n),
+        .gpio_inout(gpio_inout)
+    );
+
+    spi_flash_model #(
+        .MEM_BYTES(6144),
+        .INIT_FILE(""),
+        .DUMP_FILE("")
+    )
+    flash_memory(
+        .sclk(sclk),
+        .mosi(mosi),
+        .miso(miso),
+        .cs_n(cs_n)
+    );
+
+    //register file probes from netlist wires (x0 is hardwired 0)
+    assign core_probe_if.registers[0]  = 32'd0;
+    assign core_probe_if.registers[1]  = dut.dut.core0.u_register_file.\registers[1] ;
+    assign core_probe_if.registers[2]  = dut.dut.core0.u_register_file.\registers[2] ;
+    assign core_probe_if.registers[3]  = dut.dut.core0.u_register_file.\registers[3] ;
+    assign core_probe_if.registers[4]  = dut.dut.core0.u_register_file.\registers[4] ;
+    assign core_probe_if.registers[5]  = dut.dut.core0.u_register_file.\registers[5] ;
+    assign core_probe_if.registers[6]  = dut.dut.core0.u_register_file.\registers[6] ;
+    assign core_probe_if.registers[7]  = dut.dut.core0.u_register_file.\registers[7] ;
+    assign core_probe_if.registers[8]  = dut.dut.core0.u_register_file.\registers[8] ;
+    assign core_probe_if.registers[9]  = dut.dut.core0.u_register_file.\registers[9] ;
+    assign core_probe_if.registers[10] = dut.dut.core0.u_register_file.\registers[10] ;
+    assign core_probe_if.registers[11] = dut.dut.core0.u_register_file.\registers[11] ;
+    assign core_probe_if.registers[12] = dut.dut.core0.u_register_file.\registers[12] ;
+    assign core_probe_if.registers[13] = dut.dut.core0.u_register_file.\registers[13] ;
+    assign core_probe_if.registers[14] = dut.dut.core0.u_register_file.\registers[14] ;
+    assign core_probe_if.registers[15] = dut.dut.core0.u_register_file.\registers[15] ;
+    assign core_probe_if.registers[16] = dut.dut.core0.u_register_file.\registers[16] ;
+    assign core_probe_if.registers[17] = dut.dut.core0.u_register_file.\registers[17] ;
+    assign core_probe_if.registers[18] = dut.dut.core0.u_register_file.\registers[18] ;
+    assign core_probe_if.registers[19] = dut.dut.core0.u_register_file.\registers[19] ;
+    assign core_probe_if.registers[20] = dut.dut.core0.u_register_file.\registers[20] ;
+    assign core_probe_if.registers[21] = dut.dut.core0.u_register_file.\registers[21] ;
+    assign core_probe_if.registers[22] = dut.dut.core0.u_register_file.\registers[22] ;
+    assign core_probe_if.registers[23] = dut.dut.core0.u_register_file.\registers[23] ;
+    assign core_probe_if.registers[24] = dut.dut.core0.u_register_file.\registers[24] ;
+    assign core_probe_if.registers[25] = dut.dut.core0.u_register_file.\registers[25] ;
+    assign core_probe_if.registers[26] = dut.dut.core0.u_register_file.\registers[26] ;
+    assign core_probe_if.registers[27] = dut.dut.core0.u_register_file.\registers[27] ;
+    assign core_probe_if.registers[28] = dut.dut.core0.u_register_file.\registers[28] ;
+    assign core_probe_if.registers[29] = dut.dut.core0.u_register_file.\registers[29] ;
+    assign core_probe_if.registers[30] = dut.dut.core0.u_register_file.\registers[30] ;
+    assign core_probe_if.registers[31] = dut.dut.core0.u_register_file.\registers[31] ;
+
+    //other soc probes
+    assign core_probe_if.memory = dut.dut.data_memory.bank0.mem;
+    assign core_probe_if.core_halt = dut.dut.core0_if_core_halt;
+    assign core_probe_if.gpio_dir = dut.dut.soc_if_gpio_oe;
+    assign core_probe_if.gpio_out = dut.dut.soc_if_gpio_out;
+    assign core_probe_if.gpio_in = gpio_inout;
+    assign core_probe_if.flash_write_done = dut.dut.flash_write_done;
+    assign core_probe_if.boot_done = dut.dut.boot_done;
+
+    initial begin
+        soc_test test0;
+        soc_if.gpio_in = 10'h3FF;
+        soc_if.rx = 1'b1;
+        soc_if.rst_n = 0;
+        repeat (5) @(posedge clk);
+        soc_if.rst_n = 1;
+
+        //lets program run
+        @(posedge dut.dut.boot_done);
+        #4000;
+
+        //run test and starts all components
+        test0 = new;
+        test0.env.soc_vif = soc_if;
+        test0.env.core_probe_vif = core_probe_if;
+        test0.run();
+
+        #200;
+
+        $finish;
+    end
+
+endmodule

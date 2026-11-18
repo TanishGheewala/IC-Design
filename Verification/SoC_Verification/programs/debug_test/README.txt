@@ -1,4 +1,4 @@
-This folders contains assembly code to test the debug controller in the soc_tb.sv. 
+These folders contains assembly code to test the debug controller in the soc_tb.sv. 
 Loads all registers with values, will add memory loading to test as well.
 
     To compile from asm to readable .hx file:
