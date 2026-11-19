@@ -3,8 +3,6 @@
 # ------------------------------------------------------------------
 
 # Innovus (place & route)
-ASIC/innovus/out/
-ASIC/innovus/reports/
 ASIC/innovus/dbs/
 ASIC/innovus/logs/
 ASIC/innovus/*.log

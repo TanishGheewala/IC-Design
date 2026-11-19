@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 23.13-s073_1 on Wed Nov 18 14:55:35 PST 2026
+#  Created by Genus(TM) Synthesis Solution 23.13-s073_1 on Wed Nov 18 16:29:16 PST 2026
 
 # ####################################################################
 
@@ -12,7 +12,7 @@ set_units -time 1000ps
 # Set the current design
 current_design soc_synth_top
 
-create_clock -name "clk" -period 12.5 -waveform {0.0 6.25} [get_ports clk]
+create_clock -name "clk" -period 20.0 -waveform {0.0 10.0} [get_ports clk]
 set_clock_transition 0.1 [get_clocks clk]
 set_dont_touch_network [get_clocks clk]
 set_load -pin_load 0.05 [get_ports tx]
@@ -94,7 +94,7 @@ set_output_delay -clock [get_clocks clk] -add_delay -min 0.2 [get_ports {gpio_in
 set_output_delay -clock [get_clocks clk] -add_delay -min 0.2 [get_ports {gpio_inout[0]}]
 set_output_delay -clock [get_clocks clk] -add_delay -min 0.2 [get_ports {gpio_inout[0]}]
 set_max_fanout 20.000 [current_design]
-set_max_transition 0.2 [current_design]
+set_max_transition 0.5 [current_design]
 set_input_transition 0.03 [get_ports rst_n]
 set_input_transition 0.03 [get_ports rx]
 set_input_transition 0.03 [get_ports miso]

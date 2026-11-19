@@ -121,7 +121,6 @@ proc step_init {} {
     set init_gnd_net   $GROUND_NET
 
     init_design
-    setDesignMode -process 130 
     setDesignMode -bottomRoutingLayer $MIN_ROUTE_LAYER -topRoutingLayer $MAX_ROUTE_LAYER
 
     # On-chip-variation timing with clock pessimism removal (CPPR). Post-route
@@ -157,7 +156,7 @@ proc step_place_sram {} {
     # Edge gap from the core boundary and channel between macros (um).
     set edge    20
     set channel 30
-    set halo    5
+    set halo    15
 
     # All leaf instances of the SRAM cell (hierarchical names included).
     set insts [dbGet -p2 top.insts.cell.name $SRAM_NAME]

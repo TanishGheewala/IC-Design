@@ -1279,7 +1279,6 @@ add mapped point dut/debug_con/REC/clk_counter[9]/q dut/debug_con/REC/clk_counte
 add mapped point dut/debug_con/REC/clk_counter[10]/q dut/debug_con/REC/clk_counter_reg[10]/Q -type DFF DFF
 add mapped point dut/debug_con/REC/clk_counter[11]/q dut/debug_con/REC/clk_counter_reg[11]/Q -type DFF DFF
 add mapped point dut/debug_con/REC/clk_counter[12]/q dut/debug_con/REC/clk_counter_reg[12]/Q -type DFF DFF
-add mapped point dut/debug_con/REC/clk_counter[13]/q dut/debug_con/REC/clk_counter_reg[13]/Q -type DFF DFF
 add mapped point dut/debug_con/REC/serial_in_extra/q dut/debug_con/REC/serial_in_extra_reg/Q -type DFF DFF
 add mapped point dut/debug_con/REC/serial_in/q dut/debug_con/REC/serial_in_reg/Q -type DFF DFF
 add mapped point dut/debug_con/REC/transmission_done/q dut/debug_con/REC/transmission_done_reg/Q -type DFF DFF
@@ -1310,7 +1309,6 @@ add mapped point dut/debug_con/TRN/clk_counter[9]/q dut/debug_con/TRN/clk_counte
 add mapped point dut/debug_con/TRN/clk_counter[10]/q dut/debug_con/TRN/clk_counter_reg[10]/Q -type DFF DFF
 add mapped point dut/debug_con/TRN/clk_counter[11]/q dut/debug_con/TRN/clk_counter_reg[11]/Q -type DFF DFF
 add mapped point dut/debug_con/TRN/clk_counter[12]/q dut/debug_con/TRN/clk_counter_reg[12]/Q -type DFF DFF
-add mapped point dut/debug_con/TRN/clk_counter[13]/q dut/debug_con/TRN/clk_counter_reg[13]/Q -type DFF DFF
 add mapped point dut/debug_con/TRN/serial_out/q dut/debug_con/TRN/serial_out_reg/Q -type DFF DFF
 add mapped point dut/debug_con/TRN/uart_state[0]/q dut/debug_con/TRN/uart_state_reg[0]/Q -type DFF DFF
 add mapped point dut/debug_con/TRN/uart_state[1]/q dut/debug_con/TRN/uart_state_reg[1]/Q -type DFF DFF

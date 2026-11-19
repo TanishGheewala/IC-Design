@@ -1,0 +1,45 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_42 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[5] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_43 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[1] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_44 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[4] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_45 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[4] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_46 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[3] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_47 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[8] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_48 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[27] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_49 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[28] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_50 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[6] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_51 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[26] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_52 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[13] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_53 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[11] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_54 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[25] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_55 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[7] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_56 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[7] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_57 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[23] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_58 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[24] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_59 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_2[9] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_60 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[21] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_61 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/dout0_1[12] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_62 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN272_dout0_0_6 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_63 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_PDN3014_FE_OFN2110_n -
