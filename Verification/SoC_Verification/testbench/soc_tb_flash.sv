@@ -12,7 +12,7 @@ module soc_tb_flash;
     //tb clk
     bit clk = 0;
     logic [9:0] gpio_input = 10'h3FF;
-    always #5 clk = ~clk;
+    always #10 clk = ~clk;
     soc_interface soc_if();
     core_probe core_probe_if();
 

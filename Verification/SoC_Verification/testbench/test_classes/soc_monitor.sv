@@ -49,9 +49,9 @@ class soc_monitor;
     task receive_soc_message();
 
         baud = 9600;
-        clk_speed = 100000000;
+        clk_speed = 50000000;
         baud_wait = (clk_speed/baud) - 1;
-        baud_wait = baud_wait*10;
+        baud_wait = baud_wait*20;
 
         @(posedge soc_vif.clk);
 

@@ -1,0 +1,1 @@
+-mt "off" -L "uvm" -uvm_version "1.2" -relax -debug "typical" -top "soc_netlist_tb" -snapshot "soc_gls_sim" 

@@ -5,13 +5,13 @@
 */
 `timescale 1ns/1ps
 
-module soc_tb_flash;
+module soc_netlist_tb;
     //imports test components
     import test_package::*;
 
     //tb clk
     bit clk = 0;
-    always #5 clk = ~clk;
+    always #10 clk = ~clk;
 
     soc_interface soc_if();
     core_probe core_probe_if();

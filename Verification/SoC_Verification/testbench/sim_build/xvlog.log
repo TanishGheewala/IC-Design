@@ -1,0 +1,7 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/gogurt/Documents/senion_design_project/RTL/SoC/soc_interface.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/testbench/test_classes/core_probe.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/gogurt/Documents/senion_design_project/RTL/memory/spi_flash_model.sv" into library work
+INFO: [VRFC 10-311] analyzing module spi_flash_model
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/testbench/test_package.sv" into library work
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/testbench/soc_netlist_tb.sv" into library work
+INFO: [VRFC 10-311] analyzing module soc_netlist_tb

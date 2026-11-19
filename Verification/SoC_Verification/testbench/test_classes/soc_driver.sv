@@ -15,7 +15,7 @@ class soc_driver;
 
         int baud_wait;
         baud_wait = (clk_speed/baud_rate) - 1;
-        baud_wait = baud_wait*10;
+        baud_wait = baud_wait*20;
 
         soc_vif.rx = 1'b0;
         #baud_wait;
@@ -32,7 +32,7 @@ class soc_driver;
     //sends byte received from mailbox by generator
     task send_debug_command();
         baud = 9600;
-        clk_speed = 100000000;
+        clk_speed = 50000000;
         @(posedge soc_vif.clk);
 
         forever begin

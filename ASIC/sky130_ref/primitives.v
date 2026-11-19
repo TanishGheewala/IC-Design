@@ -29,7 +29,7 @@
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -104,7 +104,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -192,7 +192,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -260,7 +260,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -338,7 +338,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -410,7 +410,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -492,7 +492,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -564,7 +564,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -647,7 +647,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -711,7 +711,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -793,7 +793,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -857,7 +857,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -941,7 +941,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1011,7 +1011,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1105,9 +1105,19 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
+  module sky130_fd_sc_hd__udp_mux_2to1 (
+    output X,
+    input  A0,
+    input  A1,
+    input  S
+);
+    assign X = (S == 1'b0) ? A0 :
+               (S == 1'b1) ? A1 :
+               (A0 === A1) ? A0 : 1'bx;
+endmodule
 `else
 primitive sky130_fd_sc_hd__udp_mux_2to1 (
     X ,
@@ -1169,9 +1179,19 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
+ module sky130_fd_sc_hd__udp_mux_2to1_N (
+    output wire Y ,
+    input  wire A0,
+    input  wire A1,
+    input  wire S
+);
+    assign Y = (S == 1'b0) ? ~A0 :
+               (S == 1'b1) ? ~A1 :
+               (A0 === A1) ? ~A0 : 1'bx;
+endmodule
 `else
 primitive sky130_fd_sc_hd__udp_mux_2to1_N (
     Y ,
@@ -1233,7 +1253,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1317,7 +1337,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1380,7 +1400,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1447,7 +1467,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1519,7 +1539,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1581,7 +1601,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else
@@ -1643,7 +1663,7 @@ endprimitive
  */
 
 `timescale 1ns / 1ps
-`default_nettype none
+`default_nettype wire
 
 `ifdef NO_PRIMITIVES
 `else

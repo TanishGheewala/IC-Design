@@ -1,6 +1,9 @@
+work, ../../../ASIC/sky130_ref/primitives.v
+work, ../../../ASIC/sky130_ref/sky130_fd_sc_hd.v
 work, ../../../RTL/SoC/soc_interface.sv
 work, ./test_classes/core_probe.sv
 work, ../../../RTL/memory/sky130_sram_2kbyte_1rw1r_32x512_8.v
 work, ../../../ASIC/genus/out/soc/soc_netlist.v
+work, ../../../RTL/memory/spi_flash_model.sv
 work, test_package.sv
-work, soc_tb_flash.sv
+work, soc_netlist_tb.sv
