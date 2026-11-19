@@ -3,10 +3,10 @@
 #sets max amount of gates something can drive without buffers
 set_max_fanout 20 [current_design]
 #sets a max transision time so that genus can choose sizes to keep that true
-set_max_transition 0.20 [current_design]
+set_max_transition 0.50 [current_design]
 
 #80MHz CLK 
-create_clock -name clk -period 12.500 [get_ports clk]
+create_clock -name clk -period 20.000 [get_ports clk]
 #uncertainty is for the timing differences for things like longer wire distance 2% to 5% of clk
 set_clock_uncertainty 0.3 [get_clocks clk]
 # transiston is for ramp up time
@@ -34,3 +34,5 @@ set_dont_touch_network [get_clocks clk]
 set_input_transition 0.03 [get_ports {miso rx rst_n gpio_inout[*]}]
 #sets load to outputs to represent external load on pins from future logic, genus will pick stronger libs than if this is not set
 set_load 0.05 [all_outputs]
+
+set_driving cell -lib_cell sky130_fd_sc_hd__buf_4 [remove_from_collection [all_inputs] [get_ports_clk]]

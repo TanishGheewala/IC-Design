@@ -122,7 +122,7 @@ proc step_init {} {
 
     init_design
     setDesignMode -process 130 
-    setDesignMode -bottomRoutingLayer $MIN_ROUTE_LAYER - topRoutingLayer $MAX_ROUTE_LAYER
+    setDesignMode -bottomRoutingLayer $MIN_ROUTE_LAYER -topRoutingLayer $MAX_ROUTE_LAYER
 
     # On-chip-variation timing with clock pessimism removal (CPPR). Post-route
     # optimization turns on SI (crosstalk) aware delay calculation, and the

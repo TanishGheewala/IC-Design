@@ -1,0 +1,5 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_7 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_PDN7812_n -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_8 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_PDN7808_FE_OFN4834_n -

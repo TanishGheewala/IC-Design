@@ -71,8 +71,8 @@ module debug_controller_v2(debug_interface_v2 debug_if);
     uart_interface uart_trans_if();
 
     //uart
-    uart_rec #(.CLK_RATE(80000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
-    uart_trans #(.CLK_RATE(80000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
+    uart_rec #(.CLK_RATE(50000000), .BAUDRATE(9600)) REC(.uart_if(uart_rec_if.uart_r));
+    uart_trans #(.CLK_RATE(50000000), .BAUDRATE(9600)) TRN(.uart_if(uart_trans_if.uart_t));
 
     //interface connections output
     assign uart_rec_if.clk = debug_if.clk;
