@@ -35,4 +35,4 @@ set_input_transition 0.03 [get_ports {miso rx rst_n gpio_inout[*]}]
 #sets load to outputs to represent external load on pins from future logic, genus will pick stronger libs than if this is not set
 set_load 0.05 [all_outputs]
 
-set_driving cell -lib_cell sky130_fd_sc_hd__buf_4 [remove_from_collection [all_inputs] [get_ports_clk]]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 [remove_from_collection [all_inputs] [get_ports clk]]
