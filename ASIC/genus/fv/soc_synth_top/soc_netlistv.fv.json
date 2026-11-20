@@ -7966,20 +7966,20 @@
 "object":"/designs/soc_synth_top/instances_hier/dut/instances_hier/instruction_rom/instances_seq/bank_sel_q_reg[1]",
 "type":"instance"},
 {"index": "2", 
- "date": "Thu Nov 19 00:29:26 UTC 2026",
- "seconds": 1795048166.5557148,
+ "date": "Fri Nov 20 21:39:03 UTC 2026",
+ "seconds": 1795210743.3497858,
  "netlist": "/tapeout/IC-Design/ASIC/genus/out/soc/soc_netlist.v", 
  "netlist_exists": "1", 
  "netlist_normalize": "/tapeout/IC-Design/ASIC/genus/out/soc/soc_netlist.v", 
- "netlist_mtime": "1795048156", 
- "netlist_timestamp": "Thu Nov 19 00:29:16 UTC 2026", 
+ "netlist_mtime": "1795210733", 
+ "netlist_timestamp": "Fri Nov 20 21:38:53 UTC 2026", 
  "netlist_size": "1067534", 
- "netlist_cksum": "1584414493", 
+ "netlist_cksum": "3705674904", 
  "design_name": "soc_synth_top", 
  "synth_workdir": "/tapeout/IC-Design/ASIC/genus", 
  "synthesis_command":"",
  "current_label": "soc_netlistv", 
  "previous_label": "fv_map", 
- "write_verif_file_runtime": 7.201340999999999 
+ "write_verif_file_runtime": 7.18342 
  }
 ]

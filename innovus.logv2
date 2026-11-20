@@ -1,0 +1,287 @@
+[11/20 13:24:44      0s] 
+[11/20 13:24:44      0s] Cadence Innovus(TM) Implementation System.
+[11/20 13:24:44      0s] Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+[11/20 13:24:44      0s] 
+[11/20 13:24:44      0s] Version:	v23.13-s082_1, built Wed Nov 13 13:42:48 PST 2024
+[11/20 13:24:44      0s] Options:	-no_gui 
+[11/20 13:24:44      0s] Date:		Fri Nov 20 13:24:44 2026
+[11/20 13:24:44      0s] Host:		bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB)
+[11/20 13:24:44      0s] OS:		Rocky Linux 8.10 (Green Obsidian)
+[11/20 13:24:44      0s] 
+[11/20 13:24:44      0s] License:
+[11/20 13:24:44      0s] 		[13:24:44.354705] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+[11/20 13:24:44      0s] 		invs	Innovus Implementation System	23.1	checkout succeeded
+[11/20 13:24:44      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[11/20 13:25:23     37s] Reset Parastics called with the command setExtractRCMode -reset@(#)CDS: Innovus v23.13-s082_1 (64bit) 11/13/2024 13:42 (Linux 3.10.0-693.el7.x86_64)
+[11/20 13:25:30     42s] @(#)CDS: NanoRoute 23.13-s082_1 NR241029-2256/23_13-UB (database version 18.20.652) {superthreading v2.20}
+[11/20 13:25:30     42s] @(#)CDS: AAE 23.13-s019 (64bit) 11/13/2024 (Linux 3.10.0-693.el7.x86_64)
+[11/20 13:25:30     42s] @(#)CDS: CTE 23.13-s028_1 () Nov 11 2024 03:58:52 ( )
+[11/20 13:25:30     42s] @(#)CDS: SYNTECH 23.13-s009_1 () Oct 30 2024 09:17:13 ( )
+[11/20 13:25:30     42s] @(#)CDS: CPE v23.13-s062
+[11/20 13:25:30     42s] @(#)CDS: IQuantus/TQuantus 23.1.1-s235 (64bit) Fri Sep 27 22:21:33 PDT 2024 (Linux 3.10.0-693.el7.x86_64)
+[11/20 13:25:30     42s] @(#)CDS: OA 22.61-p018 Fri Oct 18 10:45:49 2024
+[11/20 13:25:30     42s] @(#)CDS: SGN 23.10-d005 (03-Oct-2023) (64 bit executable, TkQt5.15.9)
+[11/20 13:25:30     42s] @(#)CDS: RCDB 11.15.0
+[11/20 13:25:30     42s] @(#)CDS: STYLUS 23.14-s002_1 (09/11/2024 13:54 PDT)
+[11/20 13:25:30     42s] @(#)CDS: IntegrityPlanner-23.13-16927 (23.13) (2024-10-14 10:21:59+0800)
+[11/20 13:25:30     42s] @(#)CDS: SYNTHESIS_ENGINE 23.13-s072
+[11/20 13:25:30     42s] Create and set the environment variable TMPDIR to /tapeout/IC-Design/innovus_temp_815808_e8986234-9e79-4c9c-a047-61c6e4a76ef5_bardeen.sdsu.edu_tapeout_NKWm5X.
+
+[11/20 13:25:30     42s] Change the soft stacksize limit to 0.2%RAM (15 mbytes). Set global soft_stack_size_limit to change the value.
+[11/20 13:25:33     46s] Info: Process UID = 815808 / e8986234-9e79-4c9c-a047-61c6e4a76ef5 / uSeXx9RavH
+[11/20 13:25:33     46s] source /opt/cadence/installs/DDI231/INNOVUS231/tools.lnx86/../etc/synth/attr_def/plus_attr_defs.tcl
+[11/20 13:25:33     46s] Loading attribute definitions from mini dummy db...
+[11/20 13:25:36     48s] Info: Defined 23820 Synthesis attributes
+[11/20 13:25:36     48s] Info: Skipped defining 357 Synthesis attributes already defined in Innovus
+[11/20 13:25:36     48s] source /opt/cadence/installs/DDI231/INNOVUS231/tools.lnx86/../etc/synth/attr_def/plus_msg_defs.tcl
+[11/20 13:25:41     53s] 
+[11/20 13:25:41     53s] **INFO:  MMMC transition support version v31-84 
+[11/20 13:25:41     53s] 
+[11/20 13:25:41     53s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[11/20 13:25:41     53s] <CMD> suppressMessage ENCEXT-2799
+[11/20 13:27:30     54s] ambiguous command name "eco": ecoAddBacksideConstraint ecoAddRepeater ecoChangeCell ecoClone ecoCloneFlop ecoCloneInstGroup ecoCompareNetlist ecoDefIn ecoDeleteRepeater ecoDesign ecoMergeCombinationalCell ecoOaDesign ecoPlace ecoRemoveTiedInputs ecoRoute ecoSplitCombinationalCell ecoSplitComplexFlop ecoSplitFlop ecoSwapSpareCell eco_opt_ir_aggressor
+[11/20 13:28:25     54s] <CMD> setNanoRouteMode -help
+[11/20 13:28:25     54s] 
+[11/20 13:28:25     54s] Usage: setNanoRouteMode [-help] [-reset] [-route_adjust_auto_via_weight {true|false}] [-route_allow_inst_overlaps {true|false}]
+[11/20 13:28:25     54s]                         [-route_ignore_follow_pin_shapes {true|false}] [-route_process_node <value>] [-route_rc_extraction_corner <value>]
+[11/20 13:28:25     54s]                         [-route_skip_analog {true|false}] [-route_via_weight <value>] [-route_detail_add_passive_fill_only_on_layers <value>]
+[11/20 13:28:25     54s]                         [-route_detail_allow_passive_fill_only_in_layers <value>] [-route_detail_antenna_eco_list_file <value>]
+[11/20 13:28:25     54s]                         [-route_detail_auto_stop {true|false}] [-route_detail_check_mar_on_cell_pin {true|false}]
+[11/20 13:28:25     54s]                         [-route_detail_end_iteration <value>] [-route_detail_fix_antenna <value>]
+[11/20 13:28:25     54s]                         [-route_detail_fix_antenna_on_secondary_pg_nets {true|false}]
+[11/20 13:28:25     54s]                         [-route_detail_fix_antenna_with_gate_array_filler_mode {true|false}] [-route_detail_merge_abutting_cut {true|false}]
+[11/20 13:28:25     54s]                         [-route_detail_min_length_for_spread_wire <value>] [-route_detail_min_length_for_widen_wire <value>]
+[11/20 13:28:25     54s]                         [-route_detail_min_slack_for_opt_wire <value>] [-route_detail_no_taper_in_layers <value>]
+[11/20 13:28:25     54s]                         [-route_detail_no_taper_on_output_pin <value>] [-route_detail_on_grid_only <value>]
+[11/20 13:28:25     54s]                         [-route_detail_post_route_litho_repair {true|false}] [-route_detail_post_route_spread_wire <value>]
+[11/20 13:28:25     54s]                         [-route_detail_post_route_swap_via <value>] [-route_detail_postroute_via_priority <value>]
+[11/20 13:28:25     54s]                         [-route_detail_post_route_via_pillar_effort <value>] [-route_detail_post_route_wire_widen <value>]
+[11/20 13:28:25     54s]                         [-route_detail_post_route_wire_widen_rule <value>] [-route_detail_search_and_repair {true|false}]
+[11/20 13:28:25     54s]                         [-route_detail_signoff_effort <value>] [-route_detail_stub_routing_in_first_layer <value>]
+[11/20 13:28:25     54s]                         [-route_detail_use_multi_cut_via_effort <value>] [-route_number_fail_limit <value>] [-route_number_thread <value>]
+[11/20 13:28:25     54s]                         [-route_number_warning_limit <value>] [-route_third_party_data {true|false}] [-extract_keep_fill_wires {true|false}]
+[11/20 13:28:25     54s]                         [-route_high_freq_constraint_groups <value>] [-route_high_freq_match_report_file <value>]
+[11/20 13:28:25     54s]                         [-route_high_freq_num_reserved_layers <value>] [-route_high_freq_remove_floating_shield {true|false}]
+[11/20 13:28:25     54s]                         [-route_high_freq_search_repair <value>] [-route_high_freq_shield_trim_length <value>]
+[11/20 13:28:25     54s]                         [-route_interposer_allow_diagonal_trunk <value>] [-route_interposer_control_options <value>]
+[11/20 13:28:25     54s]                         [-route_interposer_interlayer_shielding_layers <value>] [-route_interposer_interlayer_shielding_nets <value>]
+[11/20 13:28:25     54s]                         [-route_interposer_interlayer_shielding_offsets <value>] [-route_interposer_interlayer_shielding_widths <value>]
+[11/20 13:28:25     54s]                         [-route_interposer_same_layer_shielding_net <value>] [-route_interposer_same_layer_shielding_width_spacing <value>]
+[11/20 13:28:25     54s]                         [-route_interposer_trunk_routing_layers <value>] [-route_interposer_trunk_routing_width_spacing <value>]
+[11/20 13:28:25     54s]                         [-route_add_antenna_inst_prefix <value>] [-route_allow_pin_as_feedthru <value>] [-route_antenna_cell_name <value>]
+[11/20 13:28:25     54s]                         [-route_concurrent_minimize_via_count_effort <value>] [-route_connect_to_bumps {true|false}]
+[11/20 13:28:25     54s]                         [-route_fix_clock_nets {true|false}] [-route_route_clock_nets_first {true|false}] [-route_eco_ignore_existing_route <value>]
+[11/20 13:28:25     54s]                         [-route_enable_route_rule_si_limit_length <value>] [-route_enforce_route_rule_on_special_net_wire <value>]
+[11/20 13:28:25     54s]                         [-route_extra_via_enclosure <value>] [-route_honor_exclusive_region {true|false}] [-route_honor_power_domain {true|false}]
+[11/20 13:28:25     54s]                         [-route_ignore_antenna_top_cell_pin {true|false}] [-route_antenna_diode_insertion {true|false}]
+[11/20 13:28:25     54s]                         [-route_diode_insertion_for_clock_nets {true|false}] [-route_shield_tap_cell_insertion {true|false}]
+[11/20 13:28:25     54s]                         [-route_relaxed_route_rule_spacing_to_power_ground_nets <value>] [-route_reserve_space_for_multi_cut {true|false}]
+[11/20 13:28:25     54s]                         [-route_reverse_direction <value>] [-route_selected_net_only {true|false}] [-route_shield_crosstie_offset <value>]
+[11/20 13:28:25     54s]                         [-route_shield_length_threshold <value>] [-route_shield_report_skip_status {true|false}]
+[11/20 13:28:25     54s]                         [-route_shield_stripe_layer_range <value>] [-route_shield_tap_cell_name <value>] [-route_strictly_honor_1d_routing <value>]
+[11/20 13:28:25     54s]                         [-route_strict_honor_route_rule <value>] [-route_stripe_layer_range <value>] [-route_tieoff_to_shapes <value>]
+[11/20 13:28:25     54s]                         [-route_trim_pull_back_distance_from_boundary <value>] [-route_trunk_with_cluster_target_size <value>]
+[11/20 13:28:25     54s]                         [-route_use_auto_via <value>] [-route_with_eco {true|false}] [-route_with_litho_driven {true|false}]
+[11/20 13:28:25     54s]                         [-route_with_si_driven {true|false}] [-route_with_timing_driven {true|false}] [-route_with_trim_metal <value>]
+[11/20 13:28:25     54s]                         [-route_with_via_in_pin <value>] [-route_with_via_only_for_block_cell_pin <value>]
+[11/20 13:28:25     54s]                         [-route_with_via_only_for_stdcell_pin <value>]
+[11/20 13:28:25     54s] 
+[11/20 13:28:25     54s] -help                                     # Prints out the command usage
+[11/20 13:28:25     54s] -reset                                    # Resets all or specified options to default value
+[11/20 13:28:25     54s] -route_adjust_auto_via_weight {true|false}
+[11/20 13:28:25     54s]                                           # adjust auto via weight for via swapping (bool, default=true)
+[11/20 13:28:25     54s] -route_allow_inst_overlaps {true|false}   # don't do instance overlap check (bool, default=true)
+[11/20 13:28:25     54s] -route_ignore_follow_pin_shapes {true|false}
+[11/20 13:28:25     54s]                                           # Ignore follow pin via shapes (bool, default=false)
+[11/20 13:28:25     54s] -route_process_node <value>               # Specify the process node (string, default="")
+[11/20 13:28:25     54s] -route_rc_extraction_corner <value>       # specific which RC extraction corner to use in routing (string, default="")
+[11/20 13:28:25     54s] -route_skip_analog {true|false}           # skip routing nets or pins marked + USE ANALOG in the DEF file (bool, default=false)
+[11/20 13:28:25     54s] -route_via_weight <value>                 # set weight for vias (string, default="")
+[11/20 13:28:25     54s] -route_detail_add_passive_fill_only_on_layers <value>
+[11/20 13:28:25     54s]                                           # specify layers where passive fill will be added
+[11/20 13:28:25     54s]                                           # (string, default="")
+[11/20 13:28:25     54s] -route_detail_allow_passive_fill_only_in_layers <value>
+[11/20 13:28:25     54s]                                           # specify layers where do passive fill only
+[11/20 13:28:25     54s]                                           # (string, default=false)
+[11/20 13:28:25     54s] -route_detail_antenna_eco_list_file <value>
+[11/20 13:28:25     54s]                                           # set file name for antenna eco list (string, default="")
+[11/20 13:28:25     54s] -route_detail_auto_stop {true|false}      # control whether Nanoroute continues routing if there are many violations (bool, default=true)
+[11/20 13:28:25     54s] -route_detail_check_mar_on_cell_pin {true|false}
+[11/20 13:28:25     54s]                                           # Enable mar checking on used cell pins
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_detail_end_iteration <value>       # specify the last iteration pass in a detailed routing step (string, default=auto)
+[11/20 13:28:25     54s] -route_detail_fix_antenna <value>         # fix antenna violation by jumping metal layers (ternary, default=true)
+[11/20 13:28:25     54s] -route_detail_fix_antenna_on_secondary_pg_nets {true|false}
+[11/20 13:28:25     54s]                                           # fix antenna violation on sencondary pg nets
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_detail_fix_antenna_with_gate_array_filler_mode {true|false}
+[11/20 13:28:25     54s]                                           # detect GA filler flow while doing antenna violation fixing (bool, default=false)
+[11/20 13:28:25     54s] -route_detail_merge_abutting_cut {true|false}
+[11/20 13:28:25     54s]                                           # merge two abutting cell cut shapes into a new one
+[11/20 13:28:25     54s]                                           # (bool, default=true)
+[11/20 13:28:25     54s] -route_detail_min_length_for_spread_wire <value>
+[11/20 13:28:25     54s]                                           # specify the min. length of a spreaded wire
+[11/20 13:28:25     54s]                                           # (string, default=0)
+[11/20 13:28:25     54s] -route_detail_min_length_for_widen_wire <value>
+[11/20 13:28:25     54s]                                           # specify the min. length of a widened wire
+[11/20 13:28:25     54s]                                           # (float, default=1)
+[11/20 13:28:25     54s] -route_detail_min_slack_for_opt_wire <value>
+[11/20 13:28:25     54s]                                           # specify the min slack for a net wire optimization
+[11/20 13:28:25     54s]                                           # (float, default=0)
+[11/20 13:28:25     54s] -route_detail_no_taper_in_layers <value>
+[11/20 13:28:25     54s]                                           # Specifies the range of the layer where taper is not allowed
+[11/20 13:28:25     54s]                                           # (string, default="")
+[11/20 13:28:25     54s] -route_detail_no_taper_on_output_pin <value>
+[11/20 13:28:25     54s]                                           # forbid wire tapering at output pin (ternary, default=false)
+[11/20 13:28:25     54s] -route_detail_on_grid_only <value>        # route on grid only (string, default=none)
+[11/20 13:28:25     54s] -route_detail_post_route_litho_repair {true|false}
+[11/20 13:28:25     54s]                                           # litho hotspot repair in post route stage
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_detail_post_route_spread_wire <value>
+[11/20 13:28:25     54s]                                           # spread wire in post route stage (string, default=auto)
+[11/20 13:28:25     54s] -route_detail_post_route_swap_via <value>
+[11/20 13:28:25     54s]                                           # to enforce post route via swapping mode in detail route command. (string, default=false)
+[11/20 13:28:25     54s] -route_detail_postroute_via_priority <value>
+[11/20 13:28:25     54s]                                           # Set net priority for via swapping based on timing
+[11/20 13:28:25     54s]                                           # (string, default=auto)
+[11/20 13:28:25     54s] -route_detail_post_route_via_pillar_effort <value>
+[11/20 13:28:25     54s]                                           # Set opt effort/range for opportunistic via pillar
+[11/20 13:28:25     54s]                                           # (string, default=high)
+[11/20 13:28:25     54s] -route_detail_post_route_wire_widen <value>
+[11/20 13:28:25     54s]                                           # widen wire in post route stage (string, default=none)
+[11/20 13:28:25     54s] -route_detail_post_route_wire_widen_rule <value>
+[11/20 13:28:25     54s]                                           # specify the rule used to widen wire (string, default="")
+[11/20 13:28:25     54s] -route_detail_search_and_repair {true|false}
+[11/20 13:28:25     54s]                                           # run search-and-repair step after the initial detailed routing (bool, default=true)
+[11/20 13:28:25     54s] -route_detail_signoff_effort <value>      # specify when to give up on irresolvable violations (string, default=high)
+[11/20 13:28:25     54s] -route_detail_stub_routing_in_first_layer <value>
+[11/20 13:28:25     54s]                                           # to use Minimum routing in the first routing layer defined in the LEF (string, default=false)
+[11/20 13:28:25     54s] -route_detail_use_multi_cut_via_effort <value>
+[11/20 13:28:25     54s]                                           # specify the effort to use multi-cut via during routing
+[11/20 13:28:25     54s]                                           # (string, default=low)
+[11/20 13:28:25     54s] -route_number_fail_limit <value>          # set limit for number of fails (int, default=0)
+[11/20 13:28:25     54s] -route_number_thread <value>              # set the number of processors to be used in one workstation for multi-threading (int, default=1)
+[11/20 13:28:25     54s] -route_number_warning_limit <value>       # set limit for number of warnings (int, default=0)
+[11/20 13:28:25     54s] -route_third_party_data {true|false}      # Allow third party data as input (bool, default=false)
+[11/20 13:28:25     54s] -extract_keep_fill_wires {true|false}     # Keep metal fill wires for extraction (bool, default=false)
+[11/20 13:28:25     54s] -route_high_freq_constraint_groups <value>
+[11/20 13:28:25     54s]                                           # only route specified constraint groups, legal values are {net match bus pair shield}, add "order" in
+[11/20 13:28:25     54s]                                           # front to control route order (string, default="")
+[11/20 13:28:25     54s] -route_high_freq_match_report_file <value>
+[11/20 13:28:25     54s]                                           # specify match report file name (string, default="")
+[11/20 13:28:25     54s] -route_high_freq_num_reserved_layers <value>
+[11/20 13:28:25     54s]                                           # number of layers reserved for standard cell pin access
+[11/20 13:28:25     54s]                                           # (int, default=1)
+[11/20 13:28:25     54s] -route_high_freq_remove_floating_shield {true|false}
+[11/20 13:28:25     54s]                                           # remove floating shield segments for high frequency nets (bool, default=false)
+[11/20 13:28:25     54s] -route_high_freq_search_repair <value>    # run search and repair to remove violations, legal value is one of {auto false true only}
+[11/20 13:28:25     54s]                                           # (string, default=auto)
+[11/20 13:28:25     54s] -route_high_freq_shield_trim_length <value>
+[11/20 13:28:25     54s]                                           # specify minimum length of shielding wire to be kept
+[11/20 13:28:25     54s]                                           # (float, default=0)
+[11/20 13:28:25     54s] -route_interposer_allow_diagonal_trunk <value>
+[11/20 13:28:25     54s]                                           # allow_diagonal_trunk (string, default="")
+[11/20 13:28:25     54s] -route_interposer_control_options <value>
+[11/20 13:28:25     54s]                                           # control options (string, default="")
+[11/20 13:28:25     54s] -route_interposer_interlayer_shielding_layers <value>
+[11/20 13:28:25     54s]                                           # interlayer shielding layers (string, default="")
+[11/20 13:28:25     54s] -route_interposer_interlayer_shielding_nets <value>
+[11/20 13:28:25     54s]                                           # interlayer shielding nets (string, default="")
+[11/20 13:28:25     54s] -route_interposer_interlayer_shielding_offsets <value>
+[11/20 13:28:25     54s]                                           # interlayer shielding offsets (string, default="")
+[11/20 13:28:25     54s] -route_interposer_interlayer_shielding_widths <value>
+[11/20 13:28:25     54s]                                           # interlayer shielding widths (string, default="")
+[11/20 13:28:25     54s] -route_interposer_same_layer_shielding_net <value>
+[11/20 13:28:25     54s]                                           # same_layer_shielding_net (string, default="")
+[11/20 13:28:25     54s] -route_interposer_same_layer_shielding_width_spacing <value>
+[11/20 13:28:25     54s]                                           # same_layer_shielding_width_spacing
+[11/20 13:28:25     54s]                                           # (string, default="")
+[11/20 13:28:25     54s] -route_interposer_trunk_routing_layers <value>
+[11/20 13:28:25     54s]                                           # trunk_routing_layers (string, default="")
+[11/20 13:28:25     54s] -route_interposer_trunk_routing_width_spacing <value>
+[11/20 13:28:25     54s]                                           # trunk_routing_width_spacing (string, default="")
+[11/20 13:28:25     54s] -route_add_antenna_inst_prefix <value>    # prefix for the diode insts added to fix antenna (string, default="")
+[11/20 13:28:25     54s] -route_allow_pin_as_feedthru <value>      # allow pin as feedthrough (string, default=true)
+[11/20 13:28:25     54s] -route_antenna_cell_name <value>          # specify the antenna diode cell names for antenna fixing (string, default="")
+[11/20 13:28:25     54s] -route_concurrent_minimize_via_count_effort <value>
+[11/20 13:28:25     54s]                                           # specify the effort of concurrent via minimization
+[11/20 13:28:25     54s]                                           # (string, default=medium)
+[11/20 13:28:25     54s] -route_connect_to_bumps {true|false}      # connect to bumps in native NanoRoute in Innovus (bool, default=false)
+[11/20 13:28:25     54s] -route_fix_clock_nets {true|false}        # set clock nets routing status to fixed or routed (bool, default=false)
+[11/20 13:28:25     54s] -route_route_clock_nets_first {true|false}
+[11/20 13:28:25     54s]                                           # route clock nets first (bool, default=true)
+[11/20 13:28:25     54s] -route_eco_ignore_existing_route <value>
+[11/20 13:28:25     54s]                                           # Ignore existing route in eco, mode: {all | signal}
+[11/20 13:28:25     54s]                                           # (string, default="")
+[11/20 13:28:25     54s] -route_enable_route_rule_si_limit_length <value>
+[11/20 13:28:25     54s]                                           # use MAR wire length as NDR PRL requirement for metal spacing check (string, default=false)
+[11/20 13:28:25     54s] -route_enforce_route_rule_on_special_net_wire <value>
+[11/20 13:28:25     54s]                                           # enforce ndr rule on all special wire segments of specified nets (string, default=false)
+[11/20 13:28:25     54s] -route_extra_via_enclosure <value>        # specify an extra via enclosure to use when connecting to block pins and special net wires
+[11/20 13:28:25     54s]                                           # (float, default=0)
+[11/20 13:28:25     54s] -route_honor_exclusive_region {true|false}
+[11/20 13:28:25     54s]                                           # honor exclusive region routing (bool, default=true)
+[11/20 13:28:25     54s] -route_honor_power_domain {true|false}    # honor power domain routing (bool, default=false)
+[11/20 13:28:25     54s] -route_ignore_antenna_top_cell_pin {true|false}
+[11/20 13:28:25     54s]                                           # ignore antenna check on block I/O pins
+[11/20 13:28:25     54s]                                           # (bool, default=true)
+[11/20 13:28:25     54s] -route_antenna_diode_insertion {true|false}
+[11/20 13:28:25     54s]                                           # insert antenna diode to fix antenna violation
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_diode_insertion_for_clock_nets {true|false}
+[11/20 13:28:25     54s]                                           # allow diode insertion on clock nets
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_shield_tap_cell_insertion {true|false}
+[11/20 13:28:25     54s]                                           # insert tap cell for shielding (bool, default=false)
+[11/20 13:28:25     54s] -route_relaxed_route_rule_spacing_to_power_ground_nets <value>
+[11/20 13:28:25     54s]                                           # relax the spacing requirement from NDR spacing for the layers (string, default=none)
+[11/20 13:28:25     54s] -route_reserve_space_for_multi_cut {true|false}
+[11/20 13:28:25     54s]                                           # Reserves space to insert multicut vias in postroute stage. This option has to be set before routing.
+[11/20 13:28:25     54s]                                           # After routing with this parameter specified, you can add double-cut vias or larger overhang vias by using
+[11/20 13:28:25     54s]                                           # the "routeDesign -viaOpt" command. For examples, see routeDesign. (bool, default=false)
+[11/20 13:28:25     54s] -route_reverse_direction <value>          # reverse routing direction in area: (lx ly ux uy [bot_lyr : top_lyr]) ... , top_lyr and bot_lyr could be
+[11/20 13:28:25     54s]                                           # either layer name or layer routing id (string, default="")
+[11/20 13:28:25     54s] -route_selected_net_only {true|false}     # route selected net only (bool, default=false)
+[11/20 13:28:25     54s] -route_shield_crosstie_offset <value>     # Specifies the offset in terms of number of tracks for adding crossties. The default is 0 for all layers.
+[11/20 13:28:25     54s]                                           # The syntax is 'layer_name:numTrack1 layer_name2:numTrack2... '. (string, default="")
+[11/20 13:28:25     54s] -route_shield_length_threshold <value>    # min route segment length below which there is no shielding needed (float, default=-1)
+[11/20 13:28:25     54s] -route_shield_report_skip_status {true|false}
+[11/20 13:28:25     54s]                                           # generate report file on if a net is skipped for shielding
+[11/20 13:28:25     54s]                                           # (bool, default=false)
+[11/20 13:28:25     54s] -route_shield_stripe_layer_range <value>
+[11/20 13:28:25     54s]                                           # specify the target layer range of stripes for tie net connection
+[11/20 13:28:25     54s]                                           # (string, default="")
+[11/20 13:28:25     54s] -route_shield_tap_cell_name <value>       # specify the tap cell names for shielding (string, default="")
+[11/20 13:28:25     54s] -route_strictly_honor_1d_routing <value>
+[11/20 13:28:25     54s]                                           # Strictly honor 1d routing (string, default=false)
+[11/20 13:28:25     54s] -route_strict_honor_route_rule <value>    # Strictly enforce non-default rules (string, default=false)
+[11/20 13:28:25     54s] -route_stripe_layer_range <value>         # specify the target layer range of stripes for tie net connection (string, default="")
+[11/20 13:28:25     54s] -route_tieoff_to_shapes <value>           # specify the target special wire shapes or target instance pin for tie net connection: [auto stripe ring
+[11/20 13:28:25     54s]                                           # powergroundpin] (string, default=auto)
+[11/20 13:28:25     54s] -route_trim_pull_back_distance_from_boundary <value>
+[11/20 13:28:25     54s]                                           # route_trim_pull_back_distance_from_boundary {<layer>:<value> ...} (string, default="")
+[11/20 13:28:25     54s] -route_trunk_with_cluster_target_size <value>
+[11/20 13:28:25     54s]                                           # global control of trunk routing pattern for nets with TRUNK pattern attribute. 0: nets with TRUNK pattern
+[11/20 13:28:25     54s]                                           # will be routed as Steiner tree; 1: default, nets will be routed as traditional trunk pattern, i.e., each
+[11/20 13:28:25     54s]                                           # pin directly connects to SNET trunk separately; >1: define a proximate max cluster size (in number of
+[11/20 13:28:25     54s]                                           # pins), and nets will be routed as fishbone style, i.e., several pins in a column are clustered together,
+[11/20 13:28:25     54s]                                           # and then connects to SNET trunk. (int, default=1)
+[11/20 13:28:25     54s] -route_use_auto_via <value>               # allow to use internal generated vias (string, default=auto)
+[11/20 13:28:25     54s] -route_with_eco {true|false}              # enable eco routing (bool, default=false)
+[11/20 13:28:25     54s] -route_with_litho_driven {true|false}     # enable the litho-driven routing (bool, default=false)
+[11/20 13:28:25     54s] -route_with_si_driven {true|false}        # enable si driven routing (bool, default=false)
+[11/20 13:28:25     54s] -route_with_timing_driven {true|false}    # enable timing driven routing (bool, default=false)
+[11/20 13:28:25     54s] -route_with_trim_metal <value>            # set cut metal dgrid for short pin extension generated (string, default="")
+[11/20 13:28:25     54s] -route_with_via_in_pin <value>            # enclose via in pin shape (string, default=false)
+[11/20 13:28:25     54s] -route_with_via_only_for_block_cell_pin <value>
+[11/20 13:28:25     54s]                                           # enclose via in pin shape for macro cell pins
+[11/20 13:28:25     54s]                                           # (string, default=false)
+[11/20 13:28:25     54s] -route_with_via_only_for_stdcell_pin <value>
+[11/20 13:28:25     54s]                                           # disable planar access to standard cell pins
+[11/20 13:28:25     54s]                                           # (string, default=false)
+[11/20 13:29:41     54s] 
+[11/20 13:29:41     54s] *** Memory Usage v#2 (Current mem = 1725.832M, initial mem = 839.469M) ***
+[11/20 13:29:41     54s] *** Message Summary: 0 warning(s), 0 error(s)
+[11/20 13:29:41     54s] 
+[11/20 13:29:41     54s] --- Ending "Innovus" (totcpu=0:00:55.3, real=0:04:57, mem=1725.8M) ---

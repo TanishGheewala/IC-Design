@@ -1,6 +1,6 @@
 # ####################################################################
 
-#  Created by Genus(TM) Synthesis Solution 23.13-s073_1 on Wed Nov 18 16:29:16 PST 2026
+#  Created by Genus(TM) Synthesis Solution 23.13-s073_1 on Fri Nov 20 13:38:53 PST 2026
 
 # ####################################################################
 
@@ -95,19 +95,19 @@ set_output_delay -clock [get_clocks clk] -add_delay -min 0.2 [get_ports {gpio_in
 set_output_delay -clock [get_clocks clk] -add_delay -min 0.2 [get_ports {gpio_inout[0]}]
 set_max_fanout 20.000 [current_design]
 set_max_transition 0.5 [current_design]
-set_input_transition 0.03 [get_ports rst_n]
-set_input_transition 0.03 [get_ports rx]
-set_input_transition 0.03 [get_ports miso]
-set_input_transition 0.03 [get_ports {gpio_inout[9]}]
-set_input_transition 0.03 [get_ports {gpio_inout[8]}]
-set_input_transition 0.03 [get_ports {gpio_inout[7]}]
-set_input_transition 0.03 [get_ports {gpio_inout[6]}]
-set_input_transition 0.03 [get_ports {gpio_inout[5]}]
-set_input_transition 0.03 [get_ports {gpio_inout[4]}]
-set_input_transition 0.03 [get_ports {gpio_inout[3]}]
-set_input_transition 0.03 [get_ports {gpio_inout[2]}]
-set_input_transition 0.03 [get_ports {gpio_inout[1]}]
-set_input_transition 0.03 [get_ports {gpio_inout[0]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports rst_n]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports rx]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports miso]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[9]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[8]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[7]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[6]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[5]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[4]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[3]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[2]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[1]}]
+set_driving_cell -lib_cell sky130_fd_sc_hd__buf_4 -library sky130_fd_sc_hd__tt_025C_1v80 -pin "X" [get_ports {gpio_inout[0]}]
 set_wire_load_mode "top"
 set_clock_uncertainty -setup 0.3 [get_clocks clk]
 set_clock_uncertainty -hold 0.3 [get_clocks clk]
