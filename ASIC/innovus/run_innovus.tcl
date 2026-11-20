@@ -84,7 +84,7 @@ proc step_init {} {
     global TECH_LEF STD_CELL_LEF SRAM_LEF NETLIST TOP_MODULE
     global POWER_NET GROUND_NET
     global init_mmmc_file init_lef_file init_verilog init_top_cell init_pwr_net init_gnd_net
-    global MIN_ROUTE_LAYER MAX_ROUTE_LAYER
+    global MIN_ROUTE_LAYER MAX_ROUTE_LAYER DONT_USE_CELLS
 
     # ---- Multi-Mode Multi-Corner setup (one typical corner) -----------------
     set libs [list $STD_LIB]
@@ -122,6 +122,12 @@ proc step_init {} {
 
     init_design
     setDesignMode -bottomRoutingLayer $MIN_ROUTE_LAYER -topRoutingLayer $MAX_ROUTE_LAYER
+
+    # Keep the optimizer away from cells that break DRC/power (see config.tcl).
+    # Set before place_opt_design so no step (place/CTS/postRoute) can use them.
+    foreach pat $DONT_USE_CELLS {
+        setDontUse $pat true
+    }
 
     # On-chip-variation timing with clock pessimism removal (CPPR). Post-route
     # optimization turns on SI (crosstalk) aware delay calculation, and the

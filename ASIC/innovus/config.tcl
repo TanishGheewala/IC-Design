@@ -75,6 +75,16 @@ set TIE_CELL      ${STD_CELL}__conb_1
 # Antenna diode NanoRoute inserts to fix antenna violations
 set ANTENNA_CELL  ${STD_CELL}__diode_2
 
+# Cells the optimizer must never insert (setDontUse in step_init).
+#   probe_p/probe_n : test-probe buffers whose output pin has a met5 pad. When
+#                     opt drops one as a buffer, the met5 pin collides with the
+#                     met5 power stripes (DRC: "Special Wire of Net VDD & Pin of
+#                     Cell ...probe_p_8 (met5)").
+#   lpflow_*        : low-power/isolation cells that need a separate KAPWR
+#                     supply this design doesn't have.
+set DONT_USE_CELLS [list ${STD_CELL}__probe_p_* ${STD_CELL}__probe_n_* \
+                         ${STD_CELL}__lpflow_*]
+
 # Clock tree cells: dedicated clock buffers/inverters (balanced rise/fall)
 set CTS_BUFFER_CELLS   [list ${STD_CELL}__clkbuf_2 ${STD_CELL}__clkbuf_4 \
                              ${STD_CELL}__clkbuf_8 ${STD_CELL}__clkbuf_16]
