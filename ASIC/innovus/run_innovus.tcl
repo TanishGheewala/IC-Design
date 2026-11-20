@@ -154,8 +154,8 @@ proc step_place_sram {} {
     if {!$HAS_SRAM} { puts "  (no SRAM in this design, skipping)"; return }
 
     # Edge gap from the core boundary and channel between macros (um).
-    set edge    20
-    set channel 30
+    set edge    30
+    set channel 45
     set halo    15
 
     # All leaf instances of the SRAM cell (hierarchical names included).
@@ -228,7 +228,7 @@ proc step_power {} {
     # met4, so stripes are cut at the macros (not switched to another layer).
     addStripe -nets [list $POWER_NET $GROUND_NET] \
               -layer met4 -direction vertical \
-              -width 1.5 -spacing 2 -set_to_set_distance 50 \
+              -width 1.6 -spacing 2 -set_to_set_distance 50 \
               -start_from left -switch_layer_over_obs false
 
     # Horizontal power stripes on met5 (met5 is free over the SRAMs, so these

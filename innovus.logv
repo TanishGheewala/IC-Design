@@ -1,0 +1,55 @@
+[11/20 11:30:15      0s] 
+[11/20 11:30:15      0s] Cadence Innovus(TM) Implementation System.
+[11/20 11:30:15      0s] Copyright 2024 Cadence Design Systems, Inc. All rights reserved worldwide.
+[11/20 11:30:15      0s] 
+[11/20 11:30:15      0s] Version:	v23.13-s082_1, built Wed Nov 13 13:42:48 PST 2024
+[11/20 11:30:15      0s] Options:	
+[11/20 11:30:15      0s] Date:		Fri Nov 20 11:30:15 2026
+[11/20 11:30:15      0s] Host:		bardeen.sdsu.edu (x86_64 w/Linux 4.18.0-553.87.1.el8_10.x86_64) (4cores*4cpus*Intel(R) Core(TM)2 Quad CPU Q9300 @ 2.50GHz 3072KB)
+[11/20 11:30:16      0s] OS:		Rocky Linux 8.10 (Green Obsidian)
+[11/20 11:30:16      0s] 
+[11/20 11:30:16      0s] License:
+[11/20 11:30:16      0s] 		[11:30:16.354657] Configured Lic search path (23.02-s006): 5280@volta.sdsu.edu
+
+[11/20 11:30:16      0s] 		invs	Innovus Implementation System	23.1	checkout succeeded
+[11/20 11:30:16      0s] 		8 CPU jobs allowed with the current license(s). Use setMultiCpuUsage to set your required CPU count.
+[11/20 11:30:59     38s] Reset Parastics called with the command setExtractRCMode -reset@(#)CDS: Innovus v23.13-s082_1 (64bit) 11/13/2024 13:42 (Linux 3.10.0-693.el7.x86_64)
+[11/20 11:31:08     44s] @(#)CDS: NanoRoute 23.13-s082_1 NR241029-2256/23_13-UB (database version 18.20.652) {superthreading v2.20}
+[11/20 11:31:08     44s] @(#)CDS: AAE 23.13-s019 (64bit) 11/13/2024 (Linux 3.10.0-693.el7.x86_64)
+[11/20 11:31:08     44s] @(#)CDS: CTE 23.13-s028_1 () Nov 11 2024 03:58:52 ( )
+[11/20 11:31:08     44s] @(#)CDS: SYNTECH 23.13-s009_1 () Oct 30 2024 09:17:13 ( )
+[11/20 11:31:08     44s] @(#)CDS: CPE v23.13-s062
+[11/20 11:31:08     44s] @(#)CDS: IQuantus/TQuantus 23.1.1-s235 (64bit) Fri Sep 27 22:21:33 PDT 2024 (Linux 3.10.0-693.el7.x86_64)
+[11/20 11:31:08     44s] @(#)CDS: OA 22.61-p018 Fri Oct 18 10:45:49 2024
+[11/20 11:31:08     44s] @(#)CDS: SGN 23.10-d005 (03-Oct-2023) (64 bit executable, TkQt5.15.9)
+[11/20 11:31:08     44s] @(#)CDS: RCDB 11.15.0
+[11/20 11:31:08     44s] @(#)CDS: STYLUS 23.14-s002_1 (09/11/2024 13:54 PDT)
+[11/20 11:31:08     44s] @(#)CDS: IntegrityPlanner-23.13-16927 (23.13) (2024-10-14 10:21:59+0800)
+[11/20 11:31:08     44s] @(#)CDS: SYNTHESIS_ENGINE 23.13-s072
+[11/20 11:31:08     44s] Create and set the environment variable TMPDIR to /tapeout/IC-Design/innovus_temp_776495_fe68a410-ec3d-4461-ae3c-60d0b1f53ca2_bardeen.sdsu.edu_tapeout_QCQsDG.
+
+[11/20 11:31:08     44s] Change the soft stacksize limit to 0.2%RAM (15 mbytes). Set global soft_stack_size_limit to change the value.
+[11/20 11:31:15     48s] Info: Process UID = 776495 / fe68a410-ec3d-4461-ae3c-60d0b1f53ca2 / SmkRaZNju3
+[11/20 11:31:15     48s] source /opt/cadence/installs/DDI231/INNOVUS231/tools.lnx86/../etc/synth/attr_def/plus_attr_defs.tcl
+[11/20 11:31:15     48s] Loading attribute definitions from mini dummy db...
+[11/20 11:31:18     50s] Info: Defined 23820 Synthesis attributes
+[11/20 11:31:18     50s] Info: Skipped defining 357 Synthesis attributes already defined in Innovus
+[11/20 11:31:18     51s] source /opt/cadence/installs/DDI231/INNOVUS231/tools.lnx86/../etc/synth/attr_def/plus_msg_defs.tcl
+[11/20 11:31:23     55s] 
+[11/20 11:31:23     55s] **INFO:  MMMC transition support version v31-84 
+[11/20 11:31:23     55s] 
+[11/20 11:31:23     55s] <CMD> set_global _enable_mmmc_by_default_flow      $CTE::mmmc_default
+[11/20 11:31:23     55s] <CMD> suppressMessage ENCEXT-2799
+[11/20 11:31:23     55s] <CMD> win
+[11/20 11:33:03     60s] 
+--------------------------------------------------------------------------------
+Exiting Innovus on Fri Nov 20 11:33:03 2026
+  Total CPU time:     0:01:01
+  Total real time:    0:02:51
+  Peak memory (main): 1919.31MB
+
+[11/20 11:33:03     60s] 
+[11/20 11:33:03     60s] *** Memory Usage v#2 (Current mem = 1810.660M, initial mem = 847.469M) ***
+[11/20 11:33:03     60s] *** Message Summary: 0 warning(s), 0 error(s)
+[11/20 11:33:03     60s] 
+[11/20 11:33:03     60s] --- Ending "Innovus" (totcpu=0:01:01, real=0:02:48, mem=1810.7M) ---

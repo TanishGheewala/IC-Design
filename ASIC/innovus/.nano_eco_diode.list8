@@ -1,0 +1,55 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/core0/u_register_file/DIODE_1 1 addPortAsNeeded
+INSTTERM DIODE dut/core0/u_register_file/registers\[rf_if_rs1_addr\][18] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/core0/u_register_file/DIODE_2 1 addPortAsNeeded
+INSTTERM DIODE dut/core0/u_register_file/registers\[rf_if_rs1_addr\][10] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_3 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN2227_n -
+ADDINST sky130_fd_sc_hd__diode_2 dut/core0/u_register_file/DIODE_4 1 addPortAsNeeded
+INSTTERM DIODE dut/core0/u_register_file/registers\[rf_if_rs1_addr\][8] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_5 1 addPortAsNeeded
+INSTTERM DIODE dut/rom_write[28] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_6 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN354_rom_write_mask_2 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_7 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN157_memory_read_7 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_8 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN159_memory_read_6 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_9 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN1664_n -
+ADDINST sky130_fd_sc_hd__diode_2 dut/data_memory/DIODE_10 1 addPortAsNeeded
+INSTTERM DIODE dut/data_memory/FE_OFN1152_memory_address_3 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_11 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN117_memory_read_21 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/data_memory/DIODE_12 1 addPortAsNeeded
+INSTTERM DIODE dut/data_memory/FE_OFN823_core0_if_memory_write_mask_1 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_13 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN163_memory_read_4 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/data_memory/DIODE_14 1 addPortAsNeeded
+INSTTERM DIODE dut/data_memory/FE_OFN813_core0_if_memory_write_mask_3 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_15 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN96_memory_read_29 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_16 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN165_memory_read_3 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_17 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN105_memory_read_25 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_18 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN98_memory_read_28 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_19 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN136_memory_read_13 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/data_memory/DIODE_20 1 addPortAsNeeded
+INSTTERM DIODE dut/data_memory/FE_OFN1228_memory_write_14 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_21 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN121_memory_read_19 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/debug_con/TRN/DIODE_22 1 addPortAsNeeded
+INSTTERM DIODE tx -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_23 1 addPortAsNeeded
+INSTTERM DIODE dut/rom_read[29] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_24 1 addPortAsNeeded
+INSTTERM DIODE dut/rom_read[5] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_25 1 addPortAsNeeded
+INSTTERM DIODE dut/rom_read[2] -
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_26 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN1574_n -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_27 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN533_rom_write_18 -

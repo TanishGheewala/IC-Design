@@ -1,0 +1,7 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_28 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN667_n_31 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_29 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN261_dout0_0_9 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_30 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN533_rom_write_18 -
