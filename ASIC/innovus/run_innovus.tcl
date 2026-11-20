@@ -317,7 +317,16 @@ proc step_route {} {
     setNanoRouteMode -routeAntennaCellName $ANTENNA_CELL
 
     routeDesign
+
+    # Post-route setup fix. Useful skew lets the optimizer shift clock arrival
+    # at registers (borrowing slack from the next stage) on top of resizing and
+    # buffering -- aimed at the long SRAM dout -> decoder -> ALU -> regfile path.
+    # Two passes: the second picks up paths the first pass's changes exposed.
+    setOptMode -usefulSkew true
     optDesign -postRoute
+    optDesign -postRoute
+
+    # Hold fix last: setup fixes and skewed clocks can create new hold paths.
     optDesign -postRoute -hold
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
