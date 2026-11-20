@@ -1,0 +1,3 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/DIODE_27 1 addPortAsNeeded
+INSTTERM DIODE dut/FE_OFN1971_n -
