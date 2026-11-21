@@ -149,31 +149,35 @@ proc step_floorplan {} {
 }
 
 ###############################################################################
-# 3. SRAM placement -- auto-discover macros and place them in a grid from the
-#    lower-left corner of the core: left to right, then the next row up.
-#    Spacing comes from the macro's real size in the LEF (683.1 x 416.54 um for
-#    sky130_sram_2kbyte_1rw1r_32x512_8), plus a routing channel between them.
-#    Replace with explicit placeInstance calls once you settle on a floorplan.
+# 3. SRAM placement -- place the 4 SRAM macros in the 4 corners of the core,
+#    opening a central courtyard for the RISC-V core so every bank is
+#    roughly equidistant from the datapath.
 ###############################################################################
+proc snap_grid {val} {
+    # Snap to Sky130 0.005 um manufacturing grid cleanly.
+    return [format "%.3f" [expr {round($val * 200.0) / 200.0}]]
+}
+
 proc step_place_sram {} {
     global HAS_SRAM SRAM_NAME
     if {!$HAS_SRAM} { puts "  (no SRAM in this design, skipping)"; return }
 
-    # Edge gap from the core boundary and channel between macros (um).
-    set edge    30
-    set channel 45
-    set halo    15
+    set edge 30
+    set halo 15
 
-    # All leaf instances of the SRAM cell (hierarchical names included).
+    # Discover all SRAM macro instances and sort deterministically.
     set insts [dbGet -p2 top.insts.cell.name $SRAM_NAME]
     if {$insts eq "0x0" || [llength $insts] == 0} {
         puts "ERROR: no instances of $SRAM_NAME found in the netlist."
         exit 1
     }
-    set names [dbGet $insts.name]
-    puts "  placing [llength $names] SRAM macro(s): $names"
+    set names [lsort [dbGet $insts.name]]
+    if {[llength $names] != 4} {
+        puts "ERROR: 4-corner placement expects 4 SRAMs, found [llength $names]: $names"
+        exit 1
+    }
 
-    # Macro size from the LEF: {{w h}}
+    # Macro dimensions from LEF (683.1 x 416.54 um)
     set size [dbGet [dbGet -p head.libCells.name $SRAM_NAME].size]
     set mw [lindex $size 0 0]
     set mh [lindex $size 0 1]
@@ -182,26 +186,52 @@ proc step_place_sram {} {
     set core [dbGet top.fPlan.coreBox]
     set llx [lindex $core 0 0]; set lly [lindex $core 0 1]
     set urx [lindex $core 0 2]; set ury [lindex $core 0 3]
-    puts "  core box: ($llx, $lly) - ($urx, $ury); macro: $mw x $mh um"
 
-    set x [expr {$llx + $edge}]
-    set y [expr {$lly + $edge}]
-    foreach inst $names {
-        # Start a new row if this macro would cross the right edge.
-        if {$x + $mw > $urx - $edge} {
-            set x [expr {$llx + $edge}]
-            set y [expr {$y + $mh + $channel}]
-        }
-        if {$y + $mh > $ury - $edge} {
-            puts "ERROR: SRAM macros don't fit in the core ($urx x $ury um)."
-            puts "       Lower TARGET_UTIL or change ASPECT in config.tcl."
-            exit 1
-        }
-        placeInstance $inst $x $y R0 -fixed
-        set x [expr {$x + $mw + $channel}]
+    set center_w [expr {($urx - $llx) - 2*$edge - 2*$mw}]
+    set center_h [expr {($ury - $lly) - 2*$edge - 2*$mh}]
+    puts "  core: ($llx, $lly) - ($urx, $ury); macro: ${mw}x${mh} um"
+    puts "  center courtyard between corners: ${center_w} x ${center_h} um"
+
+    # Require at least 120 um clear channel in both X and Y between corner macros
+    # (halo 15 um on each side takes 30 um, leaving >= 90 um for std-cell rows).
+    if {$center_w < 120 || $center_h < 120} {
+        puts "ERROR: center gap (${center_w}x${center_h} um) is too narrow for 4 corners."
+        puts "       Lower TARGET_UTIL in config.tcl (e.g. 0.55) and re-run."
+        exit 1
     }
 
-    # Keep standard cells a few microns clear of every macro (applies to all).
+    # Corner coordinates snapped to 0.005 um grid
+    set x_left  [snap_grid [expr {$llx + $edge}]]
+    set x_right [snap_grid [expr {$urx - $edge - $mw}]]
+    set y_bot   [snap_grid [expr {$lly + $edge}]]
+    set y_top   [snap_grid [expr {$ury - $edge - $mh}]]
+
+    # Symmetric orientations:
+    #   R0/MY/MX/R180 assume pins are on top/right in R0.
+    #   (If GUI shows pins on bottom/left in R0, swap to: R180, MX, MY, R0.)
+    set orient_bl R0
+    set orient_br MY
+    set orient_tl MX
+    set orient_tr R180
+
+    # With lsort on your 4 banks:
+    #   0 = dut/data_memory/bank0       -> Bottom-Left
+    #   1 = dut/instruction_rom/bank0   -> Bottom-Right
+    #   2 = dut/instruction_rom/bank1   -> Top-Left
+    #   3 = dut/instruction_rom/bank2   -> Top-Right
+    set corners [list \
+        [list [lindex $names 0] $x_left  $y_bot $orient_bl] \
+        [list [lindex $names 1] $x_right $y_bot $orient_br] \
+        [list [lindex $names 2] $x_left  $y_top $orient_tl] \
+        [list [lindex $names 3] $x_right $y_top $orient_tr] \
+    ]
+
+    foreach item $corners {
+        lassign $item inst x y orient
+        puts "  placing $inst at ($x, $y) $orient"
+        placeInstance $inst $x $y $orient -fixed
+    }
+
     addHaloToBlock $halo $halo $halo $halo -allMacro
 }
 
@@ -328,6 +358,10 @@ proc step_route {} {
 
     # Hold fix last: setup fixes and skewed clocks can create new hold paths.
     optDesign -postRoute -hold
+
+    setNanoRouteMode -routeWithEco true
+    setNanoRouteMode -drouteFixShort true
+    ecoRoute -fixDrc
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
     addFiller -cell $FILLER_CELLS -prefix FILLER

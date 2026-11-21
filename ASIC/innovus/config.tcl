@@ -82,8 +82,7 @@ set ANTENNA_CELL  ${STD_CELL}__diode_2
 #                     Cell ...probe_p_8 (met5)").
 #   lpflow_*        : low-power/isolation cells that need a separate KAPWR
 #                     supply this design doesn't have.
-set DONT_USE_CELLS [list ${STD_CELL}__probe_p_* ${STD_CELL}__probe_n_* \
-                         ${STD_CELL}__lpflow_*]
+set DONT_USE_CELLS [list ${STD_CELL}__probe* ${STD_CELL}__lpflow_*]
 
 # Clock tree cells: dedicated clock buffers/inverters (balanced rise/fall)
 set CTS_BUFFER_CELLS   [list ${STD_CELL}__clkbuf_2 ${STD_CELL}__clkbuf_4 \
@@ -170,8 +169,8 @@ set GROUND_NET VSS
 #   ASPECT       : core aspect ratio (height/width)
 #   CORE_MARGIN  : gap (um) between core edge and I/O / die edge, all sides
 ###############################################################################
-set TARGET_UTIL  0.55
-set ASPECT       1.0
+set TARGET_UTIL  0.45
+set ASPECT       0.75
 set CORE_MARGIN  25
 
 ###############################################################################
