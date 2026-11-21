@@ -10,7 +10,9 @@ module soc_synth_top (
     output logic mosi,
     input logic miso,
     output logic cs_n,
-    inout logic [9:0] gpio_inout
+    input logic [9:0] gpio_in,
+    output logic [9:0] gpio_out,
+    output logic [9:0] gpio_oe
 );
 
     soc_interface soc_if();
@@ -25,14 +27,11 @@ module soc_synth_top (
     assign mosi = soc_if.mosi;
     assign cs_n = soc_if.cs_n;
 
-    //tri state logic for gpio pins
-    genvar i;
-    generate
-        for (i = 0; i < 10; i++) begin : gen_gpio_pads
-            assign gpio_inout[i] = soc_if.gpio_oe[i] ? soc_if.gpio_out[i] : 1'bz;
-            assign soc_if.gpio_in[i] = gpio_inout[i];
-        end
-    endgenerate
+    //separate gpio pins
+    assign soc_if.gpio_in = gpio_in;
+    assign gpio_out = soc_if.gpio_out;
+    assign gpio_oe = soc_if.gpio_oe;
+
     soc dut (
         .soc_if(soc_if)
     );
