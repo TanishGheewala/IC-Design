@@ -58,7 +58,7 @@ class soc_debug_generator;
             endcase
         end
 
-        $readmemh("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex", hex_buffer);
+        $readmemh("debug_test.hex", hex_buffer);
         for(int i = 0; i < (image_size/4); i++) begin
             image_word = hex_buffer[i];
             for(int j = 0; j < 4; j++) begin
