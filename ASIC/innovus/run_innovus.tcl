@@ -360,7 +360,7 @@ proc step_route {} {
     optDesign -postRoute -hold
 
     setNanoRouteMode -routeWithEco true
-    setNanoRouteMode -drouteFixShort true
+    # setNanoRouteMode -drouteFixShort true
     ecoRoute -fixDrc
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
