@@ -1,0 +1,11 @@
+FORMATVERSION 1
+ADDINST sky130_fd_sc_hd__diode_2 dut/debug_con/REC/DIODE_1 1 addPortAsNeeded
+INSTTERM DIODE rx -
+ADDINST sky130_fd_sc_hd__diode_2 dut/bootl/spi_shift_inst/DIODE_2 1 addPortAsNeeded
+INSTTERM DIODE miso -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_3 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN200_dout0_0_28 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_4 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN198_dout0_0_29 -
+ADDINST sky130_fd_sc_hd__diode_2 dut/instruction_rom/DIODE_5 1 addPortAsNeeded
+INSTTERM DIODE dut/instruction_rom/FE_OFN229_dout0_0_13 -
