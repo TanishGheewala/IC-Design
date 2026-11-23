@@ -38,7 +38,7 @@ module soc_flash_wrapper (
 
     genvar i;
     generate
-        for (i = 0; i < 10; i++) begin : gen_gpio_pads
+        for (i = 0; i < 10; i = i + 1) begin : gen_gpio_pads
             assign gpio_inout[i] = gpio_oe[i] ? gpio_out[i] : 1'bz;
             assign gpio_in[i] = gpio_inout[i];
         end
@@ -47,10 +47,11 @@ module soc_flash_wrapper (
     //flash model with 6KB mem
     spi_flash_model #(
         .MEM_BYTES(6144),
-        .INIT_FILE(""),
-        .DUMP_FILE("")
+        .INIT_FILE("/home/gogurt/Documents/senion_design_project/Verification/SoC_Verification/programs/debug_test/debug_test.hex")
     )
     flash_memory(
+        .clk(clk),
+        .rst_n(rst_n),
         .sclk(sclk),
         .mosi(mosi),
         .miso(miso),

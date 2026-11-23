@@ -1,6 +1,6 @@
 ## White LEDS (8 outputs)
 
-set_property PACKAGE_PIN AF5 [get_ports {PL_USER_LED[0]}]
+set_property PACKAGE_PIN AF5 [get_ports {led_0}]
 set_property PACKAGE_PIN AE7 [get_ports {PL_USER_LED[1]}]
 set_property PACKAGE_PIN AH2 [get_ports {PL_USER_LED[2]}]
 set_property PACKAGE_PIN AE5 [get_ports {PL_USER_LED[3]}]
@@ -8,7 +8,7 @@ set_property PACKAGE_PIN AH1 [get_ports {PL_USER_LED[4]}]
 set_property PACKAGE_PIN AE4 [get_ports {PL_USER_LED[5]}]
 set_property PACKAGE_PIN AG1 [get_ports {PL_USER_LED[6]}]
 set_property PACKAGE_PIN AF2 [get_ports {PL_USER_LED[7]}]
-set_property IOSTANDARD LVCMOS12 [get_ports PL_USER_LED*]
+set_property IOSTANDARD LVCMOS12 [get_ports led_0]
 
 ## RGB LEDS (12 outputs)
 
