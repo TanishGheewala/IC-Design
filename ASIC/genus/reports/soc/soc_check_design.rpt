@@ -296,30 +296,9 @@ pin:soc_synth_top/dut/g11/in_3
 pin:soc_synth_top/dut/g14/in_0
 Total number of combinational multidriven pin(s) in design 'soc_synth_top' : 28
 
-The following sequential pin(s) in design 'soc_synth_top' are multidriven
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[0]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[1]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[2]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[3]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[4]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[5]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[6]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[7]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[8]/d
-pin:soc_synth_top/dut/gpio_block/in_meta_reg[9]/d
-Total number of sequential multidriven pin(s) in design 'soc_synth_top' : 10
+No multidriven sequential pin in 'soc_synth_top'
 
 The following hierarchical pin(s) in design 'soc_synth_top' are multidriven
-hpin:soc_synth_top/dut/soc_if_gpio_in[9]
-hpin:soc_synth_top/dut/soc_if_gpio_in[8]
-hpin:soc_synth_top/dut/soc_if_gpio_in[7]
-hpin:soc_synth_top/dut/soc_if_gpio_in[6]
-hpin:soc_synth_top/dut/soc_if_gpio_in[5]
-hpin:soc_synth_top/dut/soc_if_gpio_in[4]
-hpin:soc_synth_top/dut/soc_if_gpio_in[3]
-hpin:soc_synth_top/dut/soc_if_gpio_in[2]
-hpin:soc_synth_top/dut/soc_if_gpio_in[1]
-hpin:soc_synth_top/dut/soc_if_gpio_in[0]
 hpin:soc_synth_top/dut/debug_con/ctl_debug_command_154_29/in_0[7]
 hpin:soc_synth_top/dut/debug_con/ctl_debug_command_154_29/in_0[6]
 hpin:soc_synth_top/dut/debug_con/ctl_debug_command_154_29/in_0[5]
@@ -492,20 +471,9 @@ hpin:soc_synth_top/dut/mux_rom_address_176_16/in_1[2]
 hpin:soc_synth_top/dut/mux_rom_address_176_16/in_1[1]
 hpin:soc_synth_top/dut/mux_rom_address_176_16/in_1[0]
 hpin:soc_synth_top/dut/mux_129_30/in_0
-Total number of hierarchical multidriven pin(s) in design 'soc_synth_top' : 182
+Total number of hierarchical multidriven pin(s) in design 'soc_synth_top' : 172
 
-The following ports in design 'soc_synth_top' are multidriven
-port:soc_synth_top/gpio_inout[9]
-port:soc_synth_top/gpio_inout[8]
-port:soc_synth_top/gpio_inout[7]
-port:soc_synth_top/gpio_inout[6]
-port:soc_synth_top/gpio_inout[5]
-port:soc_synth_top/gpio_inout[4]
-port:soc_synth_top/gpio_inout[3]
-port:soc_synth_top/gpio_inout[2]
-port:soc_synth_top/gpio_inout[1]
-port:soc_synth_top/gpio_inout[0]
-Total number of multidriven port(s) in design 'soc_synth_top' : 10
+No multidriven ports in 'soc_synth_top'
 
 No multidriven unloaded nets in 'soc_synth_top'
 
@@ -3305,9 +3273,9 @@ Assigns                                     44
 Undriven Port(s)                             0
 Undriven Leaf Pin(s)                         1
 Undriven hierarchical pin(s)               122
-Multidriven Port(s)                         10
-Multidriven Leaf Pin(s)                     38
-Multidriven hierarchical Pin(s)            182
+Multidriven Port(s)                          0
+Multidriven Leaf Pin(s)                     28
+Multidriven hierarchical Pin(s)            172
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
 Constant Leaf Pin(s)                         4

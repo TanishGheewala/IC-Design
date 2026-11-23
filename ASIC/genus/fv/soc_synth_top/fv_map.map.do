@@ -4,24 +4,44 @@ add mapped point clk clk -type PI PI
 add mapped point rst_n rst_n -type PI PI
 add mapped point rx rx -type PI PI
 add mapped point miso miso -type PI PI
+add mapped point gpio_in[9] gpio_in[9] -type PI PI
+add mapped point gpio_in[8] gpio_in[8] -type PI PI
+add mapped point gpio_in[7] gpio_in[7] -type PI PI
+add mapped point gpio_in[6] gpio_in[6] -type PI PI
+add mapped point gpio_in[5] gpio_in[5] -type PI PI
+add mapped point gpio_in[4] gpio_in[4] -type PI PI
+add mapped point gpio_in[3] gpio_in[3] -type PI PI
+add mapped point gpio_in[2] gpio_in[2] -type PI PI
+add mapped point gpio_in[1] gpio_in[1] -type PI PI
+add mapped point gpio_in[0] gpio_in[0] -type PI PI
 
 //output ports
 add mapped point tx tx -type PO PO
 add mapped point sclk sclk -type PO PO
 add mapped point mosi mosi -type PO PO
 add mapped point cs_n cs_n -type PO PO
+add mapped point gpio_out[9] gpio_out[9] -type PO PO
+add mapped point gpio_out[8] gpio_out[8] -type PO PO
+add mapped point gpio_out[7] gpio_out[7] -type PO PO
+add mapped point gpio_out[6] gpio_out[6] -type PO PO
+add mapped point gpio_out[5] gpio_out[5] -type PO PO
+add mapped point gpio_out[4] gpio_out[4] -type PO PO
+add mapped point gpio_out[3] gpio_out[3] -type PO PO
+add mapped point gpio_out[2] gpio_out[2] -type PO PO
+add mapped point gpio_out[1] gpio_out[1] -type PO PO
+add mapped point gpio_out[0] gpio_out[0] -type PO PO
+add mapped point gpio_oe[9] gpio_oe[9] -type PO PO
+add mapped point gpio_oe[8] gpio_oe[8] -type PO PO
+add mapped point gpio_oe[7] gpio_oe[7] -type PO PO
+add mapped point gpio_oe[6] gpio_oe[6] -type PO PO
+add mapped point gpio_oe[5] gpio_oe[5] -type PO PO
+add mapped point gpio_oe[4] gpio_oe[4] -type PO PO
+add mapped point gpio_oe[3] gpio_oe[3] -type PO PO
+add mapped point gpio_oe[2] gpio_oe[2] -type PO PO
+add mapped point gpio_oe[1] gpio_oe[1] -type PO PO
+add mapped point gpio_oe[0] gpio_oe[0] -type PO PO
 
 //inout ports
-add mapped point gpio_inout[9] gpio_inout[9]
-add mapped point gpio_inout[8] gpio_inout[8]
-add mapped point gpio_inout[7] gpio_inout[7]
-add mapped point gpio_inout[6] gpio_inout[6]
-add mapped point gpio_inout[5] gpio_inout[5]
-add mapped point gpio_inout[4] gpio_inout[4]
-add mapped point gpio_inout[3] gpio_inout[3]
-add mapped point gpio_inout[2] gpio_inout[2]
-add mapped point gpio_inout[1] gpio_inout[1]
-add mapped point gpio_inout[0] gpio_inout[0]
 
 
 
@@ -29,14 +49,10 @@ add mapped point gpio_inout[0] gpio_inout[0]
 //Sequential Pins
 add mapped point dut/bootl/spi_shift_inst/miso_sync/q dut/bootl/spi_shift_inst/miso_sync_reg/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/miso_meta/q dut/bootl/spi_shift_inst/miso_meta_reg/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/bit_order_reg/q dut/bootl/spi_shift_inst/bit_order_reg_reg/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/div_cntr[0]/q dut/bootl/spi_shift_inst/div_cntr_reg[0]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/div_cntr[1]/q dut/bootl/spi_shift_inst/div_cntr_reg[1]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/done/q dut/bootl/spi_shift_inst/done_reg/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/edge_cntr[0]/q dut/bootl/spi_shift_inst/edge_cntr_reg[0]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/edge_cntr[1]/q dut/bootl/spi_shift_inst/edge_cntr_reg[1]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/edge_cntr[2]/q dut/bootl/spi_shift_inst/edge_cntr_reg[2]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/state/q dut/bootl/spi_shift_inst/state_reg/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/edge_cntr[3]/q dut/bootl/spi_shift_inst/edge_cntr_reg[3]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/done/q dut/bootl/spi_shift_inst/done_reg/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[7]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[7]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[0]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[1]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[2]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[2]/Q -type DFF DFF
@@ -44,19 +60,22 @@ add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[3]/q dut/bootl/spi_shift_
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[4]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[4]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[5]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[5]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[6]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[6]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/rx_shift_reg[7]/q dut/bootl/spi_shift_inst/rx_shift_reg_reg[7]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/sclk_reg/q dut/bootl/spi_shift_inst/sclk_reg_reg/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/state/q dut/bootl/spi_shift_inst/state_reg/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[0]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[0]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[1]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[1]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[7]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[7]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[2]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[2]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[3]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[3]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[4]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[4]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[5]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[5]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[1]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[6]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[6]/Q -type DFF DFF
-add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[7]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[7]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[5]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[5]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/edge_cntr[2]/q dut/bootl/spi_shift_inst/edge_cntr_reg[2]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/tx_shift_reg[0]/q dut/bootl/spi_shift_inst/tx_shift_reg_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/edge_cntr[0]/q dut/bootl/spi_shift_inst/edge_cntr_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/edge_cntr[1]/q dut/bootl/spi_shift_inst/edge_cntr_reg[1]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/sclk_reg/q dut/bootl/spi_shift_inst/sclk_reg_reg/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/div_cntr[1]/q dut/bootl/spi_shift_inst/div_cntr_reg[1]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/div_cntr[0]/q dut/bootl/spi_shift_inst/div_cntr_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/spi_shift_inst/bit_order_reg/q dut/bootl/spi_shift_inst/bit_order_reg_reg/Q -type DFF DFF
 add mapped point dut/bootl/addr_idx[0]/q dut/bootl/addr_idx_reg[0]/Q -type DFF DFF
-add mapped point dut/bootl/addr_idx[1]/q dut/bootl/addr_idx_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/boot_done/q dut/bootl/boot_done_reg/Q -type DFF DFF
 add mapped point dut/bootl/bootloader_state[0]/q dut/bootl/bootloader_state_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/bootloader_state[1]/q dut/bootl/bootloader_state_reg[1]/Q -type DFF DFF
@@ -71,9 +90,6 @@ add mapped point dut/bootl/byte_cntr[7]/q dut/bootl/byte_cntr_reg[7]/Q -type DFF
 add mapped point dut/bootl/byte_cntr[8]/q dut/bootl/byte_cntr_reg[8]/Q -type DFF DFF
 add mapped point dut/bootl/byte_cntr[9]/q dut/bootl/byte_cntr_reg[9]/Q -type DFF DFF
 add mapped point dut/bootl/byte_cntr[10]/q dut/bootl/byte_cntr_reg[10]/Q -type DFF DFF
-add mapped point dut/bootl/byte_cntr[11]/q dut/bootl/byte_cntr_reg[11]/Q -type DFF DFF
-add mapped point dut/bootl/byte_cntr[12]/q dut/bootl/byte_cntr_reg[12]/Q -type DFF DFF
-add mapped point dut/bootl/chip_eraseed/q dut/bootl/chip_eraseed_reg/Q -type DFF DFF
 add mapped point dut/bootl/cs_n_boot/q dut/bootl/cs_n_boot_reg/Q -type DFF DFF
 add mapped point dut/bootl/cs_n_fw/q dut/bootl/cs_n_fw_reg/Q -type DFF DFF
 add mapped point dut/bootl/delay_cntr[0]/q dut/bootl/delay_cntr_reg[0]/Q -type DFF DFF
@@ -81,9 +97,7 @@ add mapped point dut/bootl/delay_cntr[1]/q dut/bootl/delay_cntr_reg[1]/Q -type D
 add mapped point dut/bootl/delay_cntr[2]/q dut/bootl/delay_cntr_reg[2]/Q -type DFF DFF
 add mapped point dut/bootl/fetch_cntr[0]/q dut/bootl/fetch_cntr_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/flash_write_done/q dut/bootl/flash_write_done_reg/Q -type DFF DFF
-add mapped point dut/bootl/fw_addr_idx[0]/q dut/bootl/fw_addr_idx_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/fw_addr_idx[1]/q dut/bootl/fw_addr_idx_reg[1]/Q -type DFF DFF
-add mapped point dut/bootl/fw_bytes_written[0]/q dut/bootl/fw_bytes_written_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/fw_bytes_written[1]/q dut/bootl/fw_bytes_written_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/fw_bytes_written[2]/q dut/bootl/fw_bytes_written_reg[2]/Q -type DFF DFF
 add mapped point dut/bootl/fw_bytes_written[3]/q dut/bootl/fw_bytes_written_reg[3]/Q -type DFF DFF
@@ -162,11 +176,8 @@ add mapped point dut/bootl/fw_prog_addr[20]/q dut/bootl/fw_prog_addr_reg[20]/Q -
 add mapped point dut/bootl/fw_prog_addr[21]/q dut/bootl/fw_prog_addr_reg[21]/Q -type DFF DFF
 add mapped point dut/bootl/fw_prog_addr[22]/q dut/bootl/fw_prog_addr_reg[22]/Q -type DFF DFF
 add mapped point dut/bootl/fw_prog_addr[23]/q dut/bootl/fw_prog_addr_reg[23]/Q -type DFF DFF
-add mapped point dut/bootl/fw_state[0]/q dut/bootl/fw_state_reg[0]/Q -type DFF DFF
-add mapped point dut/bootl/fw_state[1]/q dut/bootl/fw_state_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/fw_state[2]/q dut/bootl/fw_state_reg[2]/Q -type DFF DFF
 add mapped point dut/bootl/fw_state[3]/q dut/bootl/fw_state_reg[3]/Q -type DFF DFF
-add mapped point dut/bootl/fw_state[4]/q dut/bootl/fw_state_reg[4]/Q -type DFF DFF
 add mapped point dut/bootl/fw_total_bytes[0]/q dut/bootl/fw_total_bytes_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/fw_total_bytes[1]/q dut/bootl/fw_total_bytes_reg[1]/Q -type DFF DFF
 add mapped point dut/bootl/fw_total_bytes[2]/q dut/bootl/fw_total_bytes_reg[2]/Q -type DFF DFF
@@ -232,9 +243,7 @@ add mapped point dut/bootl/mem_read_word[28]/q dut/bootl/mem_read_word_reg[28]/Q
 add mapped point dut/bootl/mem_read_word[29]/q dut/bootl/mem_read_word_reg[29]/Q -type DFF DFF
 add mapped point dut/bootl/mem_read_word[30]/q dut/bootl/mem_read_word_reg[30]/Q -type DFF DFF
 add mapped point dut/bootl/mem_read_word[31]/q dut/bootl/mem_read_word_reg[31]/Q -type DFF DFF
-add mapped point dut/bootl/state[0]/q dut/bootl/state_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/state[1]/q dut/bootl/state_reg[1]/Q -type DFF DFF
-add mapped point dut/bootl/state[2]/q dut/bootl/state_reg[2]/Q -type DFF DFF
 add mapped point dut/bootl/status_reg[0]/q dut/bootl/status_reg_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/wait_cntr[0]/q dut/bootl/wait_cntr_reg[0]/Q -type DFF DFF
 add mapped point dut/bootl/wait_cntr[1]/q dut/bootl/wait_cntr_reg[1]/Q -type DFF DFF
@@ -248,6 +257,17 @@ add mapped point dut/bootl/wait_cntr[8]/q dut/bootl/wait_cntr_reg[8]/Q -type DFF
 add mapped point dut/bootl/wait_cntr[9]/q dut/bootl/wait_cntr_reg[9]/Q -type DFF DFF
 add mapped point dut/bootl/wait_cntr[10]/q dut/bootl/wait_cntr_reg[10]/Q -type DFF DFF
 add mapped point dut/bootl/xfer_pending/q dut/bootl/xfer_pending_reg/Q -type DFF DFF
+add mapped point dut/bootl/addr_idx[1]/q dut/bootl/addr_idx_reg[1]/Q -type DFF DFF
+add mapped point dut/bootl/byte_cntr[11]/q dut/bootl/byte_cntr_reg[11]/Q -type DFF DFF
+add mapped point dut/bootl/byte_cntr[12]/q dut/bootl/byte_cntr_reg[12]/Q -type DFF DFF
+add mapped point dut/bootl/chip_eraseed/q dut/bootl/chip_eraseed_reg/Q -type DFF DFF
+add mapped point dut/bootl/fw_addr_idx[0]/q dut/bootl/fw_addr_idx_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/fw_bytes_written[0]/q dut/bootl/fw_bytes_written_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/fw_state[0]/q dut/bootl/fw_state_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/fw_state[1]/q dut/bootl/fw_state_reg[1]/Q -type DFF DFF
+add mapped point dut/bootl/fw_state[4]/q dut/bootl/fw_state_reg[4]/Q -type DFF DFF
+add mapped point dut/bootl/state[0]/q dut/bootl/state_reg[0]/Q -type DFF DFF
+add mapped point dut/bootl/state[2]/q dut/bootl/state_reg[2]/Q -type DFF DFF
 add mapped point dut/core0/u_register_file/registers[1][0]/q dut/core0/u_register_file/registers_reg[1][0]/Q -type DFF DFF
 add mapped point dut/core0/u_register_file/registers[1][1]/q dut/core0/u_register_file/registers_reg[1][1]/Q -type DFF DFF
 add mapped point dut/core0/u_register_file/registers[1][2]/q dut/core0/u_register_file/registers_reg[1][2]/Q -type DFF DFF
@@ -1419,11 +1439,9 @@ add mapped point dut/debug_con/debug_rx_state[0]/q dut/debug_con/debug_rx_state_
 add mapped point dut/debug_con/debug_rx_state[1]/q dut/debug_con/debug_rx_state_reg[1]/Q -type DFF DFF
 add mapped point dut/debug_con/debug_rx_state[2]/q dut/debug_con/debug_rx_state_reg[2]/Q -type DFF DFF
 add mapped point dut/debug_con/debug_state[0]/q dut/debug_con/debug_state_reg[0]/Q -type DFF DFF
-add mapped point dut/debug_con/debug_state[1]/q dut/debug_con/debug_state_reg[1]/Q -type DFF DFF
 add mapped point dut/debug_con/debug_state[2]/q dut/debug_con/debug_state_reg[2]/Q -type DFF DFF
 add mapped point dut/debug_con/debug_tx_state[0]/q dut/debug_con/debug_tx_state_reg[0]/Q -type DFF DFF
 add mapped point dut/debug_con/debug_tx_state[1]/q dut/debug_con/debug_tx_state_reg[1]/Q -type DFF DFF
-add mapped point dut/debug_con/debug_tx_state[2]/q dut/debug_con/debug_tx_state_reg[2]/Q -type DFF DFF
 add mapped point dut/debug_con/delay_counter[0]/q dut/debug_con/delay_counter_reg[0]/Q -type DFF DFF
 add mapped point dut/debug_con/delay_counter[1]/q dut/debug_con/delay_counter_reg[1]/Q -type DFF DFF
 add mapped point dut/debug_con/image_bytes[0]/q dut/debug_con/image_bytes_reg[0]/Q -type DFF DFF
@@ -1490,7 +1508,6 @@ add mapped point dut/debug_con/rx_word[28]/q dut/debug_con/rx_word_reg[28]/Q -ty
 add mapped point dut/debug_con/rx_word[29]/q dut/debug_con/rx_word_reg[29]/Q -type DFF DFF
 add mapped point dut/debug_con/rx_word[30]/q dut/debug_con/rx_word_reg[30]/Q -type DFF DFF
 add mapped point dut/debug_con/rx_word[31]/q dut/debug_con/rx_word_reg[31]/Q -type DFF DFF
-add mapped point dut/debug_con/size_received/q dut/debug_con/size_received_reg/Q -type DFF DFF
 add mapped point dut/debug_con/tx_word[0]/q dut/debug_con/tx_word_reg[0]/Q -type DFF DFF
 add mapped point dut/debug_con/tx_word[1]/q dut/debug_con/tx_word_reg[1]/Q -type DFF DFF
 add mapped point dut/debug_con/tx_word[2]/q dut/debug_con/tx_word_reg[2]/Q -type DFF DFF
@@ -1523,6 +1540,9 @@ add mapped point dut/debug_con/tx_word[28]/q dut/debug_con/tx_word_reg[28]/Q -ty
 add mapped point dut/debug_con/tx_word[29]/q dut/debug_con/tx_word_reg[29]/Q -type DFF DFF
 add mapped point dut/debug_con/tx_word[30]/q dut/debug_con/tx_word_reg[30]/Q -type DFF DFF
 add mapped point dut/debug_con/tx_word[31]/q dut/debug_con/tx_word_reg[31]/Q -type DFF DFF
+add mapped point dut/debug_con/debug_state[1]/q dut/debug_con/debug_state_reg[1]/Q -type DFF DFF
+add mapped point dut/debug_con/debug_tx_state[2]/q dut/debug_con/debug_tx_state_reg[2]/Q -type DFF DFF
+add mapped point dut/debug_con/size_received/q dut/debug_con/size_received_reg/Q -type DFF DFF
 add mapped point dut/gpio_block/in_sync[1]/q dut/gpio_block/in_sync_reg[1]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_sync[2]/q dut/gpio_block/in_sync_reg[2]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_sync[3]/q dut/gpio_block/in_sync_reg[3]/Q -type DFF DFF
@@ -1533,16 +1553,16 @@ add mapped point dut/gpio_block/in_sync[7]/q dut/gpio_block/in_sync_reg[7]/Q -ty
 add mapped point dut/gpio_block/in_sync[6]/q dut/gpio_block/in_sync_reg[6]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_sync[5]/q dut/gpio_block/in_sync_reg[5]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_sync[4]/q dut/gpio_block/in_sync_reg[4]/Q -type DFF DFF
-add mapped point dut/gpio_block/in_meta[0]/q dut/gpio_block/in_meta_reg[0]/Q -type DFF DFF
-add mapped point dut/gpio_block/in_meta[1]/q dut/gpio_block/in_meta_reg[1]/Q -type DFF DFF
-add mapped point dut/gpio_block/in_meta[2]/q dut/gpio_block/in_meta_reg[2]/Q -type DFF DFF
-add mapped point dut/gpio_block/in_meta[3]/q dut/gpio_block/in_meta_reg[3]/Q -type DFF DFF
-add mapped point dut/gpio_block/in_meta[4]/q dut/gpio_block/in_meta_reg[4]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_meta[5]/q dut/gpio_block/in_meta_reg[5]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_meta[6]/q dut/gpio_block/in_meta_reg[6]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_meta[7]/q dut/gpio_block/in_meta_reg[7]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_meta[8]/q dut/gpio_block/in_meta_reg[8]/Q -type DFF DFF
 add mapped point dut/gpio_block/in_meta[9]/q dut/gpio_block/in_meta_reg[9]/Q -type DFF DFF
+add mapped point dut/gpio_block/in_meta[0]/q dut/gpio_block/in_meta_reg[0]/Q -type DFF DFF
+add mapped point dut/gpio_block/in_meta[1]/q dut/gpio_block/in_meta_reg[1]/Q -type DFF DFF
+add mapped point dut/gpio_block/in_meta[2]/q dut/gpio_block/in_meta_reg[2]/Q -type DFF DFF
+add mapped point dut/gpio_block/in_meta[3]/q dut/gpio_block/in_meta_reg[3]/Q -type DFF DFF
+add mapped point dut/gpio_block/in_meta[4]/q dut/gpio_block/in_meta_reg[4]/Q -type DFF DFF
 add mapped point dut/instruction_rom/bank_sel_q[0]/q dut/instruction_rom/bank_sel_q_reg[0]/Q -type DFF DFF
 add mapped point dut/instruction_rom/bank_sel_q[1]/q dut/instruction_rom/bank_sel_q_reg[1]/Q -type DFF DFF
 
