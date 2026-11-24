@@ -169,8 +169,8 @@ set GROUND_NET VSS
 #   ASPECT       : core aspect ratio (height/width)
 #   CORE_MARGIN  : gap (um) between core edge and I/O / die edge, all sides
 ###############################################################################
-set TARGET_UTIL  0.55
-set ASPECT       0.80
+set TARGET_UTIL  0.45
+set ASPECT       0.75
 set CORE_MARGIN  25
 
 ###############################################################################
