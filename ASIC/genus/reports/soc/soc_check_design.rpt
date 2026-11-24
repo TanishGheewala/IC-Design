@@ -482,11 +482,47 @@ No multidriven unloaded nets in 'soc_synth_top'
 No constant combinational pin(s) in design 'soc_synth_top'
 
 design 'soc_synth_top' has the following constant input sequential pin(s)
+pin:soc_synth_top/dut/data_memory/bank0/addr1[8]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[7]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[6]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[5]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[4]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[3]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[2]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[1]
+pin:soc_synth_top/dut/data_memory/bank0/addr1[0]
 pin:soc_synth_top/dut/data_memory/bank0/csb1
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[8]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[7]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[6]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[5]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[4]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[3]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[2]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[1]
+pin:soc_synth_top/dut/instruction_rom/bank0/addr1[0]
 pin:soc_synth_top/dut/instruction_rom/bank0/csb1
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[8]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[7]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[6]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[5]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[4]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[3]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[2]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[1]
+pin:soc_synth_top/dut/instruction_rom/bank1/addr1[0]
 pin:soc_synth_top/dut/instruction_rom/bank1/csb1
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[8]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[7]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[6]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[5]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[4]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[3]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[2]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[1]
+pin:soc_synth_top/dut/instruction_rom/bank2/addr1[0]
 pin:soc_synth_top/dut/instruction_rom/bank2/csb1
-Total number of constant sequential pins in design 'soc_synth_top' : 4
+Total number of constant sequential pins in design 'soc_synth_top' : 40
 
 design 'soc_synth_top' has the following constant input hierarchical pin(s)
 hpin:soc_synth_top/dut/debug_con/REC/eq_93_36/B[12] 	 (fanout : 1)
@@ -3278,7 +3314,7 @@ Multidriven Leaf Pin(s)                     28
 Multidriven hierarchical Pin(s)            172
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
-Constant Leaf Pin(s)                         4
+Constant Leaf Pin(s)                        40
 Constant hierarchical Pin(s)              2730
 Preserved leaf instance(s)                   4
 Preserved hierarchical instance(s)           0
