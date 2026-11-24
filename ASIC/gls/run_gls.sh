@@ -23,8 +23,9 @@
 #
 # Output lands in ASIC/gls/sim/<mode>_<netlist>/ (xrun.log, sdf_annotate.log, waves.shm)
 #
-# NOTE: the test sends a 160-byte image over 9600-baud UART twice, so it covers
-# ~820 ms of chip time. Expect a long run (the xsim version took ~7.7 h); run it
+# NOTE: the test sends the program image (gls_test.hex, 56 bytes today) plus debug
+# commands over 9600-baud UART (~1 ms per byte), and the bootloader copies 6 KB from
+# flash twice. Expect a long run (the xsim version took ~7.7 h with a 160-byte image); run it
 # under nohup/screen/tmux on the lab machine:   nohup ./run_gls.sh -m sdf &
 ###############################################################################
 set -euo pipefail
@@ -54,8 +55,8 @@ GLS_PKG="$GLS_DIR/tb/gls_package.sv"
 TB_TOP="$GLS_DIR/tb/gls_tb.sv"
 
 PROG_DIR="$GLS_DIR/program"
-PROG_NAME=gls_test                       # tb does $readmemh("gls_test.hex")
-IMAGE_WORDS=40                           # generator sends image_size=160 bytes
+PROG_NAME=gls_test                       # tb gets the hex path via +HEX=<path>
+MAX_WORDS=256                            # gls_generator hex_buffer is [0:255]
 
 RISCV_PREFIX="${RISCV_PREFIX:-riscv64-unknown-elf-}"
 
@@ -143,17 +144,18 @@ mkdir -p "$RUN_DIR"
 cd "$RUN_DIR"
 
 # ---------------------------------------------------------------------------
-# Program image -> gls_test.hex (one 32-bit word per line, padded to 160 bytes)
-#   We go through a raw binary instead of 'objcopy -O verilog' so the word
-#   values (not byte order) are exactly what $readmemh expects, and pad with
-#   NOPs so the tb never shifts X bytes into the UART.
+# Program image -> sim/<run>/gls_test.hex (32-bit words for $readmemh)
+#   The generator counts the words it loads and sends image_size = words*4,
+#   so no padding is needed. When building from the .s we go through a raw
+#   binary instead of 'objcopy -O verilog' so the word values (not byte order)
+#   are exactly what $readmemh expects. Copies strip Windows CRs.
 # ---------------------------------------------------------------------------
 HEX="$RUN_DIR/$PROG_NAME.hex"
 if [[ -n $HEX_IN ]]; then
     [[ -f $HEX_IN ]] || die "hex not found: $HEX_IN"
-    cp "$HEX_IN" "$HEX"
+    tr -d '\r' < "$HEX_IN" > "$HEX"
 elif [[ -f $PROG_DIR/$PROG_NAME.hex ]]; then
-    cp "$PROG_DIR/$PROG_NAME.hex" "$HEX"
+    tr -d '\r' < "$PROG_DIR/$PROG_NAME.hex" > "$HEX"
 else
     command -v "${RISCV_PREFIX}as" >/dev/null 2>&1 || die "no $PROG_NAME.hex and no RISC-V toolchain (${RISCV_PREFIX}as).
        Either build the hex on a machine that has it and pass -x <file>,
@@ -164,13 +166,13 @@ else
     "${RISCV_PREFIX}objcopy" -O binary $PROG_NAME.elf $PROG_NAME.bin
     # od -tx4 prints host-endian words; lab Linux (x86) is little-endian like RV32
     od -An -v -tx4 -w4 $PROG_NAME.bin | tr -d ' ' | sed '/^$/d' > "$HEX"
-    n=$(wc -l < "$HEX")
-    (( n <= IMAGE_WORDS )) || die "program is $n words but the tb only sends $IMAGE_WORDS (image_size=160)"
-    for (( i = n; i < IMAGE_WORDS; i++ )); do echo 00000013 >> "$HEX"; done   # addi x0,x0,0
-    echo "    $n instruction words, padded to $IMAGE_WORDS"
 fi
-words=$(grep -cvE '^\s*(@|//|$)' "$HEX" || true)
-(( words >= IMAGE_WORDS )) || echo "WARNING: $HEX has $words words (< $IMAGE_WORDS) -- the tb will send X bytes for the rest"
+# count words (not lines -- a hex may hold several words per line), ignoring
+# // comments and @address lines
+words=$(sed -e 's://.*$::' -e '/^[[:space:]]*@/d' "$HEX" | wc -w)
+(( words > 0 ))          || die "$HEX contains no program words"
+(( words <= MAX_WORDS )) || die "$HEX has $words words; the tb holds at most $MAX_WORDS (hex_buffer[0:255])"
+echo "=== Program: $words words ($(( words * 4 )) bytes) -> image_size sent over UART ==="
 
 # ---------------------------------------------------------------------------
 # Build the xrun command
@@ -182,6 +184,7 @@ XRUN_ARGS=(
     -incdir "$GLS_DIR/tb"           # gls_package: `include "./test_classes/..."
     -incdir "$GLS_DIR/tb/test_classes"  # `include "../../../../RTL/memory/macros.vh"
     -define "UNIT_DELAY=#1"
+    "+HEX=$HEX"                     # absolute hex path for gls_generator's $readmemh
     -licqueue
     -status
     -l xrun.log

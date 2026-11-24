@@ -19,7 +19,8 @@ class gls_generator;
     //(Xcelium rejects a logic [7:0] put() into mailbox #(bit [7:0]))
     bit [31:0] image_size;
     bit [31:0] image_word;
-    reg [31:0] hex_buffer [0:255]; 
+    reg [31:0] hex_buffer [0:255];   //max image: 256 words = 1024 bytes
+    string hex_file;                 //set by +HEX=<path> (run_gls.sh passes it)
     virtual core_probe core_probe_vif;
     virtual soc_interface soc_vif;
 
@@ -27,11 +28,31 @@ class gls_generator;
         driver_mailbox = new();
         monitor_mailbox = new();
     endfunction
-    
+
+    //loads the program hex and sets image_size from the number of words it
+    //actually contains, so the flash image always matches the program
+    function void load_image();
+        int words = 0;
+        if (!$value$plusargs("HEX=%s", hex_file))
+            hex_file = "gls_test.hex";   //fallback: hex in the sim run directory
+
+        //pre-fill with X so the end of the loaded image can be found
+        foreach (hex_buffer[i]) hex_buffer[i] = 'x;
+        $readmemh(hex_file, hex_buffer);
+        while (words < $size(hex_buffer) && !$isunknown(hex_buffer[words]))
+            words++;
+
+        if (words == 0)
+            $fatal(1, "[Generator] no program words loaded from '%s' (missing or empty hex?)", hex_file);
+        image_size = words * 4;
+        $display("T=%0t [Generator] loaded %0d words (%0d bytes) from %s", $time, words, image_size, hex_file);
+    endfunction
+
     //tests all registers and memory values coming through debug controller
     virtual task debug_instruction_sequence();
         soc_packet soc_item;
 
+        load_image();   //before any UART traffic, so a bad hex fails immediately
         $display ("T=%0t [Test] Starting Sequence ...", $time);
         soc_item = new;
         soc_item.debug_instruction = soc_packet::NOP;
@@ -49,7 +70,7 @@ class gls_generator;
         soc_item.debug_instruction = soc_packet::FLASH_WRITE;
         driver_mailbox.put(soc_item.debug_instruction);
 
-        image_size = 160;
+        //image_size was set by load_image() from the hex word count
         for(int j = 0; j < 4; j++) begin
             @(driver_done);
             case(j)
@@ -60,7 +81,6 @@ class gls_generator;
             endcase
         end
 
-        $readmemh("gls_test.hex", hex_buffer);
         for(int i = 0; i < (image_size/4); i++) begin
             image_word = hex_buffer[i];
             for(int j = 0; j < 4; j++) begin
