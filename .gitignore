@@ -36,5 +36,4 @@ work/
 *.swp
 *~
 
-# Gate-level sim runs (Xcelium)
-ASIC/gls/sim/
+

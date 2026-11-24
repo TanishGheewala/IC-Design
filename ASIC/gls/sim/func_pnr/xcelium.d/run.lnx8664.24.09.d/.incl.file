@@ -1,0 +1,7 @@
+././test_classes/soc_packet.sv
+././test_classes/gls_scoreboard.sv
+././test_classes/gls_driver.sv
+././test_classes/gls_monitor.sv
+././test_classes/gls_generator.sv
+././test_classes/gls_environment.sv
+././test_classes/gls_test.sv
