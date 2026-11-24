@@ -431,6 +431,21 @@ proc step_verify {} {
 }
 
 ###############################################################################
+# SDF for timing gate-level simulation (ASIC/gls/run_gls.sh -m sdf)
+#   -edges check_edge : keep posedge/negedge on timing checks so they match the
+#                       sky130 $setuphold/$width entries in the Verilog models
+#   -recompute_parallel_arcs : merge parallel arcs Xcelium can't annotate twice
+# Also callable on a restored database via write_sdf.tcl (no P&R re-run).
+###############################################################################
+proc write_gls_sdf {} {
+    global OUT_DIR DESIGN
+    write_sdf -view view_tt -precision 4 \
+        -edges check_edge -recompute_parallel_arcs \
+        $OUT_DIR/${DESIGN}.sdf
+    puts "=== SDF written: $OUT_DIR/${DESIGN}.sdf ==="
+}
+
+###############################################################################
 # 10. save -- design database, final netlist, SPEF, DEF and GDSII
 ###############################################################################
 proc step_save {} {
@@ -450,6 +465,7 @@ proc step_save {} {
     # after the last extraction.
     extractRC
     rcOut -spef $OUT_DIR/${DESIGN}.spef
+    write_gls_sdf
     defOut -floorplan -netlist -routing $OUT_DIR/${DESIGN}.def
 
     set merge [list $STD_GDS]
