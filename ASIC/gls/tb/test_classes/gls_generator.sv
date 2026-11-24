@@ -6,7 +6,7 @@
 class gls_generator;
 
     //generator variables
-    mailbox driver_mailbox;
+    mailbox #(bit [7:0]) driver_mailbox;   //must match gls_driver
     mailbox monitor_mailbox;
     event driver_done;
     event monitor_done;

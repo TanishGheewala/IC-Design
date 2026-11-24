@@ -10,7 +10,7 @@ class gls_environment;
     gls_generator debug_generator;
     mailbox scoreboard_mailbox;
     mailbox monitor_mailbox;
-    mailbox driver_mailbox;
+    mailbox #(bit [7:0]) driver_mailbox;   //must match gls_driver / gls_generator
 
     virtual soc_interface soc_vif;
     virtual core_probe core_probe_vif;

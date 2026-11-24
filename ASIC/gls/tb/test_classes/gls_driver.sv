@@ -5,7 +5,9 @@
 class gls_driver;
     virtual soc_interface soc_vif;
     event driver_done;
-    mailbox driver_mailbox;
+    //typed so every put() is converted to bit [7:0] (generator sends both
+    //bit and logic slices; an untyped mailbox rejects the mismatch at get())
+    mailbox #(bit [7:0]) driver_mailbox;
     int baud;
     int clk_speed;
     bit [7:0] debug_controller_input;
