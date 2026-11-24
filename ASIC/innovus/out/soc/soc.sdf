@@ -1,7 +1,7 @@
 (DELAYFILE
   (SDFVERSION "3.0")
   (DESIGN "soc_synth_top")
-  (DATE "Tue Nov 24 13:42:25 2026")
+  (DATE "Tue Nov 24 14:55:05 2026")
   (VENDOR "Cadence Design Systems, Inc.")
   (PROGRAM "Innovus")
   (VERSION "v23.13-s082_1 ((64bit) 11/13/2024 13:42 (Linux 3.10.0-693.el7.x86_64))")
