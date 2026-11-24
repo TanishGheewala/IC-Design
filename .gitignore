@@ -29,3 +29,6 @@ work/
 .DS_Store
 *.swp
 *~
+
+# Gate-level sim runs (Xcelium)
+ASIC/gls/sim/
