@@ -287,7 +287,7 @@ proc step_physical_cells {} {
 #    hook up the stripes, std-cell rails and macro pins.
 ###############################################################################
 proc step_power {} {
-    global POWER_NET GROUND_NET
+    global POWER_NET GROUND_NET DESIGN
 
     # Ring around the core on metal4/metal5.
     addRing -nets [list $POWER_NET $GROUND_NET] \
@@ -314,6 +314,13 @@ proc step_power {} {
     sroute -connect { blockPin padPin padRing corePin floatingStripe } \
            -layerChangeRange { met1 met5 } \
            -nets [list $POWER_NET $GROUND_NET]
+
+    # Fill two met1 MinHole DRC holes in the VSS via stack at (54.06-54.96, 1006.47-1006.84) on soc; re-check if the floorplan changes.
+    if {$DESIGN eq "soc"} {
+        setEdit -nets $GROUND_NET -layer_horizontal met1 -width_horizontal 0.37
+        editAddRoute    54.06 1006.655
+        editCommitRoute 54.96 1006.655
+    }
 }
 
 ###############################################################################
