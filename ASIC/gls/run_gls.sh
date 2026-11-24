@@ -104,6 +104,29 @@ fi
 # ---------------------------------------------------------------------------
 die() { echo "ERROR: $*" >&2; exit 1; }
 command -v xrun >/dev/null 2>&1 || die "xrun not in PATH -- load Xcelium first (e.g. 'module load xcelium' or source the lab cshrc)"
+
+# Some installs put a 32-bit xrun wrapper first on PATH. On a host without the
+# 32-bit loader/libs (glibc.i686) it fails with "No such file or directory".
+# If xrun can't start, switch to the 64-bit binaries in the sibling 64bit/ dir
+# (covers xrun, xmsdfc and the tools xrun launches). This only changes PATH for
+# this script's run -- nothing on the lab machine is modified.
+if ! xrun -version >/dev/null 2>&1; then
+    XRUN_ON_PATH=$(command -v xrun)
+    XRUN_64DIR=""
+    for d in "$(dirname "$XRUN_ON_PATH")/64bit" \
+             "$(dirname "$(readlink -f "$XRUN_ON_PATH")")/64bit"; do
+        if [[ -x $d/xrun ]]; then XRUN_64DIR=$d; break; fi
+    done
+    [[ -n $XRUN_64DIR ]] || die "xrun at $XRUN_ON_PATH won't start (likely a 32-bit binary without 32-bit libs)
+       and no 64bit/xrun was found next to it. Put Xcelium's tools/bin/64bit first in PATH,
+       or ask an admin to install glibc.i686."
+    export PATH="$XRUN_64DIR:$PATH"
+    export CDS_AUTO_64BIT=ALL
+    hash -r
+    xrun -version >/dev/null 2>&1 || die "64-bit xrun at $XRUN_64DIR/xrun also fails to start -- check the Xcelium install / license setup"
+    echo "NOTE: $XRUN_ON_PATH won't start here; using 64-bit Xcelium from $XRUN_64DIR"
+fi
+echo "=== Using $(command -v xrun): $(xrun -version 2>&1 | head -1) ==="
 for f in "$NETLIST" "$CELL_PRIMS" "$CELL_LIB" "$SRAM_MODEL" "$SOC_IF" "$FLASH_MODEL" \
          "$CORE_PROBE" "$GLS_PKG" "$TB_TOP"; do
     [[ -f $f ]] || die "missing file: $f"
