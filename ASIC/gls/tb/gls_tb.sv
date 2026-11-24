@@ -112,7 +112,8 @@ module soc_netlist_tb;
     assign core_probe_if.gpio_in = gpio_inout;
     assign core_probe_if.flash_write_done = dut.dut.flash_write_done;
     assign core_probe_if.boot_done = dut.dut.boot_done;
-    assign core_probe_if.pc = dut.dut.core0.pc;
+    //pc: P&R renamed the pc nets, so read the pc_reg flop outputs (only pc[12:0] exist)
+    assign core_probe_if.pc = {19'd0, dut.dut.core0.\pc_reg[12] .Q, dut.dut.core0.\pc_reg[11] .Q, dut.dut.core0.\pc_reg[10] .Q, dut.dut.core0.\pc_reg[9] .Q, dut.dut.core0.\pc_reg[8] .Q, dut.dut.core0.\pc_reg[7] .Q, dut.dut.core0.\pc_reg[6] .Q, dut.dut.core0.\pc_reg[5] .Q, dut.dut.core0.\pc_reg[4] .Q, dut.dut.core0.\pc_reg[3] .Q, dut.dut.core0.\pc_reg[2] .Q, dut.dut.core0.\pc_reg[1] .Q, dut.dut.core0.\pc_reg[0] .Q};
 
     initial begin
         gls_test test0;
