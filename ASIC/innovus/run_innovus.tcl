@@ -235,15 +235,15 @@ proc step_place_sram {} {
 
     # FIX (core in center): nothing told the placer to keep the CPU core in
     # the middle, so its cells could spread anywhere. A soft guide pulls
-    # dut/core into the central courtyard, between the inner edges of the
+    # dut/core0 into the central courtyard, between the inner edges of the
     # four macros (inside their halos). It is soft, so cells may still spill
     # into the channels between macros if the courtyard fills up.
     set cx1 [expr {$x_left  + $mw + $halo}]
     set cy1 [expr {$y_bot   + $mh + $halo}]
     set cx2 [expr {$x_right - $halo}]
     set cy2 [expr {$y_top   - $halo}]
-    puts "  core guide: dut/core -> ($cx1, $cy1) - ($cx2, $cy2)"
-    createGuide dut/core $cx1 $cy1 $cx2 $cy2
+    puts "  core guide: dut/core0 -> ($cx1, $cy1) - ($cx2, $cy2)"
+    createGuide dut/core0 $cx1 $cy1 $cx2 $cy2
 
     # FIX (dead strips): with the pins now facing the center, the strips
     # between each macro's back side and the core edge only lead away from
@@ -320,10 +320,32 @@ proc step_power {} {
 # 5. place -- standard-cell placement with optimization
 ###############################################################################
 proc step_place {} {
-    global TIE_CELL
+    global TIE_CELL HAS_SRAM SRAM_NAME
     setPlaceMode -place_global_place_io_pins true
+    # Timing-driven global placement at high effort: spends more runtime
+    # pulling cells on critical paths closer together.
+    setPlaceMode -place_global_timing_effort high
     # Constant 1'b0/1'b1 nets get driven by tie cells, not wired to the rails.
     setTieHiLoMode -cell $TIE_CELL -maxFanout 10
+
+    # Optimize to +100 ps instead of 0, so small changes later in the flow
+    # (CTS, routing, SI) don't push near-zero paths negative. Applies to
+    # every optDesign/place_opt/clock_opt run after this point.
+    setOptMode -setupTargetSlack 0.10
+
+    # The critical paths launch from the SRAM read ports on the falling
+    # edge and only get half a cycle (SRAM dout -> decode -> regfile ->
+    # ALU -> regfile). Give them their own path group at high effort so
+    # the optimizer works on them first instead of averaging them in with
+    # the easy reg2reg paths.
+    if {$HAS_SRAM} {
+        set srams [get_cells -hier -filter "ref_name == $SRAM_NAME"]
+        if {[sizeof_collection $srams] > 0} {
+            group_path -name sram2reg -from $srams
+            setPathGroupOptions sram2reg -effortLevel high
+        }
+    }
+
     place_opt_design
     addTieHiLo -cell $TIE_CELL -prefix TIE
     connect_global_nets
