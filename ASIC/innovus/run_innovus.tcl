@@ -206,13 +206,16 @@ proc step_place_sram {} {
     set y_bot   [snap_grid [expr {$lly + $edge}]]
     set y_top   [snap_grid [expr {$ury - $edge - $mh}]]
 
-    # Symmetric orientations:
-    #   R0/MY/MX/R180 assume pins are on top/right in R0.
-    #   (If GUI shows pins on bottom/left in R0, swap to: R180, MX, MY, R0.)
-    set orient_bl R0
-    set orient_br MY
-    set orient_tl MX
-    set orient_tr R180
+    # Orientations -- rotate/mirror each macro so its pins face the center.
+    #   FIX (orientation): the old values (R0, MY, MX, R180) assumed the pins
+    #   were on top/right in R0, so every macro faced the die edge. The SRAM
+    #   LEF actually has the port-0 pins (the only port the RTL uses) on the
+    #   BOTTOM (din0/dout0/wmask0) and LEFT (addr0/clk0/csb0/web0) in R0.
+    #   Port-1 pins (top/right) are unused, so they end up facing outward.
+    set orient_bl R180   ;# bottom->top, left->right : pins face up/right
+    set orient_br MX     ;# bottom->top, left stays  : pins face up/left
+    set orient_tl MY     ;# left->right, bottom stays: pins face down/right
+    set orient_tr R0     ;# already bottom/left      : pins face down/left
 
     # With lsort on your 4 banks:
     #   0 = dut/data_memory/bank0       -> Bottom-Left
@@ -233,6 +236,42 @@ proc step_place_sram {} {
     }
 
     addHaloToBlock $halo $halo $halo $halo -allMacro
+
+    # FIX (core in center): nothing told the placer to keep the CPU core in
+    # the middle, so its cells could spread anywhere. A soft guide pulls
+    # dut/core into the central courtyard, between the inner edges of the
+    # four macros (inside their halos). It is soft, so cells may still spill
+    # into the channels between macros if the courtyard fills up.
+    set cx1 [expr {$x_left  + $mw + $halo}]
+    set cy1 [expr {$y_bot   + $mh + $halo}]
+    set cx2 [expr {$x_right - $halo}]
+    set cy2 [expr {$y_top   - $halo}]
+    puts "  core guide: dut/core -> ($cx1, $cy1) - ($cx2, $cy2)"
+    createGuide dut/core $cx1 $cy1 $cx2 $cy2
+
+    # FIX (dead strips): with the pins now facing the center, the strips
+    # between each macro's back side and the core edge only lead away from
+    # the logic. Hard blockages there keep std cells out of them.
+    # Two boxes per macro: one along the horizontal edge, one along the vertical.
+    set xl_out [expr {$x_left  + $mw}]   ;# right edge of the left macros
+    set xr_out [expr {$x_right + $mw}]   ;# right edge of the right macros
+    set yb_out [expr {$y_bot   + $mh}]   ;# top edge of the bottom macros
+    set yt_out [expr {$y_top   + $mh}]   ;# top edge of the top macros
+    set blockages [list \
+        [list $llx     $lly    $xl_out $y_bot ] \
+        [list $llx     $lly    $x_left $yb_out] \
+        [list $x_right $lly    $urx    $y_bot ] \
+        [list $xr_out  $lly    $urx    $yb_out] \
+        [list $llx     $yt_out $xl_out $ury   ] \
+        [list $llx     $y_top  $x_left $ury   ] \
+        [list $x_right $yt_out $urx    $ury   ] \
+        [list $xr_out  $y_top  $urx    $ury   ] \
+    ]
+    # In order: BL below, BL left, BR below, BR right,
+    #           TL above, TL left, TR above, TR right.
+    foreach box $blockages {
+        createPlaceBlockage -type hard -box $box
+    }
 }
 
 ###############################################################################
