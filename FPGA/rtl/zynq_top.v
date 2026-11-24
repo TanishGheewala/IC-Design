@@ -1,26 +1,21 @@
-/*
-*   for top level zynq design
-*   
-*/
 module zynq_top (
-    input wire clk,
-    input wire rst_n,
-    output wire led
+    input  wire       clk,
+    input  wire       rst_n,
+    output wire [6:0] led,    // GPIO[6:0] -> 7 White LEDs
+    inout  wire [2:0] pmod,   // GPIO[9:7] -> 3 Bidirectional PMOD pins
+    output wire       tx,
+    input  wire       rx
 );
-    wire [9:0] gpio_inout;
-    wire rx, tx;
-    assign rx = 1'b1;
-    
-    soc_flash_wrapper soc(
-        .clk(clk),
-        .rst_n(rst_n),
-        .rx(rx),
-        .tx(tx),
-        .gpio_inout(gpio_inout)
+    wire [6:0] led_w;
+
+    soc_flash_wrapper soc (
+        .clk        (clk),
+        .rst_n      (rst_n),
+        .rx         (rx),
+        .tx         (tx),
+        .gpio_inout ({pmod, led_w})  // Bits [9:7] = pmod, Bits [6:0] = led_w
     );
 
-    assign led = gpio_inout;
-    assign gpio_inout[9:1] = 0;
+    assign led = led_w;
 
-    
 endmodule
