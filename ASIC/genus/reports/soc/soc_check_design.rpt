@@ -129,9 +129,7 @@ Total number of assign statements in design 'soc_synth_top' : 44
 
  Undriven Port(s)/Pin(s)
  ------------------------
-The following combinational pin(s) in design 'soc_synth_top' are undriven
-pin:soc_synth_top/dut/gpio_block/g11/in_0
-Total number of combinational undriven pins in design 'soc_synth_top' : 1
+No undriven combinational pin in 'soc_synth_top'
 
 No undriven sequential pin in 'soc_synth_top'
 
@@ -194,7 +192,6 @@ hpin:soc_synth_top/dut/debug_con/debug_if_write_data[2] 	 (fanout : 1)
 hpin:soc_synth_top/dut/debug_con/debug_if_write_data[1] 	 (fanout : 1)
 hpin:soc_synth_top/dut/debug_con/debug_if_write_data[0] 	 (fanout : 1)
 hpin:soc_synth_top/dut/debug_con/debug_if_flash_write_en 	 (fanout : 1)
-hpin:soc_synth_top/dut/gpio_block/bus_sel 	 (fanout : 1)
 hpin:soc_synth_top/dut/core0/core_if_memory_write_en 	 (fanout : 1)
 hpin:soc_synth_top/dut/core0/core_if_memory_write_mask[3] 	 (fanout : 1)
 hpin:soc_synth_top/dut/core0/core_if_memory_write_mask[2] 	 (fanout : 1)
@@ -258,7 +255,7 @@ hpin:soc_synth_top/dut/core0/core_if_rom_address[3] 	 (fanout : 7)
 hpin:soc_synth_top/dut/core0/core_if_rom_address[2] 	 (fanout : 7)
 hpin:soc_synth_top/dut/core0/core_if_rom_address[1] 	 (fanout : 7)
 hpin:soc_synth_top/dut/core0/core_if_rom_address[0] 	 (fanout : 7)
-Total number of hierarchical undriven pins in design 'soc_synth_top' : 122
+Total number of hierarchical undriven pins in design 'soc_synth_top' : 121
 
 No undriven port in 'soc_synth_top'
 
@@ -3209,6 +3206,8 @@ hpin:soc_synth_top/dut/mux_io_if_wdata_197_12/in_0[2] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_io_if_wdata_197_12/in_0[1] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_io_if_wdata_197_12/in_0[0] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_io_if_we_197_12/in_0 	 (fanout : 1)
+hpin:soc_synth_top/dut/mux_io_if_sel_197_12/in_0 	 (fanout : 1)
+hpin:soc_synth_top/dut/mux_io_if_sel_197_12/in_1 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_write_en_197_12/in_1 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_address_197_12/in_1[12] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_address_197_12/in_1[11] 	 (fanout : 1)
@@ -3255,7 +3254,7 @@ hpin:soc_synth_top/dut/mux_memory_write_197_12/in_1[3] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_write_197_12/in_1[2] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_write_197_12/in_1[1] 	 (fanout : 1)
 hpin:soc_synth_top/dut/mux_memory_write_197_12/in_1[0] 	 (fanout : 1)
-Total number of constant hierarchical pins in design 'soc_synth_top' : 2730
+Total number of constant hierarchical pins in design 'soc_synth_top' : 2732
 
 No constant connected ports in design 'soc_synth_top'
 
@@ -3307,15 +3306,15 @@ Unloaded Sequential Pin(s)                   0
 Unloaded Combinational Pin(s)               55
 Assigns                                     44
 Undriven Port(s)                             0
-Undriven Leaf Pin(s)                         1
-Undriven hierarchical pin(s)               122
+Undriven Leaf Pin(s)                         0
+Undriven hierarchical pin(s)               121
 Multidriven Port(s)                          0
 Multidriven Leaf Pin(s)                     28
 Multidriven hierarchical Pin(s)            172
 Multidriven unloaded net(s)                  0
 Constant Port(s)                             0
 Constant Leaf Pin(s)                        40
-Constant hierarchical Pin(s)              2730
+Constant hierarchical Pin(s)              2732
 Preserved leaf instance(s)                   4
 Preserved hierarchical instance(s)           0
 Feedthrough Modules(s)                       0
