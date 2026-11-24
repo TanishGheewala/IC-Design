@@ -193,7 +193,7 @@ module spi_flash_model #(
                             addr_reg[15:8]  <= rx_byte_complete;
                         end else if (byte_cnt == 3'd3) begin
                             if (cmd_reg == CMD_READ) begin
-                                bram_raddr <= {addr_reg[23:8], rx_byte_complete}[ADDR_BITS-1:0];
+                                bram_raddr <= ADDR_BITS'({addr_reg[23:8], rx_byte_complete});
                                 addr_reg   <= {addr_reg[23:8], rx_byte_complete} + 1'b1;
                             end else begin
                                 addr_reg[7:0] <= rx_byte_complete;

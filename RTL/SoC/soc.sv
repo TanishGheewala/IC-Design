@@ -196,6 +196,7 @@ module soc #(
         //gpio and memory mux
         if(core0_if.memory_address[MEMORY_ADDR_WIDTH-1]) begin
             io_if.addr = core0_if.memory_address[9:0];
+            io_if.sel = 1'b1;   // gpio only writes when sel && we
             io_if.we = core0_if.memory_write_en;
             io_if.wdata = core0_if.memory_write;
             core0_if.memory_read = io_if.rdata;
@@ -206,6 +207,7 @@ module soc #(
         end
         else begin
             io_if.addr = '0;
+            io_if.sel = 1'b0;
             io_if.we = '0;
             io_if.wdata = '0;
 
