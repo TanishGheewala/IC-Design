@@ -15,8 +15,10 @@ class gls_generator;
     int file_handle;
     int status;
     logic [7:0] current_byte;
-    logic [31:0] image_size;
-    logic [31:0] image_word;
+    //2-state so their byte slices match driver_mailbox's bit [7:0] type
+    //(Xcelium rejects a logic [7:0] put() into mailbox #(bit [7:0]))
+    bit [31:0] image_size;
+    bit [31:0] image_word;
     reg [31:0] hex_buffer [0:255]; 
     virtual core_probe core_probe_vif;
     virtual soc_interface soc_vif;
