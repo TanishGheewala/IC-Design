@@ -52,7 +52,20 @@ class gls_environment;
             debug_generator.debug_instruction_sequence();
         join_any
 
-        
+        //join_any returns when the generator finishes, but the monitor may still
+        //be handing its last item (e.g. the final CORE_RESUME) to the scoreboard.
+        //Wait until every item the monitor took has been checked, so the
+        //Total Errors line printed by gls_test includes all checks.
+        fork
+            wait (debug_scoreboard.items_checked == monitor.items_received);
+            begin
+                #1ms;
+                $error("Scoreboard did not drain: %0d of %0d items checked\n",
+                       debug_scoreboard.items_checked, monitor.items_received);
+                debug_scoreboard.error_count++;
+            end
+        join_any
+        disable fork;
     endtask
 
 endclass

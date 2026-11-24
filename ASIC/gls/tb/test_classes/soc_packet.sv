@@ -7,14 +7,16 @@
 class soc_packet;   
     bit [7:0] debug_instruction;
     randc bit [31:0] debug_address;
-    bit [31:0] tx_line_return;
-    bit [31:0] gpio_pins;
-    bit core_halt;
-    bit [31:0] registers [0:31];
-    bit [31:0] memory;
-    bit [9:0] gpio_dir;
-    bit [9:0] gpio_out;
-    bit [9:0] gpio_in;
+    //observed values are 4-state (logic) so X/Z from the netlist reach the
+    //scoreboard instead of being silently converted to 0
+    logic [31:0] tx_line_return;
+    logic [31:0] gpio_pins;
+    logic core_halt;
+    logic [31:0] registers [0:31];
+    logic [31:0] memory;
+    logic [9:0] gpio_dir;
+    logic [9:0] gpio_out;
+    logic [9:0] gpio_in;
 
     //commands user can input to mircrocontroller
     typedef enum logic [7:0] {

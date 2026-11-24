@@ -13,6 +13,7 @@ class gls_monitor;
     event monitor_done;
     event driver_done;
     int baud_wait;
+    int items_received = 0;   //env compares this with scoreboard.items_checked
 
     //task recieve serial byte from debug controller
     task automatic receive_tx_line(output logic [31:0] tx_line_return);
@@ -59,6 +60,7 @@ class gls_monitor;
             soc_packet soc_item;
             soc_item = new();
             monitor_mailbox.get(soc_item);
+            items_received++;
             case(soc_item.debug_instruction)
                 soc_packet::RETURN_REG,
                 soc_packet::RETURN_MEM: begin
