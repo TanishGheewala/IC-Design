@@ -12,6 +12,12 @@ ASIC/innovus/.cadence/
 ASIC/innovus/timingReports/
 ASIC/innovus/*.rpt.old
 
+# Innovus/Genus logs anywhere (e.g. when launched from repo root)
+innovus.cmd*
+innovus.log*
+genus.cmd*
+genus.log*
+
 # ------------------------------------------------------------------
 # Generated hardware / sim artifacts
 # ------------------------------------------------------------------

@@ -1,0 +1,18 @@
+# Innovus run junk (regenerated every run)
+*.cmd
+*.cmd[0-9]*
+*.log
+*.log[0-9]*
+*.logv
+*.logv[0-9]*
+logs/
+dbs/
+.cadence/
+timingReports/
+*.rpt.old
+
+# ECO / temp files Innovus drops in the run dir
+.nano_eco_diode.list*
+.timing_file_*
+*.tif.gz
+*.old
