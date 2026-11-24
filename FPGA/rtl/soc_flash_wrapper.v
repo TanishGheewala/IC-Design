@@ -47,7 +47,7 @@ module soc_flash_wrapper (
     //flash model with 6KB mem
     spi_flash_model #(
         .MEM_BYTES(6144),
-        .INIT_FILE("/home/tachyon/senior_design/FPGA/programs/flash_led.hex")
+        .INIT_FILE("/home/tachyon/senior_design/FPGA/programs/compiled_programs/flash_led.hex")
     )
     flash_memory(
         .clk(clk),
