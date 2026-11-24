@@ -5,7 +5,9 @@
 # Usage:  ./run_gls.sh [options]
 #   -m func|sdf    func = zero/unit-delay functional GLS (default)
 #                  sdf  = timing GLS: cell timing views + Innovus SDF back-annotation
-#   -n pnr|genus   netlist to simulate (default pnr = innovus/out/soc/soc_pnr_netlist.v)
+#   -t max|min     sdf mode only: which SDF value to use (default max = setup-critical;
+#                  min = hold-critical). Innovus writes (min::max) with no typical value.
+#   -n pnr|genus  netlist to simulate (default pnr = innovus/out/soc/soc_pnr_netlist.v)
 #   -x <file.hex>  use this program hex instead of building program/gls_test.s
 #   -w             dump waves (SHM database, open later with: simvision sim/<run>/waves.shm)
 #   -g             open the SimVision GUI (implies full debug access)
@@ -16,6 +18,7 @@
 #   ./run_gls.sh                 # functional GLS on the post-route netlist
 #   ./run_gls.sh -m sdf          # timing GLS (needs innovus/out/soc/soc.sdf)
 #   ./run_gls.sh -m sdf -w       # same, with waveforms
+#   ./run_gls.sh -m sdf -t min   # timing GLS with min delays (hold check)
 #   ./run_gls.sh -n genus        # sanity re-run on the post-synthesis netlist
 #
 # Output lands in ASIC/gls/sim/<mode>_<netlist>/ (xrun.log, sdf_annotate.log, waves.shm)
@@ -59,11 +62,12 @@ RISCV_PREFIX="${RISCV_PREFIX:-riscv64-unknown-elf-}"
 # ---------------------------------------------------------------------------
 # Options
 # ---------------------------------------------------------------------------
-MODE=func; NETSEL=pnr; HEX_IN=""; WAVES=0; GUI=0; CLEAN=0
-usage() { sed -n '3,27p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
-while getopts "m:n:x:wgch" opt; do
+MODE=func; NETSEL=pnr; HEX_IN=""; WAVES=0; GUI=0; CLEAN=0; MTM=max
+usage() { sed -n '3,30p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
+while getopts "m:t:n:x:wgch" opt; do
     case $opt in
         m) MODE=$OPTARG ;;
+        t) MTM=$OPTARG ;;
         n) NETSEL=$OPTARG ;;
         x) HEX_IN=$(cd "$(dirname "$OPTARG")" && pwd)/$(basename "$OPTARG") ;;
         w) WAVES=1 ;;
@@ -75,6 +79,11 @@ while getopts "m:n:x:wgch" opt; do
 done
 
 case $MODE   in func|sdf) ;; *) echo "ERROR: -m must be func or sdf" >&2; exit 1 ;; esac
+case $MTM    in
+    max) MTM_CONTROL=MAXIMUM ;;
+    min) MTM_CONTROL=MINIMUM ;;
+    *) echo "ERROR: -t must be max or min" >&2; exit 1 ;;
+esac
 case $NETSEL in
     pnr)   NETLIST=$PNR_NETLIST ;;
     genus) NETLIST=$GENUS_NETLIST ;;
@@ -84,7 +93,11 @@ if [[ $MODE == sdf && $NETSEL == genus ]]; then
     echo "ERROR: SDF mode only makes sense with the post-route (pnr) netlist" >&2; exit 1
 fi
 
-RUN_DIR="$GLS_DIR/sim/${MODE}_${NETSEL}"
+if [[ $MODE == sdf ]]; then
+    RUN_DIR="$GLS_DIR/sim/${MODE}${MTM}_${NETSEL}"   # sim/sdfmax_pnr, sim/sdfmin_pnr
+else
+    RUN_DIR="$GLS_DIR/sim/${MODE}_${NETSEL}"
+fi
 
 # ---------------------------------------------------------------------------
 # Pre-flight checks
@@ -165,7 +178,7 @@ else
 COMPILED_SDF_FILE = "$SDF_X",
 SCOPE = $DUT_SCOPE,
 LOG_FILE = "$RUN_DIR/sdf_annotate.log",
-MTM_CONTROL = "TYPICAL",
+MTM_CONTROL = "$MTM_CONTROL",
 SCALE_TYPE = "FROM_MTM";
 EOF
     XRUN_ARGS+=(
@@ -222,13 +235,19 @@ tviol=$(grep -cE 'Timing violation' "$LOG" || true)
 sb_line=$(grep -E 'Total Errors:' "$LOG" | tail -1 || true)
 echo "tool errors:      $tool_err"
 echo "tb \$error count:  $tb_err"
-[[ $MODE == sdf ]] && {
+if [[ $MODE == sdf ]]; then
+    echo "SDF delays:       $MTM_CONTROL"
     echo "timing viol msgs: $tviol"
     echo "SDF annotation:   $RUN_DIR/sdf_annotate.log"
-}
+    # xmelab prints per-category annotation coverage; show it so a silent
+    # non-annotation (0% path delays) is visible
+    grep -iE 'SDF statistics|Annotated *=' "$LOG" | sed 's/^/                  /' || true
+else
+    tviol=0   # timing checks are off in func mode
+fi
 echo "scoreboard:       ${sb_line:-<not reached>}"
 sb_n=$(sed -E 's/.*Total Errors:[[:space:]]*([0-9]+).*/\1/' <<<"$sb_line")
-if [[ $rc == 0 && $tool_err == 0 && $tb_err == 0 && -n $sb_line && $sb_n == 0 ]]; then
+if [[ $rc == 0 && $tool_err == 0 && $tb_err == 0 && $tviol == 0 && -n $sb_line && $sb_n == 0 ]]; then
     echo "RESULT:           PASS"
 else
     echo "RESULT:           FAIL (xrun exit $rc)"

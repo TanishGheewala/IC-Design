@@ -4,7 +4,7 @@
 ASIC/gls/
 ├── run_gls.sh          # <- run this
 ├── program/            # gls_test.s (+ linker script); hex is built by run_gls.sh
-├── tb/                 # Evan's testbench (gls_tb.sv = module soc_netlist_tb)
+├── tb/                 # testbench (gls_tb.sv = module soc_netlist_tb)
 └── sim/<mode>_<net>/   # run output (git-ignored): xrun.log, sdf_annotate.log, waves.shm
 ```
 
@@ -13,8 +13,9 @@ ASIC/gls/
 ```sh
 cd ASIC/gls
 ./run_gls.sh                # functional GLS, post-route netlist (no delays)
-./run_gls.sh -m sdf         # timing GLS with Innovus SDF
-./run_gls.sh -m sdf -w      # + waveforms -> simvision sim/sdf_pnr/waves.shm
+./run_gls.sh -m sdf         # timing GLS with Innovus SDF, max delays (setup)
+./run_gls.sh -m sdf -t min  # timing GLS, min delays (hold)
+./run_gls.sh -m sdf -w      # + waveforms -> simvision sim/sdfmax_pnr/waves.shm
 ./run_gls.sh -n genus       # same tb on the post-Genus netlist
 ./run_gls.sh -h             # all options
 ```
@@ -51,4 +52,4 @@ DESIGN=soc innovus -nowin -files write_sdf.tcl -log logs/write_sdf_soc.log
   `sdf_annotate.log` first: the SRAM model has no specify block, so warnings
   about the SRAM instances are expected.
 
-PASS means: no `*E` tool errors, no `$error` from the tb, and the scoreboard prints `Total Errors: 0`.
+PASS means: no `*E` tool errors, no `$error` from the tb, no `Timing violation` (sdf mode), and the scoreboard prints `Total Errors: 0`.

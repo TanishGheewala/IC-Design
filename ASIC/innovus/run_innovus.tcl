@@ -316,10 +316,11 @@ proc step_power {} {
            -nets [list $POWER_NET $GROUND_NET]
 
     # Fill two met1 MinHole DRC holes in the VSS via stack at (54.06-54.96, 1006.47-1006.84) on soc; re-check if the floorplan changes.
+    # Sized 0.65 wide and centered at 1006.75 so it still covers the holes if Innovus snaps it ~0.14 um down (as it did on the last run).
     if {$DESIGN eq "soc"} {
-        setEdit -nets $GROUND_NET -layer_horizontal met1 -width_horizontal 0.37
-        editAddRoute    54.06 1006.655
-        editCommitRoute 54.96 1006.655
+        setEdit -nets $GROUND_NET -layer_horizontal met1 -width_horizontal 0.65
+        editAddRoute    54.06 1006.75
+        editCommitRoute 54.96 1006.75
     }
 }
 

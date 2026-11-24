@@ -16,12 +16,26 @@ module soc_netlist_tb;
     soc_interface soc_if();
     core_probe core_probe_if();
 
-    wire [9:0] gpio_inout;
     wire tx;
     wire sclk;
     wire mosi;
     wire miso;
     wire cs_n;
+
+    //the P&R netlist has separate gpio_in / gpio_out / gpio_oe pins (no inout),
+    //so the tb models the pad: when oe=1 the pin carries the chip's gpio_out,
+    //otherwise it carries the tb stimulus (soc_if.gpio_in). The chip's gpio_in
+    //sees the pin, the same as reading back a bidirectional pad.
+    wire [9:0] gpio_out;
+    wire [9:0] gpio_oe;
+    wire [9:0] gpio_pins;
+
+    genvar g;
+    generate
+        for (g = 0; g < 10; g++) begin : gpio_pad
+            assign gpio_pins[g] = (gpio_oe[g] === 1'b1) ? gpio_out[g] : soc_if.gpio_in[g];
+        end
+    endgenerate
 
     //wire tb interface to netlist ports
     assign soc_if.clk = clk;
@@ -30,20 +44,8 @@ module soc_netlist_tb;
     assign soc_if.mosi = mosi;
     assign soc_if.miso = miso;
     assign soc_if.cs_n = cs_n;
-    assign soc_if.gpio_out = dut.dut.soc_if_gpio_out;
-    assign soc_if.gpio_oe = dut.dut.soc_if_gpio_oe;
-
-    //only drive gpio pins when chip oe is 0 (input mode)
-    assign gpio_inout[0] = (dut.dut.soc_if_gpio_oe[0] === 1'b0) ? soc_if.gpio_in[0] : 1'bz;
-    assign gpio_inout[1] = (dut.dut.soc_if_gpio_oe[1] === 1'b0) ? soc_if.gpio_in[1] : 1'bz;
-    assign gpio_inout[2] = (dut.dut.soc_if_gpio_oe[2] === 1'b0) ? soc_if.gpio_in[2] : 1'bz;
-    assign gpio_inout[3] = (dut.dut.soc_if_gpio_oe[3] === 1'b0) ? soc_if.gpio_in[3] : 1'bz;
-    assign gpio_inout[4] = (dut.dut.soc_if_gpio_oe[4] === 1'b0) ? soc_if.gpio_in[4] : 1'bz;
-    assign gpio_inout[5] = (dut.dut.soc_if_gpio_oe[5] === 1'b0) ? soc_if.gpio_in[5] : 1'bz;
-    assign gpio_inout[6] = (dut.dut.soc_if_gpio_oe[6] === 1'b0) ? soc_if.gpio_in[6] : 1'bz;
-    assign gpio_inout[7] = (dut.dut.soc_if_gpio_oe[7] === 1'b0) ? soc_if.gpio_in[7] : 1'bz;
-    assign gpio_inout[8] = (dut.dut.soc_if_gpio_oe[8] === 1'b0) ? soc_if.gpio_in[8] : 1'bz;
-    assign gpio_inout[9] = (dut.dut.soc_if_gpio_oe[9] === 1'b0) ? soc_if.gpio_in[9] : 1'bz;
+    assign soc_if.gpio_out = gpio_out;
+    assign soc_if.gpio_oe = gpio_oe;
 
     //module instance
     soc_synth_top dut (
@@ -55,7 +57,9 @@ module soc_netlist_tb;
         .mosi(mosi),
         .miso(miso),
         .cs_n(cs_n),
-        .gpio_inout(gpio_inout)
+        .gpio_in(gpio_pins),
+        .gpio_out(gpio_out),
+        .gpio_oe(gpio_oe)
     );
 
     spi_flash_model #(
@@ -107,9 +111,9 @@ module soc_netlist_tb;
     //other soc probes
     assign core_probe_if.memory = dut.dut.data_memory.bank0.mem;
     assign core_probe_if.core_halt = dut.dut.core0_if_core_halt;
-    assign core_probe_if.gpio_dir = dut.dut.soc_if_gpio_oe;
-    assign core_probe_if.gpio_out = dut.dut.soc_if_gpio_out;
-    assign core_probe_if.gpio_in = gpio_inout;
+    assign core_probe_if.gpio_dir = gpio_oe;
+    assign core_probe_if.gpio_out = gpio_out;
+    assign core_probe_if.gpio_in = gpio_pins;
     assign core_probe_if.flash_write_done = dut.dut.flash_write_done;
     assign core_probe_if.boot_done = dut.dut.boot_done;
     //pc: P&R renamed the pc nets, so read the pc_reg flop outputs (only pc[12:0] exist)
