@@ -416,9 +416,22 @@ proc step_route {} {
     # Hold fix last: setup fixes and skewed clocks can create new hold paths.
     optDesign -postRoute -hold
 
-    # setNanoRouteMode -routeWithEco true
-    # setNanoRouteMode -drouteFixShort true
-    # ecoRoute -fixDrc
+    # DRC cleanup pass. The opt passes above resize/buffer cells and reroute
+    # them in ECO mode, which can leave a few met2 spacing/short violations
+    # where signal wires squeeze between a VSS power via and the SRAM macro
+    # edge (seen at the left edge of the right-hand macros).
+    #   NOTE: "ecoRoute -fixDrc" made this Innovus (23.1) exit with an error,
+    #   so use the plain form: delete just the violating wire pieces, then
+    #   ecoRoute (no options) reroutes only those broken nets. Placement is
+    #   not touched. Wrapped in catch so a failure here can't kill the run --
+    #   if it does fail, check soc_conn.rpt for opens before using the GDS.
+    if {[catch {
+        verify_drc -limit 1000
+        editDeleteViolations
+        ecoRoute
+    } err]} {
+        puts "WARNING: DRC cleanup pass failed, skipped: $err"
+    }
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
     addFiller -cell $FILLER_CELLS -prefix FILLER
