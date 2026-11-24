@@ -50,7 +50,7 @@ module data_memory_sram8k
     .dout0(dout0_0),
     .clk1(clk),
     .csb1(1'b1),
-    .addr1(bank_addr),
+    .addr1(9'd0),        // port 1 unused (csb1=1): tie off, no load on addr nets
     .dout1()
   );
 
@@ -66,7 +66,7 @@ module data_memory_sram8k
     .dout0(dout0_1),
     .clk1(clk),
     .csb1(1'b1),
-    .addr1(bank_addr),
+    .addr1(9'd0),        // port 1 unused (csb1=1): tie off, no load on addr nets
     .dout1()
   );
 
@@ -82,7 +82,7 @@ module data_memory_sram8k
     .dout0(dout0_2),
     .clk1(clk),
     .csb1(1'b1),
-    .addr1(bank_addr),
+    .addr1(9'd0),        // port 1 unused (csb1=1): tie off, no load on addr nets
     .dout1()
   );
 
@@ -98,7 +98,7 @@ module data_memory_sram8k
     .dout0(dout0_3),
     .clk1(clk),
     .csb1(1'b1),
-    .addr1(bank_addr),
+    .addr1(9'd0),        // port 1 unused (csb1=1): tie off, no load on addr nets
     .dout1()
   );
 

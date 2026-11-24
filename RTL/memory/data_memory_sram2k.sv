@@ -52,7 +52,7 @@ module data_memory_sram2k
             .dout0(dout0_0),
             .clk1(clk),
             .csb1(1'b1),
-            .addr1(bank_addr),
+            .addr1(9'd0),        // port 1 unused (csb1=1): tie off, no load on addr nets
             .dout1()
     );
 
