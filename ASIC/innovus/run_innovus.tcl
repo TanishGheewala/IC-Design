@@ -208,10 +208,6 @@ proc step_place_sram {} {
 
     # Orientations -- rotate/mirror each macro so its pins face the center.
     #   FIX (orientation): the old values (R0, MY, MX, R180) assumed the pins
-    #   were on top/right in R0, so every macro faced the die edge. The SRAM
-    #   LEF actually has the port-0 pins (the only port the RTL uses) on the
-    #   BOTTOM (din0/dout0/wmask0) and LEFT (addr0/clk0/csb0/web0) in R0.
-    #   Port-1 pins (top/right) are unused, so they end up facing outward.
     set orient_bl R180   ;# bottom->top, left->right : pins face up/right
     set orient_br MX     ;# bottom->top, left stays  : pins face up/left
     set orient_tl MY     ;# left->right, bottom stays: pins face down/right
@@ -398,9 +394,9 @@ proc step_route {} {
     # Hold fix last: setup fixes and skewed clocks can create new hold paths.
     optDesign -postRoute -hold
 
-    setNanoRouteMode -routeWithEco true
+    # setNanoRouteMode -routeWithEco true
     # setNanoRouteMode -drouteFixShort true
-    ecoRoute -fixDrc
+    # ecoRoute -fixDrc
 
     # Fill the gaps left in the rows (keeps n-well and power rails continuous).
     addFiller -cell $FILLER_CELLS -prefix FILLER
@@ -435,21 +431,6 @@ proc step_verify {} {
 }
 
 ###############################################################################
-# SDF for timing gate-level simulation (ASIC/gls/run_gls.sh -m sdf)
-#   -edges check_edge : keep posedge/negedge on timing checks so they match the
-#                       sky130 $setuphold/$width entries in the Verilog models
-#   -recompute_parallel_arcs : merge parallel arcs Xcelium can't annotate twice
-# Also callable on a restored database via write_sdf.tcl (no P&R re-run).
-###############################################################################
-proc write_gls_sdf {} {
-    global OUT_DIR DESIGN
-    write_sdf -view view_tt -precision 4 \
-        -edges check_edge -recompute_parallel_arcs \
-        $OUT_DIR/${DESIGN}.sdf
-    puts "=== SDF written: $OUT_DIR/${DESIGN}.sdf ==="
-}
-
-###############################################################################
 # 10. save -- design database, final netlist, SPEF, DEF and GDSII
 ###############################################################################
 proc step_save {} {
@@ -469,7 +450,6 @@ proc step_save {} {
     # after the last extraction.
     extractRC
     rcOut -spef $OUT_DIR/${DESIGN}.spef
-    write_gls_sdf
     defOut -floorplan -netlist -routing $OUT_DIR/${DESIGN}.def
 
     set merge [list $STD_GDS]
