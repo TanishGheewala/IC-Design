@@ -13,6 +13,7 @@ soc_netlist_tb
 /tapeout/IC-Design/ASIC/gls/tb/test_classes
 -define
 "UNIT_DELAY=#1"
++HEX=/tapeout/IC-Design/ASIC/gls/sim/func_pnr/gls_test.hex
 -licqueue
 -status
 -l

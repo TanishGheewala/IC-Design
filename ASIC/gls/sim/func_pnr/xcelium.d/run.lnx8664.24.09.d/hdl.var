@@ -4,3 +4,5 @@ include ./hdlrun.var
 define SNAPSHOT worklib.sky130_fd_sc_hd__udp_dff\$NSR_pp\$PG\$N:v
 DEFINE RUNMODEDEFAULT 1
 DEFINE LIB_MAP ( + => worklib )
+define ELAB_SNAPSHOT
+define SNAPSHOT worklib.soc_netlist_tb:sv

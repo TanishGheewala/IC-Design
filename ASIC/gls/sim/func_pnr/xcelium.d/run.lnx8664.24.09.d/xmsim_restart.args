@@ -2,13 +2,14 @@
 // File created by:  xrun
 // Do not modify this file
 //
++HEX=/tapeout/IC-Design/ASIC/gls/sim/func_pnr/gls_test.hex
 -LICQUEUE
 -STATUS
 -MESSAGES
 +EMGRLOG
 xrun.log
 -XLSTIME
-1795562646
+1795563864
 -XLKEEP
 -XLMODE
 ./xcelium.d/run.lnx8664.24.09.d
@@ -22,4 +23,4 @@ xrun
 -XLVERSION
 "TOOL:	xrun(64)	24.09-s011"
 -XLNAME
-./xcelium.d/run.lnx8664.24.09.d/bardeen.sdsu.edu_121153
+./xcelium.d/run.lnx8664.24.09.d/bardeen.sdsu.edu_122462

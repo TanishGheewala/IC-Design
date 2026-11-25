@@ -1,0 +1,34 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-XLMODE
+./xcelium.d/run.lnx8664.24.09.d
+-RUNMODE
+-INCDIR
+/tapeout/IC-Design/ASIC/gls/tb
+-INCDIR
+/tapeout/IC-Design/ASIC/gls/tb/test_classes
+-DEFINE
+"UNIT_DELAY=#1"
+-STATUS
+/tapeout/IC-Design/ASIC/sky130_ref/primitives.v
+/tapeout/IC-Design/ASIC/sky130_ref/sky130_fd_sc_hd.v
+/tapeout/IC-Design/RTL/memory/sky130_sram_2kbyte_1rw1r_32x512_8.v
+/tapeout/IC-Design/ASIC/innovus/out/soc/soc_pnr_netlist.v
+/tapeout/IC-Design/RTL/SoC/soc_interface.sv
+/tapeout/IC-Design/ASIC/gls/tb/core_probe.sv
+/tapeout/IC-Design/RTL/memory/spi_flash_model.sv
+/tapeout/IC-Design/ASIC/gls/tb/gls_package.sv
+/tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv
+-CDSLIB
+./xcelium.d/run.lnx8664.24.09.d/cdsrun.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.24.09.d/hdlrun.var
+-no_analogsolver
+-MESSAGES
+-UPDATE
+-XLLIBSTORE
+./xcelium.d/run.lnx8664.24.09.d/xllibs
+-ALLOWUNBOUND
+-hastop

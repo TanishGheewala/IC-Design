@@ -1,5 +1,5 @@
 xrun(64): 24.09-s011: (c) Copyright 1995-2025 Cadence Design Systems, Inc.
-TOOL:	xrun(64)	24.09-s011: Started on Nov 24, 2026 at 15:32:40 PST
+TOOL:	xrun(64)	24.09-s011: Started on Nov 24, 2026 at 15:44:24 PST
 xrun
 	-64bit
 	-top soc_netlist_tb
@@ -7,6 +7,7 @@ xrun
 	-incdir /tapeout/IC-Design/ASIC/gls/tb
 	-incdir /tapeout/IC-Design/ASIC/gls/tb/test_classes
 	-define UNIT_DELAY=#1
+	+HEX=/tapeout/IC-Design/ASIC/gls/sim/func_pnr/gls_test.hex
 	-licqueue
 	-status
 	-l xrun.log
@@ -22,6 +23,10 @@ xrun
 	/tapeout/IC-Design/RTL/memory/spi_flash_model.sv
 	/tapeout/IC-Design/ASIC/gls/tb/gls_package.sv
 	/tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv
+
+   User defined plus("+") options:
+	+HEX=/tapeout/IC-Design/ASIC/gls/sim/func_pnr/gls_test.hex
+
 DEFINE std       ./STD
 |
 xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
@@ -202,6 +207,9 @@ xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,
 DEFINE cds_amsfunctions ./CDS_AMSFUNCTIONS
 |
 xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
+Recompiling... reason: file '/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv' is newer than expected.
+	expected: Tue Nov 24 15:35:59 2026
+	actual:   Tue Nov 24 15:44:03 2026
 DEFINE std       ./STD
 |
 xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
@@ -249,49 +257,66 @@ DEFINE cds_amsfunctions ./CDS_AMSFUNCTIONS
 xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
 DEFINE std       ./STD
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
 DEFINE synopsys  ./SYNOPSYS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,2): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/SYNOPSYS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,2): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/SYNOPSYS' (cds.lib command ignored).
 DEFINE ieee      ./IEEE
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,3): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/IEEE' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,3): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/IEEE' (cds.lib command ignored).
 DEFINE ambit     ./AMBIT
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,4): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/AMBIT' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,4): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/AMBIT' (cds.lib command ignored).
 DEFINE vital_memory ./VITAL_MEMORY
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,5): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/VITAL_MEMORY' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,5): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/VITAL_MEMORY' (cds.lib command ignored).
 DEFINE ncutils ./NCUTILS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,6): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCUTILS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,6): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCUTILS' (cds.lib command ignored).
 DEFINE ncinternal ./NCINTERNAL
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,7): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCINTERNAL' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,7): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCINTERNAL' (cds.lib command ignored).
 DEFINE ncmodels ./NCMODELS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,8): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCMODELS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,8): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCMODELS' (cds.lib command ignored).
 DEFINE xmutils ./XMUTILS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,9): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMUTILS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,9): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMUTILS' (cds.lib command ignored).
 DEFINE xminternal ./XMINTERNAL
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,10): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMINTERNAL' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,10): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMINTERNAL' (cds.lib command ignored).
 DEFINE xmmodels ./XMMODELS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,11): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMMODELS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,11): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMMODELS' (cds.lib command ignored).
 DEFINE cds_assertions ./CDS_ASSERTIONS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,12): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_ASSERTIONS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,12): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_ASSERTIONS' (cds.lib command ignored).
 DEFINE cds_inhconn ./CDS_INHCONN
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,13): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_INHCONN' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,13): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_INHCONN' (cds.lib command ignored).
 DEFINE cds_spicelib ./CDS_SPICELIB
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,14): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_SPICELIB' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,14): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_SPICELIB' (cds.lib command ignored).
 DEFINE cds_amsfunctions ./CDS_AMSFUNCTIONS
 |
-xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
+xmvlog: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
+file: /tapeout/IC-Design/ASIC/gls/tb/gls_package.sv
+        soc_item.randomize();
+                         |
+xmvlog: *W,FUNTSK (/tapeout/IC-Design/ASIC/gls/tb/./test_classes/gls_generator.sv,126|25): function called as a task without void'().
+        soc_item.randomize();
+                         |
+xmvlog: *W,FUNTSK (/tapeout/IC-Design/ASIC/gls/tb/./test_classes/gls_generator.sv,148|25): function called as a task without void'().
+	package worklib.gls_package:sv
+		errors: 0, warnings: 2
+file: /tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv
+	module worklib.soc_netlist_tb:sv
+		errors: 0, warnings: 0
+xmvlog: *W,SPDUSD: Include directory /tapeout/IC-Design/ASIC/gls/tb/test_classes given but not used.
+	Total errors/warnings found outside modules and primitives:
+		errors: 0, warnings: 16
+xmvlog: Memory Usage - Current physical: 35.1M, Current virtual: 67.3M, Peak physical: 35.1M
+xmvlog: CPU Usage - 0.0s system + 0.7s user = 0.7s total (0.7s, 95.0% cpu)
 DEFINE std       ./STD
 |
 xrun: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
@@ -459,31 +484,147 @@ xmelab: (/tapeout/IC-Design/ASIC/innovus/out/soc/soc_pnr_netlist.v,11418): dec_i
 	Top level design units:
 		gls_package
 		soc_netlist_tb
-                0:  driver_mailbox.put(image_size[31:24]);
-                                                |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,54|48): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                1:  driver_mailbox.put(image_size[23:16]);
-                                                |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,55|48): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                2:  driver_mailbox.put(image_size[15:8]);
-                                                |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,56|48): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                3:  driver_mailbox.put(image_size[7:0]);
-                                                |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,57|48): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                    0:  driver_mailbox.put(image_word[31:24]);
-                                                    |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,67|52): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                    1:  driver_mailbox.put(image_word[23:16]);
-                                                    |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,68|52): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                    2:  driver_mailbox.put(image_word[15:8]);
-                                                    |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,69|52): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-                    3:  driver_mailbox.put(image_word[7:0]);
-                                                    |
-xmelab: *E,TYCMPAT (/tapeout/IC-Design/ASIC/gls/tb/test_classes/gls_generator.sv,70|52): mailbox put method argument and mailbox parameter do not have equivalent types on instance 'gls_package' (expecting datatype compatible with 'packed array [7:0] of bit' but found 'packed array [7:0] of logic' instead).
-xmelab: Memory Usage - Final: 80.4M, Peak: 81.6M, Peak virtual: 163.7M
-xmelab: CPU Usage - 0.0s system + 0.9s user = 1.0s total (1.0s, 99.9% cpu)
-xrun: *E,ELBERR: Error (*E) or soft error (*SE) occurred during elaboration (status 1), exiting.
-TOOL:	xrun(64)	24.09-s011: Exiting on Nov 24, 2026 at 15:32:41 PST  (total: 00:00:01)
+	Building instance overlay tables: .................... Done
+	Generating native compiled code:
+DEFINE std       ./STD
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
+DEFINE synopsys  ./SYNOPSYS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,2): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/SYNOPSYS' (cds.lib command ignored).
+DEFINE ieee      ./IEEE
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,3): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/IEEE' (cds.lib command ignored).
+DEFINE ambit     ./AMBIT
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,4): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/AMBIT' (cds.lib command ignored).
+DEFINE vital_memory ./VITAL_MEMORY
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,5): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/VITAL_MEMORY' (cds.lib command ignored).
+DEFINE ncutils ./NCUTILS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,6): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCUTILS' (cds.lib command ignored).
+DEFINE ncinternal ./NCINTERNAL
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,7): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCINTERNAL' (cds.lib command ignored).
+DEFINE ncmodels ./NCMODELS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,8): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCMODELS' (cds.lib command ignored).
+DEFINE xmutils ./XMUTILS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,9): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMUTILS' (cds.lib command ignored).
+DEFINE xminternal ./XMINTERNAL
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,10): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMINTERNAL' (cds.lib command ignored).
+DEFINE xmmodels ./XMMODELS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,11): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMMODELS' (cds.lib command ignored).
+DEFINE cds_assertions ./CDS_ASSERTIONS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,12): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_ASSERTIONS' (cds.lib command ignored).
+DEFINE cds_inhconn ./CDS_INHCONN
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,13): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_INHCONN' (cds.lib command ignored).
+DEFINE cds_spicelib ./CDS_SPICELIB
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,14): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_SPICELIB' (cds.lib command ignored).
+DEFINE cds_amsfunctions ./CDS_AMSFUNCTIONS
+|
+xmvlog_cg: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
+		worklib.soc_netlist_tb:sv <0x1104c857>
+			streams:  53, words: 13141
+		worklib.gls_package:sv <0x28e6a8ef>
+			streams:  68, words: 143083
+	Building instance specific data structures.
+	Loading native compiled code:     .................... Done
+	Design hierarchy summary:
+		                        Instances  Unique
+		Modules:                    8,752     182
+		Interfaces:                     2       2
+		Verilog packages:               1       1
+		UDPs:                       1,534       5
+		Primitives:                24,430      10
+		Registers:                    134     156
+		Scalar wires:                  64       -
+		Expanded wires:               128       4
+		Vectored wires:                40       -
+		Named events:                   0       5
+		Always blocks:                 26      11
+		Initial blocks:                 4       4
+		Final blocks:                   1       1
+		Parallel blocks:                2       2
+		Cont. assignments:             57      90
+		Pseudo assignments:             3       -
+		SV Class declarations:          7       7
+		SV Class specializations:       7       7
+		Process Clocks:                 8       5
+		Simulation timescale:         1ps
+	Writing initial simulation snapshot: worklib.soc_netlist_tb:sv
+xmelab: Memory Usage - Final: 87.9M, Peak: 87.9M, Peak virtual: 170.2M
+xmelab: CPU Usage - 0.1s system + 1.8s user = 1.9s total (2.0s, 93.6% cpu)
+DEFINE std       ./STD
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,1): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/STD' (cds.lib command ignored).
+DEFINE synopsys  ./SYNOPSYS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,2): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/SYNOPSYS' (cds.lib command ignored).
+DEFINE ieee      ./IEEE
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,3): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/IEEE' (cds.lib command ignored).
+DEFINE ambit     ./AMBIT
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,4): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/AMBIT' (cds.lib command ignored).
+DEFINE vital_memory ./VITAL_MEMORY
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,5): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/VITAL_MEMORY' (cds.lib command ignored).
+DEFINE ncutils ./NCUTILS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,6): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCUTILS' (cds.lib command ignored).
+DEFINE ncinternal ./NCINTERNAL
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,7): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCINTERNAL' (cds.lib command ignored).
+DEFINE ncmodels ./NCMODELS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,8): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/NCMODELS' (cds.lib command ignored).
+DEFINE xmutils ./XMUTILS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,9): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMUTILS' (cds.lib command ignored).
+DEFINE xminternal ./XMINTERNAL
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,10): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMINTERNAL' (cds.lib command ignored).
+DEFINE xmmodels ./XMMODELS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,11): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/XMMODELS' (cds.lib command ignored).
+DEFINE cds_assertions ./CDS_ASSERTIONS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,12): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_ASSERTIONS' (cds.lib command ignored).
+DEFINE cds_inhconn ./CDS_INHCONN
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,13): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_INHCONN' (cds.lib command ignored).
+DEFINE cds_spicelib ./CDS_SPICELIB
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,14): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_SPICELIB' (cds.lib command ignored).
+DEFINE cds_amsfunctions ./CDS_AMSFUNCTIONS
+|
+xmsim: *W,DLCPTH (/opt/cadence/installs/XCELIUM2409/tools/inca/files/cdsvhdl.lib,15): cds.lib Invalid path '/opt/cadence/installs/XCELIUM2409/tools/inca/files/CDS_AMSFUNCTIONS' (cds.lib command ignored).
+Loading snapshot worklib.soc_netlist_tb:sv .................... Done
+SVSEED default: 1
+xcelium> source /opt/cadence/installs/XCELIUM2409/tools/xcelium/files/xmsimrc
+xcelium> run
+T=8282371000 [Generator] loaded 14 words (56 bytes) from /tapeout/IC-Design/ASIC/gls/sim/func_pnr/gls_test.hex
+T=8282371000 [Test] Starting Sequence ...
+[SCOREBOARD] tx_line_return: 3, debug_instruction: 2, core halt: 1, register_value: 3
+
+[SCOREBOARD] tx_line_return:          8, debug_instruction: 3, core halt: 1, memory_value:          8, address:          8
+
+[SCOREBOARD] tx_line_return: 00000000, debug_instruction: 3, core halt: 1, gpio_dir: 000, address:       4096
+
+[SCOREBOARD] Total Errors:           0
+
+PC: 34
+Simulation complete via $finish(1) at time 113662250 NS + 0
+/tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv:143         $finish;
+xcelium> exit
+xmsim: Memory Usage - Final: 90.3M, Peak: 90.3M, Peak virtual: 366.3M
+xmsim: CPU Usage - 0.1s system + 697.7s user = 697.8s total (702.8s, 99.3% cpu)
+TOOL:	xrun(64)	24.09-s011: Exiting on Nov 24, 2026 at 15:56:10 PST  (total: 00:11:46)
