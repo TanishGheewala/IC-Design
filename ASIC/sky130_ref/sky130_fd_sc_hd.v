@@ -72128,9 +72128,12 @@ module sky130_fd_sc_hd__lpflow_bleeder_1 (
 
     input SHORT;
 
-specify
-(SHORT => VPWR) = (0:0:0,0:0:0,0:0:0,0:0:0,0:0:0,0:0:0);
-endspecify
+// PDK bug: VPWR is not a port in the non-USE_POWER_PINS view, so this path
+// fails to compile (xmvlog *E,UNDIDN) in timing/SDF GLS. The cell has no
+// outputs and is not used in our netlist, so the path is dropped.
+// specify
+// (SHORT => VPWR) = (0:0:0,0:0:0,0:0:0,0:0:0,0:0:0,0:0:0);
+// endspecify
 endmodule
 `endcelldefine
 

@@ -123,7 +123,8 @@ class gls_generator;
         //turns on register contraint for debug address
         soc_item.c_registers.constraint_mode(1);
         soc_item.c_memory.constraint_mode(0);
-        soc_item.randomize();
+        if (!soc_item.randomize())
+            $fatal(1, "[Generator] randomize() failed for RETURN_REG address");
         soc_item.debug_instruction = soc_packet::RETURN_REG;
         driver_mailbox.put(soc_item.debug_instruction);
         monitor_mailbox.put(soc_item);
@@ -145,7 +146,8 @@ class gls_generator;
         //turns on register contraint for debug address
         soc_item.c_registers.constraint_mode(0);
         soc_item.c_memory.constraint_mode(1);
-        soc_item.randomize();
+        if (!soc_item.randomize())
+            $fatal(1, "[Generator] randomize() failed for RETURN_MEM address");
         soc_item.debug_address = soc_item.debug_address;
         soc_item.debug_instruction = soc_packet::RETURN_MEM;
         driver_mailbox.put(soc_item.debug_instruction);
