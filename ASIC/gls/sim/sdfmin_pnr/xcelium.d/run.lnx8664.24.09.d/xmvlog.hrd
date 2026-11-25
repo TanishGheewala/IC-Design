@@ -1,0 +1,12 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
+-INCDIR
+/tapeout/IC-Design/ASIC/gls/tb
+-INCDIR
+/tapeout/IC-Design/ASIC/gls/tb/test_classes
+-DEFINE
+"UNIT_DELAY=#1"
+-DEFINE
+SRAM_DOUT_DELAY=0.383

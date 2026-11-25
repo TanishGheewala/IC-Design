@@ -515,10 +515,6 @@ Annotating to instance dut.bootl.spi_shift_inst.g2277__6260 of module sky130_fd_
 
 Annotating to instance dut.bootl.spi_shift_inst.miso_meta_reg of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3104, 0.302)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0511) (-0.028))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.0992) (-0.0422))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2621))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.bootl.spi_shift_inst.g2279__4319 of module sky130_fd_sc_hd__a22o_1
 	ABSOLUTE (IOPATH A1 X) = (0.1502, 0.2265)
@@ -38902,12 +38898,6 @@ Annotating to instance dut.debug_con.REC.clk_counter_reg[12] of module sky130_fd
 Annotating to instance dut.debug_con.REC.serial_in_extra_reg of module sky130_fd_sc_hd__dfstp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.5187, 0.3678)
 	ABSOLUTE (IOPATH SET_B Q) = (0.407, ())
-	TIMINGCHECK (RECREM (posedge SET_B) (posedge CLK) (-0.121) (0.1404))
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0705) (-0.0498))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.0726) (-0.0162))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.3998))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.257))
-	TIMINGCHECK (WIDTH (negedge SET_B) (0.397))
 
 Annotating to instance dut.debug_con.REC.serial_in_reg of module sky130_fd_sc_hd__dfstp_2
 	ABSOLUTE (IOPATH CLK Q) = (0.5814, 0.4018)
@@ -45037,73 +45027,33 @@ Annotating to instance dut.gpio_block.g1082 of module sky130_fd_sc_hd__and2_0
 
 Annotating to instance dut.gpio_block.in_meta_reg[5] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3204, 0.3085)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.057) (-0.033))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1051) (-0.0476))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[9] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3207, 0.3087)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0561) (-0.0323))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1045) (-0.047))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[7] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3403, 0.3162)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0553) (-0.0317))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1038) (-0.0463))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[8] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3445, 0.3193)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.065) (-0.0407))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1127) (-0.0547))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[4] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3228, 0.31)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.057) (-0.033))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1052) (-0.0475))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[0] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3483, 0.3202)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0651) (-0.0407))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1129) (-0.0548))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[6] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3126, 0.3033)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0715) (-0.0464))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1186) (-0.0599))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[1] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3135, 0.3039)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0725) (-0.0474))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1195) (-0.0608))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[2] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3191, 0.3076)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0572) (-0.0332))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1054) (-0.0478))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.in_meta_reg[3] of module sky130_fd_sc_hd__dfxtp_1
 	ABSOLUTE (IOPATH CLK Q) = (0.3207, 0.3086)
-	TIMINGCHECK (SETUPHOLD (posedge D) (posedge CLK) (0.0564) (-0.0324))
-	TIMINGCHECK (SETUPHOLD (negedge D) (posedge CLK) (0.1045) (-0.047))
-	TIMINGCHECK (WIDTH (posedge CLK) (0.2543))
-	TIMINGCHECK (WIDTH (negedge CLK) (0.2656))
 
 Annotating to instance dut.gpio_block.g1094 of module sky130_fd_sc_hd__nor4_1
 	ABSOLUTE (IOPATH A Y) = (0.3654, 0.0662)

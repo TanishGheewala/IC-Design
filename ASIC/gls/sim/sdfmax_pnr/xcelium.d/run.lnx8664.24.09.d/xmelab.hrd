@@ -8,3 +8,5 @@ soc_netlist_tb
 1ns/1ps
 -SDF_CMD_FILE
 sdf.cmd
+-TFILE
+async_sync.tfile

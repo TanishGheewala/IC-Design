@@ -8,3 +8,5 @@
 /tapeout/IC-Design/ASIC/gls/tb/test_classes
 -DEFINE
 "UNIT_DELAY=#1"
+-DEFINE
+SRAM_DOUT_DELAY=0.529

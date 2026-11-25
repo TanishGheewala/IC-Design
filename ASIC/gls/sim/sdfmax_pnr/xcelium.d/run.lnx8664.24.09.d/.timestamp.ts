@@ -1,7 +1,7 @@
 1795560894 /tapeout/IC-Design/ASIC/innovus/out/soc/soc_pnr_netlist.v
-1794256390 /tapeout/IC-Design/RTL/SoC/soc_interface.sv
 1794358623 /tapeout/IC-Design/RTL/memory/spi_flash_model.sv
-1795569081 /tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv
+1794256390 /tapeout/IC-Design/RTL/SoC/soc_interface.sv
+1795572534 /tapeout/IC-Design/ASIC/gls/tb/gls_tb.sv
 1795464227 /tapeout/IC-Design/ASIC/gls/tb/core_probe.sv
 1795478591 /tapeout/IC-Design/ASIC/gls/tb/gls_package.sv
 1795136995 /tapeout/IC-Design/ASIC/sky130_ref/primitives.v

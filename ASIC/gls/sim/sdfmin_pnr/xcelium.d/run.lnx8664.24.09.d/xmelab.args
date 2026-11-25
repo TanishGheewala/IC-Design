@@ -1,0 +1,30 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++HEX=/tapeout/IC-Design/ASIC/gls/sim/sdfmin_pnr/gls_test.hex
+-timescale
+1ns/1ps
+-LICQUEUE
+-STATUS
+-SDF_CMD_FILE
+sdf.cmd
+-NEG_TCHK
+-SDF_VERBOSE
+-TFILE
+async_sync.tfile
+-no_analogsolver
+-MESSAGES
+soc_netlist_tb
+-dms_perf
+-XLMODE
+./xcelium.d/run.lnx8664.24.09.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.24.09.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.24.09.d/hdl.var
+-WORK
+worklib
+-IRUNHASTOP
+-HASXLMODE

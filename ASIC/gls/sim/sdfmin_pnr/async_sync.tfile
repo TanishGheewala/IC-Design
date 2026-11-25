@@ -1,0 +1,12 @@
+PATH soc_netlist_tb.dut.dut.debug_con.REC.serial_in_extra_reg -tcheck
+PATH soc_netlist_tb.dut.dut.bootl.spi_shift_inst.miso_meta_reg -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[0]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[1]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[2]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[3]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[4]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[5]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[6]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[7]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[8]  -tcheck
+PATH soc_netlist_tb.dut.dut.gpio_block.\in_meta_reg[9]  -tcheck
