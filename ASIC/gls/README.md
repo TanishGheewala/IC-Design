@@ -16,6 +16,7 @@ cd ASIC/gls
 ./run_gls.sh -m sdf         # timing GLS with Innovus SDF, max delays (setup)
 ./run_gls.sh -m sdf -t min  # timing GLS, min delays (hold)
 ./run_gls.sh -m sdf -w      # + waveforms -> simvision sim/sdfmax_pnr/waves.shm
+./run_gls.sh -m sdf -N      # debug: -nonotifier, violations reported but flops don't go X
 ./run_gls.sh -n genus       # same tb on the post-Genus netlist
 ./run_gls.sh -h             # all options
 ```

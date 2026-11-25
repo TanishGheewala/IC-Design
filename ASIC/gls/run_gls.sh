@@ -7,7 +7,10 @@
 #                  sdf  = timing GLS: cell timing views + Innovus SDF back-annotation
 #   -t max|min     sdf mode only: which SDF value to use (default max = setup-critical;
 #                  min = hold-critical). Innovus writes (min::max) with no typical value.
-#   -n pnr|genus  netlist to simulate (default pnr = innovus/out/soc/soc_pnr_netlist.v)
+#   -N             sdf mode only: -nonotifier. Timing violations are still reported but
+#                  flops do NOT go X, so you can tell X from violations apart from X
+#                  caused by something else. Debug only -- sign-off runs must omit -N.
+#   -n pnr|genus netlist to simulate (default pnr = innovus/out/soc/soc_pnr_netlist.v)
 #   -x <file.hex>  use this program hex instead of building program/gls_test.s
 #   -w             dump waves (SHM database, open later with: simvision sim/<run>/waves.shm)
 #   -g             open the SimVision GUI (implies full debug access)
@@ -19,6 +22,7 @@
 #   ./run_gls.sh -m sdf          # timing GLS (needs innovus/out/soc/soc.sdf)
 #   ./run_gls.sh -m sdf -w       # same, with waveforms
 #   ./run_gls.sh -m sdf -t min   # timing GLS with min delays (hold check)
+#   ./run_gls.sh -m sdf -N       # timing GLS, violations reported but no X (debug)
 #   ./run_gls.sh -n genus        # sanity re-run on the post-synthesis netlist
 #
 # Output lands in ASIC/gls/sim/<mode>_<netlist>/ (xrun.log, sdf_annotate.log, waves.shm)
@@ -63,12 +67,13 @@ RISCV_PREFIX="${RISCV_PREFIX:-riscv64-unknown-elf-}"
 # ---------------------------------------------------------------------------
 # Options
 # ---------------------------------------------------------------------------
-MODE=func; NETSEL=pnr; HEX_IN=""; WAVES=0; GUI=0; CLEAN=0; MTM=max
-usage() { sed -n '3,30p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
-while getopts "m:t:n:x:wgch" opt; do
+MODE=func; NETSEL=pnr; HEX_IN=""; WAVES=0; GUI=0; CLEAN=0; MTM=max; NONOTIFIER=0
+usage() { sed -n '3,34p' "$0" | sed 's/^# \{0,1\}//'; exit "${1:-0}"; }
+while getopts "m:t:Nn:x:wgch" opt; do
     case $opt in
         m) MODE=$OPTARG ;;
         t) MTM=$OPTARG ;;
+        N) NONOTIFIER=1 ;;
         n) NETSEL=$OPTARG ;;
         x) HEX_IN=$(cd "$(dirname "$OPTARG")" && pwd)/$(basename "$OPTARG") ;;
         w) WAVES=1 ;;
@@ -94,8 +99,15 @@ if [[ $MODE == sdf && $NETSEL == genus ]]; then
     echo "ERROR: SDF mode only makes sense with the post-route (pnr) netlist" >&2; exit 1
 fi
 
+if [[ $NONOTIFIER == 1 && $MODE != sdf ]]; then
+    echo "ERROR: -N only applies to sdf mode (func mode has no timing checks)" >&2; exit 1
+fi
+
 if [[ $MODE == sdf ]]; then
-    RUN_DIR="$GLS_DIR/sim/${MODE}${MTM}_${NETSEL}"   # sim/sdfmax_pnr, sim/sdfmin_pnr
+    # sim/sdfmax_pnr, sim/sdfmin_pnr; -N runs get their own dir so they never
+    # overwrite (or get mistaken for) a sign-off run: sim/sdfmax_nonotif_pnr
+    NOTIF_TAG=""; [[ $NONOTIFIER == 1 ]] && NOTIF_TAG="_nonotif"
+    RUN_DIR="$GLS_DIR/sim/${MODE}${MTM}${NOTIF_TAG}_${NETSEL}"
 else
     RUN_DIR="$GLS_DIR/sim/${MODE}_${NETSEL}"
 fi
@@ -212,6 +224,9 @@ EOF
         -neg_tchk                   # sky130 $setuphold uses delayed CLK/D nets
         -sdf_verbose
     )
+    # -N: keep reporting violations, but don't toggle the notifier regs, so the
+    # sky130 flops never go X because of a timing check
+    [[ $NONOTIFIER == 1 ]] && XRUN_ARGS+=( -nonotifier )
 fi
 
 if [[ $GUI == 1 ]]; then
@@ -263,7 +278,17 @@ echo "tool errors:      $tool_err"
 echo "tb \$error count:  $tb_err"
 if [[ $MODE == sdf ]]; then
     echo "SDF delays:       $MTM_CONTROL"
+    if [[ $NONOTIFIER == 1 ]]; then
+        echo "notifiers:        OFF (-nonotifier) -- violations reported, flops NOT forced to X"
+        echo "                  DEBUG RUN: not valid for sign-off, re-run without -N"
+    fi
     echo "timing viol msgs: $tviol"
+    if (( tviol > 0 )); then
+        # where the violations are: top scopes (Xcelium prints a Scope: line per violation)
+        echo "top violating scopes:"
+        grep -A8 'Timing violation' "$LOG" | grep -oE 'Scope: *[^ ]+' | sed 's/Scope: *//' \
+            | sort | uniq -c | sort -rn | head -10 | sed 's/^/                  /' || true
+    fi
     echo "SDF annotation:   $RUN_DIR/sdf_annotate.log"
     # xmelab prints per-category annotation coverage; show it so a silent
     # non-annotation (0% path delays) is visible
