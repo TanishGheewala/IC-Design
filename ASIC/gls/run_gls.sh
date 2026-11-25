@@ -227,6 +227,30 @@ EOF
     # -N: keep reporting violations, but don't toggle the notifier regs, so the
     # sky130 flops never go X because of a timing check
     [[ $NONOTIFIER == 1 ]] && XRUN_ARGS+=( -nonotifier )
+
+    # SRAM model dout delay = the macro .lib clk0(fall)->dout0 arc for this
+    # corner (macros/sky130_sram_2kbyte_1rw1r_32x512_8_TT_1p8V_25C.lib: 0.383..0.529 ns).
+    # The model has no specify block, so the SDF can't set it (SDFNSB warnings);
+    # gls_tb.sv applies it with defparam. Without this the model uses 3 ns.
+    if [[ $MTM == max ]]; then SRAM_DOUT_DELAY=0.529; else SRAM_DOUT_DELAY=0.383; fi
+    XRUN_ARGS+=( -define "SRAM_DOUT_DELAY=$SRAM_DOUT_DELAY" )
+
+    # Asynchronous chip inputs (rx, miso, gpio_in) have no timing relation to
+    # clk -- soc.sdc false-paths them (miso is captured by a synchronizer too).
+    # Their FIRST synchronizer flop is expected to see setup/hold "violations",
+    # which would make the sky130 model output X. Turn timing checks off on
+    # exactly those flops; every other flop keeps its checks. The second stage
+    # of each synchronizer is a normal synchronous flop and stays checked.
+    # (rst_n is not listed: it drives async resets, whose recovery/removal
+    #  checks stay on -- the tb releases reset away from the clock edge.)
+    {
+        echo "PATH $DUT_SCOPE.dut.debug_con.REC.serial_in_extra_reg -tcheck"   # rx
+        echo "PATH $DUT_SCOPE.dut.bootl.spi_shift_inst.miso_meta_reg -tcheck"  # miso
+        for i in 0 1 2 3 4 5 6 7 8 9; do                                       # gpio_in[9:0]
+            echo "PATH $DUT_SCOPE.dut.gpio_block.\\in_meta_reg[$i]  -tcheck"
+        done
+    } > async_sync.tfile
+    XRUN_ARGS+=( -tfile async_sync.tfile )
 fi
 
 if [[ $GUI == 1 ]]; then
@@ -269,15 +293,17 @@ LOG="$RUN_DIR/xrun.log"
 echo
 echo "================================ GLS SUMMARY ================================"
 echo "log:              $LOG"
-# tb $error calls show up as "*E,ASRTST"; everything else with *E is a tool error
-tb_err=$(grep -c '\*E,ASRTST' "$LOG" || true)
-tool_err=$(grep '\*E,' "$LOG" | grep -vc 'ASRTST' || true)
+# tb $error calls show up as "*E,ERRSEV" (class methods) or "*E,ASRTST"
+# (assertions); everything else with *E is a tool error
+tb_err=$(grep -cE '\*E,(ERRSEV|ASRTST)' "$LOG" || true)
+tool_err=$(grep '\*E,' "$LOG" | grep -vcE 'ERRSEV|ASRTST' || true)
 tviol=$(grep -cE 'Timing violation' "$LOG" || true)
 sb_line=$(grep -E 'Total Errors:' "$LOG" | tail -1 || true)
 echo "tool errors:      $tool_err"
 echo "tb \$error count:  $tb_err"
 if [[ $MODE == sdf ]]; then
-    echo "SDF delays:       $MTM_CONTROL"
+    echo "SDF delays:       $MTM_CONTROL   (SRAM model dout delay: $SRAM_DOUT_DELAY ns)"
+    echo "tchecks off on:   $(wc -l < "$RUN_DIR/async_sync.tfile") async-input synchronizer flops ($RUN_DIR/async_sync.tfile)"
     if [[ $NONOTIFIER == 1 ]]; then
         echo "notifiers:        OFF (-nonotifier) -- violations reported, flops NOT forced to X"
         echo "                  DEBUG RUN: not valid for sign-off, re-run without -N"

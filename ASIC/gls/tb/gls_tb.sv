@@ -74,6 +74,23 @@ module soc_netlist_tb;
         .cs_n(cs_n)
     );
 
+    //SRAM model output timing. The behavioral OpenRAM model drives dout0
+    //DELAY ns after the falling clk edge (default 3 ns, "arbitrary") and holds
+    //it at X from 1 ns after the rising edge until then. The macro's .lib --
+    //what Innovus timed against -- has clk0(fall)->dout0 = 0.383..0.529 ns.
+    //With the default 3 ns, SDF GLS sees dout ~2.5 ns later than STA did, so
+    //tight sram2reg paths (worst: bank1/dout0 -> core0/pc_reg, 0.105 ns slack)
+    //arrive after the capture edge and the flops latch X (no timing violation
+    //is reported because D changes after the hold window). Match the .lib.
+    //run_gls.sh passes +define+SRAM_DOUT_DELAY (max 0.529 / min 0.383).
+`ifndef SRAM_DOUT_DELAY
+    `define SRAM_DOUT_DELAY 0.45
+`endif
+    defparam dut.dut.instruction_rom.bank0.DELAY = `SRAM_DOUT_DELAY;
+    defparam dut.dut.instruction_rom.bank1.DELAY = `SRAM_DOUT_DELAY;
+    defparam dut.dut.instruction_rom.bank2.DELAY = `SRAM_DOUT_DELAY;
+    defparam dut.dut.data_memory.bank0.DELAY     = `SRAM_DOUT_DELAY;
+
     //register file probes from netlist wires (x0 is hardwired 0)
     assign core_probe_if.registers[0]  = 32'd0;
     assign core_probe_if.registers[1]  = dut.dut.core0.u_register_file.\registers[1] ;
