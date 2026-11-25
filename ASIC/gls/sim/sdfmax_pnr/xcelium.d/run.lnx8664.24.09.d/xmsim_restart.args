@@ -1,0 +1,27 @@
+//
+// File created by:  xrun
+// Do not modify this file
+//
++HEX=/tapeout/IC-Design/ASIC/gls/sim/sdfmax_pnr/gls_test.hex
+-LICQUEUE
+-STATUS
+-SDF_VERBOSE
+-MESSAGES
++EMGRLOG
+xrun.log
+-XLSTIME
+1795569098
+-XLKEEP
+-XLMODE
+./xcelium.d/run.lnx8664.24.09.d
+-RUNMODE
+-CDSLIB
+./xcelium.d/run.lnx8664.24.09.d/cds.lib
+-HDLVAR
+./xcelium.d/run.lnx8664.24.09.d/hdl.var
+-XLNAME
+xrun
+-XLVERSION
+"TOOL:	xrun(64)	24.09-s011"
+-XLNAME
+./xcelium.d/run.lnx8664.24.09.d/bardeen.sdsu.edu_124587
