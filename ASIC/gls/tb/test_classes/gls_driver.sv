@@ -19,6 +19,11 @@ class gls_driver;
         baud_wait = (clk_speed/baud_rate) - 1;
         baud_wait = baud_wait*20;
 
+        //start each byte on the falling clock edge. baud_wait is a whole number
+        //of clock periods, so every rx transition then lands mid-period instead
+        //of on the rising edge, where it would violate the receiver flop's
+        //setup/hold in SDF GLS and turn it X
+        @(negedge soc_vif.clk);
         soc_vif.rx = 1'b0;
         #baud_wait;
 

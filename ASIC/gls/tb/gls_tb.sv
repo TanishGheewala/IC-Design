@@ -125,6 +125,9 @@ module soc_netlist_tb;
         soc_if.rx = 1'b1;
         soc_if.rst_n = 0;
         repeat (5) @(posedge clk);
+        //release reset on the falling edge: with SDF delays, releasing it on the
+        //rising edge violates the flops' recovery/removal check and they go X
+        @(negedge clk);
         soc_if.rst_n = 1;
 
         //lets program run

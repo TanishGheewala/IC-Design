@@ -107,6 +107,8 @@ class gls_generator;
         @(driver_done);
         soc_vif.rst_n = 0;
         repeat (10) @(posedge soc_vif.clk);
+        //release on the falling edge (recovery/removal margin in SDF GLS)
+        @(negedge soc_vif.clk);
         soc_vif.rst_n = 1;
 
         //lets code run
