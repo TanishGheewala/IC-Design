@@ -105,6 +105,10 @@ class gls_generator;
         monitor_mailbox.put(soc_item);
 
         @(driver_done);
+        //assert on the falling edge too: driver_done fires on a rising edge, and
+        //rst_n feeds the gpio synchronizer D pins (sync reset), so asserting it
+        //there hits in_sync_reg setup in min-delay SDF GLS
+        @(negedge soc_vif.clk);
         soc_vif.rst_n = 0;
         repeat (10) @(posedge soc_vif.clk);
         //release on the falling edge (recovery/removal margin in SDF GLS)
